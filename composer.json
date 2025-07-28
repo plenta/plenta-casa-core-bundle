@@ -1,0 +1,41 @@
+{
+  "name": "plenta/plenta-casa-core-bundle",
+  "type": "project",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Plenta.io",
+      "homepage": "https://plenta.io",
+      "email": "hallo@plenta.io"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "contao/core-bundle": "^5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Plenta\\CasaCoreBundle\\": "src"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "Plenta\\CasaCoreBundle\\ContaoManager\\Plugin"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "contao-components/installer": true,
+      "contao/manager-plugin": true,
+      "contao-community-alliance/composer-plugin": true,
+      "php-http/discovery": true
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@php vendor/bin/contao-setup"
+    ],
+    "post-update-cmd": [
+      "@php vendor/bin/contao-setup"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" ?><xliff version="1.1">
+    <file datatype="php" original="contao/languages/en/modules.php" source-language="de">
+        <body>
+            <trans-unit id="MOD.plenta_casa.0">
+                <source>Plenta Casa</source>
+            </trans-unit>
+            <trans-unit id="MOD.plenta_casa.1">
+                <source>Plenta Casa</source>
+            </trans-unit>
+            <trans-unit id="MOD.plcasa_objects.0">
+                <source>Objekte</source>
+            </trans-unit>
+            <trans-unit id="MOD.plcasa_objects.1">
+                <source>Objekte</source>
+            </trans-unit>
+            <trans-unit id="MOD.plcasa_config.0">
+                <source>Konfiguration</source>
+            </trans-unit>
+            <trans-unit id="MOD.plcasa_config.1">
+                <source>Konfiguration</source>
+            </trans-unit>
+            <trans-unit id="MOD.plcasa_support.0">
+                <source>Support</source>
+            </trans-unit>
+            <trans-unit id="MOD.plcasa_support.1">
+                <source>Support</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

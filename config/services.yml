@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Plenta\CasaCoreBundle\:
+        resource: ../src/*
+        exclude: ../src/{Entity,Migrations,Resources,Tests}
