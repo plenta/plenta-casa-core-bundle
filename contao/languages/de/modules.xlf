@@ -7,22 +7,22 @@
             <trans-unit id="MOD.plenta_casa.1">
                 <source>Plenta Casa</source>
             </trans-unit>
-            <trans-unit id="MOD.plcasa_objects.0">
+            <trans-unit id="MOD.plentacasa_objects.0">
                 <source>Objekte</source>
             </trans-unit>
-            <trans-unit id="MOD.plcasa_objects.1">
+            <trans-unit id="MOD.plentacasa_objects.1">
                 <source>Objekte</source>
             </trans-unit>
-            <trans-unit id="MOD.plcasa_config.0">
+            <trans-unit id="MOD.plentacasa_config.0">
                 <source>Konfiguration</source>
             </trans-unit>
-            <trans-unit id="MOD.plcasa_config.1">
+            <trans-unit id="MOD.plentacasa_config.1">
                 <source>Konfiguration</source>
             </trans-unit>
-            <trans-unit id="MOD.plcasa_support.0">
+            <trans-unit id="MOD.plentacasa_support.0">
                 <source>Support</source>
             </trans-unit>
-            <trans-unit id="MOD.plcasa_support.1">
+            <trans-unit id="MOD.plentacasa_support.1">
                 <source>Support</source>
             </trans-unit>
         </body>

@@ -4,13 +4,13 @@ use Contao\ArrayUtil;
 
 ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
     'plenta_casa' => [
-        'plcasa_objects' => [
+        'plentacasa_objects' => [
             'tables' => [],
         ],
-        'plcasa_config' => [
+        'plentacasa_config' => [
             'tables' => [],
         ],
-        'plcasa_support' => [
+        'plentacasa_support' => [
             'tables' => [],
         ],
     ],
