@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+    <file>
+        <body>
+            <trans-unit id="plenta_casa.greeting.random_choice">
+                <source>Hallo|Moin|Hi|Servus|Hey|Grüß dich|Gude|Tach|Na</source>
+                <target>Hallo|Moin|Hi|Servus|Hey|Grüß dich|Gude|Tach|Na</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

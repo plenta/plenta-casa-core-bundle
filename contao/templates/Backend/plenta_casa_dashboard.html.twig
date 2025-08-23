@@ -1,0 +1,28 @@
+{% trans_default_domain 'contao_default' %}
+
+<div class="plenta_casa_dashboard">
+
+    {% block headline %}
+        <h2 class="greeting">{{ salutation }} {{ username }}</h2>
+    {% endblock %}
+
+    {% block error %}
+    {% endblock %}
+
+    {% block main_content %}
+        <div class="be-plenta-casa-dashboard-main">
+            <div class="be-plenta-casa-tiles tile-container">
+                Block 1
+            </div>
+
+            <div class="be-plenta-casa-tiles tile-container">
+                Block 3
+            </div>
+
+            <div class="be-plenta-casa-tiles tile-container">
+                Block 3
+            </div>
+        </div>
+
+    {% endblock %}
+</div>

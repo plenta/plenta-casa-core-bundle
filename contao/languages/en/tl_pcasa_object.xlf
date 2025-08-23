@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+    <file>
+        <body>
+            <trans-unit id="tl_pcasa_object.title.0">
+                <source>Titel</source>
+                <target>Titel</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.title.1">
+                <source>Bitte geben Sie einen Titel für das Objekt ein.</source>
+                <target>Bitte geben Sie einen Titel für das Objekt ein.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.unit_id.0">
+                <source>Objektnummer</source>
+                <target>Objektnummer</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.unit_id.1">
+                <source>Bitte geben Sie die Objektnummer ein.</source>
+                <target>Bitte geben Sie die Objektnummer ein.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.street.0">
+                <source>Straße</source>
+                <target>Straße</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.street.1">
+                <source>Bitte geben Sie die Straße ein.</source>
+                <target>Bitte geben Sie die Straße ein.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.housenumber.0">
+                <source>Hausnummer</source>
+                <target>Hausnummer</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.housenumber.1">
+                <source>Bitte geben Sie die Hausnummer ein.</source>
+                <target>Bitte geben Sie die Hausnummer ein.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.postal.0">
+                <source>Postleitzahl</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.postal.1">
+                <source>Bitte geben Sie die Postleitzahl ein.</source>
+                <target>Bitte geben Sie die Postleitzahl ein.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.city.0">
+                <source>Ort</source>
+                <target>Ort</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.city.1">
+                <source>Bitte wählen Sie den Ort aus.</source>
+                <target>Bitte wählen Sie den Ort aus.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.district.0">
+                <source>Stadtteil</source>
+                <target>Stadtteil</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.district.1">
+                <source>Bitte wählen Sie den Stadtteil aus.</source>
+                <target>Bitte wählen Sie den Stadtteil aus.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.hideStreet.0">
+                <source>Straße nicht anzeigen</source>
+                <target>Straße nicht anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.hideStreet.1">
+                <source>Bitte ausw#hlen, wenn die Straße nicht auf der Website ausgegeben werden soll.</source>
+                <target>Bitte ausw#hlen, wenn die Straße nicht auf der Website ausgegeben werden soll.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.author.0">
+                <source>Autor</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.author.1">
+                <source>Bitte wählen Sie den Autor aus.</source>
+                <target>Bitte wählen Sie den Autor aus.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.published.0">
+                <source>Objekt veröffentlichen</source>
+                <target>Objekt veröffentlichen</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.published.1">
+                <source>Das Objekt auf der Webseite anzeigen.</source>
+                <target>Das Objekt auf der Webseite anzeigen.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.start.0">
+                <source>Anzeigen ab</source>
+                <target>Anzeigen ab</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.start.1">
+                <source>Das Objekt ab diesem Tag auf der Webseite anzeigen.</source>
+                <target>Das Objekt ab diesem Tag auf der Webseite anzeigen.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.stop.0">
+                <source>Anzeigen bis</source>
+                <target>Anzeigen bis</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.stop.1">
+                <source>Das Objekt nur bis zu diesem Tag auf der Webseite anzeigen.</source>
+                <target>Das Objekt nur bis zu diesem Tag auf der Webseite anzeigen.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.master_data_legend">
+                <source>Stammdaten</source>
+                <target>Stammdaten</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.address_legend">
+                <source>Adressdaten</source>
+                <target>Adressdaten</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.media_legend">
+                <source>Adressdaten</source>
+                <target>Adressdaten</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.author_legend">
+                <source>Author</source>
+                <target>Author</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.publish_legend">
+                <source>Veröffentlichung</source>
+                <target>Veröffentlichung</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
