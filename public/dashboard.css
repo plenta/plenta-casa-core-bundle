@@ -1,1 +1,19 @@
+.be_plentacasa_config {
+    .tile-container {
+        h2 {
+            margin-bottom: 1.5em;
+        }
 
+        h3 {
+            font-size: 0.9rem;
+            margin-bottom: 1em;
+        }
+
+        .item {
+            color: #fff;
+            position: relative;
+            grid-column-end: span 4;
+
+        }
+    }
+}
