@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * @package       Customer
+ * @copyright     Copyright (c) 2025, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\Helper;
 
 use Doctrine\DBAL\Connection;

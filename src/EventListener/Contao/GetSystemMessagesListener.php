@@ -16,8 +16,7 @@ class GetSystemMessagesListener
         protected readonly TokenStorageInterface $tokenStorage,
         private readonly TranslatorInterface $translator,
         protected readonly AuthorizationCheckerInterface $auth
-    )
-    {
+    ) {
     }
 
     public function __invoke(): string
@@ -30,7 +29,9 @@ class GetSystemMessagesListener
 
             return
                 $this->twig->render(
-                    '@Contao/Backend/plenta_casa_dashboard.html.twig', $data);
+                    '@Contao/Backend/plenta_casa_dashboard.html.twig',
+                    $data
+                );
         }
 
         return '';
