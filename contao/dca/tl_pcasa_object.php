@@ -2,9 +2,17 @@
 
 declare(strict_types=1);
 
+/**
+ * @package       Customer
+ * @copyright     Copyright (c) 2025, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 use Contao\BackendUser;
 use Contao\DataContainer;
 use Contao\DC_Table;
+use Contao\System;
 
 $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     'config' => [
@@ -13,8 +21,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'keys' => [
                 'id' => 'primary',
                 'tstamp' => 'index',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'list' => [
@@ -33,11 +41,11 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'label' => [
             'fields' => ['title', 'city', 'district'],
             'format' => '%s, %s (%s)',
-        ]
+        ],
     ],
 
     'palettes' => [
-        'default' => '{master_data_legend},marketing_type,object_type,object_kind,type,title,unit_id;
+        'default' => '{master_data_legend},marketing_type,object_type,object_kind,type,title,unit_id,alias;
         {address_legend},street,housenumber,postal,city,district,country,coordinates_lat,coordinates_lng,hideStreet;
         {description_legend},;
         {media_legend};
@@ -47,23 +55,23 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
 
     'fields' => [
         'id' => [
-            'sql' => "int(10) unsigned NOT NULL auto_increment"
+            'sql' => 'int(10) unsigned NOT NULL auto_increment',
         ],
         'tstamp' => [
             'flag' => DataContainer::SORT_DAY_DESC,
-            'sql' => "int(10) unsigned NOT NULL default 0"
+            'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
 
         'marketing_type' => [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            //'options' => $GLOBALS['PLENTA']['CASA']['marketing_type'],
+            // 'options' => $GLOBALS['PLENTA']['CASA']['marketing_type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
                 'includeBlankOption' => true,
-                'tl_class' => 'w50'
+                'tl_class' => 'w50',
             ],
             'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default ''",
         ],
@@ -71,12 +79,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            //'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
+            // 'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
                 'includeBlankOption' => true,
-                'tl_class' => 'w50'
+                'tl_class' => 'w50',
             ],
             'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default ''",
         ],
@@ -84,12 +92,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            //'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
+            // 'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
                 'includeBlankOption' => true,
-                'tl_class' => 'w50'
+                'tl_class' => 'w50',
             ],
             'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default ''",
         ],
@@ -97,12 +105,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            //'options' => $GLOBALS['PLENTA']['CASA']['type'],
+            // 'options' => $GLOBALS['PLENTA']['CASA']['type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
                 'includeBlankOption' => true,
-                'tl_class' => 'w50'
+                'tl_class' => 'w50',
             ],
             'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default ''",
         ],
@@ -111,7 +119,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'text',
             'search' => true,
             'exclude' => true,
-            'eval' => ['mandatory' => true, 'maxlength' => 255, 'tl_class' => 'long', 'doNotCopy' => true],
+            'eval' => ['maxlength' => 255, 'tl_class' => 'long', 'doNotCopy' => true],
             'sql' => "varchar(255) NOT NULL default ''",
         ],
         'unit_id' => [
@@ -122,9 +130,15 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => [
                 'maxlength' => 128,
                 'unique' => true,
-                'tl_class' => 'w50'
+                'tl_class' => 'w50',
             ],
-            'sql' => "varchar(128) NOT NULL default ''"
+            'sql' => "varchar(128) NOT NULL default ''",
+        ],
+        'alias' => [
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'folderalias', 'doNotCopy' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) BINARY NOT NULL default ''",
         ],
 
         'street' => [
@@ -196,14 +210,14 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'tl_class' => 'w50',
             ],
             'sql' => "int(10) unsigned NOT NULL default '0'",
-            'relation'  => ['type' => 'hasOne', 'load' => 'eager'],
+            'relation' => ['type' => 'hasOne', 'load' => 'eager'],
         ],
 
         'published' => [
             'toggle' => true,
             'filter' => true,
             'inputType' => 'checkbox',
-            'eval' => ['doNotCopy'=>true],
+            'eval' => ['doNotCopy' => true],
             'sql' => ['type' => 'boolean', 'default' => false],
         ],
         'start' => [
@@ -218,7 +232,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'country' => [
             'inputType' => 'select',
-            'options_callback' => fn () => \Contao\System::getContainer()->get('contao.intl.countries')->getCountries(),
+            'options_callback' => fn () => System::getContainer()->get('contao.intl.countries')->getCountries(),
             'eval' => ['mandatory' => true, 'tl_class' => 'w50', 'includeBlankOption' => true],
             'sql' => "varchar(2) NOT NULL default ''",
         ],

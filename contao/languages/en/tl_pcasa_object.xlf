@@ -18,6 +18,14 @@
                 <source>Bitte geben Sie die Objektnummer ein.</source>
                 <target>Bitte geben Sie die Objektnummer ein.</target>
             </trans-unit>
+            <trans-unit id="tl_pcasa_object.alias.0">
+                <source>Alias</source>
+                <target>Alias</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.alias.1">
+                <source>Der Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.</source>
+                <target>Der Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.</target>
+            </trans-unit>
             <trans-unit id="tl_pcasa_object.street.0">
                 <source>Straße</source>
                 <target>Straße</target>
