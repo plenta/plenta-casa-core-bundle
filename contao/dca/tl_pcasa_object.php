@@ -29,13 +29,14 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'defaultSearchField' => 'title',
         ],
         'label' => [
-            'fields' => ['title'],
+            'fields' => ['title', 'city', 'district'],
+            'format' => '%s, %s (%s)',
         ]
     ],
 
     'palettes' => [
         'default' => '{master_data_legend},marketing_type,object_type,object_kind,type,title,unit_id;
-        {address_legend},street,housenumber,postal,city,district,hideStreet;
+        {address_legend},street,housenumber,postal,city,district,country,coordinates_lat,coordinates_lng,hideStreet;
         {description_legend},;
         {media_legend};
         {author_legend:hide},author;
@@ -55,7 +56,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            'options' => $GLOBALS['PLENTA']['CASA']['marketing_type'],
+            //'options' => $GLOBALS['PLENTA']['CASA']['marketing_type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
@@ -68,7 +69,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
+            //'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
@@ -81,7 +82,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
+            //'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
@@ -94,7 +95,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            'options' => $GLOBALS['PLENTA']['CASA']['type'],
+            //'options' => $GLOBALS['PLENTA']['CASA']['type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
@@ -136,7 +137,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'housenumber' => [
             'inputType' => 'text',
             'exclude' => true,
-            'eval' => ['maxlength' => 8, 'mandatory' => true, 'rgxp' => 'alnum ', 'tl_class' => 'w33'],
+            'eval' => ['maxlength' => 8, 'rgxp' => 'alnum ', 'tl_class' => 'w33'],
             'sql' => "varchar(8) NOT NULL default ''",
         ],
         'postal' => [
@@ -148,20 +149,30 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'city' => [
             'filter' => true,
             'exclude' => true,
-            'inputType' => 'picker',
-            'foreignKey' => 'tl_pcasa_city.title',
+            'inputType' => 'text',
             'eval' => ['mandatory' => true, 'tl_class' => 'w50'],
-            'sql' => "int(10) unsigned NOT NULL default 0",
-            'relation' => ['type' => 'hasOne', 'load' => 'lazy'],
+            'sql' => "varchar(255) unsigned NOT NULL default ''",
         ],
         'district' => [
             'filter' => true,
             'exclude' => true,
-            'inputType' => 'picker',
-            'foreignKey' => 'tl_pcasa_city.title',
+            'inputType' => 'text',
             'eval' => ['tl_class' => 'w50'],
-            'sql' => "int(10) unsigned NOT NULL default 0",
-            'relation' => ['type' => 'hasOne', 'load' => 'lazy'],
+            'sql' => "varchar(255) unsigned NOT NULL default ''",
+        ],
+        'coordinates_lat' => [
+            'filter' => true,
+            'exclude' => true,
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(255) unsigned NOT NULL default ''",
+        ],
+        'coordinates_lng' => [
+            'filter' => true,
+            'exclude' => true,
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(255) unsigned NOT NULL default ''",
         ],
         'hideStreet' => [
             'inputType' => 'checkbox',
@@ -202,6 +213,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50 wizard'],
             'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'country' => [
+            'inputType' => 'select',
+            'options_callback' => fn () => \Contao\System::getContainer()->get('contao.intl.countries')->getCountries(),
+            'eval' => ['mandatory' => true, 'tl_class' => 'w50', 'includeBlankOption' => true],
+            'sql' => "varchar(2) NOT NULL default ''",
         ],
     ],
 ];

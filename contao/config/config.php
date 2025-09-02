@@ -1,6 +1,7 @@
 <?php
 
 use Contao\ArrayUtil;
+use Plenta\CasaCoreBundle\Model\ObjectModel;
 
 ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
     'plenta_casa' => [
@@ -8,7 +9,7 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
             'tables' => ['tl_pcasa_object'],
         ],
         'plentacasa_config' => [
-            'tables' => ['tl_pcasa_city'],
+            'tables' => ['tl_pcasa_object_type', 'tl_pcasa_type'],
         ],
         'plentacasa_support' => [
             'tables' => [],
@@ -35,3 +36,5 @@ $GLOBALS['PLENTA']['CASA']['type'] = [
     'SPECIAL_PURPOSE',
     'INVESTMENT'
 ];
+
+$GLOBALS['TL_MODELS'][ObjectModel::getTable()] = ObjectModel::class;
