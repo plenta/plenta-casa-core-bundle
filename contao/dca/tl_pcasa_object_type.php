@@ -12,16 +12,16 @@ declare(strict_types=1);
 use Contao\DataContainer;
 use Contao\DC_Table;
 
-$GLOBALS['TL_DCA']['tl_pcasa_type'] = [
+$GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
     'config' => [
         'dataContainer' => DC_Table::class,
+        'ctable' => ['tl_pcasa_type'],
         'sql' => [
             'keys' => [
                 'id' => 'primary',
                 'tstamp' => 'index',
-            ]
+            ],
         ],
-        'ptable' => 'tl_pcasa_object_type',
     ],
     'list' => [
         'sorting' => [
@@ -31,7 +31,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_type'] = [
         ],
         'label' => [
             'fields' => ['title'],
-            'format' => '%s'
+            'format' => '%s',
         ]
     ],
     'palettes' => [
@@ -40,9 +40,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_type'] = [
     'fields' => [
         'id' => [
             'sql' => "int(10) unsigned NOT NULL auto_increment"
-        ],
-        'pid' => [
-            'sql' => "int(10) unsigned NOT NULL default 0"
         ],
         'tstamp' => [
             'sql' => "int(10) unsigned NOT NULL default 0"
@@ -53,3 +50,5 @@ $GLOBALS['TL_DCA']['tl_pcasa_type'] = [
         ],
     ],
 ];
+
+//dump($GLOBALS['TL_DCA']);

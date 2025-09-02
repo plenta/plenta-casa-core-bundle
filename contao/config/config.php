@@ -1,7 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * @package       Customer
+ * @copyright     Copyright (c) 2025, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 use Contao\ArrayUtil;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
+use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
+use Plenta\CasaCoreBundle\Model\TypeModel;
 
 ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
     'plenta_casa' => [
@@ -34,7 +45,9 @@ $GLOBALS['PLENTA']['CASA']['type'] = [
     'STORE',
     'INDUSTRY',
     'SPECIAL_PURPOSE',
-    'INVESTMENT'
+    'INVESTMENT',
 ];
 
 $GLOBALS['TL_MODELS'][ObjectModel::getTable()] = ObjectModel::class;
+$GLOBALS['TL_MODELS'][TypeModel::getTable()] = TypeModel::class;
+$GLOBALS['TL_MODELS'][ObjectTypeModel::getTable()] = ObjectTypeModel::class;

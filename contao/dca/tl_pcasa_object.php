@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Contao\BackendUser;
 use Contao\DataContainer;
 use Contao\DC_Table;
