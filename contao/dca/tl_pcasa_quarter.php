@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 use Contao\DataContainer;
 use Contao\DC_Table;
+use Plenta\CasaCoreBundle\Controller\Contao\Backend\ConfigController;
 
 $GLOBALS['TL_DCA']['tl_pcasa_quarter'] = [
     'config' => [
@@ -24,16 +25,22 @@ $GLOBALS['TL_DCA']['tl_pcasa_quarter'] = [
 
     'list' => [
         'sorting' => [
-            'mode' => DataContainer::MODE_TREE,
-            'rootPaste' => true,
-            'showRootTrails' => true,
-            'icon' => 'pagemounts.svg',
-            'panelLayout' => 'filter;search',
+            'mode' => DataContainer::MODE_SORTABLE,
+            'fields' => ['title'],
+            'panelLayout' => 'sort,search',
             'defaultSearchField' => 'title',
+            'disableGrouping' => true,
         ],
         'label' => [
             'fields' => ['title'],
             'format' => '%s',
+        ],
+        'global_operations' => [
+            'back' => [
+                'route' => ConfigController::class,
+                'label' => &$GLOBALS['TL_LANG']['MSC']['backBT'],
+                'icon' => 'back.svg',
+            ],
         ],
     ],
 
@@ -53,13 +60,14 @@ $GLOBALS['TL_DCA']['tl_pcasa_quarter'] = [
             'search' => true,
             'sorting' => true,
             'exclude' => true,
-            'eval' => ['mandatory' => true, 'maxlength' => 255],
+            'flag' => DataContainer::SORT_INITIAL_LETTER_BOTH,
+            'eval' => ['mandatory' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
             'sql' => "varchar(255) NOT NULL default ''",
         ],
         'alias' => [
             'inputType' => 'text',
             'search' => true,
-            'eval' => ['rgxp' => 'alias', 'doNotCopy' => true, 'maxlength' => 255, 'tl_class' => 'w50 clr'],
+            'eval' => ['rgxp' => 'alias', 'doNotCopy' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
             'sql' => "varchar(255) BINARY NOT NULL default ''",
         ],
     ],

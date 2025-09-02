@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\Controller\Contao\Backend;
 
+use Contao\CoreBundle\Controller\AbstractBackendController;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Contao\CoreBundle\Controller\AbstractBackendController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 
 #[Route('%contao.backend.route_prefix%/plentacasa_config', name: self::class, defaults: ['_scope' => 'backend'])]
 class ConfigController extends AbstractBackendController
@@ -30,12 +30,47 @@ class ConfigController extends AbstractBackendController
 
     public function __invoke(): Response
     {
+        $GLOBALS['TL_CSS'][] = 'plentacasacore/dashboard.css';
+
+        $titleLabel = $this->translator->trans('MOD.plenta_casa.0', [], 'contao_modules').' '.$this->translator->trans('MOD.plentacasa_config.1', [], 'contao_modules');
+
         return $this->render(
             '@Contao/Backend/plentacasa_config.html.twig',
             [
-                'title' => $this->translator->trans('MOD.plenta_casa.0', [], 'contao_modules').' '.$this->translator->trans('MOD.plentacasa_config.1', [], 'contao_modules'),
-                'headline' => $this->translator->trans('MOD.plenta_casa.0', [], 'contao_modules').' '.$this->translator->trans('MOD.plentacasa_config.1', [], 'contao_modules'),
+                'title' => $titleLabel,
+                'headline' => $titleLabel,
+                'tables' => $this->getTables(),
             ]
         );
+    }
+
+    protected function getTables(): array
+    {
+        $tables = [];
+
+        foreach ($GLOBALS['PLENTA']['CASA']['config'] as $table) {
+            $tables[] = [
+                'name' => $table,
+                'label' => $this->translator->trans('MOD.plentacasa_'.$table.'.0', [], 'contao_modules') ?: $table,
+                'description' => $this->translator->trans('MOD.plentacasa_'.$table.'.1', [], 'contao_modules') ?: $table,
+                'href' => '?do=plentacasa_config&table='.$table,
+            ];
+
+            /*
+            $shortened = str_replace('tl_', '', $strModule);
+            $arrReturn[$strModule] = [
+                'tables' => $arrModule['tables'],
+                'label' => StringUtil::specialchars($GLOBALS['TL_LANG']['MOD'][$shortened][0] ?: $strModule),
+                'description' => StringUtil::specialchars(strip_tags($GLOBALS['TL_LANG']['MOD'][$shortened][1])),
+                'href' => TL_SCRIPT.'?do=jobs_settings&table='.$strModule,
+                'icon' => $arrModule['icon'],
+                'class' => $arrModule['class'] ?? '',
+            ];
+            */
+        }
+
+        dump($tables);
+
+        return $tables;
     }
 }

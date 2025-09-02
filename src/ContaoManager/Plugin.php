@@ -19,8 +19,10 @@ use Contao\ManagerPlugin\Routing\RoutingPluginInterface;
 use Plenta\CasaCoreBundle\PlentaCasaCoreBundle;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Contao\ManagerPlugin\Config\ConfigPluginInterface;
+use Symfony\Component\Config\Loader\LoaderInterface;
 
-class Plugin implements BundlePluginInterface, RoutingPluginInterface
+class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPluginInterface
 {
     public function getBundles(ParserInterface $parser): array
     {
@@ -28,6 +30,11 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
             BundleConfig::create(PlentaCasaCoreBundle::class)
                 ->setLoadAfter([ContaoCoreBundle::class]),
         ];
+    }
+
+    public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig): void
+    {
+        $loader->load(__DIR__.'/../../config/config.yml');
     }
 
     public function getRouteCollection(LoaderResolverInterface $resolver, KernelInterface $kernel)

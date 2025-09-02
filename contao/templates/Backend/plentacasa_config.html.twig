@@ -1,6 +1,14 @@
-{% extends "@Contao/be_main" %}
+{% extends "@Contao/be_main.html.twig" %}
 
 {% block main_content %}
-    <div class="tl_listing_container">
+    <div class="be_plentacasa_config">
+        <div class="be_plentacasa_overview tile-container">
+            {% for table in tables %}
+            <div class="item {{ table.name }}">
+                <a href="{{ backend_route }}{{ table.href }}" title="{{ table.description }}">{{ table.label }}</a>
+                <span class="description">{{ table.description }}</span>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
