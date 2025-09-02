@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * @package       PlentaCasa Core
+ * @package       Customer
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -32,17 +32,17 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
         'label' => [
             'fields' => ['title'],
             'format' => '%s',
-        ]
+        ],
     ],
     'palettes' => [
         'default' => 'title',
     ],
     'fields' => [
         'id' => [
-            'sql' => "int(10) unsigned NOT NULL auto_increment"
+            'sql' => 'int(10) unsigned NOT NULL auto_increment',
         ],
         'tstamp' => [
-            'sql' => "int(10) unsigned NOT NULL default 0"
+            'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
         'title' => [
             'inputType' => 'text',
@@ -50,5 +50,3 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
         ],
     ],
 ];
-
-//dump($GLOBALS['TL_DCA']);
