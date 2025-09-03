@@ -22,7 +22,7 @@ class GetSystemMessagesListener
     public function __invoke(): string
     {
         if ($this->auth->isGranted('ROLE_ADMIN')) {
-            $GLOBALS['TL_CSS'][] = 'plentacasacore/dashboard.css';
+            $GLOBALS['TL_CSS']['plentacasacore'] = 'bundles/plentacasacore/dashboard.css';
 
             $data['salutation'] = $this->getRandomSalutation();
             $data['username'] = $this->tokenStorage->getToken()->getUser()->name;

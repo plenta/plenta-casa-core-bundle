@@ -55,21 +55,7 @@ class ConfigController extends AbstractBackendController
                 'description' => $this->translator->trans('MOD.plentacasa_'.$table.'.1', [], 'contao_modules') ?: $table,
                 'href' => '?do=plentacasa_config&table='.$table,
             ];
-
-            /*
-            $shortened = str_replace('tl_', '', $strModule);
-            $arrReturn[$strModule] = [
-                'tables' => $arrModule['tables'],
-                'label' => StringUtil::specialchars($GLOBALS['TL_LANG']['MOD'][$shortened][0] ?: $strModule),
-                'description' => StringUtil::specialchars(strip_tags($GLOBALS['TL_LANG']['MOD'][$shortened][1])),
-                'href' => TL_SCRIPT.'?do=jobs_settings&table='.$strModule,
-                'icon' => $arrModule['icon'],
-                'class' => $arrModule['class'] ?? '',
-            ];
-            */
         }
-
-        dump($tables);
 
         return $tables;
     }

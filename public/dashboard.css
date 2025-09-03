@@ -5,7 +5,7 @@
     --pcasa-border-radius: 10px;
     --pcasa-border-width: 1px;
     --pcasa-border-style: solid;
-    --pcasa-border-color: #dddddd;
+    --pcasa-border-color: var(--tree-line);
     --pcasa-background-color: var(--content-bg);
     --pcasa-filter-to-white: invert(0);
 }

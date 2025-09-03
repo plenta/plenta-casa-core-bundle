@@ -43,6 +43,7 @@ class BackendMenuListener
             ->setLabel($this->translator->trans('MOD.plentacasa_config.1', [], 'contao_modules'))
             ->setLinkAttribute('title', $this->translator->trans('MOD.plentacasa_config.1', [], 'contao_modules'))
             ->setLinkAttribute('class', 'plentacasa_config')
+            ->setLinkAttribute('data-turbo', 'true')
             ->setCurrent(ConfigController::class === $this->requestStack->getCurrentRequest()->get('_controller'))
         ;
 
