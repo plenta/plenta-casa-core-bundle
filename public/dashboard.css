@@ -7,6 +7,11 @@
     --pcasa-border-style: solid;
     --pcasa-border-color: #dddddd;
     --pcasa-background-color: var(--content-bg);
+    --pcasa-filter-to-white: invert(0);
+}
+
+html[data-color-scheme="dark"] {
+    --pcasa-filter-to-white: invert(1);
 }
 
 .be_plentacasa_config {
@@ -35,6 +40,29 @@
         border-width: var(--pcasa-border-width);
         border-style: var(--pcasa-border-style);
         border-color: var(--pcasa-border-color);
+    }
+
+    .item:before {
+            content: "";
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            filter: var(--pcasa-filter-to-white);
+            right: var(--pcasa-base-padding);
+            top: var(--pcasa-base-padding);
+        }
+    }
+
+    .item.tl_pcasa_targetgroup:before {
+        content: url("/bundles/plentacasacore/img/bullseye-solid-full.svg");
+    }
+
+    .item.tl_pcasa_quarter:before {
+        content: url("/bundles/plentacasacore/img/layer-group-solid-full.svg");
+    }
+
+    .item.tl_pcasa_object_type:before {
+        content: url("/bundles/plentacasacore/img/gears-solid-full.svg");
     }
 
     .item > a {
