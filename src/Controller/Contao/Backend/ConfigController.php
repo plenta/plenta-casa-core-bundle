@@ -30,7 +30,7 @@ class ConfigController extends AbstractBackendController
 
     public function __invoke(): Response
     {
-        $GLOBALS['TL_CSS']['plentacasacore'] = 'bundles/plentacasacore/dashboard.css';
+        $GLOBALS['TL_CSS']['plentacasacore_config'] = 'bundles/plentacasacore/config.css';
 
         $titleLabel = $this->translator->trans('MOD.plenta_casa.0', [], 'contao_modules').' '.$this->translator->trans('MOD.plentacasa_config.1', [], 'contao_modules');
 
