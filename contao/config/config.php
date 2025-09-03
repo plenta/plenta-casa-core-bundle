@@ -34,9 +34,9 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
 ]);
 
 $GLOBALS['PLENTA']['CASA']['config'] = [
-    'tl_pcasa_object_type',
     'tl_pcasa_targetgroup',
     'tl_pcasa_quarter',
+    'tl_pcasa_object_type',
 ];
 
 // Kauf/Miete

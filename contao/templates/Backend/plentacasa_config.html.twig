@@ -5,7 +5,7 @@
         <div class="tile-container">
             {% for table in tables %}
             <div class="item {{ table.name }}">
-                <a href="{{ backend_route }}{{ table.href }}" title="{{ table.description }}">{{ table.label }}</a>
+                <a href="{{ backend_route }}{{ table.href }}" title="{{ table.description }}" class="title">{{ table.label }}</a>
                 <span class="description">{{ table.description }}</span>
             </div>
             {% endfor %}

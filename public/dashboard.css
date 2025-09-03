@@ -1,19 +1,63 @@
+:root {
+    --pcasa-base-padding: 14px;
+    --pcasa-base-spacing: 26px;
+    --pacaa-tile-padding: 42px;
+    --pcasa-border-radius: 10px;
+    --pcasa-border-width: 1px;
+    --pcasa-border-style: solid;
+    --pcasa-border-color: #dddddd;
+    --pcasa-background-color: var(--content-bg);
+}
+
+.be_plentacasa_config {
+    padding: var(--pcasa-base-padding);
+}
+
 .be_plentacasa_config {
     .tile-container {
-        h2 {
-            margin-bottom: 1.5em;
-        }
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-gap: var(--pcasa-base-spacing);
+    }
 
-        h3 {
-            font-size: 0.9rem;
-            margin-bottom: 1em;
-        }
+    > div {
+        grid-column-end: span 12;
+    }
 
-        .item {
-            color: #fff;
-            position: relative;
-            grid-column-end: span 4;
+    .item {
+        position: relative;
+        grid-column-end: span 4;
+        background-color: var(--pcasa-background-color);
 
+        border-radius: var(--pcasa-border-radius);
+        padding: var(--pcasa-base-padding);
+        overflow: hidden;
+        border-width: var(--pcasa-border-width);
+        border-style: var(--pcasa-border-style);
+        border-color: var(--pcasa-border-color);
+    }
+
+    .item > a {
+        display: block;
+        text-decoration: underline;
+        margin-bottom: .5em;
+    }
+
+    .item > span {
+        color: var(--text);
+        display: block;
+    }
+
+    a.title {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .be_plentacasa_config {
+        > div {
+            grid-column-end: span 6;
         }
     }
 }
