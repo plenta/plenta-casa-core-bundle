@@ -1,53 +1,48 @@
-<?xml version="1.0" ?><xliff version="1.1">
-    <file datatype="php" original="contao/languages/en/modules.php" source-language="de">
+<?xml version="1.0" ?>
+<xliff version="1.1">
+    <file>
         <body>
             <trans-unit id="MOD.plenta_casa.0">
-                <source>Plenta Casa</source>
                 <target>Plenta Casa</target>
             </trans-unit>
             <trans-unit id="MOD.plenta_casa.1">
-                <source>Plenta Casa</source>
                 <target>Plenta Casa</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_objects.0">
-                <source>Objekte</source>
                 <target>Objekte</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_objects.1">
-                <source>Objekte</source>
                 <target>Objekte</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_config.0">
-                <source>Konfiguration</source>
                 <target>Konfiguration</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_config.1">
-                <source>Konfiguration</source>
                 <target>Konfiguration</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_support.0">
-                <source>Support</source>
                 <target>Support</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_support.1">
-                <source>Support</source>
                 <target>Support</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_tl_pcasa_quarter.0">
-                <source>Quartiere</source>
                 <target>Quartiere</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_tl_pcasa_quarter.1">
-                <source>Legen Sie hier Quartiere fest.</source>
                 <target>Legen Sie hier Quartiere fest.</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_tl_pcasa_targetgroup.0">
-                <source>Zielgruppen</source>
                 <target>Zielgruppen</target>
             </trans-unit>
             <trans-unit id="MOD.plentacasa_tl_pcasa_targetgroup.1">
-                <source>Legen Sie hier Zielgruppen fest.</source>
                 <target>Legen Sie hier Zielgruppen fest.</target>
+            </trans-unit>
+            <trans-unit id="MOD.plentacasa_tl_pcasa_object_type.0">
+                <target>Objekttypen</target>
+            </trans-unit>
+            <trans-unit id="MOD.plentacasa_tl_pcasa_object_type.1">
+                <target>Legen Sie hier Objekttypen und Objektarten fest.</target>
             </trans-unit>
         </body>
     </file>

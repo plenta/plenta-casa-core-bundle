@@ -3,7 +3,6 @@
     <file>
         <body>
             <trans-unit id="plenta_casa.greeting.random_choice">
-                <source>Hallo|Moin|Hi|Servus|Hey|Grüß dich|Gude|Tach|Na</source>
                 <target>Hallo|Moin|Hi|Servus|Hey|Grüß dich|Gude|Tach|Na</target>
             </trans-unit>
         </body>
