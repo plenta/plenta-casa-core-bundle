@@ -51,6 +51,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition;
         {description_legend},;
         {media_legend};
+        {marketing_legend:hide},targetgroups,quarter;
         {author_legend:hide},author;
         {publish_legend},published,start,stop',
     ],
@@ -69,6 +70,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'sorting' => true,
             'inputType' => 'select',
             'options' => $GLOBALS['PLENTA']['CASA']['marketing_type'],
+            'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['marketing_types'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
@@ -88,7 +90,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'includeBlankOption' => true,
                 'tl_class' => 'w50',
             ],
-            'sql' => "int(10) unsigned NOT NULL default 0",
+            'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
         'type' => [
             'filter' => true,
@@ -100,7 +102,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'includeBlankOption' => true,
                 'tl_class' => 'w50',
             ],
-            'sql' => "int(10) unsigned NOT NULL default 0",
+            'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
 
         'title' => [
@@ -164,11 +166,17 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => ['tl_class' => 'w50'],
             'sql' => "varchar(255) unsigned NOT NULL default ''",
         ],
+        'country' => [
+            'inputType' => 'select',
+            'options_callback' => fn () => System::getContainer()->get('contao.intl.countries')->getCountries(),
+            'eval' => ['mandatory' => true, 'tl_class' => 'w50', 'includeBlankOption' => true],
+            'sql' => "varchar(2) NOT NULL default ''",
+        ],
         'coordinates_lat' => [
             'filter' => true,
             'exclude' => true,
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w50'],
+            'eval' => ['tl_class' => 'w50 clr'],
             'sql' => "varchar(255) unsigned NOT NULL default ''",
         ],
         'coordinates_lng' => [
@@ -201,6 +209,23 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'relation' => ['type' => 'hasOne', 'load' => 'eager'],
         ],
 
+        'targetgroups' => [
+            'exclude' => true,
+            'filter' => true,
+            'inputType' => 'checkbox',
+            'foreignKey' => 'tl_pcasa_targetgroup.title',
+            'eval' => ['multiple' => true, 'tl_class' => 'w50'],
+            'sql' => 'blob NULL',
+        ],
+        'quarter' => [
+            'inputType' => 'select',
+            'exclude' => true,
+            'filter' => true,
+            'foreignKey' => 'tl_pcasa_quarter.title',
+            'eval' => ['multiple' => false, 'includeBlankOption' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+
         'published' => [
             'toggle' => true,
             'filter' => true,
@@ -218,16 +243,11 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50 wizard'],
             'sql' => "varchar(10) NOT NULL default ''",
         ],
-        'country' => [
-            'inputType' => 'select',
-            'options_callback' => fn () => System::getContainer()->get('contao.intl.countries')->getCountries(),
-            'eval' => ['mandatory' => true, 'tl_class' => 'w50', 'includeBlankOption' => true],
-            'sql' => "varchar(2) NOT NULL default ''",
-        ],
+
         'price' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "mediumint NOT NULL default 0",
+            'sql' => 'mediumint NOT NULL default 0',
         ],
         'doNotShowPrice' => [
             'inputType' => 'checkbox',
@@ -237,22 +257,22 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'baseRent' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'clr w25'],
-            'sql' => "int(10) NOT NULL default 0",
+            'sql' => 'int(10) NOT NULL default 0',
         ],
         'totalRent' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => "int(10) NOT NULL default 0",
+            'sql' => 'int(10) NOT NULL default 0',
         ],
         'heatingCosts' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => "int(10) NOT NULL default 0",
+            'sql' => 'int(10) NOT NULL default 0',
         ],
         'serviceCharge' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => "int(10) NOT NULL default 0",
+            'sql' => 'int(10) NOT NULL default 0',
         ],
         'heatingCostsInSc' => [
             'inputType' => 'checkbox',
@@ -262,7 +282,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'houseServiceCharge' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => "int(10) NOT NULL default 0",
+            'sql' => 'int(10) NOT NULL default 0',
         ],
         'deposit' => [
             'inputType' => 'text',
@@ -272,22 +292,22 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'nonRecoverableCosts' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25'],
-            'sql' => "int(10) NOT NULL default 0",
+            'sql' => 'int(10) NOT NULL default 0',
         ],
         'maintenanceReserve' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25'],
-            'sql' => "int(10) NOT NULL default 0",
+            'sql' => 'int(10) NOT NULL default 0',
         ],
         'parkingSpacePrice' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
-            'sql' => "int(10) NOT NULL default 0",
+            'sql' => 'int(10) NOT NULL default 0',
         ],
         'monthlyRentalIncome' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
-            'sql' => "mediumint NOT NULL default 0",
+            'sql' => 'mediumint NOT NULL default 0',
         ],
         'livingArea' => [
             'inputType' => 'text',
@@ -410,7 +430,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'nonSmokersOnly',
             ],
             'eval' => ['multiple' => true, 'tl_class' => 'clr'],
-            'sql' => "mediumtext NULL",
+            'sql' => 'mediumtext NULL',
         ],
         'bathroomFacilities' => [
             'inputType' => 'checkbox',
@@ -422,7 +442,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'urinal',
             ],
             'eval' => ['multiple' => true, 'tl_class' => 'clr'],
-            'sql' => "mediumtext NULL",
+            'sql' => 'mediumtext NULL',
         ],
         'petsAllowed' => [
             'inputType' => 'select',
@@ -437,22 +457,22 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'description' => [
             'inputType' => 'textarea',
             'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
-            'sql' => "mediumtext NULL",
+            'sql' => 'mediumtext NULL',
         ],
         'location' => [
             'inputType' => 'textarea',
             'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
-            'sql' => "mediumtext NULL",
+            'sql' => 'mediumtext NULL',
         ],
         'equipment' => [
             'inputType' => 'textarea',
             'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
-            'sql' => "mediumtext NULL",
+            'sql' => 'mediumtext NULL',
         ],
         'other' => [
             'inputType' => 'textarea',
             'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
-            'sql' => "mediumtext NULL",
+            'sql' => 'mediumtext NULL',
         ],
         'let' => [
             'inputType' => 'checkbox',
@@ -551,6 +571,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'primaryEnergySource' => [
             'inputType' => 'select',
             'options' => ['geothermalEnergy', 'solar', 'woodPellets', 'gas', 'oil', 'longDistanceHeat', 'electricity', 'coal', 'heavyNaturalGas', 'lightNaturalGas', 'liquidGas', 'longDistanceHeatSteam', 'airHeatPump', 'wood', 'woodChips', 'coalCoke', 'shortDistanceHeat', 'heatDistribution', 'bioEnergy', 'windEnergy', 'hydroEnergy', 'ambientHeat', 'chpFossil', ''],
-        ]
+        ],
     ],
 ];

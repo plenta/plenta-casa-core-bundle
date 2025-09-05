@@ -55,7 +55,19 @@
                 <target>Straße nicht anzeigen</target>
             </trans-unit>
             <trans-unit id="tl_pcasa_object.hideStreet.1">
-                <target>Bitte ausw#hlen, wenn die Straße nicht auf der Website ausgegeben werden soll.</target>
+                <target>Bitte auswählen, wenn die Straße nicht auf der Website ausgegeben werden soll.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.targetgroups.0">
+                <target>Zielgruppen</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.targetgroups.1">
+                <target>Weisen Sie das Objekteiner Zielgruppen zu.</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.quarter.0">
+                <target>Quartier</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.quarter.1">
+                <target>Weisen Sie das Objekt einem Quartier zu.</target>
             </trans-unit>
             <trans-unit id="tl_pcasa_object.author.0">
                 <target>Autor</target>
@@ -89,6 +101,9 @@
             </trans-unit>
             <trans-unit id="tl_pcasa_object.media_legend">
                 <target>Adressdaten</target>
+            </trans-unit>
+            <trans-unit id="tl_pcasa_object.marketing_legend">
+                <target>Vermarktung</target>
             </trans-unit>
             <trans-unit id="tl_pcasa_object.author_legend">
                 <target>Author</target>

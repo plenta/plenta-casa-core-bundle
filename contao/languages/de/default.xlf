@@ -5,6 +5,12 @@
             <trans-unit id="plenta_casa.greeting.random_choice">
                 <target>Hallo|Moin|Hi|Servus|Hey|Grüß dich|Gude|Tach|Na</target>
             </trans-unit>
+            <trans-unit id="PLENTA.CASA.marketing_types.RENT">
+                <target>Miete</target>
+            </trans-unit>
+            <trans-unit id="PLENTA.CASA.marketing_types.BUY">
+                <target>Kauf</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
