@@ -25,6 +25,7 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
                 'tl_pcasa_type',
                 'tl_pcasa_targetgroup',
                 'tl_pcasa_quarter',
+                'tl_pcasa_notifications',
             ],
         ],
         'plentacasa_support' => [
@@ -37,6 +38,7 @@ $GLOBALS['PLENTA']['CASA']['config'] = [
     'tl_pcasa_targetgroup',
     'tl_pcasa_quarter',
     'tl_pcasa_object_type',
+    'tl_pcasa_notifications',
 ];
 
 // Kauf/Miete

@@ -44,6 +44,12 @@
             <trans-unit id="MOD.plentacasa_tl_pcasa_object_type.1">
                 <target>Legen Sie hier Objekttypen und Objektarten fest.</target>
             </trans-unit>
+            <trans-unit id="MOD.plentacasa_tl_pcasa_notifications.0">
+                <target>Suchabos</target>
+            </trans-unit>
+            <trans-unit id="MOD.plentacasa_tl_pcasa_notifications.1">
+                <target>Konfigurieren Sie hier Ihre Suchabos.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -65,6 +65,10 @@ html[data-color-scheme="dark"] {
         content: url("/bundles/plentacasacore/img/gears-solid-full.svg");
     }
 
+    .item.tl_pcasa_notifications:before {
+        content: url("/bundles/plentacasacore/img/envelope-solid-full.svg");
+    }
+
     .item > a {
         display: block;
         text-decoration: underline;
