@@ -35,7 +35,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
         ],
     ],
     'palettes' => [
-        'default' => 'title',
+        'default' => 'title,shortTerm',
     ],
     'fields' => [
         'id' => [
@@ -47,6 +47,11 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
         'title' => [
             'inputType' => 'text',
             'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'shortTerm' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
         ],
     ],
 ];

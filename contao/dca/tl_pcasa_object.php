@@ -45,8 +45,10 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     ],
 
     'palettes' => [
-        'default' => '{master_data_legend},marketing_type,object_type,object_kind,type,title,unit_id,alias;
+        'default' => '{master_data_legend},marketing_type,object_type,type,title,unit_id,alias;
         {address_legend},street,housenumber,postal,city,district,country,coordinates_lat,coordinates_lng,hideStreet;
+        {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,deposit,parkingSpacePrice;
+        {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition;
         {description_legend},;
         {media_legend};
         {author_legend:hide},author;
@@ -66,7 +68,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            // 'options' => $GLOBALS['PLENTA']['CASA']['marketing_type'],
+            'options' => $GLOBALS['PLENTA']['CASA']['marketing_type'],
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
@@ -79,40 +81,26 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            // 'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
+            'foreignKey' => 'tl_pcasa_object_type.title',
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
                 'includeBlankOption' => true,
                 'tl_class' => 'w50',
             ],
-            'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default ''",
-        ],
-        'object_kind' => [
-            'filter' => true,
-            'sorting' => true,
-            'inputType' => 'select',
-            // 'options' => $GLOBALS['PLENTA']['CASA']['object_type'],
-            'eval' => [
-                'mandatory' => true,
-                'submitOnChange' => true,
-                'includeBlankOption' => true,
-                'tl_class' => 'w50',
-            ],
-            'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default ''",
+            'sql' => "int(10) unsigned NOT NULL default 0",
         ],
         'type' => [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            // 'options' => $GLOBALS['PLENTA']['CASA']['type'],
+            'foreignKey' => 'tl_pcasa_type.title',
             'eval' => [
                 'mandatory' => true,
-                'submitOnChange' => true,
                 'includeBlankOption' => true,
                 'tl_class' => 'w50',
             ],
-            'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default ''",
+            'sql' => "int(10) unsigned NOT NULL default 0",
         ],
 
         'title' => [
@@ -236,5 +224,333 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => ['mandatory' => true, 'tl_class' => 'w50', 'includeBlankOption' => true],
             'sql' => "varchar(2) NOT NULL default ''",
         ],
+        'price' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "mediumint NOT NULL default 0",
+        ],
+        'doNotShowPrice' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'baseRent' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'clr w25'],
+            'sql' => "int(10) NOT NULL default 0",
+        ],
+        'totalRent' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
+            'sql' => "int(10) NOT NULL default 0",
+        ],
+        'heatingCosts' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
+            'sql' => "int(10) NOT NULL default 0",
+        ],
+        'serviceCharge' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
+            'sql' => "int(10) NOT NULL default 0",
+        ],
+        'heatingCostsInSc' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'houseServiceCharge' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
+            'sql' => "int(10) NOT NULL default 0",
+        ],
+        'deposit' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w25'],
+            'sql' => "varchar(64) NOT NULL default ''",
+        ],
+        'nonRecoverableCosts' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w25'],
+            'sql' => "int(10) NOT NULL default 0",
+        ],
+        'maintenanceReserve' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w25'],
+            'sql' => "int(10) NOT NULL default 0",
+        ],
+        'parkingSpacePrice' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
+            'sql' => "int(10) NOT NULL default 0",
+        ],
+        'monthlyRentalIncome' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
+            'sql' => "mediumint NOT NULL default 0",
+        ],
+        'livingArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'plotArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'rooms' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => "varchar(8) NOT NULL default ''",
+        ],
+        'bedrooms' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => "varchar(8) NOT NULL default ''",
+        ],
+        'bathrooms' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => "varchar(8) NOT NULL default ''",
+        ],
+        'floorArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'balconyArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'gardenArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'floor' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => "varchar(8) NOT NULL default ''",
+        ],
+        'numberOfFloors' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => "varchar(8) NOT NULL default ''",
+        ],
+        'floorPosition' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'paymentInterval' => [
+            'inputType' => 'select',
+            'options' => ['daily', 'weekly', 'monthly'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'availableFrom' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'availableTo' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'minimumRentalPeriod' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'maximumRentalPeriod' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'maximumPersons' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'sql' => "varchar(8) NOT NULL default ''",
+        ],
+        'gender' => [
+            'inputType' => 'select',
+            'options' => ['male', 'female', 'any'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'furnished' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'facilities' => [
+            'inputType' => 'checkbox',
+            'options' => [
+                'lift',
+                'cellar',
+                'fittedKitchen',
+                'loggia',
+                'listedBuilding',
+                'storageRoom',
+                'swimmingPool',
+                'alarmSystem',
+                'airConditioning',
+                'accessible',
+                'guestWc',
+                'balcony',
+                'garden',
+                'holidayHome',
+                'fireplace',
+                'sauna',
+                'conservatory',
+                'flatShare',
+                'nonSmokersOnly',
+            ],
+            'eval' => ['multiple' => true, 'tl_class' => 'clr'],
+            'sql' => "mediumtext NULL",
+        ],
+        'bathroomFacilities' => [
+            'inputType' => 'checkbox',
+            'options' => [
+                'shower',
+                'tub',
+                'window',
+                'bidet',
+                'urinal',
+            ],
+            'eval' => ['multiple' => true, 'tl_class' => 'clr'],
+            'sql' => "mediumtext NULL",
+        ],
+        'petsAllowed' => [
+            'inputType' => 'select',
+            'options' => ['yes', 'no', 'negotiable'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'flooring' => [
+            'inputType' => 'select',
+            'options' => ['concrete', 'epoxy', 'tile', 'plank', 'laminate', 'parquet', 'pvc', 'carpet', 'antistaticCarpet', 'carpetTiles', 'stone', 'linoleum', 'marble', 'terracotta', 'granite', 'vinyl', 'customersOption', 'none'],
+        ],
+        'description' => [
+            'inputType' => 'textarea',
+            'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
+            'sql' => "mediumtext NULL",
+        ],
+        'location' => [
+            'inputType' => 'textarea',
+            'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
+            'sql' => "mediumtext NULL",
+        ],
+        'equipment' => [
+            'inputType' => 'textarea',
+            'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
+            'sql' => "mediumtext NULL",
+        ],
+        'other' => [
+            'inputType' => 'textarea',
+            'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
+            'sql' => "mediumtext NULL",
+        ],
+        'let' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'propertyCondition' => [
+            'inputType' => 'select',
+            'options' => ['firstTimeUse', 'firstTimeUseAfterRefurbishment', 'mintCondition', 'refurbished', 'partlyRefurbished', 'inNeedOfRefurbishment', 'decrepit', 'modernized', 'completelyRenovated', 'partlyRenovated', 'neat', 'inNeedOfRenovation', 'customersOption', 'dilapidated'],
+        ],
+        'lastRefurbishment' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'qualityOfEquipment' => [
+            'inputType' => 'select',
+            'options' => ['luxurious', 'upscale', 'normal', 'plain'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'numberOfParkingSpaces' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'sql' => "varchar(8) NOT NULL default ''",
+        ],
+        'parkingSpaceType' => [
+            'inputType' => 'select',
+            'options' => ['garage', 'outside', 'carport', 'duplex', 'carPark', 'undergroundCarPark', 'doubleGarage'],
+        ],
+        'energyCertificate' => [
+            'inputType' => 'select',
+            'options' => ['yes', 'no', 'availableAtViewing'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(32) NOT NULL default ''",
+        ],
+        'creationDate' => [
+            'inputType' => 'select',
+            'options' => ['beforeMay2014', 'fromMay2014'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(32) NOT NULL default ''",
+        ],
+        'issueDate' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'validThrough' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'energyCertificateType' => [
+            'inputType' => 'select',
+            'options' => ['usageCertificate', 'demandCertificate'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(32) NOT NULL default ''",
+        ],
+        'energyEfficiencyClass' => [
+            'inputType' => 'select',
+            'options' => ['A+', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(4) NOT NULL default ''",
+        ],
+        'energyRating' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'energyRatingElectricity' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'energyRatingHeating' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'co2Emission' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'hotWaterIncluded' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'heatingType' => [
+            'inputType' => 'select',
+            'options' => ['selfContainedCentralHeating', 'stoveHeating', 'centralHeating', 'districtHeatingCentralPlant', 'electricHeating', 'districtHeating', 'floorHeating', 'gasHeating', 'woodPelletHeating', 'nightStorageHeating', 'oilHeating', 'solarHeating', 'heatPump'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(48) NOT NULL default ''",
+        ],
+        'primaryEnergySource' => [
+            'inputType' => 'select',
+            'options' => ['geothermalEnergy', 'solar', 'woodPellets', 'gas', 'oil', 'longDistanceHeat', 'electricity', 'coal', 'heavyNaturalGas', 'lightNaturalGas', 'liquidGas', 'longDistanceHeatSteam', 'airHeatPump', 'wood', 'woodChips', 'coalCoke', 'shortDistanceHeat', 'heatDistribution', 'bioEnergy', 'windEnergy', 'hydroEnergy', 'ambientHeat', 'chpFossil', ''],
+        ]
     ],
 ];
