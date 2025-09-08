@@ -168,6 +168,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'country' => [
             'inputType' => 'select',
+            'default' => 'DE',
             'options_callback' => fn () => System::getContainer()->get('contao.intl.countries')->getCountries(),
             'eval' => ['mandatory' => true, 'tl_class' => 'w50', 'includeBlankOption' => true],
             'sql' => "varchar(2) NOT NULL default ''",
