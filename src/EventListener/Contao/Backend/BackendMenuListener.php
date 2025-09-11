@@ -14,6 +14,8 @@ namespace Plenta\CasaCoreBundle\EventListener\Contao\Backend;
 use Contao\CoreBundle\Event\ContaoCoreEvents;
 use Contao\CoreBundle\Event\MenuEvent;
 use Plenta\CasaCoreBundle\Controller\Contao\Backend\ConfigController;
+use Plenta\CasaCoreBundle\Controller\Contao\Backend\ExportController;
+use Plenta\CasaCoreBundle\Controller\Contao\Backend\ImportController;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -37,6 +39,28 @@ class BackendMenuListener
         }
 
         $contentNode = $tree->getChild('plenta_casa');
+
+        $node = $factory
+            ->createItem('plentacasa_import', ['route' => ImportController::class])
+            ->setLabel($this->translator->trans('MOD.plentacasa_import.1', [], 'contao_modules'))
+            ->setLinkAttribute('title', $this->translator->trans('MOD.plentacasa_import.1', [], 'contao_modules'))
+            ->setLinkAttribute('class', 'plentacasa_import')
+            ->setLinkAttribute('data-turbo', 'true')
+            ->setCurrent(ConfigController::class === $this->requestStack->getCurrentRequest()->get('_controller'))
+        ;
+
+        $contentNode->addChild($node);
+
+        $node = $factory
+            ->createItem('plentacasa_export', ['route' => ExportController::class])
+            ->setLabel($this->translator->trans('MOD.plentacasa_export.1', [], 'contao_modules'))
+            ->setLinkAttribute('title', $this->translator->trans('MOD.plentacasa_export.1', [], 'contao_modules'))
+            ->setLinkAttribute('class', 'plentacasa_export')
+            ->setLinkAttribute('data-turbo', 'true')
+            ->setCurrent(ConfigController::class === $this->requestStack->getCurrentRequest()->get('_controller'))
+        ;
+
+        $contentNode->addChild($node);
 
         $node = $factory
             ->createItem('plentacasa_config', ['route' => ConfigController::class])
