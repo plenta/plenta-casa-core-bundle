@@ -1,5 +1,12 @@
 {% extends "@Contao/be_main" %}
 
 {% block main_content %}
+    {% if message is defined and message is not empty %}
+        <div class="tl_message">
+            <p class="tl_info">
+                {{ message|raw }}
+            </p>
+        </div>
+    {% endif %}
 
 {% endblock %}

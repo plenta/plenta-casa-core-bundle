@@ -34,9 +34,12 @@ class ImportController extends AbstractBackendController
 
         $titleLabel = $this->translator->trans('MOD.plenta_casa.0', [], 'contao_modules').' '.$this->translator->trans('MOD.plentacasa_import.1', [], 'contao_modules');
 
+        $message = $this->translator->trans('PLENTA.CASA.messages.addons', [], 'contao_default');
+
         return $this->render(
             '@Contao/Backend/plentacasa_import.html.twig',
             [
+                'message' => $message,
                 'title' => $titleLabel,
                 'headline' => $titleLabel,
             ]
