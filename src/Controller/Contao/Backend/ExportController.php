@@ -37,6 +37,7 @@ class ExportController extends AbstractBackendController
         return $this->render(
             '@Contao/Backend/plentacasa_export.html.twig',
             [
+                'message' => $this->translator->trans('PLENTA.CASA.messages.addons', [], 'contao_default'),
                 'title' => $titleLabel,
                 'headline' => $titleLabel,
             ]
