@@ -1,0 +1,52 @@
+tl_pcasa_object:
+    title:
+        0: Titel
+        1: Bitte geben Sie einen Titel für das Objekt ein.
+    unit_id:
+        0: Objektnummer
+        1: Bitte geben Sie die Objektnummer ein.
+    alias:
+        0: Alias
+        1: Der Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.
+    street:
+        0: Straße
+        1: Bitte geben Sie die Straße ein.
+    housenumber:
+        0: Hausnummer
+        1: Bitte geben Sie die Hausnummer ein.
+    postal:
+        0: Postleitzahl
+        1: Bitte geben Sie die Postleitzahl ein.
+    city:
+        0: Ort
+        1: Bitte wählen Sie den Ort aus.
+    district:
+        0: Stadtteil
+        1: Bitte wählen Sie den Stadtteil aus.
+    hideStreet:
+        0: Straße nicht anzeigen
+        1: Bitte auswählen, wenn die Straße nicht auf der Website ausgegeben werden soll.
+    targetgroups:
+        0: Zielgruppen
+        1: Weisen Sie das Objekteiner Zielgruppen zu.
+    quarter:
+        0: Quartier
+        1: Weisen Sie das Objekt einem Quartier zu.
+    author:
+        0: Autor
+        1: Bitte wählen Sie den Autor aus.
+    published:
+        0: Objekt veröffentlichen
+        1: Das Objekt auf der Webseite anzeigen.
+    start:
+        0: Anzeigen ab
+        1: Das Objekt ab diesem Tag auf der Webseite anzeigen.
+    stop:
+        0: Anzeigen bis
+        1: Das Objekt nur bis zu diesem Tag auf der Webseite anzeigen.
+    master_data_legend: Stammdaten
+    address_legend: Adressdaten
+    media_legend: Medien
+    marketing_legend: Vermarktung
+    author_legend: Author
+    publish_legend: Veröffentlichung

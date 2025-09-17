@@ -1,0 +1,31 @@
+MOD:
+    plenta_casa:
+        0: Plenta Casa
+        1: Plenta Casa
+    plentacasa_objects:
+        0: Objekte
+        1: Objekte
+    plentacasa_import:
+        0: Import
+        1: Import
+    plentacasa_export:
+        0: Export
+        1: Export
+    plentacasa_config:
+        0: Konfiguration
+        1: Konfiguration
+    plentacasa_support:
+        0: Support
+        1: Support
+    plentacasa_tl_pcasa_quarter:
+        0: Quartiere
+        1: Legen Sie hier Quartiere fest.
+    plentacasa_tl_pcasa_targetgroup:
+        0: Zielgruppen
+        1: Legen Sie hier Zielgruppen fest.
+    plentacasa_tl_pcasa_object_type:
+        0: Objekttypen
+        1: Legen Sie hier Objekttypen und Objektarten fest.
+    plentacasa_tl_pcasa_notifications:
+        0: Suchabos
+        1: Konfigurieren Sie hier Ihre Suchabos.

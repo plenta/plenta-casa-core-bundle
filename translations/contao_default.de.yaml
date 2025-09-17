@@ -1,0 +1,11 @@
+plenta_casa:
+    greeting:
+        random_choice: Hallo|Moin|Hi|Servus|Hey|Grüß dich|Gude|Tach|Na
+
+PLENTA:
+    CASA:
+        marketing_types:
+            RENT: Miete
+            BUY: Kauf
+        messages:
+            addons: Alle Add-ons findest du &lt;a href=&quot;https://plentacasa.com/addons&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;hier&lt;/a&gt;.
