@@ -2,4 +2,8 @@
 
 {% block content %}
 
+    {% for object in objects %}
+        {{ object.title }}
+    {% endfor %}
+
 {% endblock %}

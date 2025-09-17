@@ -17,6 +17,7 @@ use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\System;
 use Contao\Template;
+use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -40,6 +41,14 @@ class Listing extends AbstractContentElementController
         }
 
         $items = [];
+
+        $objects = ObjectModel::findAll();
+
+        foreach ($objects as $object) {
+            $items[] = $object;
+        }
+
+        $template->objects = $items;
 
         return $template->getResponse();
     }
