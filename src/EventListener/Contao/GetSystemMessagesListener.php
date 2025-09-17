@@ -39,7 +39,7 @@ class GetSystemMessagesListener
 
     private function getRandomSalutation(): string
     {
-        $raw = $this->translator->trans('plenta_casa.greeting.random_choice', [], 'contao_defaut');
+        $raw = $this->translator->trans('PLENTA.CASA.greeting.random_choice', [], 'contao_defaut');
 
         $choices = array_values(array_filter(array_map('trim', explode('|', $raw))));
 
