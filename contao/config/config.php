@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
+ * @package       Plenta Casa
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -31,7 +31,6 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
                 'tl_pcasa_type',
                 'tl_pcasa_targetgroup',
                 'tl_pcasa_quarter',
-                'tl_pcasa_notifications',
             ],
         ],
         'plentacasa_support' => [
@@ -44,7 +43,6 @@ $GLOBALS['PLENTA']['CASA']['config'] = [
     'tl_pcasa_object_type',
     'tl_pcasa_targetgroup',
     'tl_pcasa_quarter',
-    'tl_pcasa_notifications',
 ];
 
 // Kauf/Miete

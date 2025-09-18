@@ -13,6 +13,9 @@ CTE:
     plenta_casa_listing:
         0: Objektliste
         1: Objektliste
+    plenta_casa_filter:
+        0: Filter
+        1: Filter
     plenta_casa_reader:
         0: Objektdetails
         1: Objektdetails
