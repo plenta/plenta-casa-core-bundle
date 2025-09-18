@@ -6,7 +6,7 @@ PLENTA:
             RENT: Miete
             BUY: Kauf
         messages:
-            addons: Alle Add-ons findest du &lt;a href=&quot;https://plentacasa.com/addons&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;hier&lt;/a&gt;.
+            addons: Alle Add-ons findest du <a href="https://plentacasa.com/addons" target="_blank" rel="noreferrer noopener">hier</a>.
 
 CTE:
     plentacasa: Plenta Casa
