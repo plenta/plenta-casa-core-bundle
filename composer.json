@@ -9,12 +9,6 @@
       "email": "hallo@plenta.io"
     }
   ],
-  "repositories": [
-    {
-      "type": "path",
-      "url": "packages/*"
-    }
-  ],
   "require": {
     "php": "^8.3",
     "contao/core-bundle": "^5.6",
