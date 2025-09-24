@@ -24,6 +24,7 @@ class TlPcasaObjectListener
     {
     }
 
+    /* TODO: Move to Pro
     #[AsCallback(table: 'tl_pcasa_object', target: 'config.onsubmit')]
     public function submitCallback(DataContainer $dc)
     {
@@ -46,7 +47,7 @@ class TlPcasaObjectListener
                 $object->save();
             }
         }
-    }
+    }*/
 
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.type.options')]
     public function typeOptionsCallback(DataContainer $dc)

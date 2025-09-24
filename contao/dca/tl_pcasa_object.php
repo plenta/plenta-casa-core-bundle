@@ -48,8 +48,11 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'default' => '{master_data_legend},marketing_type,object_type,type,title,unit_id,alias;
         {address_legend},street,housenumber,postal,city,district,country,coordinates_lat,coordinates_lng,hideStreet;
         {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,deposit,parkingSpacePrice;
-        {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition;
-        {description_legend},;
+        {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
+        {facilities_legend},facilities,bathroomFacilities,flooring;
+        {description_legend},description,location,equipment,other;
+        {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
+        {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown;
         {media_legend};
         {marketing_legend:hide},targetgroups,quarter;
         {author_legend:hide},author;
@@ -75,7 +78,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'mandatory' => true,
                 'submitOnChange' => true,
                 'includeBlankOption' => true,
-                'tl_class' => 'w50',
+                'tl_class' => 'w33',
             ],
             'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default ''",
         ],
@@ -88,7 +91,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'mandatory' => true,
                 'submitOnChange' => true,
                 'includeBlankOption' => true,
-                'tl_class' => 'w50',
+                'tl_class' => 'w33',
             ],
             'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
@@ -100,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => [
                 'mandatory' => true,
                 'includeBlankOption' => true,
-                'tl_class' => 'w50',
+                'tl_class' => 'w33',
             ],
             'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
@@ -137,26 +140,26 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'search' => true,
             'exclude' => true,
             'flag' => 11,
-            'eval' => ['maxlength' => 128, 'mandatory' => true, 'tl_class' => 'w33'],
+            'eval' => ['maxlength' => 128, 'mandatory' => true, 'tl_class' => 'w25'],
             'sql' => "varchar(128) NOT NULL default ''",
         ],
         'housenumber' => [
             'inputType' => 'text',
             'exclude' => true,
-            'eval' => ['maxlength' => 8, 'rgxp' => 'alnum ', 'tl_class' => 'w33'],
+            'eval' => ['maxlength' => 8, 'rgxp' => 'alnum ', 'tl_class' => 'w25'],
             'sql' => "varchar(8) NOT NULL default ''",
         ],
         'postal' => [
             'exclude' => true,
             'inputType' => 'text',
-            'eval' => ['maxlength' => 32, 'mandatory' => true, 'tl_class' => 'w33'],
+            'eval' => ['maxlength' => 32, 'mandatory' => true, 'tl_class' => 'w25'],
             'sql' => "varchar(32) NOT NULL default ''",
         ],
         'city' => [
             'filter' => true,
             'exclude' => true,
             'inputType' => 'text',
-            'eval' => ['mandatory' => true, 'tl_class' => 'w50'],
+            'eval' => ['mandatory' => true, 'tl_class' => 'w25'],
             'sql' => "varchar(255) unsigned NOT NULL default ''",
         ],
         'district' => [
@@ -172,20 +175,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'options_callback' => fn () => System::getContainer()->get('contao.intl.countries')->getCountries(),
             'eval' => ['mandatory' => true, 'tl_class' => 'w50', 'includeBlankOption' => true],
             'sql' => "varchar(2) NOT NULL default ''",
-        ],
-        'coordinates_lat' => [
-            'filter' => true,
-            'exclude' => true,
-            'inputType' => 'text',
-            'eval' => ['tl_class' => 'w50 clr'],
-            'sql' => "varchar(255) unsigned NOT NULL default ''",
-        ],
-        'coordinates_lng' => [
-            'filter' => true,
-            'exclude' => true,
-            'inputType' => 'text',
-            'eval' => ['tl_class' => 'w50'],
-            'sql' => "varchar(255) unsigned NOT NULL default ''",
         ],
         'hideStreet' => [
             'inputType' => 'checkbox',
@@ -452,8 +441,10 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'sql' => "varchar(16) NOT NULL default ''",
         ],
         'flooring' => [
-            'inputType' => 'select',
+            'inputType' => 'checkbox',
             'options' => ['concrete', 'epoxy', 'tile', 'plank', 'laminate', 'parquet', 'pvc', 'carpet', 'antistaticCarpet', 'carpetTiles', 'stone', 'linoleum', 'marble', 'terracotta', 'granite', 'vinyl', 'customersOption', 'none'],
+            'eval' => ['tl_class' => 'clr', 'multiple' => true],
+            'sql' => "mediumtext NULL",
         ],
         'description' => [
             'inputType' => 'textarea',
@@ -483,6 +474,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'propertyCondition' => [
             'inputType' => 'select',
             'options' => ['firstTimeUse', 'firstTimeUseAfterRefurbishment', 'mintCondition', 'refurbished', 'partlyRefurbished', 'inNeedOfRefurbishment', 'decrepit', 'modernized', 'completelyRenovated', 'partlyRenovated', 'neat', 'inNeedOfRenovation', 'customersOption', 'dilapidated'],
+            'sql' => "varchar(48) NOT NULL default ''",
         ],
         'lastRefurbishment' => [
             'inputType' => 'text',
@@ -503,6 +495,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'parkingSpaceType' => [
             'inputType' => 'select',
             'options' => ['garage', 'outside', 'carport', 'duplex', 'carPark', 'undergroundCarPark', 'doubleGarage'],
+            'sql' => "varchar(32 NOT NULL default ''",
         ],
         'energyCertificate' => [
             'inputType' => 'select',
@@ -571,7 +564,24 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'primaryEnergySource' => [
             'inputType' => 'select',
-            'options' => ['geothermalEnergy', 'solar', 'woodPellets', 'gas', 'oil', 'longDistanceHeat', 'electricity', 'coal', 'heavyNaturalGas', 'lightNaturalGas', 'liquidGas', 'longDistanceHeatSteam', 'airHeatPump', 'wood', 'woodChips', 'coalCoke', 'shortDistanceHeat', 'heatDistribution', 'bioEnergy', 'windEnergy', 'hydroEnergy', 'ambientHeat', 'chpFossil', ''],
+            'options' => ['geothermalEnergy', 'solar', 'woodPellets', 'gas', 'oil', 'longDistanceHeat', 'electricity', 'coal', 'heavyNaturalGas', 'lightNaturalGas', 'liquidGas', 'longDistanceHeatSteam', 'airHeatPump', 'wood', 'woodChips', 'coalCoke', 'shortDistanceHeat', 'heatDistribution', 'bioEnergy', 'windEnergy', 'hydroEnergy', 'ambientHeat', 'chpFossil', 'chpRenewable', 'chpRegenerative', 'chpOrganic'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'yearOfConstruction' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'yearOfConstructionEngineering' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'yearOfConstructionUnknown' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
         ],
     ],
 ];

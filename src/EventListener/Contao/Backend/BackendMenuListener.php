@@ -46,7 +46,7 @@ class BackendMenuListener
             ->setLinkAttribute('title', $this->translator->trans('MOD.plentacasa_import.1', [], 'contao_modules'))
             ->setLinkAttribute('class', 'plentacasa_import')
             ->setLinkAttribute('data-turbo', 'true')
-            ->setCurrent(ConfigController::class === $this->requestStack->getCurrentRequest()->get('_controller'))
+            ->setCurrent(ImportController::class === $this->requestStack->getCurrentRequest()->get('_controller'))
         ;
 
         $contentNode->addChild($node);
@@ -57,7 +57,7 @@ class BackendMenuListener
             ->setLinkAttribute('title', $this->translator->trans('MOD.plentacasa_export.1', [], 'contao_modules'))
             ->setLinkAttribute('class', 'plentacasa_export')
             ->setLinkAttribute('data-turbo', 'true')
-            ->setCurrent(ConfigController::class === $this->requestStack->getCurrentRequest()->get('_controller'))
+            ->setCurrent(ExportController::class === $this->requestStack->getCurrentRequest()->get('_controller'))
         ;
 
         $contentNode->addChild($node);
