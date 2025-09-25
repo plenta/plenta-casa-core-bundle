@@ -3,7 +3,7 @@
 {% block content %}
 
     {% for object in objects %}
-        {{ object.title }}
+        {% include '@Contao/partials/_list_object.html.twig' with { object: object } %}
     {% else %}
         {{ 'PLENTA.CASA.empty_list.'|trans({}, 'contao_default') }}
     {% endfor %}
