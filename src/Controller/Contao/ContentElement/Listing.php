@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[AsContentElement(category: 'plentacasa', template: 'content_element/content-plentacasa-listing', type: 'plenta_casa_listing')]
+#[AsContentElement(category: 'plentacasa', type: 'plenta_casa_listing')]
 class Listing extends AbstractContentElementController
 {
     public function __construct(private readonly TranslatorInterface $translator)
