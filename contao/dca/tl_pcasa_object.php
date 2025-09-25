@@ -52,7 +52,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         {facilities_legend},facilities,bathroomFacilities,flooring;
         {description_legend},description,location,equipment,other;
         {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
-        {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown;
         {media_legend};
         {marketing_legend:hide},targetgroups,quarter;
         {author_legend:hide},author;
@@ -496,92 +495,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'select',
             'options' => ['garage', 'outside', 'carport', 'duplex', 'carPark', 'undergroundCarPark', 'doubleGarage'],
             'sql' => "varchar(32 NOT NULL default ''",
-        ],
-        'energyCertificate' => [
-            'inputType' => 'select',
-            'options' => ['yes', 'no', 'availableAtViewing'],
-            'eval' => ['tl_class' => 'w50'],
-            'sql' => "varchar(32) NOT NULL default ''",
-        ],
-        'creationDate' => [
-            'inputType' => 'select',
-            'options' => ['beforeMay2014', 'fromMay2014'],
-            'eval' => ['tl_class' => 'w50'],
-            'sql' => "varchar(32) NOT NULL default ''",
-        ],
-        'issueDate' => [
-            'inputType' => 'text',
-            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
-        ],
-        'validThrough' => [
-            'inputType' => 'text',
-            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
-        ],
-        'energyCertificateType' => [
-            'inputType' => 'select',
-            'options' => ['usageCertificate', 'demandCertificate'],
-            'eval' => ['tl_class' => 'w50'],
-            'sql' => "varchar(32) NOT NULL default ''",
-        ],
-        'energyEfficiencyClass' => [
-            'inputType' => 'select',
-            'options' => ['A+', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
-            'eval' => ['tl_class' => 'w50'],
-            'sql' => "varchar(4) NOT NULL default ''",
-        ],
-        'energyRating' => [
-            'inputType' => 'text',
-            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "varchar(16) NOT NULL default ''",
-        ],
-        'energyRatingElectricity' => [
-            'inputType' => 'text',
-            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "varchar(16) NOT NULL default ''",
-        ],
-        'energyRatingHeating' => [
-            'inputType' => 'text',
-            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "varchar(16) NOT NULL default ''",
-        ],
-        'co2Emission' => [
-            'inputType' => 'text',
-            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "varchar(16) NOT NULL default ''",
-        ],
-        'hotWaterIncluded' => [
-            'inputType' => 'checkbox',
-            'eval' => ['tl_class' => 'clr'],
-            'sql' => ['type' => 'boolean', 'default' => false],
-        ],
-        'heatingType' => [
-            'inputType' => 'select',
-            'options' => ['selfContainedCentralHeating', 'stoveHeating', 'centralHeating', 'districtHeatingCentralPlant', 'electricHeating', 'districtHeating', 'floorHeating', 'gasHeating', 'woodPelletHeating', 'nightStorageHeating', 'oilHeating', 'solarHeating', 'heatPump'],
-            'eval' => ['tl_class' => 'w50'],
-            'sql' => "varchar(48) NOT NULL default ''",
-        ],
-        'primaryEnergySource' => [
-            'inputType' => 'select',
-            'options' => ['geothermalEnergy', 'solar', 'woodPellets', 'gas', 'oil', 'longDistanceHeat', 'electricity', 'coal', 'heavyNaturalGas', 'lightNaturalGas', 'liquidGas', 'longDistanceHeatSteam', 'airHeatPump', 'wood', 'woodChips', 'coalCoke', 'shortDistanceHeat', 'heatDistribution', 'bioEnergy', 'windEnergy', 'hydroEnergy', 'ambientHeat', 'chpFossil', 'chpRenewable', 'chpRegenerative', 'chpOrganic'],
-            'eval' => ['tl_class' => 'w50'],
-            'sql' => "varchar(255) NOT NULL default ''",
-        ],
-        'yearOfConstruction' => [
-            'inputType' => 'text',
-            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
-        ],
-        'yearOfConstructionEngineering' => [
-            'inputType' => 'text',
-            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
-        ],
-        'yearOfConstructionUnknown' => [
-            'inputType' => 'checkbox',
-            'eval' => ['tl_class' => 'clr'],
-            'sql' => ['type' => 'boolean', 'default' => false],
         ],
     ],
 ];
