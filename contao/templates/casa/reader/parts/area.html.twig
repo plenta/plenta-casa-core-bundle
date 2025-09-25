@@ -1,5 +1,13 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+{% trans_default_domain 'plenta_casa' %}
 
 {% block content %}
-    Folgt
+    {% for area in ['livingArea', 'plotArea', 'rooms', 'bedrooms', 'bathrooms', 'floorArea', 'balconyArea', 'gardenArea', 'floor', 'numberOfFloors', 'floorPosition', 'numberOfParkingSpaces', 'parkingSpaceType'] %}
+        {% if attribute(object, area)|default %}
+            <div class="area area-{{ area }}">
+                <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
+                <div class="content">{{ attribute(object, area) }}{% if 'area' in area|lower %} {{ 'CASA.area_unit'|trans }}{% endif %}</div>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endblock %}

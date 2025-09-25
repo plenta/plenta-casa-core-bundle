@@ -1,5 +1,7 @@
 {% extends "@Contao/content_element/_base.html.twig" %}
 
 {% block content %}
-
+    {% for part in data.plenta_casa_readerParts|deserialize %}
+        {{ include('@Contao/casa/reader/parts/' ~ part ~ '.html.twig') }}
+    {% endfor %}
 {% endblock %}

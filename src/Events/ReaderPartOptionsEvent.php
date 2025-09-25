@@ -1,6 +1,6 @@
 <?php
 
-namespace Plenta\CasaCoreBundle;
+namespace Plenta\CasaCoreBundle\Events;
 
 use Symfony\Contracts\EventDispatcher\Event;
 

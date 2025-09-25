@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
+ * @package       PlentaCasa Core
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -53,7 +53,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         {description_legend},description,location,equipment,other;
         {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
         {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown;
-        {media_legend};
+        {media_legend},singleSRC,multiSRC;
         {marketing_legend:hide},targetgroups,quarter;
         {author_legend:hide},author;
         {publish_legend},published,start,stop',
@@ -444,7 +444,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'checkbox',
             'options' => ['concrete', 'epoxy', 'tile', 'plank', 'laminate', 'parquet', 'pvc', 'carpet', 'antistaticCarpet', 'carpetTiles', 'stone', 'linoleum', 'marble', 'terracotta', 'granite', 'vinyl', 'customersOption', 'none'],
             'eval' => ['tl_class' => 'clr', 'multiple' => true],
-            'sql' => "mediumtext NULL",
+            'sql' => 'mediumtext NULL',
         ],
         'description' => [
             'inputType' => 'textarea',
@@ -511,12 +511,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'issueDate' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
+            'eval' => ['rgxp' => 'date', 'datepicker' => true, 'tl_class' => 'w50'],
             'sql' => "varchar(10) NOT NULL default ''",
         ],
         'validThrough' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
+            'eval' => ['rgxp' => 'date', 'datepicker' => true, 'tl_class' => 'w50'],
             'sql' => "varchar(10) NOT NULL default ''",
         ],
         'energyCertificateType' => [
@@ -582,6 +582,29 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'checkbox',
             'eval' => ['tl_class' => 'clr'],
             'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'singleSRC' => [
+            'inputType' => 'fileTree',
+            'eval' => [
+                'filesOnly' => true,
+                'fieldType' => 'radio',
+                'mandatory' => false,
+                'tl_class' => 'clr',
+                'extensions' => '%contao.image.valid_extensions%'
+            ],
+            'sql' => 'binary(16) NULL',
+        ],
+        'multiSRC' => [
+            'inputType' => 'fileTree',
+            'eval' => [
+                'multiple' => true,
+                'fieldType' => 'checkbox',
+                'isSortable' => true,
+                'files' => true,
+                'extensions' => '%contao.image.valid_extensions%',
+                'isGallery' => true,
+            ],
+            'sql' => 'blob NULL',
         ],
     ],
 ];

@@ -1,5 +1,12 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 
 {% block content %}
-    {{ object.title }}
+    {% if object.multiSRC %}
+        {{ content_element('gallery', {
+            multiSRC: object.multiSRC,
+            size: data.size,
+            fullsize: data.fullsize,
+            sortBy: '',
+        }) }}
+    {% endif %}
 {% endblock %}
