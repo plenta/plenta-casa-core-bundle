@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[AsContentElement(category: 'plentacasa', template: 'content_element/content-plentacasa-filter', type: 'plenta_casa_filter')]
+#[AsContentElement(category: 'plentacasa', type: 'plenta_casa_filter')]
 class Filter extends AbstractContentElementController
 {
     public function __construct(private readonly TranslatorInterface $translator)

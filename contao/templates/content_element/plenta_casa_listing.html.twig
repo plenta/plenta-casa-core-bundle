@@ -1,0 +1,11 @@
+{% extends "@Contao/content_element/_base.html.twig" %}
+
+{% block content %}
+
+    {% for object in objects %}
+        {% include '@Contao/partials/_plenta_casa_list_object.html.twig' with { object: object } %}
+    {% else %}
+        {{ 'PLENTA.CASA.empty_list.'|trans({}, 'contao_default') }}
+    {% endfor %}
+
+{% endblock %}
