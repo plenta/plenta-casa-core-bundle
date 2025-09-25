@@ -4,6 +4,8 @@
 
     {% for object in objects %}
         {{ object.title }}
+    {% else %}
+        {{ 'PLENTA.CASA.empty_list.'|trans({}, 'contao_default') }}
     {% endfor %}
 
 {% endblock %}

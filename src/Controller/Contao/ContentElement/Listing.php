@@ -42,10 +42,12 @@ class Listing extends AbstractContentElementController
 
         $items = [];
 
-        $objects = ObjectModel::findAll();
+        $objects = ObjectModel::findBy('published', true);
 
-        foreach ($objects as $object) {
-            $items[] = $object;
+        if (null !== $objects) {
+            foreach ($objects as $object) {
+                $items[] = $object;
+            }
         }
 
         $template->objects = $items;
