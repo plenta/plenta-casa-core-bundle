@@ -1,0 +1,7 @@
+{% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+{% trans_default_domain 'plenta_casa' %}
+
+{% block content %}
+    <div class="title">{{ 'CASA.address'|trans }}</div>
+    <div class="content">{{ object.address }}</div>
+{% endblock %}

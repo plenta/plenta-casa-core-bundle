@@ -15,13 +15,16 @@ use Contao\BackendTemplate;
 use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
+use Contao\CoreBundle\Exception\PageNotFoundException;
+use Contao\Input;
 use Contao\System;
 use Contao\Template;
+use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[AsContentElement(category: 'plentacasa', template: 'content_element/content-plentacasa-reader', type: 'plenta_casa_reader')]
+#[AsContentElement(type: 'plenta_casa_reader', category: 'plentacasa')]
 class Reader extends AbstractContentElementController
 {
     public function __construct(private readonly TranslatorInterface $translator)
@@ -34,10 +37,20 @@ class Reader extends AbstractContentElementController
 
         if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request)) {
             $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_reader.0', [], 'contao_defaut');
+            $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_reader.0', [], 'contao_default');
 
             return $objTemplate->getResponse();
         }
+
+        $alias = Input::get('auto_item');
+
+        if (!$object = ObjectModel::findPublishedByIdOrAlias($alias)) {
+            throw new PageNotFoundException();
+        }
+
+        $template->object = $object;
+
+        $this->getHtmlHeadBag()->setTitle($object->getTitle());
 
         return $template->getResponse();
     }

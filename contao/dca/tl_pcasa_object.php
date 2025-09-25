@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
+ * @package       PlentaCasa Core
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -52,7 +52,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         {facilities_legend},facilities,bathroomFacilities,flooring;
         {description_legend},description,location,equipment,other;
         {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
-        {media_legend};
+        {media_legend},singleSRC,multiSRC;
         {marketing_legend:hide},targetgroups,quarter;
         {author_legend:hide},author;
         {publish_legend},published,start,stop',
@@ -443,7 +443,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'checkbox',
             'options' => ['concrete', 'epoxy', 'tile', 'plank', 'laminate', 'parquet', 'pvc', 'carpet', 'antistaticCarpet', 'carpetTiles', 'stone', 'linoleum', 'marble', 'terracotta', 'granite', 'vinyl', 'customersOption', 'none'],
             'eval' => ['tl_class' => 'clr', 'multiple' => true],
-            'sql' => "mediumtext NULL",
+            'sql' => 'mediumtext NULL',
         ],
         'description' => [
             'inputType' => 'textarea',
