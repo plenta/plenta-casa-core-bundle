@@ -2,7 +2,7 @@
 {% trans_default_domain 'plenta_casa' %}
 
 {% block content %}
-    {% for area in ['livingArea', 'plotArea', 'rooms', 'bedrooms', 'bathrooms', 'floorArea', 'balconyArea', 'gardenArea', 'floor', 'numberOfFloors', 'floorPosition', 'numberOfParkingSpaces', 'parkingSpaceType'] %}
+    {% for area in casa_variables.area(object) %}
         {% if attribute(object, area)|default %}
             <div class="area area-{{ area }}">
                 <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>

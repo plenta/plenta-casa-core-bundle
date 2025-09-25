@@ -19,7 +19,7 @@ class TlContent
         $options = ['title', 'address', 'gallery', 'titleImage', 'description', 'facilities', 'area', 'price', 'condition', 'marketing'];
 
         $event = new ReaderPartOptionsEvent($options);
-        $this->eventDispatcher->dispatch($event);
+        $this->eventDispatcher->dispatch($event, $event::NAME);
 
         return $event->getOptions();
     }

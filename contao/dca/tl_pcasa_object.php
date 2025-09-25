@@ -46,7 +46,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
 
     'palettes' => [
         'default' => '{master_data_legend},marketing_type,object_type,type,title,unit_id,alias;
-        {address_legend},street,housenumber,postal,city,district,country,coordinates_lat,coordinates_lng,hideStreet;
+        {address_legend},street,housenumber,postal,city,district,country,hideStreet;
         {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,deposit,parkingSpacePrice;
         {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
         {facilities_legend},facilities,bathroomFacilities,flooring;
