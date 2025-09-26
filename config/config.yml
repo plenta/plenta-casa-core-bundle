@@ -2,3 +2,9 @@ twig:
     globals:
         backend_route: '%contao.backend.route_prefix%'
         casa_variables: '@Plenta\CasaCoreBundle\Helper\TwigVariables'
+
+framework:
+    assets:
+        packages:
+            plentacasacore:
+                json_manifest_path: '%kernel.project_dir%/public/bundles/plentacasacore/manifest.json'

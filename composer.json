@@ -11,7 +11,8 @@
   ],
   "require": {
     "php": "^8.3",
-    "contao/core-bundle": "^5.6"
+    "contao/core-bundle": "^5.6",
+    "symfony/form": "^7.3"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^v3.86.0"

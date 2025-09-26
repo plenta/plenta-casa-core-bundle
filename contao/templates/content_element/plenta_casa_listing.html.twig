@@ -8,4 +8,6 @@
         {{ 'PLENTA.CASA.empty_list.'|trans({}, 'contao_default') }}
     {% endfor %}
 
+    {{ pagination|default|raw }}
+
 {% endblock %}

@@ -1,2 +1,24 @@
+{% trans_default_domain 'plenta_casa' %}
 
-    {{ object.title }}
+{% set url = content_url(jumpTo, {parameters: '/' ~ object.alias}) %}
+
+<div class="object">
+    {% block titleImage %}
+        {% if object.singleSRC|default and data.size %}
+            <a href="{{ url }}" title="{{ 'CASA.show_object'|trans({':name': object.name}) }}">
+                {{ content_element('image', {
+                    singleSRC: object.singleSRC,
+                    size: data.size,
+                    sortBy: '',
+                    fullsize: false,
+                }) }}
+            </a>
+        {% endif %}
+    {% endblock %}
+
+    {% block title %}
+    <div class="title">
+        <a href="{{ url }}">{{ object.name }}</a>
+    </div>
+    {% endblock %}
+</div>

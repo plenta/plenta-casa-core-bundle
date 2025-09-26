@@ -50,7 +50,7 @@ class Reader extends AbstractContentElementController
 
         $template->object = $object;
 
-        $this->getHtmlHeadBag()->setTitle($object->getTitle());
+        $this->getHtmlHeadBag()->setTitle($object->getName());
 
         return $template->getResponse();
     }

@@ -17,11 +17,12 @@ use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\System;
 use Contao\Template;
+use Plenta\CasaCoreBundle\Form\FilterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[AsContentElement(category: 'plentacasa', type: 'plenta_casa_filter')]
+#[AsContentElement(type: 'plenta_casa_filter', category: 'plentacasa')]
 class Filter extends AbstractContentElementController
 {
     public function __construct(private readonly TranslatorInterface $translator)
@@ -34,10 +35,18 @@ class Filter extends AbstractContentElementController
 
         if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request)) {
             $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_filter.0', [], 'contao_defaut');
+            $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_filter.0', [], 'contao_default');
 
             return $objTemplate->getResponse();
         }
+
+        $filter = $this->createForm(FilterType::class, null, [
+            'model' => $model,
+        ]);
+
+        $filter->handleRequest($request);
+
+        $template->form = $filter;
 
         return $template->getResponse();
     }

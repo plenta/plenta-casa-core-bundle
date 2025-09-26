@@ -1,5 +1,13 @@
 {% extends "@Contao/content_element/_base.html.twig" %}
 
-{% block content %}
+{% if data.plenta_casa_filterAddObjectType and data.plenta_casa_filterAddType %}
+    {% set element_css_classes = element_css_classes ~ ' has-types' %}
+{% endif %}
 
+{% block content %}
+    {% add 'filterJs' to body %}
+        <script src="{{ asset('plentacasacore/filter.js', 'plentacasacore') }}" defer></script>
+    {% endadd %}
+
+    {{ form(form) }}
 {% endblock %}

@@ -1,3 +1,4 @@
 CASA:
     address: Adresse
     area_unit: m²
+    show_object: 'Objekt ":name" anzeigen'
