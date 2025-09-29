@@ -2,11 +2,13 @@
 
 namespace Plenta\CasaCoreBundle\Controller;
 
+use Contao\Controller;
 use Contao\CoreBundle\Controller\AbstractController;
 use Plenta\CasaCoreBundle\Events\FilterTypeOptionsEvent;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\TypeModel;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
@@ -29,5 +31,11 @@ class AjaxController extends AbstractController
         $eventDispatcher->dispatch($event, FilterTypeOptionsEvent::NAME);
 
         return new JsonResponse($event->getOptions());
+    }
+
+    #[Route('/filter/{id}')]
+    public function filter(int $id)
+    {
+        return new Response(Controller::getContentElement($id));
     }
 }

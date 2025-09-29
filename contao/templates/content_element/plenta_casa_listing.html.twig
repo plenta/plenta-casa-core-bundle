@@ -1,5 +1,7 @@
 {% extends "@Contao/content_element/_base.html.twig" %}
 
+{% set attributes = attrs().setIfExists('data-id', data.id).mergeWith(attributes|default) %}
+
 {% block content %}
 
     {% for object in objects %}

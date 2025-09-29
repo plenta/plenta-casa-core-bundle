@@ -1,7 +1,7 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 
 {% block content %}
-    {% if object.singleSRC %}
+    {% if object.singleSRC|default %}
         {{ content_element('image', {
             singleSRC: object.singleSRC,
             size: data.size,
