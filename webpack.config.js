@@ -6,6 +6,7 @@ Encore
     .setManifestKeyPrefix('plentacasacore')
 
     .addEntry('filter', './layout/js/filter.js')
+    .addStyleEntry('backend', './layout/scss/backend.scss')
 
 
     //.splitEntryChunks()

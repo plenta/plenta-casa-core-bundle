@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Plenta\CasaCoreBundle\Controller\Contao\Backend;
 
 use Contao\CoreBundle\Controller\AbstractBackendController;
+use Symfony\Component\Asset\Package;
+use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,13 +26,14 @@ class ConfigController extends AbstractBackendController
     public function __construct(
         protected readonly RouterInterface $router,
         protected readonly RequestStack $requestStack,
-        protected readonly TranslatorInterface $translator
+        protected readonly TranslatorInterface $translator,
+        protected Packages $packages,
     ) {
     }
 
     public function __invoke(): Response
     {
-        $GLOBALS['TL_CSS']['plentacasacore_config'] = 'bundles/plentacasacore/config.css';
+        $GLOBALS['TL_CSS']['plentacasacore_config'] = $this->packages->getUrl('plentacasacore/backend.css', 'plentacasacore');
 
         $titleLabel = $this->translator->trans('MOD.plenta_casa.0', [], 'contao_modules').' '.$this->translator->trans('MOD.plentacasa_config.1', [], 'contao_modules');
 

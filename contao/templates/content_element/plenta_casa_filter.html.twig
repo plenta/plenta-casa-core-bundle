@@ -4,6 +4,8 @@
     {% set element_css_classes = element_css_classes ~ ' has-types' %}
 {% endif %}
 
+{% set attributes = attrs().setIfExists('data-id', data.id).mergeWith(attributes|default) %}
+
 {% block content %}
     {% add 'filterJs' to body %}
         <script src="{{ asset('plentacasacore/filter.js', 'plentacasacore') }}" defer></script>

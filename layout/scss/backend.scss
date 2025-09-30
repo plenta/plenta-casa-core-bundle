@@ -1,0 +1,94 @@
+:root {
+    --pcasa-base-padding: 14px;
+    --pcasa-base-spacing: 26px;
+    --pacaa-tile-padding: 42px;
+    --pcasa-border-radius: 10px;
+    --pcasa-border-width: 1px;
+    --pcasa-border-style: solid;
+    --pcasa-border-color: var(--tree-line);
+    --pcasa-background-color: var(--content-bg);
+    --pcasa-filter-to-white: invert(0);
+}
+
+html[data-color-scheme="dark"] {
+    --pcasa-filter-to-white: invert(1);
+}
+
+.be_plentacasa_config {
+    padding: var(--pcasa-base-padding);
+}
+
+.be_plentacasa_config {
+    .tile-container {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-gap: var(--pcasa-base-spacing);
+    }
+
+    > div {
+        grid-column-end: span 12;
+    }
+
+    .item {
+        position: relative;
+        grid-column-end: span 4;
+        background-color: var(--pcasa-background-color);
+
+        border-radius: var(--pcasa-border-radius);
+        padding: var(--pcasa-base-padding);
+        overflow: hidden;
+        border-width: var(--pcasa-border-width);
+        border-style: var(--pcasa-border-style);
+        border-color: var(--pcasa-border-color);
+    }
+
+    .item:before {
+        content: "";
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        filter: var(--pcasa-filter-to-white);
+        right: var(--pcasa-base-padding);
+        top: var(--pcasa-base-padding);
+    }
+}
+
+.item.tl_pcasa_targetgroup:before {
+    content: url("../img/bullseye-solid-full.svg");
+}
+
+.item.tl_pcasa_quarter:before {
+    content: url("../img/layer-group-solid-full.svg");
+}
+
+.item.tl_pcasa_object_type:before {
+    content: url("../img/gears-solid-full.svg");
+}
+
+.item.tl_pcasa_notifications:before {
+    content: url("../img/envelope-solid-full.svg");
+}
+
+.item > a {
+    display: block;
+    text-decoration: underline;
+    margin-bottom: .5em;
+}
+
+.item > span {
+    color: var(--text);
+    display: block;
+}
+
+a.title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 900px) {
+    .be_plentacasa_config {
+        > div {
+            grid-column-end: span 6;
+        }
+    }
+}

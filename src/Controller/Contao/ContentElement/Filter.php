@@ -46,7 +46,7 @@ class Filter extends AbstractContentElementController
 
         $filter->handleRequest($request);
 
-        $template->form = $filter;
+        $template->form = $filter->createView();
 
         return $template->getResponse();
     }
