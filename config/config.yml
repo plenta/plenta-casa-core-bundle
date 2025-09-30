@@ -8,3 +8,12 @@ framework:
         packages:
             plentacasacore:
                 json_manifest_path: '%kernel.project_dir%/public/bundles/plentacasacore/manifest.json'
+
+plenta_casa_core:
+    alias_generation:
+        parts:
+            - title
+            - postal
+            - city
+        locale: 'de'
+        validChars: '0-9a-z'
