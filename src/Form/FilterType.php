@@ -55,7 +55,7 @@ class FilterType extends AbstractType
 
         if ($model->plenta_casa_filterAddType) {
             $builder->add('type', ChoiceType::class, [
-                'choices' => $model->plenta_casa_filterAddObjectType ? ($objectTypeFromRequest ? TypeModel::findBy('pid', $objectTypeFromRequest) : []) : TypeModel::findAll(),
+                'choices' => $model->plenta_casa_filterAddObjectType ? ($objectTypeFromRequest ? TypeModel::findBy('pid', is_array($objectTypeFromRequest) ? $objectTypeFromRequest[0] : $objectTypeFromRequest) : []) : TypeModel::findAll(),
                 'choice_value' => 'id',
                 'choice_label' => 'title',
                 'choice_filter' => fn ($value) => $value ? ObjectModel::countPublishedBy(['type = ?'], [$value->id]) : true,

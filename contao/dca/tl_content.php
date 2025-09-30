@@ -25,10 +25,10 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddType'] = [
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddKeyword'] = [
     'inputType' => 'checkbox',
-    'sql' => ['type' => 'boolean', 'default' => 'false'],
+    'sql' => ['type' => 'boolean', 'default' => false],
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddMarketingType'] = [
     'inputType' => 'checkbox',
-    'sql' => ['type' => 'boolean', 'default' => 'false'],
+    'sql' => ['type' => 'boolean', 'default' => false],
 ];

@@ -10,24 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
             let objectType = filter.querySelector('select[name*="objectType"]');
             let type = filter.querySelector('select[name*="[type]"]');
 
-            objectType.addEventListener('change', (e) => {
-                type.querySelectorAll('option:not([value=""])').forEach(o => {
-                    o.remove();
-                })
-
-                if (objectType.value !== '') {
-                    fetch('_casa/types/' + objectType.value).then(r => r.json()).then(r => {
-                        for (let i in r) {
-                            let option = document.createElement('option');
-                            option.value = i;
-                            option.innerText = r[i];
-                            type.appendChild(option);
-                        }
+            if (objectType && type) {
+                objectType.addEventListener('change', (e) => {
+                    type.querySelectorAll('option:not([value=""])').forEach(o => {
+                        o.remove();
                     })
-                }
 
-                document.dispatchEvent(new CustomEvent('casa_typeOptionsUpdated'));
-            })
+                    if (objectType.value !== '') {
+                        fetch('_casa/types/' + objectType.value + '/' + filter.dataset.id).then(r => r.json()).then(r => {
+                            for (let i in r) {
+                                let option = document.createElement('option');
+                                option.value = i;
+                                option.innerText = r[i];
+                                type.appendChild(option);
+                            }
+                        })
+                    }
+
+                    document.dispatchEvent(new CustomEvent('casa_typeOptionsUpdated'));
+                })
+            }
         }
 
         filter.addEventListener('change', function (e) {

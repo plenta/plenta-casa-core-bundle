@@ -2,7 +2,12 @@
   "entrypoints": {
     "filter": {
       "js": [
-        "/bundles/plentacasacore/filter.781c7d18.js"
+        "/bundles/plentacasacore/filter.e946c4e4.js"
+      ]
+    },
+    "backend": {
+      "css": [
+        "/bundles/plentacasacore/backend.e63bbe8c.css"
       ]
     }
   }

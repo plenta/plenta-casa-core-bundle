@@ -3,6 +3,7 @@
 namespace Plenta\CasaCoreBundle\Events;
 
 use Contao\ContentModel;
+use Plenta\CasaCoreBundle\Filter\Parameter;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class FilterParameterEvent extends Event
@@ -11,8 +12,7 @@ class FilterParameterEvent extends Event
 
     public function __construct(
         protected ContentModel $contentModel,
-        protected array $columns,
-        protected array $values,
+        protected array $parameters,
     ) {
     }
 
@@ -27,25 +27,17 @@ class FilterParameterEvent extends Event
         return $this;
     }
 
-    public function getColumns(): array
+    /**
+     * @return Parameter[]
+    */
+    public function getParameters(): array
     {
-        return $this->columns;
+        return $this->parameters;
     }
 
-    public function setColumns(array $columns): FilterParameterEvent
+    public function setParameters(array $parameters): FilterParameterEvent
     {
-        $this->columns = $columns;
-        return $this;
-    }
-
-    public function getValues(): array
-    {
-        return $this->values;
-    }
-
-    public function setValues(array $values): FilterParameterEvent
-    {
-        $this->values = $values;
+        $this->parameters = $parameters;
         return $this;
     }
 }
