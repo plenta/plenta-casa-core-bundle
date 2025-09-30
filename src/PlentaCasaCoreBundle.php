@@ -19,6 +19,7 @@ class PlentaCasaCoreBundle extends AbstractBundle
                     ->children()
                         ->arrayNode('parts')
                             ->scalarPrototype()->end()
+                            ->performNoDeepMerging()
                         ->end()
                         ->scalarNode('locale')->end()
                         ->scalarNode('validChars')->end()
