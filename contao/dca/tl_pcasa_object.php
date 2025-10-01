@@ -50,8 +50,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,deposit,parkingSpacePrice;
         {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
         {facilities_legend},facilities,bathroomFacilities,flooring;
-        {description_legend},description,location,equipment,other;
         {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
+        {description_legend},description,location,equipment,other;
         {media_legend},singleSRC,multiSRC;
         {marketing_legend:hide},targetgroups,quarter;
         {author_legend:hide},author;
