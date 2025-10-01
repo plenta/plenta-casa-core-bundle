@@ -473,6 +473,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'propertyCondition' => [
             'inputType' => 'select',
             'options' => ['firstTimeUse', 'firstTimeUseAfterRefurbishment', 'mintCondition', 'refurbished', 'partlyRefurbished', 'inNeedOfRefurbishment', 'decrepit', 'modernized', 'completelyRenovated', 'partlyRenovated', 'neat', 'inNeedOfRenovation', 'customersOption', 'dilapidated'],
+            'eval' => ['includeBlankOption' => true],
             'sql' => "varchar(48) NOT NULL default ''",
         ],
         'lastRefurbishment' => [
@@ -483,7 +484,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'qualityOfEquipment' => [
             'inputType' => 'select',
             'options' => ['luxurious', 'upscale', 'normal', 'plain'],
-            'eval' => ['tl_class' => 'w50'],
+            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
             'sql' => "varchar(16) NOT NULL default ''",
         ],
         'numberOfParkingSpaces' => [
@@ -494,6 +495,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'parkingSpaceType' => [
             'inputType' => 'select',
             'options' => ['garage', 'outside', 'carport', 'duplex', 'carPark', 'undergroundCarPark', 'doubleGarage'],
+            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
             'sql' => "varchar(32 NOT NULL default ''",
         ],
     ],

@@ -26,6 +26,12 @@ tl_pcasa_object:
     hideStreet:
         0: Straße nicht anzeigen
         1: Bitte auswählen, wenn die Straße nicht auf der Website ausgegeben werden soll.
+    numberOfParkingSpaces:
+        0: Anzahl Parkplätze
+        1: Bitte geben Sie die Anzahl der Anzahl Parkplätze ein.
+    parkingSpaceType:
+        0: Stellplatztyp
+        1: Bitte wählen Sie einen Stellplatztyp aus.
     targetgroups:
         0: Zielgruppen
         1: Weisen Sie das Objekteiner Zielgruppen zu.
