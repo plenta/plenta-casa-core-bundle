@@ -23,9 +23,27 @@ tl_pcasa_object:
     district:
         0: Stadtteil
         1: Bitte wählen Sie den Stadtteil aus.
+    country:
+        0: Land
+        1: Bitte wählen Sie ein Land aus.
+    coordinates_lat:
+        0: Breitengrad
+        1: Bitte geben Sie den Breitengrad (Geographische Breite LAT - Latitude) ein.
+    coordinates_lng:
+        0: Längengrad
+        1: Bitte geben Sie den Längengrad (Geographische Länge LNG/LONG - Longitude) ein.
     hideStreet:
         0: Straße nicht anzeigen
         1: Bitte auswählen, wenn die Straße nicht auf der Website ausgegeben werden soll.
+    lastRefurbishment:
+        0: Letzte Modernisierung
+        1: Bitte geben Sie das Datum der letzten Modernisierung ein.
+    qualityOfEquipment:
+        0: Qualität der Ausstattung
+        1: Bitte wählen Sie die Qualität der Ausstattung
+    propertyCondition:
+        0: Objektzustand
+        1: Bitte wählen Sie den Zustand des Objekts aus.
     numberOfParkingSpaces:
         0: Anzahl Parkplätze
         1: Bitte geben Sie die Anzahl der Anzahl Parkplätze ein.
