@@ -35,6 +35,36 @@ tl_pcasa_object:
     hideStreet:
         0: Straße nicht anzeigen
         1: Bitte auswählen, wenn die Straße nicht auf der Website ausgegeben werden soll.
+    baseRent:
+        0: Kaltmiete
+        1: Bitte geben Sie die Kaltmiete ein.
+    totalRent:
+        0: Warmmiete
+        1: Bitte geben Sie die Warmmiete ein.
+    heatingCosts:
+        0: Heizkosten
+        1: Bitte geben Sie die Heizkosten ein.
+    serviceCharge:
+        0: Nebenkosten
+        1: bitte geben Sie die Nebenkosten ein.
+    heatingCostsInSc:
+        0: Heizkosten in Nebenkosten
+        1: Bitte auswählen, wenn die Heizkosten in den Nebenkosten enthalten sind.
+    houseServiceCharge:
+        0: x
+        1: x
+    nonRecoverableCosts:
+        0: x
+        1: x
+    maintenanceReserve:
+        0: x
+        1: x
+    deposit:
+        0: x
+        1: x
+    parkingSpacePrice:
+        0: Stellplatz-Preis
+        1: Bitte geben Sie den Stellplatz-Preis ein.
     lastRefurbishment:
         0: Letzte Modernisierung
         1: Bitte geben Sie das Datum der letzten Modernisierung ein.
