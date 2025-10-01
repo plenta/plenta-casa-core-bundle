@@ -46,6 +46,10 @@ tl_pcasa_object:
         1: Das Objekt nur bis zu diesem Tag auf der Webseite anzeigen.
     master_data_legend: Stammdaten
     address_legend: Adressdaten
+    price_legend: Preise
+    area_legend: Flächen
+    facilities_legend: Ausstattungsmerkmale
+    description_legend: Beschreibungen
     media_legend: Medien
     marketing_legend: Vermarktung
     author_legend: Author
