@@ -8,6 +8,10 @@
     --pcasa-border-color: var(--tree-line);
     --pcasa-background-color: var(--content-bg);
     --pcasa-filter-to-white: invert(0);
+    --pcasa-background-blue: #0067b8;
+    --pcasa-background-lightblue: #3385c6;
+    --pcasa-background-skyblue: #3399ff;
+    --pcasa-background-orange: #ff9847;
 }
 
 html[data-color-scheme="dark"] {
@@ -129,19 +133,46 @@ a.title {
                 margin-bottom: .5em;
             }
 
+            > span.numbers {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-bottom: .5em;
+            }
+
+            > span.description {
+                color: var(--text);
+            }
+
             &:before {
                 content: "";
-                width: 24px;
-                height: 24px;
+                width: 32px;
+                height: 32px;
                 position: absolute;
                 filter: var(--pcasa-filter-to-white);
                 right: var(--pcasa-base-padding);
                 top: var(--pcasa-base-padding);
             }
 
-            &.objects:before {
-                content: url("../img/house.svg");
-                filter: var(--pcasa-filter-to-white);
+            &.objects {
+                background-color: var(--pcasa-background-blue);
+
+                &:before {
+                    content: url("../img/house.svg");
+                    filter: var(--pcasa-filter-to-white);
+                }
+            }
+
+            &.requests {
+                background-color: var(--pcasa-background-lightblue);
+
+                &:before {
+                    content: url("../img/mail-check.svg");
+                    filter: var(--pcasa-filter-to-white);
+                }
+            }
+
+            &.baa {
+                background-color: var(--pcasa-background-skyblue);
             }
         }
     }
