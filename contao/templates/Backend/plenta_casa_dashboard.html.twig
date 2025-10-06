@@ -1,4 +1,4 @@
-{% trans_default_domain 'contao_default' %}
+{% trans_default_domain 'plenta_casa_dashboard' %}
 
 <div class="plenta_casa_dashboard">
 
@@ -10,18 +10,26 @@
     {% endblock %}
 
     {% block main_content %}
-        <div class="be-plenta-casa-dashboard-main">
-            <div class="be-plenta-casa-tiles tile-container">
-                Block 1
+        <div class="dashboard">
+            <div class="tile objects">
+                <a href="#">Block 1</a>
+                <span class="description">Objekte online</span>
+
             </div>
 
-            <div class="be-plenta-casa-tiles tile-container">
+            <div class="tile">
                 Block 3
             </div>
 
-            <div class="be-plenta-casa-tiles tile-container">
+            <div class="tile">
                 Block 3
             </div>
+        </div>
+
+        <div class="credits">
+            <p>
+                {{ version }} - <a href="{{ changelog }}" title="{{ 'PLENTA.CASA.changelog_title'|trans({}, 'plenta_casa_dashboard') }}" target="_blank" rel="noreferrer noopener">{{ 'PLENTA.CASA.changelog'|trans({}, 'plenta_casa_dashboard') }}</a> - {{ manufacturer|raw }}
+            </p>
         </div>
 
     {% endblock %}

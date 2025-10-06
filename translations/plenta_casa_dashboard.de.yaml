@@ -1,0 +1,8 @@
+PLENTA:
+    CASA:
+        greeting:
+            random_choice: Hallo|Moin|Hi|Servus|Hey|Grüß dich|Gude|Tach|Na
+        manufacturer: Plenta Casa ist ein Produkt von <a href="https://plenta.io" target="_blank" rel="noreferrer noopener">Plenta.io</a>
+        version: "Version: %s"
+        changelog: Changelog
+        changelog_title: Plenta Casa changelog

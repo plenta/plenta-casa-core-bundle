@@ -85,6 +85,72 @@ a.title {
     font-weight: 500;
 }
 
+.plenta_casa_dashboard {
+    padding-top: var(--pcasa-base-padding);
+    padding-bottom: var(--pcasa-base-padding);
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    .credits {
+        text-align: right;
+        padding-top: var(--pcasa-base-padding);
+    }
+
+    .dashboard {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-gap: var(--pcasa-base-spacing);
+
+        .tile {
+            position: relative;
+            grid-column-end: span 4;
+            background-color: var(--pcasa-background-color);
+
+            border-radius: var(--pcasa-border-radius);
+            padding: var(--pcasa-base-padding);
+            overflow: hidden;
+            border-width: var(--pcasa-border-width);
+            border-style: var(--pcasa-border-style);
+            border-color: var(--pcasa-border-color);
+
+            > a,
+            > span {
+                display: block;
+                color: var(--text);
+            }
+
+            > a {
+                margin-bottom: .5em;
+            }
+
+            &:before {
+                content: "";
+                width: 24px;
+                height: 24px;
+                position: absolute;
+                filter: var(--pcasa-filter-to-white);
+                right: var(--pcasa-base-padding);
+                top: var(--pcasa-base-padding);
+            }
+
+            &.objects:before {
+                content: url("../img/house.svg");
+                filter: var(--pcasa-filter-to-white);
+            }
+        }
+    }
+
+    > div {
+        grid-column-end: span 12;
+    }
+}
+
 @media screen and (max-width: 900px) {
     .be_plentacasa_config {
         > div {

@@ -1,7 +1,5 @@
 PLENTA:
     CASA:
-        greeting:
-            random_choice: Hallo|Moin|Hi|Servus|Hey|Grüß dich|Gude|Tach|Na
         marketing_types:
             RENT: Miete
             BUY: Kauf

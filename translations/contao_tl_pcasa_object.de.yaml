@@ -51,16 +51,16 @@ tl_pcasa_object:
         0: Heizkosten in Nebenkosten
         1: Bitte auswählen, wenn die Heizkosten in den Nebenkosten enthalten sind.
     houseServiceCharge:
-        0: x
+        0: houseServiceCharge
         1: x
     nonRecoverableCosts:
-        0: x
+        0: nonRecoverableCosts
         1: x
     maintenanceReserve:
-        0: x
+        0: maintenanceReserve
         1: x
     deposit:
-        0: x
+        0: deposit
         1: x
     parkingSpacePrice:
         0: Stellplatz-Preis
