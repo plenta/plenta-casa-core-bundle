@@ -1,4 +1,13 @@
 tl_pcasa_object:
+    marketing_type:
+        0: Vermarktungstyp
+        1: Bitte wählen Sie den Vermarktungstyp aus.
+    object_type:
+        0: Objektart
+        1: Wählen Sie hier die Objektart aus.
+    type:
+        0: Type
+        1: Wählen Sie hier den Typen aus.
     title:
         0: Titel
         1: Bitte geben Sie einen Titel für das Objekt ein.
