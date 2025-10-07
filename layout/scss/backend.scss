@@ -171,8 +171,13 @@ a.title {
                 }
             }
 
-            &.baa {
+            &.future {
                 background-color: var(--pcasa-background-skyblue);
+
+                &:before {
+                    content: url("../img/cup-soda.svg");
+                    filter: var(--pcasa-filter-to-white);
+                }
             }
         }
     }
