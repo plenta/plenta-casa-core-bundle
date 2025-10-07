@@ -117,7 +117,7 @@ a.title {
             background-color: var(--pcasa-background-color);
 
             border-radius: var(--pcasa-border-radius);
-            padding: var(--pcasa-base-padding);
+            padding: var(--pcasa-base-spacing);
             overflow: hidden;
             border-width: var(--pcasa-border-width);
             border-style: var(--pcasa-border-style);
@@ -149,8 +149,8 @@ a.title {
                 height: 32px;
                 position: absolute;
                 filter: var(--pcasa-filter-to-white);
-                right: var(--pcasa-base-padding);
-                top: var(--pcasa-base-padding);
+                right: var(--pcasa-base-spacing);
+                top: var(--pcasa-base-spacing);
             }
 
             &.objects {
