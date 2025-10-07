@@ -1,0 +1,13 @@
+tl_content:
+    plenta_casa_filterAddMarketingType:
+        0: Marketingtyp
+        1: Die Marketingtypen werden im Formular angezeigt.
+    plenta_casa_filterAddObjectType:
+        0: Objekttyp
+        1: Die Objekttypen werden im Formular angezeigt.
+    plenta_casa_filterAddType:
+        0: Objektart
+        1: Die Objekttypen werden im Formular angezeigt.
+    plenta_casa_filterAddKeyword:
+        0: Volltextsuche
+        1: Die Volltextsuche wird im Formular angezeigt.
