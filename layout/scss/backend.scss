@@ -10,7 +10,7 @@
     --pcasa-filter-to-white: invert(0);
     --pcasa-background-blue: #0067b8;
     --pcasa-background-lightblue: #3385c6;
-    --pcasa-background-skyblue: #3399ff;
+    --pcasa-background-darkblue: #172b3b;
     --pcasa-background-orange: #ff9847;
 }
 
@@ -173,7 +173,7 @@ a.title {
             }
 
             &.future {
-                background-color: var(--pcasa-background-skyblue);
+                background-color: var(--pcasa-background-darkblue);
 
                 &:before {
                     content: url("../img/cup-soda.svg");
