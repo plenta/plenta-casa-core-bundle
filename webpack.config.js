@@ -5,9 +5,9 @@ Encore
     .setPublicPath('/bundles/plentacasacore')
     .setManifestKeyPrefix('plentacasacore')
 
+    .addEntry('app', './layout/js/app.js')
     .addEntry('filter', './layout/js/filter.js')
     .addStyleEntry('backend', './layout/scss/backend.scss')
-
 
     //.splitEntryChunks()
 

@@ -107,6 +107,9 @@ tl_pcasa_object:
     stop:
         0: Anzeigen bis
         1: Das Objekt nur bis zu diesem Tag auf der Webseite anzeigen.
+    preview:
+        0: Frontend-Vorschau
+        1: Frontend-Vorschau des Objekts %s anzeigen.
     master_data_legend: Stammdaten
     address_legend: Adressdaten
     price_legend: Preise
@@ -118,3 +121,4 @@ tl_pcasa_object:
     marketing_legend: Vermarktung
     author_legend: Author
     publish_legend: Veröffentlichung
+

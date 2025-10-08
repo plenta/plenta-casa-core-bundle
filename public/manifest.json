@@ -1,4 +1,5 @@
 {
+  "plentacasacore/app.js": "/bundles/plentacasacore/app.04530dbf.js",
   "plentacasacore/filter.js": "/bundles/plentacasacore/filter.e946c4e4.js",
   "plentacasacore/backend.css": "/bundles/plentacasacore/backend.e801bce1.css",
   "plentacasacore/images/gears-solid-full.svg": "/bundles/plentacasacore/images/gears-solid-full.e37ecb4a.svg",
@@ -7,5 +8,6 @@
   "plentacasacore/images/envelope-solid-full.svg": "/bundles/plentacasacore/images/envelope-solid-full.b65af555.svg",
   "plentacasacore/images/cup-soda.svg": "/bundles/plentacasacore/images/cup-soda.0fa7fd7a.svg",
   "plentacasacore/images/house.svg": "/bundles/plentacasacore/images/house.fd6fd755.svg",
-  "plentacasacore/images/mail-check.svg": "/bundles/plentacasacore/images/mail-check.8f011a0c.svg"
+  "plentacasacore/images/mail-check.svg": "/bundles/plentacasacore/images/mail-check.8f011a0c.svg",
+  "plentacasacore/images/link.svg": "/bundles/plentacasacore/images/link.9e683dda.svg"
 }

@@ -1,0 +1,1 @@
+import '/layout/img/link.svg'

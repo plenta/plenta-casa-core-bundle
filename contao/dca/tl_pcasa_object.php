@@ -42,6 +42,19 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'fields' => ['title', 'city', 'district'],
             'format' => '%s, %s (%s)',
         ],
+        'operations' => [
+            'edit',
+            'preview' => [
+                'attributes' => 'target="_blank"',
+                'primary' => true,
+            ],
+            'copy',
+            'cut',
+            'delete',
+            'toggle',
+            'feature',
+            'show',
+        ],
     ],
 
     'palettes' => [

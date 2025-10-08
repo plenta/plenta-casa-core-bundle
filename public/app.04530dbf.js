@@ -1,0 +1,1 @@
+(()=>{"use strict";var a={p:"/bundles/plentacasacore/"};a.p})();
