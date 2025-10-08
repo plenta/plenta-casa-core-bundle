@@ -16,6 +16,8 @@ use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\CoreBundle\Exception\PageNotFoundException;
+use Contao\CoreBundle\Routing\ResponseContext\HtmlHeadBag\HtmlHeadBag;
+use Contao\CoreBundle\Routing\ResponseContext\ResponseContextAccessor;
 use Contao\Input;
 use Contao\System;
 use Contao\Template;
@@ -27,8 +29,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[AsContentElement(type: 'plenta_casa_reader', category: 'plentacasa')]
 class Reader extends AbstractContentElementController
 {
-    public function __construct(private readonly TranslatorInterface $translator)
-    {
+    public function __construct(
+        private readonly TranslatorInterface $translator,
+        private readonly ResponseContextAccessor $responseContextAccessor,
+    ) {
     }
 
     protected function getResponse(Template $template, ContentModel $model, Request $request): Response
@@ -51,6 +55,29 @@ class Reader extends AbstractContentElementController
         $template->object = $object;
 
         $this->getHtmlHeadBag()->setTitle($object->getName());
+
+        $responseContext = $this->responseContextAccessor->getResponseContext();
+
+        if ($responseContext && $responseContext->has(HtmlHeadBag::class)) {
+            $htmlHeadBag = $responseContext->get(HtmlHeadBag::class);
+            $htmlDecoder = System::getContainer()->get('contao.string.html_decoder');
+
+            if ($object->metaTitle) {
+                $htmlHeadBag->setTitle($htmlDecoder->inputEncodedToPlainText($object->metaTitle));
+            } elseif ($object->title) {
+                $htmlHeadBag->setTitle($htmlDecoder->inputEncodedToPlainText($object->title));
+            }
+
+            if ($object->metaDescription) {
+                $htmlHeadBag->setMetaDescription($htmlDecoder->inputEncodedToPlainText($object->metaDescription));
+            } elseif ($object->description) {
+                $htmlHeadBag->setMetaDescription($htmlDecoder->htmlToPlainText($object->description));
+            }
+
+            if ($object->robots) {
+                $htmlHeadBag->setMetaRobots($object->robots);
+            }
+        }
 
         return $template->getResponse();
     }
