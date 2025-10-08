@@ -44,6 +44,18 @@ tl_pcasa_object:
     hideStreet:
         0: Straße nicht anzeigen
         1: Bitte auswählen, wenn die Straße nicht auf der Website ausgegeben werden soll.
+    metaTitle:
+        0: Meta-Titel
+        1: Hier können Sie einen individuellen Meta-Titel eingeben, um den Standard-Objekttitel zu überschreiben.
+    robots:
+        0: Robots-Tag
+        1: Hier legen Sie fest, wie Suchmaschinen den Beitrag behandeln.
+    metaDescription:
+        0: Meta-Beschreibung
+        1: Hier können Sie eine individuelle Meta-Beschreibung eingeben, um die Standard-Objektbeschreibung zu überschreiben.
+    serpPreview:
+        0: xxx
+        1: sss
     baseRent:
         0: Kaltmiete
         1: Bitte geben Sie die Kaltmiete ein.
@@ -111,6 +123,7 @@ tl_pcasa_object:
         0: Frontend-Vorschau
         1: Frontend-Vorschau des Objekts %s anzeigen.
     master_data_legend: Stammdaten
+    meta_legend: Metadaten
     address_legend: Adressdaten
     price_legend: Preise
     area_legend: Flächen

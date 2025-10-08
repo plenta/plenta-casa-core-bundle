@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * @package       PlentaCasa Core
+ * @package       Customer
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -13,6 +13,7 @@ use Contao\BackendUser;
 use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\System;
+use Plenta\CasaCoreBundle\EventListener\Contao\DataContainer\TlPcasaObjectListener;
 
 $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     'config' => [
@@ -60,6 +61,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     'palettes' => [
         'default' => '{master_data_legend},marketing_type,object_type,type,title,unit_id,alias;
         {address_legend},street,housenumber,postal,city,district,country,hideStreet;
+        {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
         {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,deposit,parkingSpacePrice;
         {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
         {facilities_legend},facilities,bathroomFacilities,flooring;
@@ -192,6 +194,36 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'checkbox',
             'eval' => ['tl_class' => 'clr'],
             'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+
+        'metaTitle' => [
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => ['maxlength' => 255, 'decodeEntities' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'robots' => [
+            'search' => true,
+            'inputType' => 'select',
+            'options' => ['index,follow', 'index,nofollow', 'noindex,follow', 'noindex,nofollow'],
+            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
+            'sql' => "varchar(32) NOT NULL default ''",
+        ],
+        'metaDescription' => [
+            'search' => true,
+            'inputType' => 'textarea',
+            'eval' => ['style' => 'height:60px', 'decodeEntities' => true, 'tl_class' => 'clr'],
+            'sql' => 'text NULL',
+        ],
+        'serpPreview' => [
+            'label' => &$GLOBALS['TL_LANG']['MSC']['serpPreview'],
+            'inputType' => 'serpPreview',
+            'eval' => [
+                'url_callback' => [TlPcasaObjectListener::class, 'getSerpUrl'],
+                'titleFields' => ['metaTitle', 'title'],
+                'descriptionFields' => ['metaDescription', 'description'],
+            ],
+            'sql' => null,
         ],
 
         'author' => [

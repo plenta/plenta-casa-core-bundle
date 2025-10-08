@@ -96,4 +96,11 @@ class TlPcasaObjectListener
         $operation->setUrl($url);
         $operation['icon'] = $this->packages->getUrl('plentacasacore/images/link.svg', 'plentacasacore');
     }
+
+    public function getSerpUrl(ObjectModel $object): string
+    {
+        $strSuffix = '/';
+
+        return \sprintf(preg_replace('/%(?!s)/', '%%', $strSuffix), $object->alias ?: $object->id);
+    }
 }
