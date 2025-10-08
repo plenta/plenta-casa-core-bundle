@@ -1,0 +1,7 @@
+tl_pcasa_type:
+    title:
+        0: Titel
+        1: Bitte geben Sie einen Titel ein.
+    singleSRC:
+        0: Platzhalterbild
+        1: Bitte wählen Sie ein Bild aus der Dateiverwaltung. Das Platzhalterbild wird angezeigt, wenn für ein Objekt kein Bild vorhanden ist. Dieses Platzhalterbild überschreibt das des Marketingtypen.

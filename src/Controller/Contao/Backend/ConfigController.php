@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\Controller\Contao\Backend;
 
+use Composer\InstalledVersions;
 use Contao\CoreBundle\Controller\AbstractBackendController;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
@@ -43,6 +44,8 @@ class ConfigController extends AbstractBackendController
                 'title' => $titleLabel,
                 'headline' => $titleLabel,
                 'tables' => $this->getTables(),
+                'changelog' => 'https://plentacasa.com/changelog',
+                'version' => InstalledVersions::getVersion('plenta/plenta-casa-core-bundle'),
             ]
         );
     }

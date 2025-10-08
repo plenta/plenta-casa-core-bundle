@@ -10,5 +10,11 @@
             </div>
             {% endfor %}
         </div>
+
+        <div class="credits">
+            <p>
+                {{ version }} - <a href="{{ changelog }}" title="{{ 'PLENTA.CASA.changelog_title'|trans({}, 'plenta_casa_dashboard') }}" target="_blank" rel="noreferrer noopener">{{ 'PLENTA.CASA.changelog'|trans({}, 'plenta_casa_dashboard') }}</a>
+            </p>
+        </div>
     </div>
 {% endblock %}

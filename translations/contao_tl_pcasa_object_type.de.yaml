@@ -5,3 +5,6 @@ tl_pcasa_object_type:
     shortTerm:
         0: Wohnen auf Zeit
         1: Bitte auswählen, wenn es dich um wohnen auf Zeit handelt.
+    singleSRC:
+        0: Platzhalterbild
+        1: Bitte wählen Sie ein Bild aus der Dateiverwaltung. Das Platzhalterbild wird angezeigt, wenn für ein Objekt kein Bild vorhanden ist.

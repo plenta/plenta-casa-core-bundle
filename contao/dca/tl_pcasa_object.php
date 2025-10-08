@@ -22,6 +22,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'keys' => [
                 'id' => 'primary',
                 'tstamp' => 'index',
+                'published,start,stop' => 'index',
             ],
         ],
     ],
