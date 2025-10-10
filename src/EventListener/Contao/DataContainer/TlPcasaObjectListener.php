@@ -22,6 +22,7 @@ use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Plenta\CasaCoreBundle\Model\TypeModel;
 use Symfony\Component\Asset\Packages;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Environment as TwigEnvironment;
 
 class TlPcasaObjectListener
 {
@@ -29,7 +30,17 @@ class TlPcasaObjectListener
         protected AliasGenerator $aliasGenerator,
         protected Packages $packages,
         protected readonly TranslatorInterface $translator,
+        protected readonly TwigEnvironment $twig,
     ) {
+    }
+
+    #[AsCallback(table: 'tl_pcasa_object', target: 'list.label.label')]
+    public function objectLabelCallback(array $row, string $label, DataContainer $dc, array $labels)
+    {
+
+        $property = $row;
+
+        return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', ['property' => $property]);
     }
 
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.type.options')]
