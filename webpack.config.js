@@ -8,6 +8,7 @@ Encore
     .addEntry('app', './layout/js/app.js')
     .addEntry('filter', './layout/js/filter.js')
     .addStyleEntry('backend', './layout/scss/backend.scss')
+    .addStyleEntry('plentacasa_theme', './layout/scss/theme.scss')
 
     //.splitEntryChunks()
 
