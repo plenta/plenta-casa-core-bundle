@@ -15,9 +15,9 @@
         "/bundles/plentacasacore/backend.e801bce1.css"
       ]
     },
-    "plentacasa_theme": {
+    "theme": {
       "css": [
-        "/bundles/plentacasacore/plentacasa_theme.726d63fb.css"
+        "/bundles/plentacasacore/theme.726d63fb.css"
       ]
     }
   }
