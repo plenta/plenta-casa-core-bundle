@@ -16,9 +16,38 @@
         {% endif %}
     {% endblock %}
 
+    {% block bookmark %}
+        <span class="bookmark">Merken</span>
+    {% endblock %}
+
     {% block title %}
     <div class="title">
         <a href="{{ url }}">{{ object.name }}</a>
     </div>
+    {% endblock %}
+
+    {% block meta %}
+        <div class="meta">
+            <span class="area">{{ object.livingArea }} m2</span>
+            <span class="rooms">{{ object.rooms }} Zimmer</span>
+            <span class="floor">{{ object.floorPosition }}</span>
+        </div>
+    {% endblock %}
+
+    {% block address %}
+        <div class="address">
+        Johann-Strauß-Straße 48, 14772<br>
+        Brandenburg an der Havel, OT Görden
+        </div>
+    {% endblock %}
+
+    {% block price %}
+        <span class="price">273,02 EUR
+            <span class="small">Kaltmiete zzgl. NK</span>
+        </span>
+    {% endblock %}
+
+    {% block button %}
+        <a class="button" href="{{ url }}">Zum Angebot</a>
     {% endblock %}
 </div>
