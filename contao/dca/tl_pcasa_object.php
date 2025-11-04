@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
+ * @package       PlentaCasa Core
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -543,6 +543,32 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'options' => ['garage', 'outside', 'carport', 'duplex', 'carPark', 'undergroundCarPark', 'doubleGarage'],
             'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
             'sql' => "varchar(32 NOT NULL default ''",
+        ],
+        'createdAt' => [
+            'sql' => ['type' => 'integer', 'default' => 0],
+        ],
+        'singleSRC' => [
+            'inputType' => 'fileTree',
+            'eval' => [
+                'filesOnly' => true,
+                'fieldType' => 'radio',
+                'mandatory' => false,
+                'tl_class' => 'clr',
+                'extensions' => '%contao.image.valid_extensions%',
+            ],
+            'sql' => 'binary(16) NULL',
+        ],
+        'multiSRC' => [
+            'inputType' => 'fileTree',
+            'eval' => [
+                'multiple' => true,
+                'fieldType' => 'checkbox',
+                'isSortable' => true,
+                'files' => true,
+                'extensions' => '%contao.image.valid_extensions%',
+                'isGallery' => true,
+            ],
+            'sql' => 'blob NULL',
         ],
     ],
 ];
