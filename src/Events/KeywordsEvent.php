@@ -10,8 +10,8 @@ class KeywordsEvent extends Event
     public const NAME = 'plenta_casa.search.keywords';
 
     public function __construct(
-        protected array $fields,
-        protected ContentModel $contentModel,
+        protected array $fields = ['title', 'city', 'description', 'equipment', 'location', 'other'],
+        protected ?ContentModel $contentModel = null,
         protected string $connector = 'AND',
         protected bool $splitKeywords = true,
     ) {
@@ -48,12 +48,12 @@ class KeywordsEvent extends Event
         return $this;
     }
 
-    public function getContentModel(): ContentModel
+    public function getContentModel(): ?ContentModel
     {
         return $this->contentModel;
     }
 
-    public function setContentModel(ContentModel $contentModel): KeywordsEvent
+    public function setContentModel(?ContentModel $contentModel): KeywordsEvent
     {
         $this->contentModel = $contentModel;
         return $this;

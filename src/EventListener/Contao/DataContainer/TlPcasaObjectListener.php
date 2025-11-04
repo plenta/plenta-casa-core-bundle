@@ -114,4 +114,14 @@ class TlPcasaObjectListener
 
         return \sprintf(preg_replace('/%(?!s)/', '%%', $strSuffix), $object->alias ?: $object->id);
     }
+
+    #[AsCallback(table: 'tl_pcasa_object', target: 'config.onsubmit')]
+    public function onSubmit(DataContainer $dc)
+    {
+        if (!$dc->activeRecord->createdAt) {
+            $object = ObjectModel::findByPk($dc->id);
+            $object->createdAt = time();
+            $object->save();
+        }
+    }
 }

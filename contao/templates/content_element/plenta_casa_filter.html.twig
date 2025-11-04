@@ -4,12 +4,19 @@
     {% set element_css_classes = element_css_classes ~ ' has-types' %}
 {% endif %}
 
-{% set attributes = attrs().setIfExists('data-id', data.id).mergeWith(attributes|default) %}
+{% set attributes =
+    attrs()
+    .setIfExists('data-id', data.id)
+    .mergeWith(stimulus_controller('casa_filter').toArray())
+    .mergeWith(attributes|default)
+%}
 
 {% block content %}
-    {% add 'filterJs' to body %}
-        <script src="{{ asset('plentacasacore/filter.js', 'plentacasacore') }}" defer></script>
+    {% add 'casaJs' to body %}
+        <script src="{{ asset('plentacasacore/app.js', 'plentacasacore') }}" defer></script>
     {% endadd %}
 
-    {{ form(form) }}
+    {{ form_start(form, { attr: stimulus_action('casa-filter', 'filter', 'change')|stimulus_action('casa-filter', 'keyUp', 'keyup').toArray() }) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}
