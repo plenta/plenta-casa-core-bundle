@@ -493,21 +493,25 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'description' => [
             'inputType' => 'textarea',
+            'search' => true,
             'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
             'sql' => 'mediumtext NULL',
         ],
         'location' => [
             'inputType' => 'textarea',
+            'search' => true,
             'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
             'sql' => 'mediumtext NULL',
         ],
         'equipment' => [
             'inputType' => 'textarea',
+            'search' => true,
             'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
             'sql' => 'mediumtext NULL',
         ],
         'other' => [
             'inputType' => 'textarea',
+            'search' => true,
             'eval' => ['rte' => 'tinyMCE', 'tl_class' => 'clr'],
             'sql' => 'mediumtext NULL',
         ],
