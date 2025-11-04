@@ -50,9 +50,8 @@ class Listing extends AbstractContentElementController
         }
 
         $parameters = [];
-        $keywordSearch = ['title', 'city', 'description', 'equipment', 'location', 'other'];
 
-        $keywordEvent = new KeywordsEvent($keywordSearch, $model);
+        $keywordEvent = new KeywordsEvent(contentModel:  $model);
         $this->eventDispatcher->dispatch($keywordEvent, $keywordEvent::NAME);
 
         if ($filter = $request->query->all('filter')) {

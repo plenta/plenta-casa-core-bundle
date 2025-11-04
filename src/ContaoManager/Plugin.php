@@ -21,14 +21,16 @@ use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Contao\ManagerPlugin\Config\ConfigPluginInterface;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\UX\StimulusBundle\StimulusBundle;
 
 class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPluginInterface
 {
     public function getBundles(ParserInterface $parser): array
     {
         return [
+            BundleConfig::create(StimulusBundle::class),
             BundleConfig::create(PlentaCasaCoreBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class]),
+                ->setLoadAfter([ContaoCoreBundle::class, StimulusBundle::class]),
         ];
     }
 

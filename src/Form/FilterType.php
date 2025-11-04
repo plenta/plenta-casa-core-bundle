@@ -48,6 +48,7 @@ class FilterType extends AbstractType
                 'choice_filter' => fn ($value) => $value ? ObjectModel::countPublishedBy(['object_type = ?'], [$value->id]) : true,
                 'priority' => 75,
                 'required' => false,
+                'attr' => ['data-action' => 'change->casa-filter#types']
             ]);
         }
 
@@ -62,6 +63,7 @@ class FilterType extends AbstractType
                 'placeholder' => '-',
                 'priority' => 50,
                 'required' => false,
+                'attr' => ['data-casa-filter-target' => 'type']
             ]);
         }
 

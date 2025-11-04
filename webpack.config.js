@@ -6,7 +6,6 @@ Encore
     .setManifestKeyPrefix('plentacasacore')
 
     .addEntry('app', './layout/js/app.js')
-    .addEntry('filter', './layout/js/filter.js')
     .addStyleEntry('backend', './layout/scss/backend.scss')
     .addStyleEntry('theme', './layout/scss/theme.scss')
 
@@ -30,6 +29,8 @@ Encore
     .enableSassLoader()
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
+
+    .enableStimulusBridge('./layout/js/controllers.json')
 
     // enables @babel/preset-env polyfills
     /*.configureBabelPresetEnv((config) => {
