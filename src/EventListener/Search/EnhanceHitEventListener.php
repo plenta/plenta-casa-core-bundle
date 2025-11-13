@@ -45,6 +45,13 @@ class EnhanceHitEventListener
             ->withBreadcrumbs($this->setBreadcrumbLabel($hit))
         ;
 
+        // NEW
+        /*
+        $newHit = new Hit($hit->getDocument(), 'Immobilie', $hit->getEditUrl());
+        $newHit->withContext($this->setContect($row));
+        $newHit->withBreadcrumbs($this->setBreadcrumbLabel($hit));
+        */
+
         $event->setHit($newHit);
     }
 
