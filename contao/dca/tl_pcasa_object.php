@@ -464,6 +464,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'flatShare',
                 'nonSmokersOnly',
             ],
+            'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['facilities-options'],
             'eval' => ['multiple' => true, 'tl_class' => 'clr'],
             'sql' => 'mediumtext NULL',
         ],
@@ -476,6 +477,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'bidet',
                 'urinal',
             ],
+            'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['bathroomFacilities-options'],
             'eval' => ['multiple' => true, 'tl_class' => 'clr'],
             'sql' => 'mediumtext NULL',
         ],
@@ -488,6 +490,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'flooring' => [
             'inputType' => 'checkbox',
             'options' => ['concrete', 'epoxy', 'tile', 'plank', 'laminate', 'parquet', 'pvc', 'carpet', 'antistaticCarpet', 'carpetTiles', 'stone', 'linoleum', 'marble', 'terracotta', 'granite', 'vinyl', 'customersOption', 'none'],
+            'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['flooring-options'],
             'eval' => ['tl_class' => 'clr', 'multiple' => true],
             'sql' => 'mediumtext NULL',
         ],

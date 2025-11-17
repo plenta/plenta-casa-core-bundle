@@ -122,6 +122,69 @@ tl_pcasa_object:
     preview:
         0: Frontend-Vorschau
         1: Frontend-Vorschau des Objekts %s anzeigen.
+    livingArea:
+        0: Wohnfläche
+        1: Bitte geben Sie die Wohnfläche an.
+    rooms:
+        0: Zimmer
+        1: Bitte geben Sie die Anzahl der Zimmer an.
+    bedrooms:
+        0: Schlafzimmer
+        1: Bitte geben Sie die Anzahl der Schlafzimmer an.
+    bathrooms:
+        0: Badezimmer
+        1: Bitte geben Sie die Anzahl der Badezimmer an.
+    facilities:
+        0: Allgemein
+    bathroomFacilities:
+        0: Badezimmer
+    flooring:
+        0: Bodenmaterial
+    facilities-options:
+        lift: Aufzug
+        cellar: Keller
+        fittedKitchen: Einbauküche
+        loggia: Loggia
+        listedBuilding: Denkmalschutzobjekt
+        storageRoom: Abstellraum
+        swimmingPool: Schwimmbad
+        alarmSystem: Alarmanlage
+        airConditioning: Klimaanlage
+        accessible: Barrierefrei
+        guestWc: Gäste-WC
+        balcony: Balkon
+        garden: Garten
+        holidayHome: Ferienhaus
+        fireplace: Kamin
+        sauna: Sauna
+        conservatory: Wintergarten
+        flatShare: Wohngemeinschaft
+        nonSmokersOnly: Nur für Nichtraucher
+    bathroomFacilities-options:
+        shower: Dusche
+        tub: Badewanne
+        window: Fenster
+        bidet: Bidet
+        urinal: Urinal
+    flooring-options:
+        concrete: Beton
+        epoxy: Epoxidharz
+        tile: Fliese
+        plank: Diele
+        laminate: Laminat
+        parquet: Parkett
+        pvc: PVC
+        carpet: Teppich
+        antistaticCarpet: Antistatischer Teppich
+        carpetTiles: Teppichfliesen
+        stone: Stein
+        linoleum: Linoleum
+        marble: Marmor
+        terracotta: Terrakotta
+        granite: Granit
+        vinyl: Vinyl
+        customersOption: Kundenwahl
+        none: Keine
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten
@@ -134,4 +197,3 @@ tl_pcasa_object:
     marketing_legend: Vermarktung
     author_legend: Author
     publish_legend: Veröffentlichung
-
