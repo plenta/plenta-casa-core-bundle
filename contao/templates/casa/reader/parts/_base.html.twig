@@ -4,7 +4,7 @@
     {% set partHeadline = part.headline|deserialize %}
     {% with {headline: {
         text: partHeadline.value,
-        tagName: partHeadline.unit,
+        tag_name: partHeadline.unit,
     }} %}
         {{ block('headline_component') }}
     {% endwith %}
