@@ -8,7 +8,8 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_filter'] = '{type_lege
 $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_reader'] = '{type_legend},title,headline,type;{config_legend},plenta_casa_readerParts,size,fullsize;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerParts'] = [
-    'inputType' => 'checkboxWizard',
+    'inputType' => 'group',
+    'palette' => ['plenta_casa_readerPartType', 'headline', 'plenta_casa_readerPartTpl'],
     'eval' => ['multiple' => true, 'tl_class' => 'clr'],
     'sql' => "mediumtext NULL",
 ];
@@ -31,4 +32,14 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddKeyword'] = [
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddMarketingType'] = [
     'inputType' => 'checkbox',
     'sql' => ['type' => 'boolean', 'default' => false],
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerPartType'] = [
+    'inputType' => 'select',
+    'eval' => ['chosen' => true, 'includeBlankOption' => true, 'submitOnChange' => true],
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerPartTpl'] = [
+    'inputType' => 'select',
+    'eval' => ['chosen' => true, 'tl_class' => 'clr'],
 ];

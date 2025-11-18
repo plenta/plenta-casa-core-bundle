@@ -19,6 +19,7 @@ use Contao\CoreBundle\Exception\PageNotFoundException;
 use Contao\CoreBundle\Routing\ResponseContext\HtmlHeadBag\HtmlHeadBag;
 use Contao\CoreBundle\Routing\ResponseContext\ResponseContextAccessor;
 use Contao\Input;
+use Contao\StringUtil;
 use Contao\System;
 use Contao\Template;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
@@ -41,7 +42,8 @@ class Reader extends AbstractContentElementController
 
         if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request)) {
             $objTemplate = new BackendTemplate('be_wildcard');
-            $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_reader.0', [], 'contao_default');
+            $parts = StringUtil::deserialize($model->plenta_casa_readerParts);
+            $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_reader.0', [], 'contao_default').': '.implode(', ', array_column($parts, 'plenta_casa_readerPartType'));
 
             return $objTemplate->getResponse();
         }

@@ -2,6 +2,6 @@
 
 {% block content %}
     {% for part in data.plenta_casa_readerParts|deserialize %}
-        {{ include('@Contao/casa/reader/parts/' ~ part ~ '.html.twig') }}
+        {{ include('@Contao/' ~ part.plenta_casa_readerPartTpl|default('casa/reader/parts/' ~ part.plenta_casa_readerPartType) ~ '.html.twig') }}
     {% endfor %}
 {% endblock %}

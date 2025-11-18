@@ -1,4 +1,14 @@
-<div class="part part-{{ part }}">
+{% use '@Contao/component/_headline.html.twig' %}
+
+<div class="part part-{{ part.plenta_casa_readerPartType }}">
+    {% set partHeadline = part.headline|deserialize %}
+    {% with {headline: {
+        text: partHeadline.value,
+        tagName: partHeadline.unit,
+    }} %}
+        {{ block('headline_component') }}
+    {% endwith %}
+
     {% block content %}
     {% endblock %}
 </div>
