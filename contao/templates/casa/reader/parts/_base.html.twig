@@ -2,12 +2,15 @@
 
 <div class="part part-{{ part.plenta_casa_readerPartType }}">
     {% set partHeadline = part.headline|deserialize %}
-    {% with {headline: {
-        text: partHeadline.value,
-        tag_name: partHeadline.unit,
-    }} %}
-        {{ block('headline_component') }}
-    {% endwith %}
+
+    {% if partHeadline.value|default %}
+        {% with {headline: {
+            text: partHeadline.value,
+            tag_name: partHeadline.unit,
+        }} %}
+            {{ block('headline_component') }}
+        {% endwith %}
+    {% endif %}
 
     {% block content %}
     {% endblock %}
