@@ -16,38 +16,45 @@
         {% endif %}
     {% endblock %}
 
-    {% block bookmark %}
-        <span class="bookmark">Merken</span>
-    {% endblock %}
-
     {% block title %}
-    <div class="title">
-        <a href="{{ url }}">{{ object.name }}</a>
-    </div>
+        <div class="title">
+            <a href="{{ url }}">{{ object.name }}</a>
+        </div>
     {% endblock %}
 
     {% block meta %}
         <div class="meta">
-            <span class="area">{{ object.livingArea }} m2</span>
-            <span class="rooms">{{ object.rooms }} Zimmer</span>
-            <span class="floor">{{ object.floorPosition }}</span>
+            {% if object.livingArea|default %}
+                <span class="area">{{ object.livingArea }} {{ 'CASA.area_unit'|trans }}</span>
+            {% endif %}
+            {% if object.rooms|default %}
+                <span class="rooms">{{ object.rooms }} {{ 'CASA.room_unit'|trans }}</span>
+            {% endif %}
+            {% if object.floorPosition|default %}
+                <span class="floor">{{ object.floorPosition }}</span>
+            {% endif %}
         </div>
     {% endblock %}
 
     {% block address %}
         <div class="address">
-        Johann-Strauß-Straße 48, 14772<br>
-        Brandenburg an der Havel, OT Görden
+            {{ object.address }}
         </div>
     {% endblock %}
 
-    {% block price %}
-        <span class="price">273,02 EUR
+    <div class="wrapper">
+        {% block price %}
+            <span class="price">{{ object.baseRent }} EUR
             <span class="small">Kaltmiete zzgl. NK</span>
         </span>
-    {% endblock %}
+        {% endblock %}
 
-    {% block button %}
-        <a class="button" href="{{ url }}">Zum Angebot</a>
+        {% block button %}
+            <a class="button" href="{{ url }}">Zum Angebot</a>
+        {% endblock %}
+    </div>
+
+    {% block additional %}
+        <span class="bookmark">Merken</span>
     {% endblock %}
 </div>

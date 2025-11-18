@@ -5,8 +5,8 @@
     {% for area in casa_variables.area(object) %}
         {% if attribute(object, area)|default %}
             <div class="area area-{{ area }}">
-                <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
                 <div class="content">{{ attribute(object, area) }}{% if 'area' in area|lower %} {{ 'CASA.area_unit'|trans }}{% endif %}</div>
+                <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
             </div>
         {% endif %}
     {% endfor %}

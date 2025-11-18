@@ -1,5 +1,9 @@
-{% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+{% if object.description|default %}
+    {% embed '@Contao/casa/reader/parts/_base.html.twig' %}
 
-{% block content %}
-    Folgt
-{% endblock %}
+        {% block content %}
+            {{ object.description|raw }}
+        {% endblock %}
+
+    {% endembed %}
+{% endif %}
