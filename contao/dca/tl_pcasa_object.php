@@ -3,13 +3,14 @@
 declare(strict_types=1);
 
 /**
- * @package       PlentaCasa Core
+ * @package       Plenta Casa
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
  */
 
 use Contao\BackendUser;
+use Contao\Config;
 use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\System;
@@ -61,14 +62,14 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
 
     'palettes' => [
         'default' => '{master_data_legend},marketing_type,object_type,type,title,unit_id,alias;
-        {address_legend},street,housenumber,postal,city,district,country,hideStreet;
         {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
-        {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,deposit,parkingSpacePrice;
+        {address_legend},street,housenumber,postal,city,district,country,hideStreet;
+        {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice;
         {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
         {facilities_legend},facilities,bathroomFacilities,flooring;
         {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
         {description_legend},description,location,equipment,other;
-        {media_legend},singleSRC,multiSRC;
+        {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
         {marketing_legend:hide},targetgroups,quarter;
         {author_legend:hide},author;
         {publish_legend},published,start,stop',
@@ -574,6 +575,30 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'files' => true,
                 'extensions' => '%contao.image.valid_extensions%',
                 'isGallery' => true,
+            ],
+            'sql' => 'blob NULL',
+        ],
+        'floorPlansSRC' => [
+            'inputType' => 'fileTree',
+            'eval' => [
+                'multiple' => true,
+                'fieldType' => 'checkbox',
+                'isSortable' => true,
+                'files' => true,
+                'extensions' => '%contao.image.valid_extensions%',
+                'isGallery' => true,
+            ],
+            'sql' => 'blob NULL',
+        ],
+        'enclosure' => [
+            'inputType' => 'fileTree',
+            'eval' => [
+                'multiple' => true,
+                'fieldType' => 'checkbox',
+                'filesOnly' => true,
+                'isDownloads' => true,
+                'extensions' => Config::get('allowedDownload'),
+                'isSortable' => true,
             ],
             'sql' => 'blob NULL',
         ],

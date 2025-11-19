@@ -71,18 +71,18 @@ tl_pcasa_object:
     heatingCostsInSc:
         0: Heizkosten in Nebenkosten
         1: Bitte auswählen, wenn die Heizkosten in den Nebenkosten enthalten sind.
-    houseServiceCharge:
-        0: houseServiceCharge
-        1: x
-    nonRecoverableCosts:
-        0: nonRecoverableCosts
-        1: x
-    maintenanceReserve:
-        0: maintenanceReserve
-        1: x
     deposit:
-        0: deposit
-        1: x
+        0: Kaution
+        1: Bitte geben Sie die Kaution ein.
+    houseServiceCharge:
+        0: Hausgeld/Monat
+        1: Bitte geben Sie das Hausgeld ein.
+    nonRecoverableCosts:
+        0: Nicht umlegbare Kosten
+        1: Bitte geben Sie die nicht umlegbaren Kosten ein.
+    maintenanceReserve:
+        0: Instandhaltungsrücklage
+        1: Bitte geben Sie die Instandhaltungsrücklage ein.
     parkingSpacePrice:
         0: Stellplatz-Preis
         1: Bitte geben Sie den Stellplatz-Preis ein.
@@ -125,6 +125,9 @@ tl_pcasa_object:
     livingArea:
         0: Wohnfläche
         1: Bitte geben Sie die Wohnfläche an.
+    plotArea:
+        0: Grundstücksfläche
+        1: Bitte geben Sie die Grundstücksfläche ein.
     rooms:
         0: Zimmer
         1: Bitte geben Sie die Anzahl der Zimmer an.
@@ -134,6 +137,48 @@ tl_pcasa_object:
     bathrooms:
         0: Badezimmer
         1: Bitte geben Sie die Anzahl der Badezimmer an.
+    floorArea:
+        0: Gesamtfläche
+        1: bitte geben Sie die Gesamtfläche ein.
+    balconyArea:
+        0: Balkonfläche
+        1: Bitte geben die die Balkonfläche ein.
+    gardenArea:
+        0: Gartenfläche
+        1: Bitte geben sie die Gartenfläche ein.
+    floor:
+        0: Etage
+        1: Bitte geben Sie die Etage ein.
+    numberOfFloors:
+        0: Gesamtetagenzahl
+        1: Bitte geben sie die Gesamtetagenzahl ein.
+    floorPosition:
+        0: Lage innerhalb der Etage
+        1: bitte geben Sie die Lage innerhalb der Etage ein ("links", "rechts", "mittig", ...).
+    description:
+        0: Beschreibung
+        1: Bitte geben Sie eine Beschreibung ein.
+    location:
+        0: Beschreibung der Lage
+        1: Bitte geben Sie eine Beschreibung der Lage ein.
+    equipment:
+        0: Beschreibung der Ausstattung
+        1: Bitte geben Sie eine Beschreibung der Ausstattung ein.
+    other:
+        0: Sonstiges
+        1: Bitte geben Sie eine Beschreibung für Sonstiges ein.
+    singleSRC:
+        0: Titelbild
+        1: Bitte wählen Sie eine Datei aus der Dateiübersicht.
+    multiSRC:
+        0: Bildergalerie
+        1: Bitte wählen Sie eine oder mehr Dateien oder Ordner aus der Dateiübersicht. Wenn Sie einen Ordner auswählen, werden die darin enthaltenen Dateien automatisch eingefügt.
+    floorPlansSRC:
+        0: Grundriss
+        1: Bitte wählen Sie eine oder mehr Dateien oder Ordner aus der Dateiübersicht. Wenn Sie einen Ordner auswählen, werden die darin enthaltenen Dateien automatisch eingefügt.
+    enclosure:
+        0: Anlagen
+        1: Bitte wählen Sie die Dateien aus, die Sie hinzufügen möchten.
     facilities:
         0: Allgemein
     bathroomFacilities:
