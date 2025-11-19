@@ -236,7 +236,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'foreignKey' => 'tl_user.name',
             'eval' => [
                 'doNotCopy' => true,
-                'mandatory' => true,
                 'chosen' => true,
                 'includeBlankOption' => true,
                 'tl_class' => 'w50',
