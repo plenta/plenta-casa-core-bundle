@@ -74,6 +74,27 @@ class FilterType extends AbstractType
             ]);
         }
 
+        if ($model->plenta_casa_filterAddArea) {
+            $builder->add('area', MinMaxType::class, [
+                'required' => false,
+                'priority' => 10,
+            ]);
+        }
+
+        if ($model->plenta_casa_filterAddRooms) {
+            $builder->add('rooms', MinMaxType::class, [
+                'required' => false,
+                'priority' => 5,
+            ]);
+        }
+
+        if ($model->plenta_casa_filterAddPrice) {
+            $builder->add('price', MinMaxType::class, [
+                'required' => false,
+                'priority' => 1,
+            ]);
+        }
+
         $builder
             ->add('submit', SubmitType::class, [
                 'priority' => 0,

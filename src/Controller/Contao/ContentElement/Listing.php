@@ -23,6 +23,7 @@ use Contao\Template;
 use Plenta\CasaCoreBundle\Events\FilterParameterEvent;
 use Plenta\CasaCoreBundle\Events\KeywordsEvent;
 use Plenta\CasaCoreBundle\Filter\Parameter;
+use Plenta\CasaCoreBundle\Filter\ParameterGenerator;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +36,7 @@ class Listing extends AbstractContentElementController
     public function __construct(
         private readonly TranslatorInterface $translator,
         protected EventDispatcherInterface $eventDispatcher,
+        protected ParameterGenerator $parameterGenerator,
     ) {
     }
 
@@ -49,72 +51,7 @@ class Listing extends AbstractContentElementController
             return $objTemplate->getResponse();
         }
 
-        $parameters = [];
-
-        $keywordEvent = new KeywordsEvent(contentModel:  $model);
-        $this->eventDispatcher->dispatch($keywordEvent, $keywordEvent::NAME);
-
-        if ($filter = $request->query->all('filter')) {
-            if ($filter['marketingType'] ?? null) {
-                $parameters[] = new Parameter(
-                    'marketingType',
-                    ['marketing_type = ?'],
-                    [$filter['marketingType']],
-                );
-            }
-
-            if ($filter['objectType'] ?? null) {
-                $parameters[] = new Parameter(
-                    'objectType',
-                    ['object_type = ?'],
-                    [$filter['objectType']],
-                );
-            }
-
-            if ($filter['type'] ?? null) {
-                $parameters[] = new Parameter(
-                    'type',
-                    ['type = ?'],
-                    [$filter['type']],
-                );
-            }
-
-            if ($filter['keyword'] ?? null) {
-                $columns = [];
-                $values = [];
-
-                if ($keywordEvent->isSplitKeywords()) {
-                    $keywords = StringUtil::trimsplit(' ', $filter['keyword']);
-                } else {
-                    $keywords = [trim($filter['keyword'])];
-                }
-
-                $criteria = [];
-
-                foreach ($keywords as $keyword) {
-                    $kCriteria = [];
-
-                    foreach ($keywordEvent->getFields() as $field) {
-                        $kCriteria[] = $field.' LIKE ?';
-                        $values[] = '%'.$keyword.'%';
-                    }
-
-                    $criteria[] = '('.implode(' OR ', $kCriteria).')';
-                }
-
-                if ($keywordEvent->getConnector() === 'AND') {
-                    $columns[] = '('.implode(' AND ', $criteria).')';
-                } else {
-                    $columns[] = '('.implode(' OR ', $criteria).')';
-                }
-
-                $parameters[] = new Parameter(
-                    'keyword',
-                    $columns,
-                    $values,
-                );
-            }
-        }
+        $parameters = $this->parameterGenerator->generateFromRequest($request, $model);
 
         $event = new FilterParameterEvent($model, $parameters);
         $this->eventDispatcher->dispatch($event, $event::NAME);
@@ -128,6 +65,7 @@ class Listing extends AbstractContentElementController
 
         if ($model->perPage) {
             $count = ObjectModel::countPublishedBy($columns, $values);
+            dump($count);
 
             $pageParam = 'page_' . $model->id;
             $page = $request->get($pageParam, 1);
