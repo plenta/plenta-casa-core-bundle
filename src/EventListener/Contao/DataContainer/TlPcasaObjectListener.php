@@ -16,6 +16,8 @@ use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Contao\DC_Table;
+use Contao\FilesModel;
+use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Helper\AliasGenerator;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
@@ -37,10 +39,17 @@ class TlPcasaObjectListener
     #[AsCallback(table: 'tl_pcasa_object', target: 'list.label.label')]
     public function objectLabelCallback(array $row, string $label, DataContainer $dc, array $labels)
     {
-
         $property = $row;
 
-        return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', ['property' => $property]);
+        $this->getImage($property);
+
+        return $this->twig->render(
+            '@Contao/Backend/plentacasa_listing.html.twig',
+            [
+                'property' => $property,
+                'image' => $this->getImage($property),
+            ]
+        );
     }
 
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.type.options')]
@@ -116,12 +125,31 @@ class TlPcasaObjectListener
     }
 
     #[AsCallback(table: 'tl_pcasa_object', target: 'config.onsubmit')]
-    public function onSubmit(DataContainer $dc)
+    public function onSubmit(DataContainer $dc): void
     {
         if (!$dc->activeRecord->createdAt) {
             $object = ObjectModel::findByPk($dc->id);
             $object->createdAt = time();
             $object->save();
         }
+    }
+
+    public function getImage(array $property): ?string
+    {
+        if (null !== $property['singleSRC']) {
+            $objFile = FilesModel::findByUuid(StringUtil::binToUuid($property['singleSRC']));
+
+            return $objFile->path;
+        }
+
+        $placeholder = ObjectTypeModel::findByPk($property['object_type']);
+
+        if (null !== $placeholder && null !== $placeholder->singleSRC) {
+            $objFile = FilesModel::findByUuid(StringUtil::binToUuid($placeholder->singleSRC));
+
+            return $objFile->path;
+        }
+
+        return null;
     }
 }
