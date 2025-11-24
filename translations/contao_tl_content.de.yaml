@@ -11,3 +11,12 @@ tl_content:
     plenta_casa_filterAddKeyword:
         0: Volltextsuche
         1: Die Volltextsuche wird im Formular angezeigt.
+    plenta_casa_filterAddArea:
+        0: Fläche
+        1: Die Suche nach Fläche (von-bis) wird im Formular angezeigt.
+    plenta_casa_filterAddRooms:
+        0: Zimmer
+        1: Die Suche nach Zimmern (von-bis) wird im Formular angezeigt.
+    plenta_casa_filterAddPrice:
+        0: Preis
+        1: Die Suche nach Preis (von-bis) wird im Formular angezeigt.

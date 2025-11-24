@@ -3,3 +3,16 @@ CASA:
     area_unit: m²
     room_unit: Zimmer
     show_object: 'Objekt ":name" anzeigen'
+    filter:
+      marketingType: Kaufen/Mieten
+      objectType: Objekttyp
+      type: Typ
+      keyword: Suchbegriff
+      location: Ort
+      perimeter: Umkreis
+      submit: Suchen
+      area: Wohnfläche
+      rooms: Zimmer
+      price: Preis
+      min: von
+      max: bis
