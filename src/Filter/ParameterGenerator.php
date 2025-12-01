@@ -4,6 +4,7 @@ namespace Plenta\CasaCoreBundle\Filter;
 
 use Contao\ContentModel;
 use Contao\StringUtil;
+use Plenta\CasaCoreBundle\Events\FilterParameterEvent;
 use Plenta\CasaCoreBundle\Events\KeywordsEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -15,7 +16,7 @@ class ParameterGenerator
     ) {
     }
 
-    public function generateFromRequest(Request $request, ContentModel $model): array
+    public function generateFromRequest(Request $request, ?ContentModel $model): array
     {
         $parameters = [];
 
@@ -108,6 +109,9 @@ class ParameterGenerator
             }
         }
 
-        return $parameters;
+        $event = new FilterParameterEvent($model, $parameters);
+        $this->eventDispatcher->dispatch($event, $event::NAME);
+
+        return $event->getParameters();
     }
 }

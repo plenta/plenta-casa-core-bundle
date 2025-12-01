@@ -53,19 +53,16 @@ class Listing extends AbstractContentElementController
 
         $parameters = $this->parameterGenerator->generateFromRequest($request, $model);
 
-        $event = new FilterParameterEvent($model, $parameters);
-        $this->eventDispatcher->dispatch($event, $event::NAME);
         $columns = [];
         $values = [];
 
-        foreach ($event->getParameters() as $parameter) {
+        foreach ($parameters as $parameter) {
             $columns = array_merge($columns, $parameter->getColumns());
             $values = array_merge($values, $parameter->getValues());
         }
 
         if ($model->perPage) {
             $count = ObjectModel::countPublishedBy($columns, $values);
-            dump($count);
 
             $pageParam = 'page_' . $model->id;
             $page = $request->get($pageParam, 1);

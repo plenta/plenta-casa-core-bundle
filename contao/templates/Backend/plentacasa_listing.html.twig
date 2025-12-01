@@ -7,7 +7,9 @@
     <tbody>
     <tr>
         <td class="image" rowspan="3">
-            {{ contao_figure(image, [80, 80, 'proportional']) }}
+            {% if image %}
+                {{ contao_figure(image, [80, 80, 'proportional']) }}
+            {% endif %}
         </td>
         <td>RS-Typ:</td>
         <td>--</td>
