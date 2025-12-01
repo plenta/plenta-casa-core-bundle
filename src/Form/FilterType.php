@@ -37,6 +37,7 @@ class FilterType extends AbstractType
                 'placeholder' => '-',
                 'priority' => 100,
                 'required' => false,
+                'row_attr' => ['class' => 'widget-select'],
             ]);
         }
 
@@ -49,7 +50,8 @@ class FilterType extends AbstractType
                 'choice_filter' => fn ($value) => $value ? ObjectModel::countPublishedBy(['object_type = ?'], [$value->id]) : true,
                 'priority' => 75,
                 'required' => false,
-                'attr' => ['data-action' => 'change->casa-filter#types']
+                'attr' => ['data-action' => 'change->casa-filter#types'],
+                'row_attr' => ['class' => 'widget-select'],
             ]);
         }
 
@@ -64,7 +66,8 @@ class FilterType extends AbstractType
                 'placeholder' => '-',
                 'priority' => 50,
                 'required' => false,
-                'attr' => ['data-casa-filter-target' => 'type']
+                'attr' => ['data-casa-filter-target' => 'type'],
+                'row_attr' => ['class' => 'widget-select'],
             ]);
         }
 
@@ -72,6 +75,7 @@ class FilterType extends AbstractType
             $builder->add('keyword', TextType::class, [
                 'priority' => 25,
                 'required' => false,
+                'row_attr' => ['class' => 'widget-text'],
             ]);
         }
 
@@ -79,6 +83,7 @@ class FilterType extends AbstractType
             $builder->add('area', NumberType::class, [
                 'required' => false,
                 'priority' => 10,
+                'row_attr' => ['class' => 'widget-text'],
             ]);
         }
 
@@ -88,6 +93,7 @@ class FilterType extends AbstractType
                 'choice_label' => fn ($value) => $value,
                 'required' => false,
                 'priority' => 5,
+                'row_attr' => ['class' => 'widget-select'],
             ]);
         }
 
@@ -95,12 +101,14 @@ class FilterType extends AbstractType
             $builder->add('price', NumberType::class, [
                 'required' => false,
                 'priority' => 1,
+                'row_attr' => ['class' => 'widget-text'],
             ]);
         }
 
         $builder
             ->add('submit', SubmitType::class, [
                 'priority' => 0,
+                'row_attr' => ['class' => 'widget-submit'],
             ])
         ;
 
