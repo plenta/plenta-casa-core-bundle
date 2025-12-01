@@ -83,58 +83,28 @@ class ParameterGenerator
                 );
             }
 
-            if ($filter['area'] ?? null) {
-                if ($min = (int) ($filter['area']['min'] ?? null)) {
-                    $parameters[] = new Parameter(
-                        'areaMin',
-                        ['(cast(livingArea as unsigned) >= ? OR cast(floorArea as unsigned) >= ?)'],
-                        [$min, $min],
-                    );
-                }
-
-                if ($max = (int) ($filter['area']['max'] ?? null)) {
-                    $parameters[] = new Parameter(
-                        'areaMax',
-                        ['(cast(livingArea as unsigned) <= ? OR cast(floorArea as unsigned) <= ?)'],
-                        [$max, $max],
-                    );
-                }
+            if ($area = ((int) $filter['area'] ?? null)) {
+                $parameters[] = new Parameter(
+                    'areaMin',
+                    ['(cast(livingArea as unsigned) >= ? OR cast(floorArea as unsigned) >= ?)'],
+                    [$area, $area],
+                );
             }
 
-            if ($filter['rooms'] ?? null) {
-                if ($min = (int) ($filter['rooms']['min'] ?? null)) {
-                    $parameters[] = new Parameter(
-                        'roomsMin',
-                        ['cast(rooms as unsigned) >= ?'],
-                        [$min],
-                    );
-                }
-
-                if ($max = (int) ($filter['rooms']['max'] ?? null)) {
-                    $parameters[] = new Parameter(
-                        'roomsMax',
-                        ['cast(rooms as unsigned) <= ?'],
-                        [$max],
-                    );
-                }
+            if ($rooms = (int) ($filter['rooms'] ?? null)) {
+                $parameters[] = new Parameter(
+                    'roomsMin',
+                    ['cast(rooms as unsigned) >= ?'],
+                    [$rooms],
+                );
             }
 
-            if ($filter['price'] ?? null) {
-                if ($min = (int) ($filter['price']['min'] ?? null)) {
-                    $parameters[] = new Parameter(
-                        'priceMin',
-                        ['((price != ? and price >= ?) OR (baseRent != ? and baseRent >= ?))'],
-                        [0, $min, 0, $min],
-                    );
-                }
-
-                if ($max = (int) ($filter['price']['max'] ?? null)) {
-                    $parameters[] = new Parameter(
-                        'priceMax',
-                        ['((price != ? and price <= ?) OR (baseRent != ? and baseRent <= ?))'],
-                        [0, $max, 0, $max],
-                    );
-                }
+            if ($price = (int) ($filter['price'] ?? null)) {
+                $parameters[] = new Parameter(
+                    'priceMax',
+                    ['((price != ? and price <= ?) OR (baseRent != ? and baseRent <= ?))'],
+                    [0, $price, 0, $price],
+                );
             }
         }
 

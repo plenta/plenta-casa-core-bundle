@@ -9,6 +9,7 @@ use Plenta\CasaCoreBundle\Model\TypeModel;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -75,21 +76,23 @@ class FilterType extends AbstractType
         }
 
         if ($model->plenta_casa_filterAddArea) {
-            $builder->add('area', MinMaxType::class, [
+            $builder->add('area', NumberType::class, [
                 'required' => false,
                 'priority' => 10,
             ]);
         }
 
         if ($model->plenta_casa_filterAddRooms) {
-            $builder->add('rooms', MinMaxType::class, [
+            $builder->add('rooms', ChoiceType::class, [
+                'choices' => range(1, 10),
+                'choice_label' => fn ($value) => $value,
                 'required' => false,
                 'priority' => 5,
             ]);
         }
 
         if ($model->plenta_casa_filterAddPrice) {
-            $builder->add('price', MinMaxType::class, [
+            $builder->add('price', NumberType::class, [
                 'required' => false,
                 'priority' => 1,
             ]);

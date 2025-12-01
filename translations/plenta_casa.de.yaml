@@ -11,8 +11,8 @@ CASA:
       location: Ort
       perimeter: Umkreis
       submit: Suchen
-      area: Wohnfläche
-      rooms: Zimmer
-      price: Preis
+      area: Wohnfläche ab
+      rooms: Zimmer ab
+      price: Preis bis
       min: von
       max: bis
