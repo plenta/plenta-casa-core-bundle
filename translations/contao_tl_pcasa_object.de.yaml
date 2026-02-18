@@ -179,6 +179,24 @@ tl_pcasa_object:
     enclosure:
         0: Anlagen
         1: Bitte wählen Sie die Dateien aus, die Sie hinzufügen möchten.
+    internal_commission_percentage:
+        0: Innenprovision (intern)
+        1: Bitte geben Sie die Innenprovision ein.
+    external_commission_percentage:
+        0: Außenprovision (intern)
+        1: Bitte geben Sie die Außenprovision ein.
+    total_commission:
+        0: Gesamtprovision
+        1: Bitte geben Sie die Gesamtprovision ein.
+    internal_brokerage:
+        0: Innenprovision Text
+        1: Bitte geben Sie den Innenprovisionstext ein.
+    courtage:
+        0: Außenprovision für Exposé
+        1: Bitte geben Sie die Außenprovision für das Exposé ein.
+    courtage_note:
+        0: Provisionshinweis
+        1: Bitte geben Sie einen Provisionshinweis ein.
     facilities:
         0: Allgemein
     bathroomFacilities:
@@ -234,6 +252,7 @@ tl_pcasa_object:
     meta_legend: Metadaten
     address_legend: Adressdaten
     price_legend: Preise
+    brokerage_legend: Provision
     area_legend: Flächen
     facilities_legend: Ausstattungsmerkmale
     description_legend: Beschreibungen

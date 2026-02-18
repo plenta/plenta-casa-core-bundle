@@ -65,6 +65,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
         {address_legend},street,housenumber,postal,city,district,country,hideStreet;
         {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice;
+        {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
         {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
         {facilities_legend},facilities,bathroomFacilities,flooring;
         {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
@@ -600,6 +601,39 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'isSortable' => true,
             ],
             'sql' => 'blob NULL',
+        ],
+
+        'internal_commission_percentage' => [
+            'inputType' => 'inputUnit',
+            'options' => ['%', 'EUR'],
+            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'external_commission_percentage' => [
+            'inputType' => 'inputUnit',
+            'options' => ['%', 'EUR'],
+            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'total_commission' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'sql' => "varchar(8) NOT NULL default ''",
+        ],
+        'internal_brokerage' => [
+            'inputType' => 'textarea',
+            'eval' => ['style' => 'height:60px', 'decodeEntities' => true, 'tl_class' => 'clr'],
+            'sql' => 'text NULL',
+        ],
+        'courtage' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'long'],
+            'sql' => 'text NULL',
+        ],
+        'courtage_note' => [
+            'inputType' => 'textarea',
+            'eval' => ['style' => 'height:60px', 'decodeEntities' => true, 'tl_class' => 'clr'],
+            'sql' => 'text NULL',
         ],
     ],
 ];

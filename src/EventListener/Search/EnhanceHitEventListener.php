@@ -13,14 +13,18 @@ namespace Plenta\CasaCoreBundle\EventListener\Search;
 
 use Contao\CoreBundle\Event\BackendSearch\EnhanceHitEvent;
 use Contao\CoreBundle\Search\Backend\Hit;
+use Contao\StringUtil;
 use Doctrine\DBAL\Connection;
+use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Contao\CoreBundle\Image\Studio\Studio;
 
 #[AsEventListener]
 class EnhanceHitEventListener
 {
     public function __construct(
         private readonly Connection $connection,
+        private readonly Studio $studio,
     ) {
     }
 
@@ -40,17 +44,26 @@ class EnhanceHitEventListener
 
         $row = $metadata['row'] ?? null;
 
-        $newHit = $hit
-            ->withContext($this->setContect($row))
-            ->withBreadcrumbs($this->setBreadcrumbLabel($hit))
-        ;
+        $x = ObjectModel::findByPk($row['id']);
 
-        // NEW
-        /*
-        $newHit = new Hit($hit->getDocument(), 'Immobilie', $hit->getEditUrl());
-        $newHit->withContext($this->setContect($row));
-        $newHit->withBreadcrumbs($this->setBreadcrumbLabel($hit));
-        */
+        if (null !== $x->singleSRC) {
+            $figureBuilder = $this->studio->createFigureBuilder();
+
+            $figureBuilder
+                ->fromUuid(StringUtil::binToUuid($x->singleSRC))
+            ;
+
+            $newHit = $hit
+                ->withContext($this->setContect($row))
+                ->withBreadcrumbs($this->setBreadcrumbLabel($hit))
+                ->withImageFigureBuilder($figureBuilder)
+            ;
+        } else {
+            $newHit = $hit
+                ->withContext($this->setContect($row))
+                ->withBreadcrumbs($this->setBreadcrumbLabel($hit))
+            ;
+        }
 
         $event->setHit($newHit);
     }
