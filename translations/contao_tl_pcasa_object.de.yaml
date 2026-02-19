@@ -192,7 +192,7 @@ tl_pcasa_object:
         0: Innenprovision Text
         1: Bitte geben Sie den Innenprovisionstext ein.
     courtage:
-        0: Außenprovision für Exposé
+        0: Außenprovision für das Exposé
         1: Bitte geben Sie die Außenprovision für das Exposé ein.
     courtage_note:
         0: Provisionshinweis
