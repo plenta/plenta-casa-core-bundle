@@ -92,15 +92,43 @@ tl_pcasa_object:
     qualityOfEquipment:
         0: Qualität der Ausstattung
         1: Bitte wählen Sie die Qualität der Ausstattung
+    qualityOfEquipment_options:
+        luxurious: luxuriös
+        upscale: gehoben
+        normal: normal
+        plain: einfach
     propertyCondition:
         0: Objektzustand
         1: Bitte wählen Sie den Zustand des Objekts aus.
+    propertyCondition_options:
+        firstTimeUse: Erstbezug
+        firstTimeUseAfterRefurbishment: Erstbezug nach Sanierung
+        mintCondition: neuwertig
+        refurbished: saniert
+        partlyRefurbished: teilsaniert
+        inNeedOfRefurbishment: sanierungsbedürftig
+        decrepit: baufällig
+        modernized: modernisiert
+        completelyRenovated: vollständig renoviert
+        partlyRenovated: teilweise renoviert
+        neat: gepflegt
+        inNeedOfRenovation: renovierungsbedürftig
+        customersOption: nach Vereinbarung
+        dilapidated: abbruchreif
     numberOfParkingSpaces:
         0: Anzahl Parkplätze
         1: Bitte geben Sie die Anzahl der Anzahl Parkplätze ein.
     parkingSpaceType:
         0: Stellplatztyp
         1: Bitte wählen Sie einen Stellplatztyp aus.
+    parkingSpaceType_options:
+        garage: Garage
+        outside: Außenstellplatz
+        carport: Carport
+        duplex: Duplex
+        carPark: Parkhaus
+        undergroundCarPark: Tiefgarage
+        doubleGarage: Doppelgarage
     targetgroups:
         0: Zielgruppen
         1: Weisen Sie das Objekteiner Zielgruppen zu.
