@@ -276,6 +276,12 @@ tl_pcasa_object:
         vinyl: Vinyl
         customersOption: Kundenwahl
         none: Keine
+    featured:
+        0: Objekt hervorheben
+        1: Das Objekt in einer Liste der hervorgehobenen Objekte anzeigen.
+    feature:
+        0: Objekt hervorheben
+        1: Objekt %s hervorheben
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten

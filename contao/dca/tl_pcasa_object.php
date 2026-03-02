@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'keys' => [
                 'id' => 'primary',
                 'tstamp' => 'index',
-                'published,start,stop' => 'index',
+                'published,featured,start,stop' => 'index',
             ],
         ],
     ],
@@ -47,6 +47,16 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'operations' => [
             'edit',
+            'toggle' => [
+                'href' => 'act=toggle&amp;field=published',
+                'icon' => 'visible.svg',
+                'primary' => true,
+            ],
+            'feature' => [
+                'href' => 'act=toggle&amp;field=featured',
+                'icon' => 'featured.svg',
+                'primary' => true,
+            ],
             'preview' => [
                 'attributes' => 'target="_blank"',
                 'primary' => true,
@@ -54,8 +64,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'copy',
             'cut',
             'delete',
-            'toggle',
-            'feature',
             'show',
         ],
     ],
@@ -73,7 +81,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
         {marketing_legend:hide},targetgroups,quarter;
         {author_legend:hide},author;
-        {publish_legend},published,start,stop',
+        {publish_legend},published,featured,start,stop',
     ],
 
     'fields' => [
@@ -266,8 +274,15 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'toggle' => true,
             'filter' => true,
             'inputType' => 'checkbox',
-            'eval' => ['doNotCopy' => true],
+            'eval' => ['doNotCopy' => true, 'tl_class'=>'w50'],
             'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'featured' => [
+            'toggle' => true,
+            'filter' => true,
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class'=>'w50'],
+            'sql' => ['type' => 'boolean', 'default' => false]
         ],
         'start' => [
             'inputType' => 'text',

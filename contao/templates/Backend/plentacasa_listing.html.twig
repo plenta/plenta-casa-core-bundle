@@ -1,7 +1,7 @@
 <table class="property-label">
     <thead>
     <tr>
-        <th colspan="3">{{ property.title }} <span class="tl_gray">[{{ property.title }}]</span></th>
+        <th colspan="3">{{ property.title }} {% if property.unit_id is not empty %}<span class="tl_gray">[{{ property.unit_id }}]</span> {% endif %}<span class="tl_gray">[{{ property.title }}]</span></th>
     </tr>
     </thead>
     <tbody>
