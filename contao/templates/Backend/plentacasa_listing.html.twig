@@ -1,26 +1,32 @@
-<table class="property-label">
+<table class="plenta_casa_property_listing">
     <thead>
     <tr>
-        <th colspan="3">{{ property.title }} {% if property.unit_id is not empty %}<span class="tl_gray">[{{ property.unit_id }}]</span> {% endif %}<span class="tl_gray">[{{ property.title }}]</span></th>
+        <th colspan="3">
+            <span class="tl_gray">
+                    {{ property.street }} {{ property.housenumber }},
+                    {{ property.postal }} {{ property.city }}
+            </span><br>
+            {{ property.title }}
+        </th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td class="image" rowspan="3">
             {% if image %}
-                {{ contao_figure(image, [80, 80, 'proportional']) }}
+                {{ contao_figure(image, [80, 80, 'crop']) }}
             {% endif %}
         </td>
-        <td>RS-Typ:</td>
-        <td>--</td>
+        <th scope="row">Objekttyp:</th>
+        <td>{{ ('PLENTA.CASA.marketing_types.' ~ property.marketing_type)|trans({}, 'contao_default') }} &gt; {{ property.object_type|casaTypeName }} &gt; {{ property.type|casaTypeName }}</td>
     </tr>
     <tr>
-        <td>Vermarktungstyp:</td>
-        <td>---</td>
+        <th scope="row">Objektnummer:</th>
+        <td>{{ property.unit_id ?: '-' }}</td>
     </tr>
     <tr>
-        <td>Preis:</td>
-        <td>---</td>
+        <th scope="row">?:</th>
+        <td>?</td>
     </tr>
     </tbody>
 </table>

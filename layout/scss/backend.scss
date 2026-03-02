@@ -89,6 +89,31 @@ a.title {
     font-weight: 500;
 }
 
+.plenta_casa_property_listing {
+    width: 100%;
+    border-collapse: collapse;
+
+    tbody {
+
+        th,
+        td {
+            border-bottom: 1px solid #ddd;
+            padding: 6px 10px;
+        }
+
+        td.image {
+            border-bottom: none;
+        }
+
+        tr:last-child {
+            th,
+            td {
+                border-bottom: none;
+            }
+        }
+    }
+}
+
 .plenta_casa_dashboard {
     padding-top: var(--pcasa-base-padding);
     padding-bottom: var(--pcasa-base-padding);
