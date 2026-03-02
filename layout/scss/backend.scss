@@ -95,8 +95,14 @@ a.title {
     width: 100%;
     border-collapse: collapse;
 
-    tbody {
+    thead {
+        th {
+            border-bottom: 1px solid var(--pcasa-border-color);
+            padding: 0 0 6px 0;
+        }
+    }
 
+    tbody {
         th,
         td {
             border-bottom: 1px solid var(--pcasa-border-color);
