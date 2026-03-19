@@ -1,0 +1,332 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
+@use "sass:math";
+
+// VARIABLES
+$input-border-radius: var(--pcasa-base-border-radius)!default;
+
+// USED FROM _variables.scss
+
+// --------------------------------------------------
+
+// [1] focus-highlighting on inputs was cut off by overflow: hidden
+// [2] reset for FF and Chrome, coming with a min-width
+// [3] force IE8 to wrap long content
+// [4] create half-transparent borders (otherwise you have a half-transparent border using the input background color)
+// [5] reset height
+// [6] disable mobile safari make it a search field with different border-radius and size
+// [7] reset unusual Firefox-on-Android default style
+// [8] make sure, the whole input is visible (chrome)
+// [9] bring button-text and file-name on same base-line in Chrome
+// [10] IE8-9
+.ce_form {
+    overflow: visible; // [1]
+    margin-inline: variables.$base-spacing-large;
+}
+
+fieldset {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    min-width: 0; // [2]
+}
+
+label, %label {
+    display: inline-block;
+    max-width: 100%; // [3]
+    margin-bottom: math.round(math.div(variables.$base-spacing-s, 4));
+}
+
+button {
+    @include mixins.button;
+    @include mixins.button-color;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input.captcha,
+select,
+textarea {
+    display: block;
+    width: 100%;
+    padding: math.round(math.div(variables.$base-spacing-s, 2)) variables.$base-spacing-s;
+    border-radius: $input-border-radius;
+    border: variables.$base-border;
+    background-clip: padding-box; // [4]
+    background-image: none; // [7]
+    box-sizing: border-box;
+}
+
+.widget-select {
+    position: relative;
+
+    &.select, .select-container {
+        &:after {
+            content: '';
+            position: absolute;
+            background-color: var(--pcasa-color-text);
+            clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            width: 12px;
+            height: 10px;
+            display: block;
+            right: variables.$base-spacing-x-s;
+            bottom: variables.$base-spacing-s;
+        }
+    }
+
+    &.select {
+        select {
+            appearance: none;
+            outline: none;
+            padding-right: variables.$base-spacing-x-s * 2 + 12px;
+        }
+    }
+
+    &.widget-choice.select {
+        .select-container {
+            position: relative;
+        }
+
+        &:after {
+            display: none;
+        }
+    }
+}
+
+input[type='file']::file-selector-button {
+    @include mixins.button;
+    @include mixins.button-color;
+
+    margin-right: variables.$base-spacing-s;
+    cursor: pointer;
+}
+
+textarea.textarea {
+    height: auto; // [5]
+}
+
+/*
+input.submit {
+  @extend %button;
+  @extend button.btn--primary;
+}
+*/
+input[type="search"] {
+    appearance: none; // [6]
+}
+
+input[type="file"] {
+    display: block;
+    vertical-align: middle;
+    line-height: 1; // [9]
+}
+
+// Checkboxes and radios
+input.radio,
+input.checkbox {
+    margin: math.round(math.div(variables.$base-spacing-s, 4)) 0 0;
+    margin-left: 1px; // [8]
+    margin-top: 1px \9; // [10]
+    line-height: normal;
+
+    + label {
+        margin-right: math.round(math.div(variables.$base-spacing-s, variables.$gc));
+        font-weight: normal;
+    }
+}
+
+.widget-text,
+.widget-textarea,
+.widget-radio,
+.widget-checkbox,
+.widget-select,
+.widget-upload,
+.widget-password,
+.widget-captcha,
+.widget-search,
+.widget-headline,
+.widget-explanation {
+    margin-bottom: math.round(variables.$base-spacing-s * variables.$gc);
+
+    legend {
+        font-weight: 700;
+    }
+}
+
+form table tr {
+    td {
+        padding-bottom: math.round(variables.$base-spacing-s * variables.$gc);
+        padding-right: variables.$base-spacing-s;
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    &:last-child {
+        td {
+            padding-bottom: 0;
+        }
+    }
+}
+
+// Mandatory & Error-Styling
+// asterisk at mandatory fields
+span.mandatory {
+    color: var(--pcasa-color-default);
+}
+
+// error-text
+p.error {
+    margin-bottom: 0;
+    color: var(--pcasa-form-alert);
+}
+
+.widget-select label {
+    display: block;
+}
+
+.widget-calendar {
+    > div {
+        position: relative;
+
+        input {
+            padding-right: 40px + variables.$base-spacing-xx-s;
+        }
+
+        .input-button {
+            position: absolute;
+            height: 100%;
+            width: 40px;
+            top: 0;
+            right: 0;
+
+            svg {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+}
+
+// FontAwesome Radio and Checkbox
+@if variables.$font-awesome-active == true {
+    .checkbox_container {
+        > span {
+            display: block;
+        }
+    }
+
+    .widget {
+        input[type="checkbox"], input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+
+            + label {
+                position: relative;
+                padding-left: 1.2em;
+
+                &:before {
+                    font-family: variables.$fa;
+                    font-weight: 900;
+                    display: inline-block;
+                    width: 1.2em;
+                    position: absolute;
+                    left: 1px;
+                }
+            }
+        }
+
+        input[type="checkbox"] {
+            + label:before {
+                content: "\f0c8";
+                font-weight: normal;
+            }
+
+            &:checked + label:before {
+                content: "\f14a";
+                font-weight: normal;
+            }
+        }
+
+        input[type="radio"] {
+            + label:before {
+                content: "\f111";
+                font-weight: normal;
+            }
+
+            &:checked + label:before {
+                content: "\f192";
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+input.hasDatepicker {
+    padding-right: 24px + variables.$base-spacing-s;
+
+    + .ui-datepicker-trigger {
+        float: right;
+        clear: both;
+        margin-top: - math.round(((math.div(variables.$base-spacing-s, 2)) + 12px + math.div((variables.$base-font-size * variables.$base-line-height), 2)));
+        margin-right: math.round(math.div(variables.$base-spacing-s, 2));
+    }
+}
+
+$form-material-design: true;
+
+@if $form-material-design == true {
+    #filter > div, .widget {
+        &.input-material-design {
+            position: relative;
+
+            label {
+                position: absolute;
+                margin-bottom: 0;
+                top: math.round(math.div(variables.$base-spacing-s, 2));
+                left: variables.$base-spacing-s - variables.$base-spacing-xx-s;
+                padding-left: variables.$base-spacing-xx-s;
+                padding-right: variables.$base-spacing-xx-s;
+                transition: 0.2s ease all;
+            }
+
+            input, textarea {
+                transition: 0.2s ease all;
+
+                &::placeholder {
+                    color: transparent;
+                }
+
+                &:focus {
+                    outline: none;
+                    border-color: var(--pcasa-color-gray);
+                }
+            }
+
+            &.form-field-active,  &.select-filled {
+                label {
+                    font-size: 0.8em;
+                    top: 0;
+                    transform: translateY(-50%);
+                    background-color: #fff;
+                }
+
+                input, textarea {
+                    &::placeholder {
+                        color: initial;
+                    }
+                }
+            }
+        }
+    }
+}

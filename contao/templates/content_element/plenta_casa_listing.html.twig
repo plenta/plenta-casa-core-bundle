@@ -3,12 +3,13 @@
 {% set attributes = attrs().setIfExists('data-id', data.id).mergeWith(attributes|default) %}
 
 {% block content %}
-
-    {% for object in objects %}
-        {% include '@Contao/partials/_plenta_casa_list_object.html.twig' with { object: object } %}
-    {% else %}
-        {{ 'PLENTA.CASA.empty_list.'|trans({}, 'contao_default') }}
-    {% endfor %}
+    <div class="objects">
+        {% for object in objects %}
+            {% include '@Contao/partials/_plenta_casa_list_object.html.twig' with { object: object } %}
+        {% else %}
+            {{ 'PLENTA.CASA.empty_list.'|trans({}, 'contao_default') }}
+        {% endfor %}
+    </div>
 
     {{ pagination|default|raw }}
 

@@ -1,0 +1,98 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+@use "../abstracts/placeholder";
+@use "../base/type";
+@use "casa-abstract-icons" as casa-icons;
+
+.content-plenta-casa-reader {
+    .part {
+        margin-bottom: var(--content-spacing);
+    }
+
+    h2 {
+        border-top: variables.$base-border;
+        border-color: var(--pcasa-color-gray-light);
+        padding-top: variables.$base-spacing-s;
+    }
+
+    .part-price {
+        .price {
+            background-color: var(--pcasa-color-highlight);
+            border-radius: variables.$base-spacing-xx-s;
+            color: var(--pcasa-color-white);
+            padding: variables.$base-spacing;
+
+            @extend %h3;
+
+            .small {
+                display: block;
+                font-weight: variables.$font-weight-regular;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .part-area, .part-address {
+        display: flex;
+        flex-wrap: wrap;
+        gap: variables.$base-spacing-s;
+    }
+
+    .part-area {
+        flex-direction: column;
+
+        .area {
+            display: flex;
+            gap: variables.$base-spacing-xx-s;
+
+            $icons: (
+                livingArea: casa-icons.$icon-casa-area,
+                rooms: casa-icons.$icon-casa-rooms,
+                bedrooms: casa-icons.$icon-casa-bed,
+                bathrooms: casa-icons.$icon-casa-bath,
+                floor: casa-icons.$icon-casa-floor
+            );
+
+            @each $name, $icon in $icons {
+                &.area-#{$name} {
+                    @include mixins.fa-inline-icon(#{$icon},0);
+                }
+            }
+        }
+    }
+
+    .part-address {
+        .title {
+            @extend %invisible;
+        }
+    }
+
+    .part-facilities {
+        display: flex;
+        flex-wrap: wrap;
+        gap: variables.$base-spacing-x-s;
+
+        h2 {
+            width: 100%;
+            display: block;
+        }
+
+        .title {
+            @extend %invisible;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: variables.$base-spacing-x-s;
+            margin-bottom: 0 !important;
+
+            li {
+                border: variables.$base-border;
+                padding-inline: variables.$base-spacing-s;
+                border-radius: var(--pcasa-base-border-radius);
+                border-color: var(--pcasa-color-gray-light);
+            }
+        }
+    }
+}

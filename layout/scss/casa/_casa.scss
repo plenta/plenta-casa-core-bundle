@@ -1,0 +1,39 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+
+.casa-form {
+    h2 {
+        border-top: variables.$base-border;
+        border-color: var(--pcasa-color-gray-light);
+        padding-top: variables.$base-spacing-s;
+    }
+}
+
+.content-plenta-casa-filter {
+    form {
+        > *  {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: variables.$base-spacing-s;
+        }
+    }
+
+    button {
+        @include mixins.button;
+        @include mixins.button-color;
+    }
+}
+
+.content-plenta-casa-pro-contact {
+    div.name {
+        font-weight: variables.$font-weight-bold;
+    }
+
+    a {
+        color: var(--pcasa-color-text);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

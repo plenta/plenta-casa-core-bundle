@@ -1,0 +1,101 @@
+@use "../abstracts/variables";
+@use "../abstracts/mixins";
+@use "../base/type";
+@use "casa-abstract-icons" as casa-icons;
+
+.content-plenta-casa-listing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .objects {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--pcasa-list-item-width), 1fr));
+        gap: variables.$base-spacing-s;
+    }
+
+    .object {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$base-spacing-x-s;
+        border: variables.$base-border;
+        border-color: var(--pcasa-color-gray);
+        border-radius: var(--pcasa-base-border-radius);
+        padding: variables.$base-spacing-x-s variables.$base-spacing-x-s variables.$base-spacing-s;
+
+        @media screen and (width <= 768px) {
+            grid-template-columns: 1fr;
+        }
+
+        .content-image {
+            figure, picture, img {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                display: block;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        .title {
+            @extend %h2;
+
+            margin-bottom: 0;
+
+            a {
+                color: var(--pcasa-color-secondary);
+            }
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: variables.$base-spacing;
+            grid-row: 3;
+
+            $icons: (
+                area: casa-icons.$icon-casa-area,
+                rooms: casa-icons.$icon-casa-rooms,
+                floor: casa-icons.$icon-casa-floor
+            );
+
+            @each $name, $icon in $icons {
+                .#{$name} {
+                    @include mixins.fa-inline-icon(#{$icon});
+                }
+            }
+        }
+
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: variables.$base-spacing-s;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .price {
+            @extend %h3;
+
+            margin-bottom: 0;
+            grid-column: 1;
+
+            .small {
+                display: block;
+                font-weight: variables.$font-weight-regular;
+                font-size: 14px;
+            }
+        }
+
+        .button {
+            @include mixins.button;
+            @include mixins.button-color;
+
+            grid-column: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

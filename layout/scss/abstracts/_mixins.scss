@@ -1,0 +1,91 @@
+@use "variables";
+
+@use "sass:color";
+@use "sass:math";
+
+@mixin button-reset() {
+    border: none;
+    text-decoration: none !important;
+    outline: none;
+    background-color: transparent;
+    appearance: none;
+    text-align: left;
+    padding: 0;
+
+    &:hover, &:focus, &:active {
+        text-decoration: none !important;
+        background-image: none;
+        background-position: 0;
+    }
+}
+
+// Globale configuration for buttons
+@mixin button($buttonColor:var(--pcasa-color-default)) {
+    @include button-reset;
+
+    & {
+        background-color: $buttonColor;
+        padding: math.div(variables.$base-spacing-xx-s, 2) 1em * variables.$gc;
+        color: var(--button-text-color);
+        transition: all 0.3s ease-in-out;
+        display: inline-block;
+        border-radius: var(--pcasa-base-border-radius);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: variables.$font-weight-bold;
+    }
+
+    &:hover, &:focus, &:active {
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+@mixin button-color(
+    $buttonColor: var(--pcasa-color-primary),
+    $buttonSecondaryColor: var(--pcasa-color-secondary),
+    $buttonTextColor: var(--button-text-color),
+    $buttonSecondaryTextColor: var(--pcasa-button-text-color-secondary),
+    $buttonBorderColor: var(--pcasa-color-secondary),
+    $buttonSecondaryBorderColor: var(--pcasa-color-secondary),
+) {
+    & {
+        background-color: $buttonColor;
+        color: $buttonTextColor !important;
+        border: 1px solid $buttonBorderColor;
+    }
+
+    &:hover, &:focus, &:active {
+        background-color: $buttonSecondaryColor;
+        color: $buttonSecondaryTextColor !important;
+        border-color: $buttonSecondaryBorderColor;
+    }
+}
+
+// FontAwesome Mixins
+@mixin fa-inline-icon($faIcon, $padding: variables.$base-spacing-xx-s, $position:'before') {
+    @if $position == 'after' {
+        &:after {
+            font-family: variables.$fa;
+            font-weight: 900;
+            left: 0;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: inline-block;
+            padding-left: $padding;
+            content: "#{$faIcon}";
+        }
+    } @else {
+        &:before {
+            font-family: variables.$fa;
+            font-weight: 900;
+            left: 0;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: inline-block;
+            padding-right: $padding;
+            content: "#{$faIcon}";
+        }
+    }
+}
