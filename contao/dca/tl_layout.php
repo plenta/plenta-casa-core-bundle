@@ -16,6 +16,11 @@ PaletteManipulator::create()
     ->applyToPalette('default', 'tl_layout')
 ;
 
+PaletteManipulator::create()
+    ->addField('addPlentaCasaCss', 'modules')
+    ->applyToPalette('modern', 'tl_layout')
+;
+
 $GLOBALS['TL_DCA']['tl_layout']['fields']['addPlentaCasaCss'] = [
     'exclude' => true,
     'inputType' => 'checkbox',
