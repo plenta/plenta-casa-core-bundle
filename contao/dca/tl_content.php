@@ -37,6 +37,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddMarketingType']
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerPartType'] = [
     'inputType' => 'select',
     'eval' => ['chosen' => true, 'includeBlankOption' => true, 'submitOnChange' => true],
+    'reference' => &$GLOBALS['TL_LANG']['tl_content']['plenta_casa_readerPartType_options'],
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerPartTpl'] = [
