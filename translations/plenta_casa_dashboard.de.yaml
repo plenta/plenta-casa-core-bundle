@@ -6,3 +6,7 @@ PLENTA:
         version: "Version: %s"
         changelog: Changelog
         changelog_title: Plenta Casa changelog
+        objects: Objekte online
+        requests: Anfragen versendet
+        future: Ideen teilen
+        future_link: Gemeinsam besser machen.
