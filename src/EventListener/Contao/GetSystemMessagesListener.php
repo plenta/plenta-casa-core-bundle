@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  * @package       Customer
- * @copyright     Copyright (c) 2025, Plenta.io
+ * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
  */
@@ -13,6 +13,7 @@ namespace Plenta\CasaCoreBundle\EventListener\Contao;
 
 use Composer\InstalledVersions;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
+use Doctrine\DBAL\Connection;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -28,6 +29,7 @@ class GetSystemMessagesListener
         private readonly TranslatorInterface $translator,
         protected readonly AuthorizationCheckerInterface $auth,
         protected Packages $packages,
+        protected readonly Connection $connection,
     ) {
     }
 
@@ -39,6 +41,7 @@ class GetSystemMessagesListener
             $data = [
                 'salutation' => $this->getRandomSalutation(),
                 'username' => $this->tokenStorage->getToken()->getUser()->name,
+                'objectStats' => $this->getObjectStats(),
                 'changelog' => 'https://plentacasa.com/changelog',
                 'manufacturer' => $this->translator->trans('PLENTA.CASA.manufacturer', [], 'plenta_casa_dashboard'),
                 'version' => $this->translator->trans(
@@ -56,6 +59,23 @@ class GetSystemMessagesListener
         }
 
         return '';
+    }
+
+    public function getObjectStats(): array
+    {
+        $sql = '
+            SELECT 
+                COUNT(*) AS total,
+                SUM(CASE WHEN published = 1 THEN 1 ELSE 0 END) AS published
+            FROM tl_pcasa_object
+        ';
+
+        $result = $this->connection->executeQuery($sql)->fetchAssociative();
+
+        return [
+            'total' => (int) $result['total'],
+            'published' => (int) $result['published'],
+        ];
     }
 
     private function getRandomSalutation(): string
