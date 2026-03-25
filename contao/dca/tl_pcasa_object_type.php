@@ -35,7 +35,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
         ],
     ],
     'palettes' => [
-        'default' => 'title,shortTerm;singleSRC,customTpl',
+        'default' => '{title_legend},title,shortTerm;{image_legend:hide}},singleSRC;{template_legend:hide},customTpl',
     ],
     'fields' => [
         'id' => [
