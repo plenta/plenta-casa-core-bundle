@@ -20,3 +20,23 @@ tl_content:
     plenta_casa_filterAddPrice:
         0: Preis
         1: Die Suche nach Preis (von-bis) wird im Formular angezeigt.
+    plenta_casa_readerParts:
+        0: Template-Elemente
+        1: Bitte legen Sie pro Template-Element einen Eintrag an.
+    plenta_casa_readerPartType:
+        0: Datensatz
+        1: Wählen Sie aus, welche Daten ausgegeben werden sollen.
+    plenta_casa_readerPartTpl:
+        0: Template
+        1: Wählen Sie ein Template aus.
+    plenta_casa_readerPartType_options:
+        title: Titel
+        address: Adresse
+        gallery: Galerie
+        titleImage: Titelbild
+        description: Beschreibung
+        facilities: Ausstattung
+        area: Fläche
+        price: Preis
+        condition: Zustand
+        marketing: Vermarktung
