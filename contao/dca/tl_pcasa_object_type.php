@@ -35,7 +35,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
         ],
     ],
     'palettes' => [
-        'default' => 'title,shortTerm;singleSRC',
+        'default' => 'title,shortTerm;singleSRC,customTpl',
     ],
     'fields' => [
         'id' => [
@@ -64,6 +64,11 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
             'inputType' => 'fileTree',
             'eval' => ['filesOnly' => true, 'fieldType' => 'radio', 'tl_class' => 'clr'],
             'sql' => 'binary(16) NULL',
+        ],
+        'customTpl' => [
+            'inputType' => 'select',
+            'eval' => ['chosen' => true],
+            'sql' => "varchar(64) NOT NULL default ''",
         ],
     ],
 ];
