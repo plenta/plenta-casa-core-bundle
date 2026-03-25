@@ -23,9 +23,9 @@ class PlentaCasaExtension
 
         if ($type) {
             return $this->getTitle($type);
-        } else {
-            return '-';
         }
+
+        return '-';
     }
 
     #[AsTwigFilter('casaObjectType')]
@@ -39,7 +39,7 @@ class PlentaCasaExtension
         $return = '';
 
         if ($type->pid) {
-            $return .= $this->getTitle(ObjectTypeModel::findById($type->pid)) .' > ';
+            $return .= $this->getTitle(ObjectTypeModel::findById($type->pid)).' > ';
         }
 
         $return .= $type->title;

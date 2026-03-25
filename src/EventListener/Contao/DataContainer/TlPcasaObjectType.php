@@ -18,7 +18,7 @@ class TlPcasaObjectType
     {
         return $this->finderFactory
             ->create()
-            ->identifier('partials/_plenta_casa_list_object')
+            ->identifier('content_element/plenta_casa_list_object')
             ->extension('html.twig')
             ->withVariants()
             ->asTemplateOptions()

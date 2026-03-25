@@ -34,7 +34,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'fields' => [
                 'marketing_type',
                 'object_type',
-                'type',
                 'city',
                 'street',
             ],
