@@ -4,6 +4,9 @@ CASA:
     area: Fläche
     area_unit: m²
     room_unit: Zimmer
+    marketing_type:
+      BUY: Kaufen
+      RENT: Mieten
     show_object: 'Objekt ":name" anzeigen'
     filter:
       marketingType: Kaufen/Mieten
