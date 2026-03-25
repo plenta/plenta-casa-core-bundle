@@ -1,4 +1,5 @@
 @use "variables";
+@use "sass:math";
 
 :root {
     --pcasa-background: #{variables.$color-black};
@@ -15,5 +16,12 @@
     --pcasa-button-text-color: #{variables.$color-black};
     --pcasa-button-text-color-secondary: #{variables.$color-white};
     --pcasa-form-alert: #{variables.$color-alert};
-    --pcasa-list-item-width: #{variables.$casa-element-width}
+    --pcasa-list-item-width: #{variables.$casa-element-width};
+    --pcasa-border-color: #{variables.$color-gray};
+    --pcasa-list-bg-color: #{variables.$color-white};
+    --pcasa-list-border-radius: #{variables.$base-border-radius};
+    --pcasa-title-color: #{variables.$color-black};
+    --pcasa-price-font-weight: #{variables.$font-weight-bold};
+    --pcasa-price-font-size: #{math.round(variables.$base-font-size * 1.3)};
+    --pcasa-price-small-font-size: 14px;
 }

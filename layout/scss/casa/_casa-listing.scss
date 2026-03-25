@@ -19,9 +19,10 @@
         flex-direction: column;
         gap: variables.$base-spacing-x-s;
         border: variables.$base-border;
-        border-color: var(--pcasa-color-gray);
-        border-radius: var(--pcasa-base-border-radius);
+        border-color: var(--pcasa-border-color);
+        border-radius: var(--pcasa-list-border-radius);
         padding: variables.$base-spacing-x-s variables.$base-spacing-x-s variables.$base-spacing-s;
+        background-color: var(--pcasa-list-bg-color);
 
         @media screen and (width <= 768px) {
             grid-template-columns: 1fr;
@@ -44,7 +45,11 @@
             margin-bottom: 0;
 
             a {
-                color: var(--pcasa-color-secondary);
+                color: var(--pcasa-title-color);
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
 

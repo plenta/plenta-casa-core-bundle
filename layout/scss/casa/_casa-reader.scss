@@ -17,17 +17,13 @@
 
     .part-price {
         .price {
-            background-color: var(--pcasa-color-highlight);
-            border-radius: variables.$base-spacing-xx-s;
-            color: var(--pcasa-color-white);
-            padding: variables.$base-spacing;
-
-            @extend %h3;
+                font-weight: var(--pcasa-price-font-weight);
+                font-size: var(--pcasa-price-font-size);
 
             .small {
                 display: block;
+                font-size: var(--pcasa-price-small-font-size);
                 font-weight: variables.$font-weight-regular;
-                font-size: 14px;
             }
         }
     }
