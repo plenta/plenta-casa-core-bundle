@@ -21,6 +21,12 @@ class ObjectTypeMigration extends AbstractMigration
             return false;
         }
 
+        $columns = $schemaManager->listTableColumns('tl_pcasa_object_type');
+
+        if (!array_key_exists('pid', $columns)) {
+            return false;
+        }
+
         return $this->connection->fetchOne('SELECT COUNT(*) FROM tl_pcasa_type') !== 0;
     }
 
