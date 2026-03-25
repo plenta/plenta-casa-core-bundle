@@ -1,5 +1,7 @@
 CASA:
     address: Adresse
+    country: Land
+    area: Fläche
     area_unit: m²
     room_unit: Zimmer
     show_object: 'Objekt ":name" anzeigen'
