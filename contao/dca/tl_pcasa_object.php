@@ -104,6 +104,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'tstamp' => [
             'flag' => DataContainer::SORT_DAY_DESC,
+            'sorting' => true,
             'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
 
@@ -144,7 +145,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'unit_id' => [
             'inputType' => 'text',
             'search' => true,
-            'sorting' => true,
             'exclude' => true,
             'eval' => [
                 'maxlength' => 128,
