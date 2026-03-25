@@ -68,12 +68,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     ],
 
     'palettes' => [
-        'default' => '{master_data_legend},marketing_type,object_type,title,unit_id,alias;
+        'default' => '{master_data_legend},marketing_type,object_type,unit_id,title,alias;
         {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
         {address_legend},street,housenumber,postal,city,district,country,hideStreet;
         {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice;
         {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
-        {area_legend},livingArea,plotArea,rooms,bedrooms,bathrooms,floorArea,balconyArea,gardenArea,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
+        {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
         {facilities_legend},facilities,bathroomFacilities,flooring;
         {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
         {description_legend},description,location,equipment,other;
@@ -124,7 +124,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'text',
             'search' => true,
             'exclude' => true,
-            'eval' => ['maxlength' => 255, 'tl_class' => 'long', 'doNotCopy' => true],
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50', 'doNotCopy' => true],
             'sql' => "varchar(255) NOT NULL default ''",
         ],
         'unit_id' => [
@@ -135,7 +135,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => [
                 'maxlength' => 128,
                 'unique' => true,
-                'tl_class' => 'w50',
+                'tl_class' => 'w33',
             ],
             'sql' => "varchar(128) NOT NULL default ''",
         ],
@@ -349,17 +349,17 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'livingArea' => [
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
             'sql' => "varchar(16) NOT NULL default ''",
         ],
         'plotArea' => [
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
             'sql' => "varchar(16) NOT NULL default ''",
         ],
         'rooms' => [
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'eval' => ['tl_class' => 'clr w33', 'rgxp' => 'digit'],
             'sql' => "varchar(8) NOT NULL default ''",
         ],
         'bedrooms' => [
@@ -547,14 +547,14 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'numberOfParkingSpaces' => [
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
             'sql' => "varchar(8) NOT NULL default ''",
         ],
         'parkingSpaceType' => [
             'inputType' => 'select',
             'options' => ['garage', 'outside', 'carport', 'duplex', 'carPark', 'undergroundCarPark', 'doubleGarage'],
             'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['parkingSpaceType_options'],
-            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
+            'eval' => ['tl_class' => 'w33', 'includeBlankOption' => true],
             'sql' => "varchar(32 NOT NULL default ''",
         ],
         'createdAt' => [
