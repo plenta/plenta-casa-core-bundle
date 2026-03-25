@@ -5,7 +5,7 @@
 {% block content %}
     <div class="objects">
         {% for object in objects %}
-            {{ include('@Contao/' ~ ((object.object_type|casaObjectType).template|default('content_element/plenta_casa_list_object')) ~ '.html.twig') }}
+            {{ include('@Contao/' ~ ((object.object_type|casaObjectType).template|default('content_element/plenta_casa_partials_list_object')) ~ '.html.twig') }}
         {% else %}
             {{ 'PLENTA.CASA.empty_list.'|trans({}, 'contao_default') }}
         {% endfor %}

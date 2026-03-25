@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
         ],
         'customTpl' => [
             'inputType' => 'select',
-            'eval' => ['chosen' => true],
+            'eval' => ['includeBlankOption' => true, 'chosen' => true],
             'sql' => "varchar(64) NOT NULL default ''",
         ],
     ],
