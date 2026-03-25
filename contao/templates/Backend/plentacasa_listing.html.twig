@@ -12,13 +12,17 @@
     </thead>
     <tbody>
     <tr>
-        <td class="image" rowspan="3">
+        <td class="image" rowspan="4">
             {% if image %}
                 {{ contao_figure(image, [80, 80, 'crop']) }}
             {% endif %}
         </td>
+        <th scope="row">Vermarktungsart:</th>
+        <td>{{ ('PLENTA.CASA.marketing_types.' ~ property.marketing_type)|trans({}, 'contao_default') }}</td>
+    </tr>
+    <tr>
         <th scope="row">Objekttyp:</th>
-        <td>{{ ('PLENTA.CASA.marketing_types.' ~ property.marketing_type)|trans({}, 'contao_default') }} &gt; {{ property.object_type|casaTypeName }} &gt; {{ property.type|casaTypeName }}</td>
+        <td>{{ property.object_type|casaObjectTypeName }}</td>
     </tr>
     <tr>
         <th scope="row">Objektnummer:</th>

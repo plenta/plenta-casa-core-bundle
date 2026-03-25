@@ -1,0 +1,43 @@
+<?php
+
+namespace Plenta\CasaCoreBundle\Migration;
+
+use Contao\CoreBundle\Migration\AbstractMigration;
+use Contao\CoreBundle\Migration\MigrationResult;
+use Doctrine\DBAL\Connection;
+
+class ObjectTypeMigration extends AbstractMigration
+{
+    public function __construct(
+        private readonly Connection $connection,
+    ) {
+    }
+
+    public function shouldRun(): bool
+    {
+        $schemaManager = $this->connection->createSchemaManager();
+
+        if (!$schemaManager->tablesExist(['tl_pcasa_object_type', 'tl_pcasa_type'])) {
+            return false;
+        }
+
+        return $this->connection->fetchOne('SELECT COUNT(*) FROM tl_pcasa_type') !== 0;
+    }
+
+    public function run(): MigrationResult
+    {
+        $types = $this->connection->fetchAllAssociative('SELECT * FROM tl_pcasa_type');
+
+        foreach ($types as $type) {
+            $typeId = $type['id'];
+            unset($type['id']);
+            $this->connection->insert('tl_pcasa_object_type', $type);
+            $id = $this->connection->lastInsertId();
+
+            $this->connection->update('tl_pcasa_object', ['object_type' => $id], ['type' => $typeId]);
+            $this->connection->delete('tl_pcasa_type', ['id' => $typeId]);
+        }
+
+        return $this->createResult(true);
+    }
+}

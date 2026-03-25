@@ -69,7 +69,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     ],
 
     'palettes' => [
-        'default' => '{master_data_legend},marketing_type,object_type,type,title,unit_id,alias;
+        'default' => '{master_data_legend},marketing_type,object_type,title,unit_id,alias;
         {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
         {address_legend},street,housenumber,postal,city,district,country,hideStreet;
         {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice;
@@ -115,18 +115,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => [
                 'mandatory' => true,
                 'submitOnChange' => true,
-                'includeBlankOption' => true,
-                'tl_class' => 'w33',
-            ],
-            'sql' => 'int(10) unsigned NOT NULL default 0',
-        ],
-        'type' => [
-            'filter' => true,
-            'sorting' => true,
-            'inputType' => 'select',
-            'foreignKey' => 'tl_pcasa_type.title',
-            'eval' => [
-                'mandatory' => true,
                 'includeBlankOption' => true,
                 'tl_class' => 'w33',
             ],

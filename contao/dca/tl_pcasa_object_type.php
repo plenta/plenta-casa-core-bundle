@@ -15,7 +15,6 @@ use Contao\DC_Table;
 $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
     'config' => [
         'dataContainer' => DC_Table::class,
-        'ctable' => ['tl_pcasa_type'],
         'sql' => [
             'keys' => [
                 'id' => 'primary',
@@ -25,9 +24,10 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
     ],
     'list' => [
         'sorting' => [
-            'mode' => DataContainer::MODE_SORTABLE,
-            'fields' => ['title'],
-            'flag' => DataContainer::SORT_INITIAL_LETTER_ASC,
+            'mode' => DataContainer::MODE_TREE,
+            'fields' => ['sorting'],
+            'flag' => DataContainer::SORT_ASC,
+            'rootPaste' => true,
         ],
         'label' => [
             'fields' => ['title'],
@@ -42,6 +42,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
             'sql' => 'int(10) unsigned NOT NULL auto_increment',
         ],
         'tstamp' => [
+            'sql' => 'int(10) unsigned NOT NULL default 0',
+        ],
+        'pid' => [
+            'sql' => 'int(10) unsigned NOT NULL default 0',
+        ],
+        'sorting' => [
             'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
         'title' => [

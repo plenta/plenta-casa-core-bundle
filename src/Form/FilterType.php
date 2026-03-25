@@ -3,9 +3,9 @@
 namespace Plenta\CasaCoreBundle\Form;
 
 use Plenta\CasaCoreBundle\Events\FilterFormEvent;
+use Plenta\CasaCoreBundle\Helper\ObjectTypes;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
-use Plenta\CasaCoreBundle\Model\TypeModel;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,6 +21,7 @@ class FilterType extends AbstractType
     public function __construct(
         protected EventDispatcherInterface $eventDispatcher,
         protected RequestStack $requestStack,
+        private readonly ObjectTypes $objectTypes,
     ) {
     }
 
@@ -43,30 +44,12 @@ class FilterType extends AbstractType
 
         if ($model->plenta_casa_filterAddObjectType) {
             $builder->add('objectType', ChoiceType::class, [
-                'choices' => ObjectTypeModel::findAll(),
-                'choice_value' => 'id',
-                'choice_label' => 'title',
+                'choices' => array_flip($this->objectTypes->getTypes()),
                 'placeholder' => '-',
-                'choice_filter' => fn ($value) => $value ? ObjectModel::countPublishedBy(['object_type = ?'], [$value->id]) : true,
+                'choice_filter' => fn ($value) => !$value || $this->objectTypes->hasObjects($value),
                 'priority' => 75,
                 'required' => false,
                 'attr' => ['data-action' => 'change->casa-filter#types'],
-                'row_attr' => ['class' => 'widget-select'],
-            ]);
-        }
-
-        $objectTypeFromRequest = $this->requestStack->getCurrentRequest()->query->all('filter')['objectType'] ?? null;
-
-        if ($model->plenta_casa_filterAddType) {
-            $builder->add('type', ChoiceType::class, [
-                'choices' => $model->plenta_casa_filterAddObjectType ? ($objectTypeFromRequest ? TypeModel::findBy('pid', is_array($objectTypeFromRequest) ? $objectTypeFromRequest[0] : $objectTypeFromRequest) : []) : TypeModel::findAll(),
-                'choice_value' => 'id',
-                'choice_label' => 'title',
-                'choice_filter' => fn ($value) => $value ? ObjectModel::countPublishedBy(['type = ?'], [$value->id]) : true,
-                'placeholder' => '-',
-                'priority' => 50,
-                'required' => false,
-                'attr' => ['data-casa-filter-target' => 'type'],
                 'row_attr' => ['class' => 'widget-select'],
             ]);
         }

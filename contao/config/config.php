@@ -12,7 +12,6 @@ declare(strict_types=1);
 use Contao\ArrayUtil;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
-use Plenta\CasaCoreBundle\Model\TypeModel;
 
 ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
     'plenta_casa' => [
@@ -66,5 +65,4 @@ $GLOBALS['PLENTA']['CASA']['type'] = [
 ];
 
 $GLOBALS['TL_MODELS'][ObjectModel::getTable()] = ObjectModel::class;
-$GLOBALS['TL_MODELS'][TypeModel::getTable()] = TypeModel::class;
 $GLOBALS['TL_MODELS'][ObjectTypeModel::getTable()] = ObjectTypeModel::class;

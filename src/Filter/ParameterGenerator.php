@@ -6,13 +6,14 @@ use Contao\ContentModel;
 use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Events\FilterParameterEvent;
 use Plenta\CasaCoreBundle\Events\KeywordsEvent;
+use Plenta\CasaCoreBundle\Helper\ObjectTypes;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class ParameterGenerator
 {
     public function __construct(
-        protected EventDispatcherInterface $eventDispatcher,
+        protected EventDispatcherInterface $eventDispatcher, private readonly ObjectTypes $objectTypes,
     ) {
     }
 
@@ -33,18 +34,22 @@ class ParameterGenerator
             }
 
             if ($filter['objectType'] ?? null) {
+                $type = is_array($filter['objectType']) ? $filter['objectType'][0] : $filter['objectType'];
+
+                $children = array_keys($this->objectTypes->getTypes($type));
+                $children[] = $type;
+                $criteria = [];
+                $values = [];
+
+                foreach ($children as $child) {
+                    $criteria[] = 'object_type = ?';
+                    $values[] = $child;
+                }
+
                 $parameters[] = new Parameter(
                     'objectType',
-                    ['object_type = ?'],
-                    [$filter['objectType']],
-                );
-            }
-
-            if ($filter['type'] ?? null) {
-                $parameters[] = new Parameter(
-                    'type',
-                    ['type = ?'],
-                    [$filter['type']],
+                    ['('.implode(' OR ', $criteria).')'],
+                    $values,
                 );
             }
 

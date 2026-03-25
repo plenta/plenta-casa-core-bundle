@@ -19,6 +19,7 @@ use Contao\DC_Table;
 use Contao\FilesModel;
 use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Helper\AliasGenerator;
+use Plenta\CasaCoreBundle\Helper\ObjectTypes;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Plenta\CasaCoreBundle\Model\TypeModel;
@@ -29,10 +30,10 @@ use Twig\Environment as TwigEnvironment;
 class TlPcasaObjectListener
 {
     public function __construct(
-        protected AliasGenerator $aliasGenerator,
-        protected Packages $packages,
+        protected AliasGenerator               $aliasGenerator,
+        protected Packages                     $packages,
         protected readonly TranslatorInterface $translator,
-        protected readonly TwigEnvironment $twig,
+        protected readonly TwigEnvironment     $twig, private readonly ObjectTypes $objectTypes,
     ) {
     }
 
@@ -52,24 +53,10 @@ class TlPcasaObjectListener
         );
     }
 
-    #[AsCallback(table: 'tl_pcasa_object', target: 'fields.type.options')]
+    #[AsCallback(table: 'tl_pcasa_object', target: 'fields.object_type.options')]
     public function typeOptionsCallback(DataContainer $dc)
     {
-        $typesArr = [];
-
-        $objectType = ObjectTypeModel::findByPk($dc->activeRecord?->object_type);
-
-        if ($objectType) {
-            $types = TypeModel::findByPid($objectType->id);
-
-            if ($types) {
-                foreach ($types as $type) {
-                    $typesArr[$type->id] = $type->title;
-                }
-            }
-        }
-
-        return $typesArr;
+        return $this->objectTypes->getTypes();
     }
 
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.alias.save')]
