@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
- * @copyright     Copyright (c) 2025, Plenta.io
+ * @package       Plenta Casa
+ * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
  */
@@ -30,10 +30,11 @@ use Twig\Environment as TwigEnvironment;
 class TlPcasaObjectListener
 {
     public function __construct(
-        protected AliasGenerator               $aliasGenerator,
-        protected Packages                     $packages,
+        protected AliasGenerator $aliasGenerator,
+        protected Packages $packages,
         protected readonly TranslatorInterface $translator,
-        protected readonly TwigEnvironment     $twig, private readonly ObjectTypes $objectTypes,
+        protected readonly TwigEnvironment $twig,
+        private readonly ObjectTypes $objectTypes,
     ) {
     }
 
