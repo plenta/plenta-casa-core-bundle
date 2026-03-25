@@ -8,3 +8,6 @@ tl_pcasa_object_type:
     singleSRC:
         0: Platzhalterbild
         1: Bitte wählen Sie ein Bild aus der Dateiverwaltung. Das Platzhalterbild wird angezeigt, wenn für ein Objekt kein Bild vorhanden ist.
+    customTpl:
+        0: Listentemplate
+        1: Bitte wählen Sie ein Template aus der Liste aus. Das Template wird an Untertypen vererbt.

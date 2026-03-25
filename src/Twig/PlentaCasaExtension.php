@@ -28,6 +28,12 @@ class PlentaCasaExtension
         }
     }
 
+    #[AsTwigFilter('casaObjectType')]
+    public function casaObjectType(int $value): ObjectTypeModel
+    {
+        return ObjectTypeModel::findById($value);
+    }
+
     protected function getTitle(ObjectTypeModel $type)
     {
         $return = '';
