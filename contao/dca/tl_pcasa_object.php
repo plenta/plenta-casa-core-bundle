@@ -530,7 +530,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'select',
             'options' => ['firstTimeUse', 'firstTimeUseAfterRefurbishment', 'mintCondition', 'refurbished', 'partlyRefurbished', 'inNeedOfRefurbishment', 'decrepit', 'modernized', 'completelyRenovated', 'partlyRenovated', 'neat', 'inNeedOfRenovation', 'customersOption', 'dilapidated'],
             'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['propertyCondition_options'],
-            'eval' => ['includeBlankOption' => true],
+            'eval' => ['includeBlankOption' => true, 'tl_class' => 'w50'],
             'sql' => "varchar(48) NOT NULL default ''",
         ],
         'lastRefurbishment' => [
