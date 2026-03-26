@@ -11,3 +11,6 @@ tl_pcasa_object_type:
     customTpl:
         0: Listentemplate
         1: Bitte wählen Sie ein Template aus der Liste aus. Das Template wird an Untertypen vererbt.
+    title_legend: Titel
+    image_legend: Platzhalter-Bildeinstellungen
+    template_legend: Template-Einstellungen

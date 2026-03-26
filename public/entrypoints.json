@@ -2,17 +2,17 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/bundles/plentacasacore/app.b0f7b48f.js"
+        "/bundles/plentacasacore/app.js"
       ]
     },
     "backend": {
       "css": [
-        "/bundles/plentacasacore/backend.a7fd8cf7.css"
+        "/bundles/plentacasacore/backend.css"
       ]
     },
     "theme": {
       "css": [
-        "/bundles/plentacasacore/theme.18d9468f.css"
+        "/bundles/plentacasacore/theme.css"
       ]
     }
   }

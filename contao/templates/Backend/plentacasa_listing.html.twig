@@ -1,36 +1,30 @@
+{% set marketingType = ('PLENTA.CASA.marketing_types.' ~ property.marketing_type)|trans({}, 'contao_default') %}
+{% set objectType = property.object_type|casaObjectTypeName %}
+
 <table class="plenta_casa_property_listing">
-    <thead>
-    <tr>
-        <th colspan="3">
-            <span class="tl_gray">
-                    {{ property.street }} {{ property.housenumber }},
-                    {{ property.postal }} {{ property.city }}
-            </span><br>
-            {{ property.title }}
-        </th>
-    </tr>
-    </thead>
     <tbody>
     <tr>
-        <td class="image" rowspan="4">
+        <td class="image" rowspan="3">
             {% if image %}
-                {{ contao_figure(image, [80, 80, 'crop']) }}
+                {{ contao_figure(image, [100, 100, 'crop']) }}
             {% endif %}
         </td>
-        <th scope="row">Vermarktungsart:</th>
-        <td>{{ ('PLENTA.CASA.marketing_types.' ~ property.marketing_type)|trans({}, 'contao_default') }}</td>
+        <td>
+            <span class="title">{{ property.title|default('Kein Titel vergeben') }}</span>
+        </td>
     </tr>
     <tr>
-        <th scope="row">Objekttyp:</th>
-        <td>{{ property.object_type|casaObjectTypeName }}</td>
+        <td>
+            <span class="address">{{ property.street }} {{ property.housenumber }}, {{ property.postal }} {{ property.city }}</span>
+        </td>
     </tr>
     <tr>
-        <th scope="row">Objektnummer:</th>
-        <td>{{ property.unit_id ?: '-' }}</td>
-    </tr>
-    <tr>
-        <th scope="row">?:</th>
-        <td>?</td>
+        <td>
+            <span class="badge marketing-type" title="Vermarktungsart: {{ marketingType }}">{{ marketingType }}</span>
+            <span class="badge object-type" title="Objekttyp: {{ objectType }}">{{ objectType }}</span>
+            <span class="badge">Maße</span>
+            <span class="badge">Kosten</span>
+        </td>
     </tr>
     </tbody>
 </table>
