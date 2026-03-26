@@ -9,12 +9,6 @@
         margin-bottom: var(--content-spacing);
     }
 
-    h2 {
-        border-top: variables.$base-border;
-        border-color: var(--pcasa-color-gray-light);
-        padding-top: variables.$base-spacing-s;
-    }
-
     .part-price {
         .price {
                 font-weight: var(--pcasa-price-font-weight);

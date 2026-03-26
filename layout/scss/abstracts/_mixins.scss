@@ -33,6 +33,7 @@
         cursor: pointer;
         font-size: 14px;
         font-weight: variables.$font-weight-bold;
+        text-align: center;
     }
 
     &:hover, &:focus, &:active {
@@ -50,13 +51,13 @@
 ) {
     & {
         background-color: $buttonColor;
-        color: $buttonTextColor !important;
+        color: $buttonTextColor;
         border: 1px solid $buttonBorderColor;
     }
 
     &:hover, &:focus, &:active {
         background-color: $buttonSecondaryColor;
-        color: $buttonSecondaryTextColor !important;
+        color: $buttonSecondaryTextColor;
         border-color: $buttonSecondaryBorderColor;
     }
 }

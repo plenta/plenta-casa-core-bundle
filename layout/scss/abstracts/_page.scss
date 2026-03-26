@@ -20,8 +20,13 @@
     --pcasa-border-color: #{variables.$color-gray};
     --pcasa-list-bg-color: #{variables.$color-white};
     --pcasa-list-border-radius: #{variables.$base-border-radius};
+    --pcasa-list-image-border-radius: #{math.round(variables.$base-border-radius / 2)};
     --pcasa-title-color: #{variables.$color-black};
     --pcasa-price-font-weight: #{variables.$font-weight-bold};
     --pcasa-price-font-size: #{math.round(variables.$base-font-size * 1.3)};
     --pcasa-price-small-font-size: 14px;
+    --pcasa-search-button-bg-color: #{variables.$color-default};
+    --pcasa-search-button-color: #{variables.$color-white};
+    --pcasa-search-button-bg-color-active: #{variables.$color-black};
+    --pcasa-search-button-color-active: #{variables.$color-white};
 }
