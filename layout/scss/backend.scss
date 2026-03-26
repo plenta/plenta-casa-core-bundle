@@ -3,6 +3,7 @@
     --pcasa-base-spacing: 26px;
     --pacaa-tile-padding: 42px;
     --pcasa-border-radius: 10px;
+    --pcasa-border-radius-s: 4px;
     --pcasa-border-width: 1px;
     --pcasa-border-style: solid;
     --pcasa-border-color: var(--tree-line);
@@ -12,6 +13,7 @@
     --pcasa-background-lightblue: #3385c6;
     --pcasa-background-darkblue: #172b3b;
     --pcasa-background-orange: #ff9847;
+    --pcasa-color-gray: var(--nav-group);
 }
 
 
@@ -97,7 +99,6 @@ a.title {
 
     thead {
         th {
-            border-bottom: 1px solid var(--pcasa-border-color);
             padding: 0 0 6px 0;
         }
     }
@@ -105,12 +106,12 @@ a.title {
     tbody {
         th,
         td {
-            border-bottom: 1px solid var(--pcasa-border-color);
             padding: 6px 10px;
         }
 
         td.image {
             border-bottom: none;
+            width: 120px;
         }
 
         tr:last-child {
@@ -118,6 +119,24 @@ a.title {
             td {
                 border-bottom: none;
             }
+        }
+    }
+
+    .title {
+        font-weight: bold;
+    }
+
+    .address {
+        color: var(--pcasa-color-gray);
+    }
+
+    span.badge {
+        padding: 4px 8px;
+        background-color: var(--pcasa-background-blue);
+        border-radius: var(--pcasa-border-radius-s);
+
+        &.object-type {
+            background-color: var(--pcasa-background-lightblue);
         }
     }
 }

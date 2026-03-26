@@ -10,18 +10,18 @@
             {% endif %}
         </td>
         <td>
-            {{ property.title|default('Kein Titel vergeben') }}
+            <span class="title">{{ property.title|default('Kein Titel vergeben') }}</span>
         </td>
     </tr>
     <tr>
         <td>
-            <span class="tl_gray">{{ property.street }} {{ property.housenumber }}, {{ property.postal }} {{ property.city }}</span>
+            <span class="address">{{ property.street }} {{ property.housenumber }}, {{ property.postal }} {{ property.city }}</span>
         </td>
     </tr>
     <tr>
         <td>
-            <span title="Vermarktungsart: {{ marketingType }}">{{ marketingType }}</span>
-            <span title="Objekttyp: {{ objectType }}">{{ objectType }}</span>
+            <span class="badge" title="Vermarktungsart: {{ marketingType }}">{{ marketingType }}</span>
+            <span class="badge object-type" title="Objekttyp: {{ objectType }}">{{ objectType }}</span>
         </td>
     </tr>
     </tbody>
