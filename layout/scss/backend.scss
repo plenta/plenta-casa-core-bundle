@@ -132,8 +132,12 @@ a.title {
 
     span.badge {
         padding: 4px 8px;
-        background-color: var(--pcasa-background-blue);
+        background-color: var(--pcasa-background-darkblue);
         border-radius: var(--pcasa-border-radius-s);
+
+        &.marketing-type {
+            background-color: var(--pcasa-background-blue);
+        }
 
         &.object-type {
             background-color: var(--pcasa-background-lightblue);
