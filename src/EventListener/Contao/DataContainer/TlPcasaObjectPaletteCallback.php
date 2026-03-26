@@ -51,7 +51,7 @@ class TlPcasaObjectPaletteCallback
 
     private function getSubpaletteFields(string $key): array
     {
-        $value = $GLOBALS['TL_DCA']['tl_pcasa_object']['subpalettes_casa'][$key] ?? '';
+        $value = $GLOBALS['TL_DCA']['tl_pcasa_object']['casa_subpalettes'][$key] ?? '';
 
         return array_filter(array_map('trim', explode(',', $value)));
     }
