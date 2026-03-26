@@ -59,6 +59,11 @@ html[data-color-scheme="dark"] {
         right: var(--pcasa-base-padding);
         top: var(--pcasa-base-padding);
     }
+
+    .credits {
+        text-align: right;
+        padding-top: var(--pcasa-base-padding);
+    }
 }
 
 .item.tl_pcasa_targetgroup:before {
