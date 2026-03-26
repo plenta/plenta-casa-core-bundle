@@ -70,32 +70,41 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     'palettes' => [
         '__selector__' => ['marketing_type'],
         'default' => '{title_legend},marketing_type',
-        'RENT' => '{master_data_legend},marketing_type,object_type,unit_id,title,alias;
-        {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
-        {address_legend},street,housenumber,postal,city,district,country,hideStreet;
-        {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice;
-        {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
-        {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
-        {facilities_legend},facilities,bathroomFacilities,flooring;
-        {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
-        {description_legend},description,location,equipment,other;
-        {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
-        {marketing_legend:hide},targetgroups,quarter;
-        {author_legend:hide},author;
-        {publish_legend},published,featured,start,stop',
-        'BUY' => '{master_data_legend},marketing_type,object_type,unit_id,title,alias;
-        {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
-        {address_legend},street,housenumber,postal,city,district,country,hideStreet;
-        {price_legend},baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice;
-        {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
-        {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
-        {facilities_legend},facilities,bathroomFacilities,flooring;
-        {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
-        {description_legend},description,location,equipment,other;
-        {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
-        {marketing_legend:hide},targetgroups,quarter;
-        {author_legend:hide},author;
-        {publish_legend},published,featured,start,stop',
+        'RENT' => '
+            {master_data_legend},marketing_type,object_type,unit_id,title,alias;
+            {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
+            {address_legend},street,housenumber,postal,city,district,country,hideStreet;
+            {price_legend};
+            {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
+            {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
+            {facilities_legend},facilities,bathroomFacilities,flooring;
+            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
+            {description_legend},description,location,equipment,other;
+            {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
+            {marketing_legend:hide},targetgroups,quarter;
+            {author_legend:hide},author;
+            {publish_legend},published,featured,start,stop
+        ',
+        'BUY' => '
+            {master_data_legend},marketing_type,object_type,unit_id,title,alias;
+            {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
+            {address_legend},street,housenumber,postal,city,district,country,hideStreet;
+            {price_legend};
+            {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
+            {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
+            {facilities_legend},facilities,bathroomFacilities,flooring;
+            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
+            {description_legend},description,location,equipment,other;
+            {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
+            {marketing_legend:hide},targetgroups,quarter;
+            {author_legend:hide},author;
+            {publish_legend},published,featured,start,stop
+        ',
+    ],
+
+    'subpalettes_casa' => [
+        'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,monthlyRentalIncome',
+        'marketing_type_BUY' => 'houseServiceCharge',
     ],
 
     'fields' => [
@@ -107,7 +116,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'sorting' => true,
             'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
-
         'marketing_type' => [
             'filter' => true,
             'sorting' => true,
