@@ -282,6 +282,18 @@ tl_pcasa_object:
     feature:
         0: Objekt hervorheben
         1: Objekt %s hervorheben
+    price:
+        0: Kaufpreis
+        1: Bitte geben Sie den Kaufpreis ein.
+    monthlyRentalIncome:
+        0: Monatlicher Mieteinkommen
+        1: Bitte geben Sie den Monatlichen Mieteinkommen ein.
+    priceOnRequest:
+        0: Preis auf Anfrage
+        1: Bitte auswählen, wenn der Preis auf Anfrage ist.
+    priceNegotiable:
+        0: Preis gegen Gebot
+        1: Bitte auswählen, wenn Preis gegen Gebot ist.
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten

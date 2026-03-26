@@ -104,7 +104,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
 
     'subpalettes_casa' => [
         'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,monthlyRentalIncome',
-        'marketing_type_BUY' => 'houseServiceCharge',
+        'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,heatingCostsInSc,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,monthlyRentalIncome',
     ],
 
     'fields' => [
@@ -661,6 +661,21 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'textarea',
             'eval' => ['style' => 'height:60px', 'decodeEntities' => true, 'tl_class' => 'clr'],
             'sql' => 'text NULL',
+        ],
+        'price' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
+            'sql' => 'int(10) NOT NULL default 0',
+        ],
+        'priceOnRequest' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'w25'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'priceNegotiable' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'w25'],
+            'sql' => ['type' => 'boolean', 'default' => false],
         ],
     ],
 ];
