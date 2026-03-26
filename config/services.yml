@@ -4,6 +4,14 @@ services:
         autoconfigure: true
         public: false
 
+    _instanceof:
+        Contao\CoreBundle\Twig\Studio\Operation\AbstractOperation:
+            autowire: false
+            calls:
+                - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+            tags:
+                - { name: container.service_subscriber, id: contao.twig.studio.cache_invalidator }
+
     Plenta\CasaCoreBundle\:
         resource: ../src/*
         exclude: ../src/{Entity,Migrations,Resources,Tests}
