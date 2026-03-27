@@ -23,8 +23,17 @@
             background-color: var(--pcasa-list-bg-color);
 
 
-            @media screen and (width <= 768px) {
+            @media screen and (width <= 960px) {
+                grid-template-columns: 200px 1fr;
+                grid-template-areas:
+                   "img main"
+                   "img side";
+            }
+
+            @media screen and (width <= 680px) {
                 grid-template-columns: 1fr;
+                grid-template-areas:
+                    "img" "main" "side";
             }
 
             &:nth-last-child(n+2) {
@@ -64,6 +73,10 @@
                 flex-direction: column;
                 align-items: flex-end;
                 justify-content: space-between;
+
+                @media screen and (width <= 960px) {
+                    flex-direction: row;
+                }
             }
 
             .title {
@@ -149,11 +162,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .address {
-                align-self: flex-start;
-            }
-
-            .wrapper {
+            .wrapper-content {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
