@@ -2,19 +2,7 @@
 @use "sass:math";
 
 :root {
-    --pcasa-background: #{variables.$color-black};
-    --pcasa-color-text: #{variables.$color-black};
-    --pcasa-color-white: #{variables.$color-white};
-    --pcasa-color-gray-lighter: #{variables.$color-gray-lighter};
-    --pcasa-color-gray-light: #{variables.$color-gray-light};
-    --pcasa-color-gray: #{variables.$color-gray};
-    --pcasa-color-default: #{variables.$color-white};
-    --pcasa-color-highlight: #{variables.$color-default};
-    --pcasa-color-primary: #{variables.$color-white};
-    --pcasa-color-secondary: #{variables.$color-black};
     --pcasa-base-border-radius: #{variables.$base-border-radius};
-    --pcasa-button-text-color: #{variables.$color-black};
-    --pcasa-button-text-color-secondary: #{variables.$color-white};
     --pcasa-form-alert: #{variables.$color-alert};
     --pcasa-list-item-width: #{variables.$casa-element-width};
     --pcasa-border-color: #{variables.$color-gray};
@@ -29,4 +17,13 @@
     --pcasa-search-button-color: #{variables.$color-white};
     --pcasa-search-button-bg-color-active: #{variables.$color-black};
     --pcasa-search-button-color-active: #{variables.$color-white};
+    --pcasa-button-bg-color: #{variables.$color-white};
+    --pcasa-button-border-color: #{variables.$color-black};
+    --pcasa-button-color: #{variables.$color-black};
+    --pcasa-button-bg-color-active: #{variables.$color-black};
+    --pcasa-button-border-color-active: #{variables.$color-black};
+    --pcasa-button-color-active: #{variables.$color-white};
+    --pcasa-reader-border-color: #{variables.$color-gray-light};
+    --pcasa-focus-border-color: #{variables.$color-gray};
+    --pcasa-form-mandatory-color: #{variables.$color-black};
 }

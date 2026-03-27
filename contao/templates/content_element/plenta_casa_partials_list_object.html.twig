@@ -5,7 +5,7 @@
 <div class="object">
     {% block titleImage %}
         {% if object.singleSRC|default and data.size %}
-            <a href="{{ url }}" title="{{ 'CASA.show_object'|trans({':name': object.name}) }}">
+            <a href="{{ url }}" title="{{ 'CASA.show_object'|trans({':name': object.name}) }}" class="image-content">
                 {{ content_element('image', {
                     singleSRC: object.singleSRC,
                     size: data.size,
@@ -16,33 +16,46 @@
         {% endif %}
     {% endblock %}
 
-    {% block title %}
-        <div class="title">
-            <a href="{{ url }}">{{ object.name }}</a>
-        </div>
-    {% endblock %}
+    <div class="main-content">
+        {% block title %}
+            <div class="title">
+                <a href="{{ url }}">{{ object.name }}</a>
+            </div>
+        {% endblock %}
 
-    {% block meta %}
-        <div class="meta">
-            {% if object.livingArea|default %}
-                <span class="area">{{ object.livingArea }} {{ 'CASA.area_unit'|trans }}</span>
-            {% endif %}
-            {% if object.rooms|default %}
-                <span class="rooms">{{ object.rooms }} {{ 'CASA.room_unit'|trans }}</span>
-            {% endif %}
-            {% if object.floorPosition|default %}
-                <span class="floor">{{ object.floorPosition }}</span>
-            {% endif %}
-        </div>
-    {% endblock %}
+        {% block meta %}
+            {% set meta %}
+                {{ object.livingArea }}
+                {{ object.rooms }}
+                {{ object.floorPosition }}
+            {% endset %}
 
-    {% block address %}
-        <div class="address">
-            {{ object.address }}
-        </div>
-    {% endblock %}
+            {% if meta|trim is not empty %}
+                <div class="meta">
+                    {% if object.livingArea|default %}
+                        <span class="area">{{ object.livingArea }} {{ 'CASA.area_unit'|trans }}</span>
+                    {% endif %}
+                    {% if object.rooms|default %}
+                        <span class="rooms">{{ object.rooms }} {{ 'CASA.room_unit'|trans }}</span>
+                    {% endif %}
+                    {% if object.floorPosition|default %}
+                        <span class="floor">{{ object.floorPosition }}</span>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endblock %}
 
-    <div class="wrapper">
+        {% block address %}
+            <div class="address">
+                {{ object.address }}
+            </div>
+        {% endblock %}
+
+        {% block additional %}
+        {% endblock %}
+    </div>
+
+    <div class="wrapper-content">
         {% block price %}
             <span class="price">{{ object.baseRent }} EUR
             <span class="small">Kaltmiete zzgl. NK</span>
@@ -53,7 +66,4 @@
             <a class="button" href="{{ url }}">Zum Angebot</a>
         {% endblock %}
     </div>
-
-    {% block additional %}
-    {% endblock %}
 </div>

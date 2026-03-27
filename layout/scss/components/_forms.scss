@@ -71,7 +71,7 @@ textarea {
         &:after {
             content: '';
             position: absolute;
-            background-color: var(--pcasa-color-text);
+            background-color: variables.$color-black;
             clip-path: polygon(100% 0%, 0 0%, 50% 100%);
             width: 12px;
             height: 10px;
@@ -180,7 +180,7 @@ form table tr {
 // Mandatory & Error-Styling
 // asterisk at mandatory fields
 span.mandatory {
-    color: var(--pcasa-color-default);
+    color: var(--pcasa-form-mandatory-color);
 }
 
 // error-text
@@ -309,7 +309,7 @@ $form-material-design: true;
 
                 &:focus {
                     outline: none;
-                    border-color: var(--pcasa-color-gray);
+                    border-color: var(--pcasa-focus-border-color);
                 }
             }
 

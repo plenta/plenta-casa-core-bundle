@@ -12,14 +12,16 @@
     .objects {
         .object {
             display: grid;
+            gap: variables.$base-spacing-s;
             grid-template-columns: 300px 1fr auto;
-            align-items: center;
-            padding: variables.$base-spacing-x-s;
-            gap: variables.$base-spacing-x-s;
+            grid-template-areas:
+                    "img main side";
+            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s variables.$base-spacing-x-s;
             border: variables.$base-border;
             border-color: var(--pcasa-border-color);
             border-radius: var(--pcasa-list-border-radius);
             background-color: var(--pcasa-list-bg-color);
+
 
             @media screen and (width <= 768px) {
                 grid-template-columns: 1fr;
@@ -27,10 +29,6 @@
 
             &:nth-last-child(n+2) {
                 margin-bottom: variables.$base-spacing-s;
-            }
-
-            > a:first-of-type {
-                grid-row: 1 / span 2;
             }
 
             .content-image {
@@ -49,13 +47,29 @@
                 }
             }
 
+            .image-content {
+                grid-area: img;
+            }
+
+            .main-content {
+                grid-area: main;
+                display: flex;
+                flex-direction: column;
+                gap: variables.$base-spacing-x-s;
+            }
+
+            .wrapper-content {
+                grid-area: side;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: space-between;
+            }
+
             .title {
                 @extend %h2;
 
                 margin-bottom: 0;
-                align-self: start;
-                grid-column: 2;
-                grid-row: 1;
 
                 a {
                     color: var(--pcasa-title-color);
@@ -70,7 +84,6 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: variables.$base-spacing;
-                grid-row: 3;
 
                 $icons: (
                         area: casa-icons.$icon-casa-area,
@@ -85,36 +98,17 @@
                 }
             }
 
-            .address {
-                grid-area: info;
-                align-self: end;
-                grid-column: 2;
-                grid-row: 2;
-            }
+            .price {
+                @extend %h3;
 
-            .wrapper {
-                grid-column: 3;
-                grid-row: 1 / span 2;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                text-align: right;
-                gap: variables.$base-spacing-s;
-                margin-top: auto;
+                margin-bottom: 0;
+                display: block;
+                font-weight: var(--pcasa-price-font-weight);
 
-                .price {
-                    @extend %h3;
-
-                    margin-bottom: 0;
-                    grid-column: 1;
+                .small {
                     display: block;
-                    font-weight: var(--pcasa-price-font-weight);
-
-                    .small {
-                        display: block;
-                        font-weight: variables.$font-weight-regular;
-                        font-size: var(--pcasa-price-small-font-size);
-                    }
+                    font-weight: variables.$font-weight-regular;
+                    font-size: var(--pcasa-price-small-font-size);
                 }
             }
 
@@ -122,7 +116,6 @@
                 @include mixins.button;
                 @include mixins.button-color;
 
-                grid-column: 2;
                 display: flex;
                 align-items: center;
                 justify-content: center;

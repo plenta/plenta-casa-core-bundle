@@ -20,7 +20,7 @@
 }
 
 // Globale configuration for buttons
-@mixin button($buttonColor:var(--pcasa-color-default)) {
+@mixin button($buttonColor:var(--pcasa-button-bg-color)) {
     @include button-reset;
 
     & {
@@ -42,12 +42,12 @@
 }
 
 @mixin button-color(
-    $buttonColor: var(--pcasa-color-primary),
-    $buttonSecondaryColor: var(--pcasa-color-secondary),
-    $buttonTextColor: var(--button-text-color),
-    $buttonSecondaryTextColor: var(--pcasa-button-text-color-secondary),
-    $buttonBorderColor: var(--pcasa-color-secondary),
-    $buttonSecondaryBorderColor: var(--pcasa-color-secondary),
+    $buttonColor: var(--pcasa-button-bg-color),
+    $buttonSecondaryColor: var(--pcasa-button-bg-color-active),
+    $buttonTextColor: var(--pcasa-button-color),
+    $buttonSecondaryTextColor: var(--pcasa-button-color-active),
+    $buttonBorderColor: var(--pcasa-button-border-color),
+    $buttonSecondaryBorderColor: var(--pcasa-button-border-color-active),
 ) {
     & {
         background-color: $buttonColor;
