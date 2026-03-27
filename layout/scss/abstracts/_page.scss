@@ -8,7 +8,9 @@
     --pcasa-border-color: #{variables.$color-gray};
     --pcasa-list-bg-color: #{variables.$color-white};
     --pcasa-list-border-radius: #{variables.$base-border-radius};
-    --pcasa-list-image-border-radius: #{math.round(variables.$base-border-radius / 2)};
+    --pcasa-list-image-border-radius: #{math.div(variables.$base-border-radius, 2)};
+    --pcasa-list-image-width: 300px;
+    --pcasa-list-image-width-tablet: 200px;
     --pcasa-title-color: #{variables.$color-black};
     --pcasa-price-font-weight: #{variables.$font-weight-bold};
     --pcasa-price-font-size: #{math.round(variables.$base-font-size * 1.3)};

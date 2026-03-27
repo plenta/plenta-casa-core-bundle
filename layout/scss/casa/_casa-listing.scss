@@ -11,54 +11,10 @@
 
     .objects {
         .object {
-            display: grid;
-            gap: variables.$base-spacing-s;
-            grid-template-columns: 300px 1fr auto;
-            grid-template-areas:
-                    "img main side";
-            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s variables.$base-spacing-x-s;
             border: variables.$base-border;
             border-color: var(--pcasa-border-color);
             border-radius: var(--pcasa-list-border-radius);
             background-color: var(--pcasa-list-bg-color);
-
-
-            @media screen and (width <= 960px) {
-                grid-template-columns: 200px 1fr;
-                grid-template-areas:
-                   "img main"
-                   "img side";
-            }
-
-            @media screen and (width <= 680px) {
-                grid-template-columns: 1fr;
-                grid-template-areas:
-                    "img" "main" "side";
-            }
-
-            &:nth-last-child(n+2) {
-                margin-bottom: variables.$base-spacing-s;
-            }
-
-            .content-image {
-                figure, picture, img {
-                    width: 100%;
-                    height: 100%;
-                    margin: 0;
-                    display: block;
-                    object-fit: cover;
-                    object-position: center;
-                }
-
-                img {
-                    height: auto;
-                    border-radius: var(--pcasa-list-image-border-radius);
-                }
-            }
-
-            .image-content {
-                grid-area: img;
-            }
 
             .main-content {
                 grid-area: main;
@@ -68,7 +24,6 @@
             }
 
             .wrapper-content {
-                grid-area: side;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
@@ -137,6 +92,67 @@
         }
     }
 
+    &:not(.plenta-casa-listing-card) {
+        .object {
+            display: grid;
+            gap: variables.$base-spacing-s;
+            grid-template-columns: var(--pcasa-list-image-width) 1fr auto;
+            grid-template-areas:
+                    "img main side";
+            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s variables.$base-spacing-x-s;
+
+            @media screen and (width <= 960px) {
+                grid-template-columns: var(--pcasa-list-image-width-tablet) 1fr;
+                grid-template-areas:
+                   "img main"
+                   "img side";
+            }
+
+            @media screen and (width <= 680px) {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "img" "main" "side";
+            }
+
+            &:nth-last-child(n+2) {
+                margin-bottom: variables.$base-spacing-s;
+            }
+
+            .image-content {
+                grid-area: img;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                text-decoration: none;
+            }
+
+            .content-image,
+            .content-image figure,
+            .content-image picture {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                display: block;
+
+                img {
+                    border-radius: var(--pcasa-list-image-border-radius);
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+            }
+
+            .main-content {
+                grid-area: main;
+            }
+
+            .wrapper-content {
+                grid-area: side;
+            }
+        }
+    }
+
     &.plenta-casa-listing-card {
         display: flex;
         flex-direction: column;
@@ -153,20 +169,27 @@
             flex-direction: column;
             gap: variables.$base-spacing-x-s;
             align-items: stretch;
+            padding: variables.$base-spacing-x-s;
 
-            &:nth-last-child(n+2) {
-                margin-bottom: 0;
-            }
+            .content-image {
+                figure, picture, img {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    display: block;
+                    object-fit: cover;
+                    object-position: center;
+                }
 
-            @media screen and (width <= 768px) {
-                grid-template-columns: 1fr;
+                img {
+                    height: auto;
+                    border-radius: var(--pcasa-list-image-border-radius);
+                }
             }
 
             .wrapper-content {
-                display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                justify-content: space-between;
             }
         }
     }
