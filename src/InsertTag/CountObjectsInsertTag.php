@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\InsertTag;
 
 use Contao\ContentModel;
@@ -14,7 +23,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 #[AsInsertTag('casa_objects_count')]
 class CountObjectsInsertTag implements InsertTagResolverNestedResolvedInterface
 {
-
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly ParameterGenerator $parameterGenerator,
@@ -25,7 +33,7 @@ class CountObjectsInsertTag implements InsertTagResolverNestedResolvedInterface
     {
         $request = $this->requestStack->getCurrentRequest();
 
-        $model = ContentModel::findByPk($request->attributes->get('contentModel'));
+        $model = ContentModel::findById($request->attributes->get('contentModel'));
 
         $parameters = $this->parameterGenerator->generateFromRequest($request, $model);
 
@@ -37,6 +45,6 @@ class CountObjectsInsertTag implements InsertTagResolverNestedResolvedInterface
             $values = array_merge($values, $parameter->getValues());
         }
 
-        return new InsertTagResult(ObjectModel::countPublishedBy($columns, $values));
+        return new InsertTagResult((string) ObjectModel::countPublishedBy($columns, $values));
     }
 }

@@ -1,38 +1,55 @@
-@use "../abstracts/variables";
+@use '../abstracts/variables';
+@use 'sass:math';
 
-@use "sass:math";
-
-h1,%h1 {
+h1,
+%h1 {
     font-size: variables.$base-font-size * 2;
     color: var(--color-green);
 }
 
-h2,%h2 {
+h2,
+%h2 {
     font-size: math.round(variables.$base-font-size * 1.5);
     color: var(--color-green);
 }
 
-h3,%h3 {
+h3,
+%h3 {
     font-size: math.round(variables.$base-font-size * 1.3);
 }
 
-h4,%h4 {
+h4,
+%h4 {
     font-size: variables.$base-font-size * 1;
 }
 
-h1, h2, h3, h4,%h1,%h2,%h3,%h4 {
+h1,
+h2,
+h3,
+h4,
+%h1,
+%h2,
+%h3,
+%h4 {
     font-weight: bold;
     line-height: variables.$base-line-height;
     display: block;
 }
 
-h1, h2, h3, %h1, %h2, %h3 {
+h1,
+h2,
+h3,
+%h1,
+%h2,
+%h3 {
     margin-bottom: math.round(variables.$base-line-height * math.div(variables.$base-font-size, variables.$gc));
     margin-top: 0;
     line-height: variables.$base-line-height - 0.2;
 }
 
-* + h1, * + h2, * + h3 {
+* + h1,
+* + h2,
+* + h3 {
     margin-top: math.round(variables.$base-line-height * variables.$base-font-size * variables.$gc);
 }
 

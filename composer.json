@@ -14,10 +14,26 @@
     "contao/core-bundle": "^5.3 ||^5.7",
     "symfony/form": "^7.3",
     "symfony/stimulus-bundle": "^2.31",
-    "mvo/contao-group-widget": "^1.6"
+    "mvo/contao-group-widget": "^1.6",
+    "contao/manager-plugin": "^2.0",
+    "doctrine/dbal": "^3.0 || ^4.0",
+    "symfony/asset": "^6.4 || ^7.4",
+    "symfony/config": "^6.4 || ^7.4",
+    "symfony/dependency-injection": "^6.4 || ^7.4",
+    "symfony/event-dispatcher": "^6.4 || ^7.4",
+    "symfony/event-dispatcher-contracts": "^3.6",
+    "symfony/http-foundation": "^6.4 || ^7.4",
+    "symfony/http-kernel": "^6.4 || ^7.4",
+    "symfony/options-resolver": "^6.4 || ^7.4",
+    "symfony/routing": "^6.4 || ^7.4",
+    "symfony/security-core": "^6.4 || ^7.4",
+    "symfony/translation-contracts": "^3.6",
+    "twig/twig": "^3.0"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^v3.86.0"
+    "friendsofphp/php-cs-fixer": "^v3.86.0",
+    "plenta/contao-build-tools": "@dev",
+    "contao/manager-bundle": "^5.7"
   },
   "autoload": {
     "psr-4": {
@@ -33,7 +49,8 @@
       "contao-components/installer": true,
       "contao/manager-plugin": true,
       "contao-community-alliance/composer-plugin": true,
-      "php-http/discovery": true
+      "php-http/discovery": true,
+      "plenta/contao-build-tools": true
     }
   }
 }

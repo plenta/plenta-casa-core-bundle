@@ -1,8 +1,8 @@
-@use "../abstracts/variables";
-@use "../abstracts/mixins";
-@use "../abstracts/placeholder";
-@use "../base/type";
-@use "casa-abstract-icons" as casa-icons;
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+@use '../abstracts/placeholder';
+@use '../base/type';
+@use 'casa-abstract-icons' as casa-icons;
 
 .content-plenta-casa-reader {
     .part {
@@ -11,8 +11,8 @@
 
     .part-price {
         .price {
-                font-weight: var(--pcasa-price-font-weight);
-                font-size: var(--pcasa-price-font-size);
+            font-weight: var(--pcasa-price-font-weight);
+            font-size: var(--pcasa-price-font-size);
 
             .small {
                 display: block;
@@ -22,7 +22,8 @@
         }
     }
 
-    .part-area, .part-address {
+    .part-area,
+    .part-address {
         display: flex;
         flex-wrap: wrap;
         gap: variables.$base-spacing-s;
@@ -36,16 +37,16 @@
             gap: variables.$base-spacing-xx-s;
 
             $icons: (
-                livingArea: casa-icons.$icon-casa-area,
+                livingarea: casa-icons.$icon-casa-area,
                 rooms: casa-icons.$icon-casa-rooms,
                 bedrooms: casa-icons.$icon-casa-bed,
                 bathrooms: casa-icons.$icon-casa-bath,
-                floor: casa-icons.$icon-casa-floor
+                floor: casa-icons.$icon-casa-floor,
             );
 
             @each $name, $icon in $icons {
                 &.area-#{$name} {
-                    @include mixins.fa-inline-icon(#{$icon},0);
+                    @include mixins.fa-inline-icon(#{$icon}, 0);
                 }
             }
         }

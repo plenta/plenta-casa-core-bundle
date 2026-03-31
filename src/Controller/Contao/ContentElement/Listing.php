@@ -2,9 +2,16 @@
 
 declare(strict_types=1);
 
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\Controller\Contao\ContentElement;
 
-/**
+/*
  * @package       Customer
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
@@ -17,12 +24,8 @@ use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\PageModel;
 use Contao\Pagination;
-use Contao\StringUtil;
 use Contao\System;
 use Contao\Template;
-use Plenta\CasaCoreBundle\Events\FilterParameterEvent;
-use Plenta\CasaCoreBundle\Events\KeywordsEvent;
-use Plenta\CasaCoreBundle\Filter\Parameter;
 use Plenta\CasaCoreBundle\Filter\ParameterGenerator;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,7 +67,7 @@ class Listing extends AbstractContentElementController
         if ($model->perPage) {
             $count = ObjectModel::countPublishedBy($columns, $values);
 
-            $pageParam = 'page_' . $model->id;
+            $pageParam = 'page_'.$model->id;
             $page = $request->get($pageParam, 1);
             $offset = ($page - 1) * $model->perPage;
             $perPage = $model->perPage;
@@ -75,10 +78,14 @@ class Listing extends AbstractContentElementController
             $offset = null;
         }
 
-        $objects = ObjectModel::findPublishedBy($columns, $values, [
-            'limit' => $perPage,
-            'offset' => $offset,
-        ]);
+        $objects = ObjectModel::findPublishedBy(
+            $columns,
+            $values,
+            [
+                'limit' => $perPage,
+                'offset' => $offset,
+            ],
+        );
 
         $template->objects = $objects;
         $template->jumpTo = PageModel::findByIdOrAlias($model->jumpTo);

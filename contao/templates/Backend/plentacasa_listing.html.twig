@@ -1,12 +1,18 @@
-{% set marketingType = ('PLENTA.CASA.marketing_types.' ~ property.marketing_type)|trans({}, 'contao_default') %}
-{% set objectType = property.object_type|casaObjectTypeName %}
+{% use '@Contao/component/_figure.html.twig' %}
+
+{% set marketing_type = ('PLENTA.CASA.marketing_types.' ~ property.marketing_type)|trans({}, 'contao_default') %}
+{% set object_type = property.object_type|casaObjectTypeName %}
 
 <table class="plenta_casa_property_listing">
     <tbody>
     <tr>
         <td class="image" rowspan="3">
             {% if image %}
-                {{ contao_figure(image, [100, 100, 'crop']) }}
+                {% set fig = figure(image, [100, 100, 'crop']) %}
+
+                {% if fig %}
+                    {% with {figure: fig} %}{{ block('figure_component') }}{% endwith %}
+                {% endif %}
             {% endif %}
         </td>
         <td>
@@ -20,8 +26,8 @@
     </tr>
     <tr>
         <td>
-            <span class="badge marketing-type" title="Vermarktungsart: {{ marketingType }}">{{ marketingType }}</span>
-            <span class="badge object-type" title="Objekttyp: {{ objectType }}">{{ objectType }}</span>
+            <span class="badge marketing-type" title="Vermarktungsart: {{ marketing_type }}">{{ marketing_type }}</span>
+            <span class="badge object-type" title="Objekttyp: {{ object_type }}">{{ object_type }}</span>
             <span class="badge">Maße</span>
             <span class="badge">Kosten</span>
         </td>

@@ -2,9 +2,16 @@
 
 declare(strict_types=1);
 
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\Controller\Contao\ContentElement;
 
-/**
+/*
  * @package       Customer
  * @copyright     Copyright (c) 2025, Plenta.io
  * @author        Plenta.io <https://plenta.io>
@@ -40,9 +47,13 @@ class Filter extends AbstractContentElementController
             return $objTemplate->getResponse();
         }
 
-        $filter = $this->createForm(FilterType::class, null, [
-            'model' => $model,
-        ]);
+        $filter = $this->createForm(
+            FilterType::class,
+            null,
+            [
+                'model' => $model,
+            ],
+        );
 
         $filter->handleRequest($request);
 

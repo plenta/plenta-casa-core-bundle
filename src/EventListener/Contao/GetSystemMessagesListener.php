@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/**
- * @package       Customer
+/*
+ * @package       Plenta Casa Core Bundle
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Plenta\CasaCoreBundle\EventListener\Contao;
 
 use Composer\InstalledVersions;
+use Contao\BackendUser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\Asset\Packages;
@@ -37,34 +38,39 @@ class GetSystemMessagesListener
     {
         if ($this->auth->isGranted('ROLE_ADMIN')) {
             $GLOBALS['TL_CSS']['plentacasacore_dashboard'] = $this->packages->getUrl('plentacasacore/backend.css', 'plentacasacore');
+            /** @var BackendUser $user */
+            $user = $this->tokenStorage->getToken()->getUser();
 
             $data = [
                 'salutation' => $this->getRandomSalutation(),
-                'username' => $this->tokenStorage->getToken()->getUser()->name,
+                'username' => $user->name,
                 'objectStats' => $this->getObjectStats(),
                 'changelog' => 'https://plentacasa.com/changelog',
                 'manufacturer' => $this->translator->trans('PLENTA.CASA.manufacturer', [], 'plenta_casa_dashboard'),
                 'version' => $this->translator->trans(
                     'PLENTA.CASA.version',
                     ['%s' => InstalledVersions::getVersion('plenta/plenta-casa-core-bundle')],
-                    'plenta_casa_dashboard'
+                    'plenta_casa_dashboard',
                 ),
             ];
 
             return
                 $this->twig->render(
                     '@Contao/Backend/plenta_casa_dashboard.html.twig',
-                    $data
+                    $data,
                 );
         }
 
         return '';
     }
 
+    /**
+     * @return array<string, int>
+     */
     public function getObjectStats(): array
     {
         $sql = '
-            SELECT 
+            SELECT
                 COUNT(*) AS total,
                 SUM(CASE WHEN published = 1 THEN 1 ELSE 0 END) AS published
             FROM tl_pcasa_object
@@ -82,7 +88,7 @@ class GetSystemMessagesListener
     {
         $raw = $this->translator->trans('PLENTA.CASA.greeting.random_choice', [], 'plenta_casa_dashboard');
 
-        $choices = array_values(array_filter(array_map('trim', explode('|', $raw))));
+        $choices = array_values(array_filter(array_map(trim(...), explode('|', $raw))));
 
         return $choices[random_int(0, \count($choices) - 1)];
     }

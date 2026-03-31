@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\Controller;
 
 use Contao\ContentModel;
@@ -7,8 +16,6 @@ use Contao\Controller;
 use Contao\CoreBundle\Controller\AbstractController;
 use Plenta\CasaCoreBundle\Events\FilterTypeOptionsEvent;
 use Plenta\CasaCoreBundle\Helper\ObjectTypes;
-use Plenta\CasaCoreBundle\Model\ObjectModel;
-use Plenta\CasaCoreBundle\Model\TypeModel;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -26,26 +33,24 @@ class AjaxController extends AbstractController
     {
         $return = [];
         $types = $this->objectTypes->getTypes();
-        $model = ContentModel::findByPk($filterId);
+        $model = ContentModel::findById($filterId);
         $countArr = [];
         $all = [];
 
-        if ($types) {
-            foreach ($types as $id => $title) {
-                if ($count = $this->objectTypes->countObjects($id)) {
-                    $return[] = [
-                        'id' => $id,
-                        'title' => $title,
-                    ];
-                }
-
-                $all[] = [
+        foreach ($types as $id => $title) {
+            if ($count = $this->objectTypes->countObjects($id)) {
+                $return[] = [
                     'id' => $id,
                     'title' => $title,
                 ];
-
-                $countArr[$id] = $count;
             }
+
+            $all[] = [
+                'id' => $id,
+                'title' => $title,
+            ];
+
+            $countArr[$id] = $count;
         }
 
         $event = new FilterTypeOptionsEvent($return, $model, $all, $countArr);
@@ -55,7 +60,7 @@ class AjaxController extends AbstractController
     }
 
     #[Route('/filter/{id}')]
-    public function filter(int $id)
+    public function filter(int $id): Response
     {
         return new Response(Controller::getContentElement($id));
     }

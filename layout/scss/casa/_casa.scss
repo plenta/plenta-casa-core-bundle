@@ -1,5 +1,5 @@
-@use "../abstracts/variables";
-@use "../abstracts/mixins";
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
 
 .content-plenta-casa-filter {
     form {
@@ -19,12 +19,12 @@
     button {
         @include mixins.button;
         @include mixins.button-color(
-                $buttonColor: var(--pcasa-search-button-bg-color),
-                $buttonSecondaryColor: var(--pcasa-search-button-bg-color-active),
-                $buttonTextColor: var(--pcasa-search-button-color),
-                $buttonSecondaryTextColor: var(--pcasa-search-button-color-active),
-                $buttonBorderColor: var(--pcasa-search-button-bg-color),
-                $buttonSecondaryBorderColor: var(--pcasa-search-button-bg-color-active),
+            $buttonColor: var(--pcasa-search-button-bg-color),
+            $buttonSecondaryColor: var(--pcasa-search-button-bg-color-active),
+            $buttonTextColor: var(--pcasa-search-button-color),
+            $buttonSecondaryTextColor: var(--pcasa-search-button-color-active),
+            $buttonBorderColor: var(--pcasa-search-button-bg-color),
+            $buttonSecondaryBorderColor: var(--pcasa-search-button-bg-color-active)
         );
     }
 }

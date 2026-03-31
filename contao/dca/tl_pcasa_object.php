@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-/**
- * @package       Plenta Casa
- * @copyright     Copyright (c) 2025, Plenta.io
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
  */
@@ -206,7 +206,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'country' => [
             'inputType' => 'select',
             'default' => 'DE',
-            'options_callback' => fn () => System::getContainer()->get('contao.intl.countries')->getCountries(),
+            'options_callback' => static fn () => System::getContainer()->get('contao.intl.countries')->getCountries(),
             'eval' => ['mandatory' => true, 'tl_class' => 'w50', 'includeBlankOption' => true],
             'sql' => "varchar(2) NOT NULL default ''",
         ],
@@ -283,15 +283,15 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'toggle' => true,
             'filter' => true,
             'inputType' => 'checkbox',
-            'eval' => ['doNotCopy' => true, 'tl_class'=>'w50'],
+            'eval' => ['doNotCopy' => true, 'tl_class' => 'w50'],
             'sql' => ['type' => 'boolean', 'default' => false],
         ],
         'featured' => [
             'toggle' => true,
             'filter' => true,
             'inputType' => 'checkbox',
-            'eval' => ['tl_class'=>'w50'],
-            'sql' => ['type' => 'boolean', 'default' => false]
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => ['type' => 'boolean', 'default' => false],
         ],
         'start' => [
             'inputType' => 'text',

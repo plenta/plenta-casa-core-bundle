@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\Events;
 
 use Contao\ContentModel;
@@ -10,6 +19,9 @@ class FilterParameterEvent extends Event
 {
     public const NAME = 'plenta_casa.filter.parameter';
 
+    /**
+     * @param array<Parameter> $parameters
+     */
     public function __construct(
         protected ContentModel $contentModel,
         protected array $parameters,
@@ -21,23 +33,28 @@ class FilterParameterEvent extends Event
         return $this->contentModel;
     }
 
-    public function setContentModel(ContentModel $contentModel): FilterParameterEvent
+    public function setContentModel(ContentModel $contentModel): self
     {
         $this->contentModel = $contentModel;
+
         return $this;
     }
 
     /**
-     * @return Parameter[]
-    */
+     * @return array<Parameter>
+     */
     public function getParameters(): array
     {
         return $this->parameters;
     }
 
-    public function setParameters(array $parameters): FilterParameterEvent
+    /**
+     * @param array<Parameter> $parameters
+     */
+    public function setParameters(array $parameters): self
     {
         $this->parameters = $parameters;
+
         return $this;
     }
 }

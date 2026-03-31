@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-/**
- * @package       Customer
- * @copyright     Copyright (c) 2025, Plenta.io
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
  */
@@ -13,11 +13,10 @@ namespace Plenta\CasaCoreBundle\Controller\Contao\Backend;
 
 use Composer\InstalledVersions;
 use Contao\CoreBundle\Controller\AbstractBackendController;
-use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -38,18 +37,18 @@ class ConfigController extends AbstractBackendController
 
         $titleLabel = $this->translator->trans('MOD.plenta_casa.0', [], 'contao_modules').' '.$this->translator->trans('MOD.plentacasa_config.1', [], 'contao_modules');
 
-        return $this->render(
-            '@Contao/Backend/plentacasa_config.html.twig',
-            [
-                'title' => $titleLabel,
-                'headline' => $titleLabel,
-                'tables' => $this->getTables(),
-                'changelog' => 'https://plentacasa.com/changelog',
-                'version' => InstalledVersions::getVersion('plenta/plenta-casa-core-bundle'),
-            ]
-        );
+        return $this->render('@Contao/Backend/plentacasa_config.html.twig', [
+            'title' => $titleLabel,
+            'headline' => $titleLabel,
+            'tables' => $this->getTables(),
+            'changelog' => 'https://plentacasa.com/changelog',
+            'version' => InstalledVersions::getVersion('plenta/plenta-casa-core-bundle'),
+        ]);
     }
 
+    /**
+     * @return array<array<string, string>>
+     */
     protected function getTables(): array
     {
         $tables = [];

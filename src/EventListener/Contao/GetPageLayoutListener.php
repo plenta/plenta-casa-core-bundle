@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-/**
- * @package       Customer
- * @copyright     Copyright (c) 2025, Plenta.io
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
  */
@@ -32,7 +32,7 @@ class GetPageLayoutListener
 
         $GLOBALS['TL_CSS']['plentacasa_theme'] = $this->packages->getUrl(
             'plentacasacore/theme.css',
-            'plentacasacore'
+            'plentacasacore',
         );
     }
 }

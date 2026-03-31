@@ -1,10 +1,9 @@
-@use "../abstracts/variables";
-@use "../abstracts/mixins";
-@use "../base/type";
-@use "casa-abstract-icons" as casa-icons;
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+@use '../base/type';
+@use 'casa-abstract-icons' as casa-icons;
 
 .content-plenta-casa-listing {
-
     > .headline {
         text-align: center;
     }
@@ -54,9 +53,9 @@
                 gap: variables.$base-spacing;
 
                 $icons: (
-                        area: casa-icons.$icon-casa-area,
-                        rooms: casa-icons.$icon-casa-rooms,
-                        floor: casa-icons.$icon-casa-floor
+                    area: casa-icons.$icon-casa-area,
+                    rooms: casa-icons.$icon-casa-rooms,
+                    floor: casa-icons.$icon-casa-floor,
                 );
 
                 @each $name, $icon in $icons {
@@ -88,7 +87,6 @@
                 align-items: center;
                 justify-content: center;
             }
-
         }
     }
 
@@ -97,24 +95,23 @@
             display: grid;
             gap: variables.$base-spacing-s;
             grid-template-columns: var(--pcasa-list-image-width) 1fr auto;
-            grid-template-areas:
-                    "img main side";
-            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s variables.$base-spacing-x-s;
+            grid-template-areas: 'img main side';
+            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s
+                variables.$base-spacing-x-s;
 
             @media screen and (width <= 960px) {
                 grid-template-columns: var(--pcasa-list-image-width-tablet) 1fr;
                 grid-template-areas:
-                   "img main"
-                   "img side";
+                    'img main'
+                    'img side';
             }
 
             @media screen and (width <= 680px) {
                 grid-template-columns: 1fr;
-                grid-template-areas:
-                    "img" "main" "side";
+                grid-template-areas: 'img' 'main' 'side';
             }
 
-            &:nth-last-child(n+2) {
+            &:nth-last-child(n + 2) {
                 margin-bottom: variables.$base-spacing-s;
             }
 
@@ -172,7 +169,9 @@
             padding: variables.$base-spacing-x-s;
 
             .content-image {
-                figure, picture, img {
+                figure,
+                picture,
+                img {
                     width: 100%;
                     height: 100%;
                     margin: 0;
@@ -188,8 +187,7 @@
             }
 
             .wrapper-content {
-                flex-direction: row;
-                flex-wrap: wrap;
+                flex-flow: row wrap;
             }
         }
     }

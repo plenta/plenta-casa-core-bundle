@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle;
 
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
@@ -15,25 +22,24 @@ class PlentaCasaCoreBundle extends AbstractBundle
     {
         $definition->rootNode()
             ->children()
-                ->arrayNode('alias_generation')
-                    ->children()
-                        ->arrayNode('parts')
-                            ->scalarPrototype()->end()
-                            ->performNoDeepMerging()
-                        ->end()
-                        ->scalarNode('locale')->end()
-                        ->scalarNode('validChars')->end()
-                    ->end()
-                ->end()
+            ->arrayNode('alias_generation')
+            ->children()
+            ->arrayNode('parts')
+            ->scalarPrototype()->end()
+            ->performNoDeepMerging()
+            ->end()
+            ->scalarNode('locale')->end()
+            ->scalarNode('validChars')->end()
+            ->end()
+            ->end()
             ->end()
         ;
     }
 
-    public function loadExtension(
-        array                 $config,
-        ContainerConfigurator $container,
-        ContainerBuilder      $builder,
-    ): void
+    /**
+     * @param array<mixed> $config
+     */
+    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->import('../config/services.yml');
         $container->parameters()->set('plenta_casa_core.alias_generation', $config['alias_generation']);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Plenta\CasaCoreBundle\Events;
 
 use Contao\ContentModel;
@@ -9,19 +11,28 @@ class KeywordsEvent extends Event
 {
     public const NAME = 'plenta_casa.search.keywords';
 
+    /**
+     * @param array<string> $fields
+     */
     public function __construct(
         protected array $fields = ['title', 'city', 'description', 'equipment', 'location', 'other'],
-        protected ?ContentModel $contentModel = null,
+        protected ContentModel|null $contentModel = null,
         protected string $connector = 'AND',
         protected bool $splitKeywords = true,
     ) {
     }
 
+    /**
+     * @return array<string>
+     */
     public function getFields(): array
     {
         return $this->fields;
     }
 
+    /**
+     * @param array<string> $fields
+     */
     public function setFields(array $fields): void
     {
         $this->fields = $fields;
@@ -42,20 +53,22 @@ class KeywordsEvent extends Event
         return $this->splitKeywords;
     }
 
-    public function setSplitKeywords(bool $splitKeywords): KeywordsEvent
+    public function setSplitKeywords(bool $splitKeywords): self
     {
         $this->splitKeywords = $splitKeywords;
+
         return $this;
     }
 
-    public function getContentModel(): ?ContentModel
+    public function getContentModel(): ContentModel|null
     {
         return $this->contentModel;
     }
 
-    public function setContentModel(?ContentModel $contentModel): KeywordsEvent
+    public function setContentModel(ContentModel|null $contentModel): self
     {
         $this->contentModel = $contentModel;
+
         return $this;
     }
 }

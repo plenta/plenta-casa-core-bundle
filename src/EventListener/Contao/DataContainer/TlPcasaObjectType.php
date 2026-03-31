@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\EventListener\Contao\DataContainer;
 
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
@@ -13,8 +22,11 @@ class TlPcasaObjectType
     ) {
     }
 
+    /**
+     * @return array<string>
+     */
     #[AsCallback(table: 'tl_pcasa_object_type', target: 'fields.customTpl.options')]
-    public function onCustomTplOptions(DC_Table $dc)
+    public function onCustomTplOptions(DC_Table $dc): array
     {
         return $this->finderFactory
             ->create()
@@ -22,6 +34,6 @@ class TlPcasaObjectType
             ->extension('html.twig')
             ->withVariants()
             ->asTemplateOptions()
-            ;
+        ;
     }
 }

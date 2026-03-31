@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/**
- * @package       Customer
+/*
+ * @package       Plenta Casa Core Bundle
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -49,10 +49,13 @@ class TlPcasaObjectPaletteCallback
         return $palette;
     }
 
+    /**
+     * @return array<string>
+     */
     private function getSubpaletteFields(string $key): array
     {
         $value = $GLOBALS['TL_DCA']['tl_pcasa_object']['casa_subpalettes'][$key] ?? '';
 
-        return array_filter(array_map('trim', explode(',', $value)));
+        return array_filter(array_map(trim(...), explode(',', (string) $value)));
     }
 }

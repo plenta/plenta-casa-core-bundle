@@ -16,9 +16,7 @@
     --pcasa-color-gray: var(--nav-group);
 }
 
-
-
-html[data-color-scheme="dark"] {
+html[data-color-scheme='dark'] {
     --pcasa-filter-to-white: invert(1);
 }
 
@@ -51,7 +49,7 @@ html[data-color-scheme="dark"] {
     }
 
     .item:before {
-        content: "";
+        content: '';
         width: 40px;
         height: 40px;
         position: absolute;
@@ -67,25 +65,25 @@ html[data-color-scheme="dark"] {
 }
 
 .item.tl_pcasa_targetgroup:before {
-    content: url("../img/bullseye-solid-full.svg");
+    content: url('../img/bullseye-solid-full.svg');
 }
 
 .item.tl_pcasa_quarter:before {
-    content: url("../img/layer-group-solid-full.svg");
+    content: url('../img/layer-group-solid-full.svg');
 }
 
 .item.tl_pcasa_object_type:before {
-    content: url("../img/gears-solid-full.svg");
+    content: url('../img/gears-solid-full.svg');
 }
 
 .item.tl_pcasa_notifications:before {
-    content: url("../img/envelope-solid-full.svg");
+    content: url('../img/envelope-solid-full.svg');
 }
 
 .item > a {
     display: block;
     text-decoration: underline;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
 }
 
 .item > span {
@@ -104,7 +102,7 @@ a.title {
 
     thead {
         th {
-            padding: 0 0 6px 0;
+            padding: 0 0 6px;
         }
     }
 
@@ -192,13 +190,13 @@ a.title {
             }
 
             > a {
-                margin-bottom: .5em;
+                margin-bottom: 0.5em;
             }
 
             > span.numbers {
                 font-size: 1.25rem;
                 font-weight: 700;
-                margin-bottom: .5em;
+                margin-bottom: 0.5em;
             }
 
             > span.description {
@@ -206,7 +204,7 @@ a.title {
             }
 
             &:before {
-                content: "";
+                content: '';
                 width: 32px;
                 height: 32px;
                 position: absolute;
@@ -219,7 +217,7 @@ a.title {
                 background-color: var(--pcasa-background-blue);
 
                 &:before {
-                    content: url("../img/house.svg");
+                    content: url('../img/house.svg');
                     filter: var(--pcasa-filter-to-white);
                 }
             }
@@ -228,7 +226,7 @@ a.title {
                 background-color: var(--pcasa-background-lightblue);
 
                 &:before {
-                    content: url("../img/mail-check.svg");
+                    content: url('../img/mail-check.svg');
                     filter: var(--pcasa-filter-to-white);
                 }
             }
@@ -237,7 +235,7 @@ a.title {
                 background-color: var(--pcasa-background-darkblue);
 
                 &:before {
-                    content: url("../img/cup-soda.svg");
+                    content: url('../img/cup-soda.svg');
                     filter: var(--pcasa-filter-to-white);
                 }
             }
@@ -249,7 +247,7 @@ a.title {
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (width <= 900px) {
     .be_plentacasa_config {
         > div {
             grid-column-end: span 6;

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/**
- * @package       Customer
+/*
+ * @package       Plenta Casa Core Bundle
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -34,7 +34,7 @@ class PlentaCasaExtension
         return ObjectTypeModel::findById($value);
     }
 
-    protected function getTitle(ObjectTypeModel $type)
+    protected function getTitle(ObjectTypeModel $type): string
     {
         $return = '';
 
@@ -42,8 +42,6 @@ class PlentaCasaExtension
             $return .= $this->getTitle(ObjectTypeModel::findById($type->pid)).' > ';
         }
 
-        $return .= $type->title;
-
-        return $return;
+        return $return.$type->title;
     }
 }

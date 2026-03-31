@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\Helper;
 
 use Plenta\CasaCoreBundle\Model\ObjectModel;
@@ -12,7 +21,7 @@ class ObjectTypes
     {
     }
 
-    public function hasObjects(int $id)
+    public function hasObjects(int $id): bool
     {
         if (ObjectModel::findPublishedBy(['object_type = ?'], [$id])) {
             return true;
@@ -46,7 +55,10 @@ class ObjectTypes
         return $count;
     }
 
-    public function getTypes(int $pid = 0, string $prefix = '', bool $showChildrenOnlyWhenChecked = false)
+    /**
+     * @return array<int, string>
+     */
+    public function getTypes(int $pid = 0, string $prefix = '', bool $showChildrenOnlyWhenChecked = false): array
     {
         $return = [];
 
@@ -62,12 +74,12 @@ class ObjectTypes
                     if ($request->query->has('filter')) {
                         $filter = $request->query->all('filter');
 
-                        if (!in_array($type->id, $filter['objectType'] ?? [])) {
+                        if (!\in_array($type->id, $filter['objectType'] ?? [], true)) {
                             continue;
                         }
                     }
                 }
-                $return = $return + $this->getTypes($type->id, $prefix.'-');
+                $return += $this->getTypes($type->id, $prefix.'-');
             }
         }
 

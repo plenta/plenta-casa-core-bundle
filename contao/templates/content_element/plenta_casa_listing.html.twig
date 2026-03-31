@@ -1,9 +1,9 @@
-{% extends "@Contao/content_element/_base.html.twig" %}
+{% extends '@Contao/content_element/_base.html.twig' %}
 
 {% set attributes = attrs().setIfExists('data-id', data.id).mergeWith(attributes|default) %}
 
 {% set headline = headline|merge({
-    'attributes': attrs(headline.attributes|default).addClass('headline')
+    attributes: attrs(headline.attributes|default).addClass('headline'),
 }) %}
 
 {% block content %}

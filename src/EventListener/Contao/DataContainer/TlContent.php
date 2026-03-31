@@ -1,11 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\EventListener\Contao\DataContainer;
 
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Twig\Finder\FinderFactory;
 use Contao\DataContainer;
-use Contao\DC_Table;
 use Plenta\CasaCoreBundle\Events\ReaderPartOptionsEvent;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
@@ -17,8 +25,11 @@ class TlContent
     ) {
     }
 
+    /**
+     * @return array<string>
+     */
     #[AsCallback(table: 'tl_content', target: 'fields.plenta_casa_readerPartType.options')]
-    public function onReaderPartTypeOptions()
+    public function onReaderPartTypeOptions(): array
     {
         $options = ['title', 'address', 'gallery', 'titleImage', 'description', 'facilities', 'area', 'price', 'condition', 'marketing'];
 
@@ -28,8 +39,11 @@ class TlContent
         return $event->getOptions();
     }
 
+    /**
+     * @return array<string, string>
+     */
     #[AsCallback(table: 'tl_content', target: 'fields.plenta_casa_readerPartTpl.options')]
-    public function onReaderPartTplOptions(DC_Table $dc)
+    public function onReaderPartTplOptions(DataContainer $dc): array
     {
         $field = $dc->field;
         $source = $dc->activeRecord->{str_replace('readerPartTpl', 'readerPartType', $field)};

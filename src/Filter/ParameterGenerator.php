@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Plenta\CasaCoreBundle\Filter;
 
 use Contao\ContentModel;
@@ -13,15 +15,19 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 class ParameterGenerator
 {
     public function __construct(
-        protected EventDispatcherInterface $eventDispatcher, private readonly ObjectTypes $objectTypes,
+        protected EventDispatcherInterface $eventDispatcher,
+        private readonly ObjectTypes $objectTypes,
     ) {
     }
 
-    public function generateFromRequest(Request $request, ?ContentModel $model): array
+    /**
+     * @return array<Parameter>
+     */
+    public function generateFromRequest(Request $request, ContentModel|null $model): array
     {
         $parameters = [];
 
-        $keywordEvent = new KeywordsEvent(contentModel:  $model);
+        $keywordEvent = new KeywordsEvent(contentModel: $model);
         $this->eventDispatcher->dispatch($keywordEvent, $keywordEvent::NAME);
 
         if ($filter = $request->query->all('filter')) {
@@ -34,7 +40,7 @@ class ParameterGenerator
             }
 
             if ($filter['objectType'] ?? null) {
-                $type = is_array($filter['objectType']) ? $filter['objectType'][0] : $filter['objectType'];
+                $type = \is_array($filter['objectType']) ? $filter['objectType'][0] : $filter['objectType'];
 
                 $children = array_keys($this->objectTypes->getTypes($type));
                 $children[] = $type;
@@ -76,7 +82,7 @@ class ParameterGenerator
                     $criteria[] = '('.implode(' OR ', $kCriteria).')';
                 }
 
-                if ($keywordEvent->getConnector() === 'AND') {
+                if ('AND' === $keywordEvent->getConnector()) {
                     $columns[] = '('.implode(' AND ', $criteria).')';
                 } else {
                     $columns[] = '('.implode(' OR ', $criteria).')';
@@ -89,7 +95,7 @@ class ParameterGenerator
                 );
             }
 
-            if ($area = ((int) ($filter['area'] ?? null))) {
+            if ($area = (int) ($filter['area'] ?? null)) {
                 $parameters[] = new Parameter(
                     'areaMin',
                     ['(cast(livingArea as unsigned) >= ? OR cast(floorArea as unsigned) >= ?)'],

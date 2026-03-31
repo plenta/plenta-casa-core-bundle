@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Plenta\CasaCoreBundle\Helper;
 
 use Plenta\CasaCoreBundle\Events\AreaOptionsEvent;
@@ -11,10 +13,12 @@ class TwigVariables
     public function __construct(
         protected EventDispatcherInterface $eventDispatcher,
     ) {
-
     }
 
-    public function getArea(?ObjectModel $objectModel = null): array
+    /**
+     * @return array<string>
+     */
+    public function getArea(ObjectModel|null $objectModel = null): array
     {
         $options = ['livingArea', 'plotArea', 'rooms', 'bedrooms', 'bathrooms', 'floorArea', 'balconyArea', 'gardenArea', 'floor', 'numberOfFloors', 'floorPosition', 'numberOfParkingSpaces', 'parkingSpaceType'];
 

@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 // colors
 $color-white: #fff;
@@ -12,7 +12,6 @@ $color-alert: #f61b1b;
 // Base Font Settings
 $base-font-size: 16px;
 $base-line-height: 1.6;
-
 $fa: 'Font Awesome 6 Free';
 $font-awesome-active: true;
 
@@ -22,10 +21,11 @@ $font-weight-bold: 700;
 
 // Spacing
 $gc: 1.618;
+
 /// Base-Spacing: 26px
 $base-spacing: math.round($base-font-size * $base-line-height); // 26px
 $base-spacing-large: math.round($base-spacing * $gc); // 42px
-$base-spacing-x-large: math.round($base-spacing-large * $gc); //68px
+$base-spacing-x-large: math.round($base-spacing-large * $gc); // 68px
 $base-spacing-xx-large: math.round($base-spacing-x-large * $gc); // 110px
 $base-spacing-s: $base-font-size; // 16px
 $base-spacing-x-s: math.round(math.div($base-font-size, $gc)); // 10px
@@ -39,6 +39,5 @@ $casa-element-width: 300px;
 $base-border-color: $color-gray-light;
 $base-border-style: solid;
 $base-border-width: 1px;
-
 $base-border: $base-border-width $base-border-style $base-border-color;
 $base-border-radius: 8px;

@@ -1,7 +1,11 @@
 <?php
 
-use Plenta\CasaCoreBundle\Controller\Contao\ContentElement\Reader;
-use Plenta\CasaCoreBundle\Controller\Contao\ContentElement\Listing;
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_listing'] = '{type_legend},title,headline,type;{config_legend},perPage,numberOfItems,size;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_filter'] = '{type_legend},title,headline,type;{config_legend},plenta_casa_filterAddMarketingType,plenta_casa_filterAddObjectType,plenta_casa_filterAddType,plenta_casa_filterAddKeyword,plenta_casa_filterAddArea,plenta_casa_filterAddRooms,plenta_casa_filterAddPrice;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
@@ -11,7 +15,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerParts'] = [
     'inputType' => 'group',
     'palette' => ['plenta_casa_readerPartType', 'headline', 'plenta_casa_readerPartTpl'],
     'eval' => ['multiple' => true, 'tl_class' => 'clr'],
-    'sql' => "mediumtext NULL",
+    'sql' => 'mediumtext NULL',
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddObjectType'] = [
@@ -50,12 +54,10 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddArea'] = [
     'sql' => ['type' => 'boolean', 'default' => false],
 ];
 
-
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddRooms'] = [
     'inputType' => 'checkbox',
     'sql' => ['type' => 'boolean', 'default' => false],
 ];
-
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_filterAddPrice'] = [
     'inputType' => 'checkbox',

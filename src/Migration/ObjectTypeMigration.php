@@ -1,5 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @package       Plenta Casa Core Bundle
+ * @copyright     Copyright (c) 2026, Plenta.io
+ * @author        Plenta.io <https://plenta.io>
+ * @license       commercial
+ */
+
 namespace Plenta\CasaCoreBundle\Migration;
 
 use Contao\CoreBundle\Migration\AbstractMigration;
@@ -23,11 +32,11 @@ class ObjectTypeMigration extends AbstractMigration
 
         $columns = $schemaManager->listTableColumns('tl_pcasa_object_type');
 
-        if (!array_key_exists('pid', $columns)) {
+        if (!\array_key_exists('pid', $columns)) {
             return false;
         }
 
-        return $this->connection->fetchOne('SELECT COUNT(*) FROM tl_pcasa_type') !== 0;
+        return 0 !== $this->connection->fetchOne('SELECT COUNT(*) FROM tl_pcasa_type');
     }
 
     public function run(): MigrationResult
