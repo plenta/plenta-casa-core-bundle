@@ -49,7 +49,6 @@ class FilterType extends AbstractType
                 'choice_filter' => fn ($value) => !$value || $this->objectTypes->hasObjects($value),
                 'priority' => 75,
                 'required' => false,
-                'attr' => ['data-action' => 'change->casa-filter#types'],
                 'row_attr' => ['class' => 'widget-select'],
             ]);
         }

@@ -89,7 +89,7 @@ class ParameterGenerator
                 );
             }
 
-            if ($area = ((int) $filter['area'] ?? null)) {
+            if ($area = ((int) ($filter['area'] ?? null))) {
                 $parameters[] = new Parameter(
                     'areaMin',
                     ['(cast(livingArea as unsigned) >= ? OR cast(floorArea as unsigned) >= ?)'],
