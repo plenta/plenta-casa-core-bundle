@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 /**
+ * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -20,6 +21,7 @@ use Contao\FilesModel;
 use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Helper\AliasGenerator;
 use Plenta\CasaCoreBundle\Helper\ObjectTypes;
+use Plenta\CasaCoreBundle\Model\LeadModel;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Symfony\Component\Asset\Packages;
@@ -52,6 +54,7 @@ class TlPcasaObjectListener
         return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', [
             'property' => $property,
             'image' => $this->getImage($property),
+            'leads' => $this->getLeads($property['id']),
         ]);
     }
 
@@ -134,7 +137,7 @@ class TlPcasaObjectListener
     /**
      * @param array<string, mixed> $property
      */
-    public function getImage(array $property): string|null
+    public function getImage(array $property): ?string
     {
         if (null !== $property['singleSRC']) {
             $objFile = FilesModel::findByUuid(StringUtil::binToUuid($property['singleSRC']));
@@ -151,5 +154,12 @@ class TlPcasaObjectListener
         }
 
         return null;
+    }
+
+    public function getLeads(int $object): string
+    {
+        $leads = LeadModel::countBy('object', $object) ?? 0;
+
+        return $this->translator->trans('PLENTA.CASA.lead_count', ['%count%' => $leads], 'plenta_casa_backend');
     }
 }

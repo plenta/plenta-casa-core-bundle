@@ -11,13 +11,6 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\Controller\Contao\ContentElement;
 
-/*
- * @package       Customer
- * @copyright     Copyright (c) 2025, Plenta.io
- * @author        Plenta.io <https://plenta.io>
- * @license       commercial
- */
-
 use Contao\BackendTemplate;
 use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;

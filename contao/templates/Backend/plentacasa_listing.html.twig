@@ -6,7 +6,7 @@
 <table class="plenta_casa_property_listing">
     <tbody>
     <tr>
-        <td class="image" rowspan="3">
+        <td class="image" rowspan="4">
             {% if image %}
                 {% set fig = figure(image, [100, 100, 'crop']) %}
 
@@ -30,6 +30,11 @@
             <span class="badge object-type" title="Objekttyp: {{ object_type }}">{{ object_type }}</span>
             <span class="badge">Maße</span>
             <span class="badge">Kosten</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span class="leads">{{ leads }}</span>
         </td>
     </tr>
     </tbody>
