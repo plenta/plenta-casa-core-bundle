@@ -102,7 +102,10 @@ class TlPcasaObjectListener
         if ($lists = ContentModel::findByType('plenta_casa_listing')) {
             foreach ($lists as $list) {
                 try {
-                    $url = $this->contentUrlGenerator->generate($list->getRelated('jumpTo'), ['parameters' => '/'.$slug]);
+                    $url = $this->contentUrlGenerator->generate(
+                        $list->getRelated('jumpTo'),
+                        ['parameters' => '/'.$slug]
+                    );
                 } catch (\Throwable) {
                     $url = null;
                 }

@@ -134,7 +134,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'filter' => true,
             'sorting' => true,
             'inputType' => 'select',
-            'foreignKey' => 'tl_pcasa_object_type.title',
             'eval' => [
                 'mandatory' => true,
                 'includeBlankOption' => true,

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/*
- * @package       Plenta Casa Core Bundle
+/**
+ * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -55,32 +55,19 @@ class ObjectTypes
         return $count;
     }
 
-    /**
-     * @return array<int, string>
-     */
-    public function getTypes(int $pid = 0, string $prefix = '', bool $showChildrenOnlyWhenChecked = false): array
+    public function getTypes(int $pid = 0, int $depth = 0): array
     {
         $return = [];
+        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'title ASC']);
 
-        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'sorting ASC']);
+        if (!$types) {
+            return $return;
+        }
 
-        if ($types) {
-            foreach ($types as $type) {
-                $return[$type->id] = $prefix.($prefix ? ' ' : '').$type->title;
-
-                if ($showChildrenOnlyWhenChecked) {
-                    $request = $this->requestStack->getCurrentRequest();
-
-                    if ($request->query->has('filter')) {
-                        $filter = $request->query->all('filter');
-
-                        if (!\in_array($type->id, $filter['objectType'] ?? [], true)) {
-                            continue;
-                        }
-                    }
-                }
-                $return += $this->getTypes($type->id, $prefix.'-');
-            }
+        foreach ($types as $type) {
+            $indent = $depth > 0 ? str_repeat('　', $depth - 1).'└ ' : '';
+            $return[$type->id] = $indent.$type->title;
+            $return += $this->getTypes($type->id, $depth + 1);
         }
 
         return $return;
