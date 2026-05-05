@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-575,-74)">
+        <g id="Plenta-Casa---Dark-Mode-24x24" serif:id="Plenta Casa - Dark Mode 24x24" transform="matrix(0.157895,0,0,0.171429,573.736842,72.8)">
+            <rect x="8" y="7" width="152" height="140" style="fill:none;"/>
+            <g transform="matrix(0.690909,0,0,0.636364,-69.676021,-34.080283)">
+                <path d="M274.5,283.966L173.5,283.966C132.679,283.911 113.938,251.149 113.268,225.505C112.35,190.363 113.141,133.499 113.252,125.499C113.682,94.619 134.904,68.268 169.485,65.289C172.111,65.063 272.129,65.143 275.515,65.248C308.12,66.259 330.965,95.965 332.015,118.518C332.044,119.125 331.972,216.021 331.966,224.5C331.94,259.674 305.693,282.997 274.5,283.966ZM210,242L210,200C210,192 216,186 224,186L232,186C240,186 246,192 246,200L246,242L256,242C282,242 290,224 290,206L290,180C290,170 286,162 278,156L240,124C234,118 230,108 222,108L168,108C160,108 156,114 156,122L156,228C156,236 160,242 168,242L210,242Z" style="fill:rgb(241,161,122);"/>
+            </g>
+        </g>
+    </g>
+</svg>

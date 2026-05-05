@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2" viewBox="0 0 24 24"><g transform="matrix(.1579 0 0 .17143 -1.26 -1.2)"><path d="M8 7h152v140H8z" style="fill:none"/><clipPath id="a"><path d="M8 7h152v140H8z"/></clipPath><g clip-path="url(#a)"><path d="M274.5 283.97h-101c-40.82-.06-59.56-32.82-60.23-58.47-.92-35.14-.13-92-.02-100 .43-30.88 21.65-57.23 56.24-60.21 2.62-.23 102.64-.15 106.02-.04 32.61 1 55.45 30.72 56.5 53.27.03.6-.04 97.5-.04 105.98-.03 35.17-26.28 58.5-57.47 59.47" style="fill:#f1a17a;fill-rule:nonzero" transform="matrix(.69461 0 0 .63978 -70.5 -34.68)"/><path d="M222 108h-54c-8 0-12 6-12 14v106c0 8 4 14 12 14h88c26 0 34-18 34-36v-26q0-15-12-24l-38-32c-6-6-10-16-18-16" style="fill-rule:nonzero" transform="matrix(.69461 0 0 .63978 -70.5 -34.68)"/><path d="M210 244v-44c0-8 6-14 14-14h8c8 0 14 6 14 14v45z" style="fill:#f1a17a;fill-rule:nonzero" transform="matrix(.69461 0 0 .63978 -70.5 -34.68)"/></g></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-575,-74)">
+        <g id="Plenta-Casa---Dark-Mode-24x24" serif:id="Plenta Casa - Dark Mode 24x24" transform="matrix(0.157895,0,0,0.171429,573.736842,72.8)">
+            <rect x="8" y="7" width="152" height="140" style="fill:none;"/>
+            <g transform="matrix(0.690909,0,0,0.636364,-69.676021,-34.080283)">
+                <path d="M274.5,283.966L173.5,283.966C132.679,283.911 113.938,251.149 113.268,225.505C112.35,190.363 113.141,133.499 113.252,125.499C113.682,94.619 134.904,68.268 169.485,65.289C172.111,65.063 272.129,65.143 275.515,65.248C308.12,66.259 330.965,95.965 332.015,118.518C332.044,119.125 331.972,216.021 331.966,224.5C331.94,259.674 305.693,282.997 274.5,283.966ZM210,242L210,200C210,192 216,186 224,186L232,186C240,186 246,192 246,200L246,242L256,242C282,242 290,224 290,206L290,180C290,170 286,162 278,156L240,124C234,118 230,108 222,108L168,108C160,108 156,114 156,122L156,228C156,236 160,242 168,242L210,242Z" style="fill:rgb(241,161,122);"/>
+            </g>
+        </g>
+    </g>
+</svg>
