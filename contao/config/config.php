@@ -18,6 +18,9 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
         'plentacasa_objects' => [
             'tables' => ['tl_pcasa_object'],
         ],
+        'plentacasa_projects' => [
+            'tables' => ['tl_pcasa_project'],
+        ],
         'plentacasa_import' => [
             'tables' => [],
         ],

@@ -24,6 +24,7 @@ class AliasListener
     ) {
     }
 
+    #[AsCallback(table: 'tl_pcasa_project', target: 'fields.alias.save')]
     #[AsCallback(table: 'tl_pcasa_quarter', target: 'fields.alias.save')]
     #[AsCallback(table: 'tl_pcasa_targetgroup', target: 'fields.alias.save')]
     public function aliasSaveCallback(string $value, DataContainer $dc): string

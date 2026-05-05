@@ -25,6 +25,7 @@ use Plenta\CasaCoreBundle\Model\LeadModel;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Symfony\Component\Asset\Packages;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment as TwigEnvironment;
 
@@ -37,6 +38,7 @@ class TlPcasaObjectListener
         protected readonly TwigEnvironment $twig,
         private readonly ObjectTypes $objectTypes,
         private readonly ContentUrlGenerator $contentUrlGenerator,
+        private readonly RequestStack $requestStack,
     ) {
     }
 
@@ -55,7 +57,45 @@ class TlPcasaObjectListener
             'property' => $property,
             'image' => $this->getImage($property),
             'leads' => $this->getLeads($property['id']),
+            'price' => $this->getObjectPrice($property),
+            'size' => $this->getObjectSize($property),
         ]);
+    }
+
+    public function getObjectPrice(array $property): string
+    {
+        $value = match ($property['marketing_type']) {
+            'RENT' => $property['totalRent'] ?? $property['baseRent'] ?? null,
+            'BUY' => $property['price'] ?? null,
+            default => null,
+        };
+
+        return $value ? $this->formatNumber($value) : '-';
+    }
+
+    public function getObjectSize(array $property): string
+    {
+        $fields = ['floorArea', 'plotArea', 'livingArea'];
+
+        if (\in_array($property['marketing_type'], ['RENT', 'BUY'], true)) {
+            foreach ($fields as $field) {
+                if (0 !== (int) $property[$field]) {
+                    return $this->formatNumber($property[$field]);
+                }
+            }
+        }
+
+        return '-';
+    }
+
+    public function formatNumber(int|float|string $value): string
+    {
+        $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
+
+        $formatter = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
+        $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, 2);
+
+        return $formatter->format((float) $value);
     }
 
     /**
