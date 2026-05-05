@@ -16,6 +16,18 @@
     --pcasa-color-gray: var(--nav-group);
 }
 
+#home {
+    background: url('../img/plenta-casa.svg') no-repeat 10px center;
+    background-size: 24px 24px;
+}
+
+html[data-color-scheme='dark'] {
+    #home {
+        background: url('../img/plenta-casa--dark.svg') no-repeat 10px center;
+        background-size: 24px 24px;
+    }
+}
+
 html[data-color-scheme='dark'] {
     --pcasa-filter-to-white: invert(1);
 }
