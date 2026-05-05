@@ -5,19 +5,20 @@ CASA:
     area_unit: m²
     room_unit: Zimmer
     marketing_type:
-      BUY: Kaufen
-      RENT: Mieten
+        BUY: Kaufen
+        RENT: Mieten
     show_object: 'Objekt ":name" anzeigen'
     filter:
-      marketingType: Kaufen/Mieten
-      objectType: Objekttyp
-      type: Typ
-      keyword: Suchbegriff
-      location: Ort
-      perimeter: Umkreis
-      submit: Suchen
-      area: Wohnfläche ab
-      rooms: Zimmer ab
-      price: Preis bis
-      min: von
-      max: bis
+        marketingType: Kaufen/Mieten
+        objectType: Objekttyp
+        type: Typ
+        keyword: Suchbegriff
+        location: Ort
+        perimeter: Umkreis
+        submit: Suchen
+        area: Wohnfläche ab
+        rooms: Zimmer ab
+        price: Preis (€)
+        min: von
+        max: bis
+        areaRange: Fläche (m²)
