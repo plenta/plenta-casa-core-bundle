@@ -15,6 +15,11 @@
     --pcasa-background-orange: #ff9847;
     --pcasa-color-gray: var(--nav-group);
     --pcase-badge-color: #fff;
+    --pcasa-navi-icon: url('../img/pcasa.svg');
+}
+
+html[data-color-scheme='dark'] {
+    --pcasa-navi-icon: url('../img/pcasa--dark.svg');
 }
 
 #home {
@@ -27,6 +32,12 @@ html[data-color-scheme='dark'] {
         background: url('../img/plenta-casa--dark.svg') no-repeat 10px center;
         background-size: 24px 24px;
     }
+}
+
+#tl_navigation .group-plenta_casa,
+#tl_navigation .group-plenta_casa_cmr {
+    background: var(--pcasa-navi-icon) 3px 2px no-repeat;
+    background-size: 14px 14px;
 }
 
 html[data-color-scheme='dark'] {
