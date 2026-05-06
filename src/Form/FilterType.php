@@ -52,7 +52,7 @@ class FilterType extends AbstractType
                     'placeholder' => '-',
                     'priority' => 100,
                     'required' => false,
-                    'row_attr' => ['class' => 'widget-select'],
+                    'row_attr' => ['class' => 'widget-checkbox'],
                 ],
             );
         }
