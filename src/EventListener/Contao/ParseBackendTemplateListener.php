@@ -21,7 +21,7 @@ class ParseBackendTemplateListener
         if ('be_main' === $template) {
             $buffer = str_replace(
                 '<span class="app-title">Contao</span>',
-                '<span class="app-title">Plenta Casa ♥ Contao</span>',
+                '<span class="app-title">Plenta ♥ Contao</span>',
                 $buffer
             );
         }

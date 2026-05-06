@@ -20,6 +20,9 @@ tl_content:
     plenta_casa_filterAddPrice:
         0: Preis
         1: Die Suche nach Preis (von-bis) wird im Formular angezeigt.
+    plenta_casa_filterAddResetButton:
+        0: Zurücksetzen-Button hinzufügen
+        1: Es wird ein Zurücksetzen-Button angezeigt.
     plenta_casa_readerParts:
         0: Template-Elemente
         1: Bitte legen Sie pro Template-Element einen Eintrag an.
