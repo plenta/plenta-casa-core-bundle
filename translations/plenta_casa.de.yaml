@@ -22,3 +22,4 @@ CASA:
         min: von
         max: bis
         areaRange: Fläche (m²)
+        reset: Filter zurücksetzen
