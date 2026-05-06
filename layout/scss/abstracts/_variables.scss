@@ -36,8 +36,7 @@ $content-width: 1300px;
 $casa-element-width: 300px;
 
 // Border
-$base-border-color: $color-gray-light;
 $base-border-style: solid;
 $base-border-width: 1px;
-$base-border: $base-border-width $base-border-style $base-border-color;
+$base-border: $base-border-width $base-border-style var(--pcasa-border-color);
 $base-border-radius: 8px;
