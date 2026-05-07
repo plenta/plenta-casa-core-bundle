@@ -2,6 +2,8 @@ twig:
     globals:
         backend_route: '%contao.backend.route_prefix%'
         casa_variables: '@Plenta\CasaCoreBundle\Helper\TwigVariables'
+    form_themes:
+        - '@Contao/form/form.html.twig'
 
 framework:
     assets:

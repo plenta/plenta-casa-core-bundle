@@ -9,10 +9,12 @@
     --pcasa-list-bg-color: #{variables.$color-white};
     --pcasa-list-border-radius: #{variables.$base-border-radius};
     --pcasa-list-image-border-radius: #{math.div(variables.$base-border-radius, 2)};
+    --pcasa-list-image-border-radius-bottom: 0;
     --pcasa-list-image-width: 300px;
     --pcasa-list-image-width-tablet: 200px;
     --pcasa-title-color: #{variables.$color-black};
     --pcasa-price-font-weight: #{variables.$font-weight-bold};
+    --pcasa-title-font-size: 18px;
     --pcasa-price-font-size: #{math.round(variables.$base-font-size * 1.3)};
     --pcasa-price-small-font-size: 14px;
     --pcasa-search-button-bg-color: #{variables.$color-default};
@@ -28,4 +30,6 @@
     --pcasa-reader-border-color: #{variables.$color-gray-light};
     --pcasa-focus-border-color: #{variables.$color-gray};
     --pcasa-form-mandatory-color: #{variables.$color-black};
+    --pcasa-padding-card: 0;
+    --pcasa-padding-card-inside: #{variables.$base-spacing-s}
 }

@@ -34,9 +34,10 @@
             }
 
             .title {
-                @extend %h2;
-
-                margin-bottom: 0;
+                font-size: var(--pcasa-title-font-size);
+                font-weight: variables.$font-weight-bold;
+                line-height: variables.$base-line-height;
+                display: block;
 
                 a {
                     color: var(--pcasa-title-color);
@@ -132,7 +133,7 @@
                 display: block;
 
                 img {
-                    border-radius: var(--pcasa-list-image-border-radius);
+                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius);
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
@@ -157,7 +158,8 @@
 
         .objects {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(var(--pcasa-list-item-width), 1fr));
+            //grid-template-columns: repeat(auto-fill, minmax(var(--pcasa-list-item-width), 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: variables.$base-spacing-s;
         }
 
@@ -166,7 +168,11 @@
             flex-direction: column;
             gap: variables.$base-spacing-x-s;
             align-items: stretch;
-            padding: variables.$base-spacing-x-s;
+            padding: var(--pcasa-padding-card) var(--pcasa-padding-card) var(--pcasa-padding-card-inside);
+
+            > div {
+                padding-inline: var(--pcasa-padding-card-inside);
+            }
 
             .content-image {
                 figure,
@@ -182,12 +188,13 @@
 
                 img {
                     height: auto;
-                    border-radius: var(--pcasa-list-image-border-radius);
+                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom);
                 }
             }
 
             .wrapper-content {
                 flex-flow: row wrap;
+                margin-top: auto;
             }
         }
     }
