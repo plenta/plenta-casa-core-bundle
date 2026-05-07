@@ -54,6 +54,8 @@ class FilterType extends AbstractType
                     'priority' => 100,
                     'required' => false,
                     'row_attr' => ['class' => 'widget-checkbox'],
+                    'attr' => ['class' => 'checkbox-group'],
+                    'label' => 'CASA.filter.marketingType',
                 ],
             );
         }

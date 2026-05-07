@@ -1,0 +1,20 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block form_row %}
+    <div{% for key, value in row_attr %} {{ key }}="{{ value }}"{% endfor %}>
+    {% if not compound %}
+        {{ form_label(form) }}
+    {% endif %}
+    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+    </div>
+{% endblock %}
+
+{% block choice_widget %}
+    <fieldset class="{{ row_attr.class|default('') }}">
+        {% if label is not same as(false) %}
+            <legend>{{ label }}</legend>
+        {% endif %}
+        {{ form_widget(form) }}
+    </fieldset>
+{% endblock %}
