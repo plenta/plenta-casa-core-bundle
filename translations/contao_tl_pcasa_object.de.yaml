@@ -84,8 +84,8 @@ tl_pcasa_object:
         0: Instandhaltungsrücklage
         1: Bitte geben Sie die Instandhaltungsrücklage ein.
     parkingSpacePrice:
-        0: Stellplatz-Preis
-        1: Bitte geben Sie den Stellplatz-Preis ein.
+        0: Stellplatzpreis
+        1: Bitte geben Sie den Stellplatzpreis ein.
     lastRefurbishment:
         0: Letzte Modernisierung
         1: Bitte geben Sie das Datum der letzten Modernisierung ein.
@@ -117,7 +117,7 @@ tl_pcasa_object:
         dilapidated: abbruchreif
     numberOfParkingSpaces:
         0: Anzahl Parkplätze
-        1: Bitte geben Sie die Anzahl der Anzahl Parkplätze ein.
+        1: Bitte geben Sie die Anzahl der Parkplätze ein.
     parkingSpaceType:
         0: Stellplatztyp
         1: Bitte wählen Sie einen Stellplatztyp aus.
@@ -131,7 +131,7 @@ tl_pcasa_object:
         doubleGarage: Doppelgarage
     targetgroups:
         0: Zielgruppen
-        1: Weisen Sie das Objekteiner Zielgruppen zu.
+        1: Weisen Sie das Objekt einer Zielgruppe zu.
     quarter:
         0: Quartier
         1: Weisen Sie das Objekt einem Quartier zu.
@@ -170,16 +170,16 @@ tl_pcasa_object:
         1: bitte geben Sie die Gesamtfläche ein.
     balconyArea:
         0: Balkonfläche
-        1: Bitte geben die die Balkonfläche ein.
+        1: Bitte geben Sie die Balkonfläche ein.
     gardenArea:
         0: Gartenfläche
-        1: Bitte geben sie die Gartenfläche ein.
+        1: Bitte geben Sie die Gartenfläche ein.
     floor:
         0: Etage
         1: Bitte geben Sie die Etage ein.
     numberOfFloors:
         0: Gesamtetagenzahl
-        1: Bitte geben sie die Gesamtetagenzahl ein.
+        1: Bitte geben Sie die Gesamtetagenzahl ein.
     floorPosition:
         0: Lage innerhalb der Etage
         1: bitte geben Sie die Lage innerhalb der Etage ein ("links", "rechts", "mittig", ...).
@@ -286,8 +286,8 @@ tl_pcasa_object:
         0: Kaufpreis
         1: Bitte geben Sie den Kaufpreis ein.
     monthlyRentalIncome:
-        0: Monatlicher Mieteinkommen
-        1: Bitte geben Sie den Monatlichen Mieteinkommen ein.
+        0: Monatliches Mieteinkommen
+        1: Bitte geben Sie das monatliche Mieteinkommen ein.
     priceOnRequest:
         0: Preis auf Anfrage
         1: Bitte auswählen, wenn der Preis auf Anfrage ist.
@@ -305,5 +305,5 @@ tl_pcasa_object:
     condition_legend: Zusatzinformationen
     media_legend: Medien
     marketing_legend: Vermarktung
-    author_legend: Author
+    author_legend: Autor
     publish_legend: Veröffentlichung
