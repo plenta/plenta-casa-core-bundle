@@ -76,12 +76,15 @@ class Listing extends AbstractContentElementController
             $offset = null;
         }
 
+        $order = $this->getListSorting($model->plenta_casa_sorting);
+
         $objects = ObjectModel::findPublishedBy(
             $columns,
             $values,
             [
                 'limit' => $perPage,
                 'offset' => $offset,
+                'order' => $order,
             ],
         );
 
@@ -89,5 +92,16 @@ class Listing extends AbstractContentElementController
         $template->jumpTo = PageModel::findByIdOrAlias($model->jumpTo);
 
         return $template->getResponse();
+    }
+
+    public function getListSorting(?string $sorting): string
+    {
+        return match ($sorting) {
+            'order_headline_asc' => 'tl_pcasa_object.title',
+            'order_headline_desc' => 'tl_pcasa_object.title DESC',
+            'order_random' => 'RAND()',
+            'order_date_asc' => 'tl_pcasa_object.tstamp',
+            default => 'tl_pcasa_object.tstamp DESC',
+        };
     }
 }

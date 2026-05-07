@@ -67,5 +67,13 @@ $GLOBALS['PLENTA']['CASA']['type'] = [
     'INVESTMENT',
 ];
 
+$GLOBALS['PLENTA']['CASA']['sorting_type'] = [
+    'order_date_asc',
+    'order_date_desc',
+    'order_headline_asc',
+    'order_headline_desc',
+    'order_random',
+];
+
 $GLOBALS['TL_MODELS'][ObjectModel::getTable()] = ObjectModel::class;
 $GLOBALS['TL_MODELS'][ObjectTypeModel::getTable()] = ObjectTypeModel::class;

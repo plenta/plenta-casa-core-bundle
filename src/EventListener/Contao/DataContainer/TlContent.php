@@ -60,4 +60,10 @@ class TlContent
             ->asTemplateOptions()
         ;
     }
+
+    #[AsCallback(table: 'tl_content', target: 'fields.plenta_casa_sorting.options')]
+    public function onListSortingOptions(): array
+    {
+        return $GLOBALS['PLENTA']['CASA']['sorting_type'];
+    }
 }
