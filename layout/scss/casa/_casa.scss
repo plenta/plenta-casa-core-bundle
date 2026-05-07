@@ -12,10 +12,6 @@
         }
     }
 
-    .widget-submit {
-        flex: 0 0 100%;
-    }
-
     button {
         @include mixins.button;
         @include mixins.button-color(
