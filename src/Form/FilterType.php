@@ -83,7 +83,7 @@ class FilterType extends AbstractType
                 [
                     'priority' => 125,
                     'required' => false,
-                    'row_attr' => ['class' => 'widget-text'],
+                    'row_attr' => ['class' => 'widget-text keyword'],
                     'attr' => ['placeholder' => 'CASA.filter.keywordPlaceholder'],
                 ],
             );
