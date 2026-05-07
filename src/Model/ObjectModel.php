@@ -13,7 +13,7 @@ class ObjectModel extends Model
 
     public static function findPublishedByIdOrAlias(int|string $idOrAlias): self|null
     {
-        $columns = ['(tl_pcasa_object.id = ? or alias = ?)'];
+        $columns = ['(tl_pcasa_object.id = ? or tl_pcasa_object.alias = ?)'];
         $values = [$idOrAlias, $idOrAlias];
 
         self::buildPublished($columns, $values);
@@ -38,7 +38,7 @@ class ObjectModel extends Model
     public static function buildPublished(array &$columns, array &$values): void
     {
         $columns = array_merge($columns, [
-            'published = ?',
+            'tl_pcasa_object.published = ?',
             '(tl_pcasa_object.start = ? OR tl_pcasa_object.start < ?)',
             '(tl_pcasa_object.stop = ? OR tl_pcasa_object.stop > ?)',
         ]);

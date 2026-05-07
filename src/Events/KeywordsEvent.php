@@ -15,7 +15,14 @@ class KeywordsEvent extends Event
      * @param array<string> $fields
      */
     public function __construct(
-        protected array $fields = ['title', 'city', 'description', 'equipment', 'location', 'other'],
+        protected array $fields = [
+            'tl_pcasa_object.title',
+            'tl_pcasa_object.city',
+            'tl_pcasa_object.description',
+            'tl_pcasa_object.equipment',
+            'tl_pcasa_object.location',
+            'tl_pcasa_object.other',
+        ],
         protected ContentModel|null $contentModel = null,
         protected string $connector = 'AND',
         protected bool $splitKeywords = true,
