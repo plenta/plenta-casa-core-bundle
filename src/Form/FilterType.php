@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Plenta\CasaCoreBundle\Form;
 
 use Plenta\CasaCoreBundle\Events\FilterFormEvent;
+use Plenta\CasaCoreBundle\Form\Type\ResetLinkType;
 use Plenta\CasaCoreBundle\Helper\ObjectTypes;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -137,18 +138,12 @@ class FilterType extends AbstractType
         ;
 
         if ($model->plenta_casa_filterAddResetButton) {
-            $builder
-                ->add(
-                    'reset',
-                    ResetType::class,
-                    [
-                        'priority' => 0,
-                        'label' => 'CASA.filter.reset',
-                        'translation_domain' => 'plenta_casa',
-                        'row_attr' => ['class' => 'widget-reset'],
-                    ],
-                )
-            ;
+            $builder->add('reset', ResetLinkType::class, [
+                'priority' => 0,
+                'label' => 'CASA.filter.reset',
+                'translation_domain' => 'plenta_casa',
+                'row_attr' => ['class' => 'widget-reset_button'],
+            ]);
         }
 
         $event = new FilterFormEvent($builder);
