@@ -13,6 +13,7 @@ CASA:
         objectType: Objekttyp
         type: Typ
         keyword: Suchbegriff
+        keywordPlaceholder: Suche nach Orten, Wohnungen, etc.
         location: Ort
         perimeter: Umkreis
         submit: Suchen
