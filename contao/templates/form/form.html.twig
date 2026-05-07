@@ -20,5 +20,5 @@
 {% endblock %}
 
 {% block reset_link_widget %}
-    <a href="{{ app.request.pathInfo }}" class="button">{{ label|trans({}, translation_domain) }}</a>
+    <a href="{{ app.request.pathInfo }}">{{ label|trans({}, translation_domain) }}</a>
 {% endblock %}
