@@ -142,7 +142,7 @@ class FilterType extends AbstractType
                 'priority' => 0,
                 'label' => 'CASA.filter.reset',
                 'translation_domain' => 'plenta_casa',
-                'row_attr' => ['class' => 'widget-reset_button'],
+                'row_attr' => ['class' => 'widget-reset-button'],
             ]);
         }
 
