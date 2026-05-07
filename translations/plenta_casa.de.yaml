@@ -19,7 +19,7 @@ CASA:
         submit: Suchen
         area: Wohnfläche ab
         rooms: Zimmer ab
-        price: Preis (€)
+        price: Preis bis (€)
         min: von
         max: bis
         areaRange: Fläche (m²)

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/*
- * @package       Plenta Casa Core Bundle
+/**
+ * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -55,6 +55,11 @@ class Listing extends AbstractContentElementController
         foreach ($parameters as $parameter) {
             $columns = array_merge($columns, $parameter->getColumns());
             $values = array_merge($values, $parameter->getValues());
+        }
+
+        if (true === (bool) $model->plenta_casa_featured) {
+            $columns[] = 'tl_pcasa_object.featured = ?';
+            $values[] = true;
         }
 
         if ($model->perPage) {
