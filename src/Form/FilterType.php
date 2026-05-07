@@ -81,9 +81,10 @@ class FilterType extends AbstractType
                 'keyword',
                 TextType::class,
                 [
-                    'priority' => 25,
+                    'priority' => 125,
                     'required' => false,
                     'row_attr' => ['class' => 'widget-text'],
+                    'attr' => ['placeholder' => 'CASA.filter.keywordPlaceholder'],
                 ],
             );
         }
