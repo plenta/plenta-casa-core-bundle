@@ -2,7 +2,7 @@
 
 {% set url = content_url(jumpTo, {parameters: '/' ~ object.alias}) %}
 
-<div class="object">
+<div class="object{% if object.featured %} object-featured{% endif %}">
     {% block titleImage %}
         {% if object.singleSRC|default and data.size %}
             <a href="{{ url }}" title="{{ 'CASA.show_object'|trans({':name': object.name}) }}" class="image-content">
