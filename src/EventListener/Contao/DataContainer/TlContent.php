@@ -11,10 +11,12 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\EventListener\Contao\DataContainer;
 
+use Contao\ContentModel;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Twig\Finder\FinderFactory;
 use Contao\DataContainer;
 use Plenta\CasaCoreBundle\Events\ReaderPartOptionsEvent;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class TlContent
@@ -22,6 +24,7 @@ class TlContent
     public function __construct(
         protected EventDispatcherInterface $eventDispatcher,
         protected FinderFactory $finderFactory,
+        protected readonly RequestStack $requestStack
     ) {
     }
 
@@ -31,7 +34,18 @@ class TlContent
     #[AsCallback(table: 'tl_content', target: 'fields.plenta_casa_readerPartType.options')]
     public function onReaderPartTypeOptions(): array
     {
-        $options = ['title', 'address', 'gallery', 'titleImage', 'description', 'facilities', 'area', 'price', 'condition', 'marketing'];
+        $options = [
+            'title',
+            'address',
+            'gallery',
+            'titleImage',
+            'description',
+            'facilities',
+            'area',
+            'price',
+            'condition',
+            'marketing',
+        ];
 
         $event = new ReaderPartOptionsEvent($options);
         $this->eventDispatcher->dispatch($event, $event::NAME);
@@ -65,5 +79,21 @@ class TlContent
     public function onListSortingOptions(): array
     {
         return $GLOBALS['PLENTA']['CASA']['sorting_type'];
+    }
+
+    #[AsCallback('tl_content', 'config.onload')]
+    public function onLoadCallback(?DataContainer $dc = null): void
+    {
+        if (null === $dc || !$dc->id || 'edit' !== $this->requestStack->getCurrentRequest()->query->get('act')) {
+            return;
+        }
+
+        $element = ContentModel::findById($dc->id);
+
+        if (null === $element || 'plenta_casa_listing' !== $element->type) {
+            return;
+        }
+
+        $GLOBALS['TL_DCA']['tl_content']['fields']['jumpTo']['eval']['mandatory'] = true;
     }
 }
