@@ -13,7 +13,7 @@
 {% block choice_widget %}
     <fieldset class="{{ row_attr.class|default('') }}">
         {% if label is not same as(false) %}
-            <legend>{{ label }}</legend>
+            <legend>{{ label|trans({}, translation_domain) }}</legend>
         {% endif %}
         {{ form_widget(form) }}
     </fieldset>

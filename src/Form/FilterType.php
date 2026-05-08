@@ -48,6 +48,8 @@ class FilterType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => ['RENT', 'BUY'],
+                    'label' => 'PLENTA.CASA.filter.marketingType',
+                    'translation_domain' => 'contao_default',
                     'choice_filter' => static fn ($value) => ObjectModel::countPublishedBy(['marketing_type = ?'], [$value]),
                     'choice_label' => static fn ($value, $key, $index) => 'PLENTA.CASA.marketing_types.'.$value,
                     'choice_translation_domain' => 'contao_default',
@@ -56,7 +58,6 @@ class FilterType extends AbstractType
                     'required' => false,
                     'row_attr' => ['class' => 'widget-checkbox'],
                     'attr' => ['class' => 'checkbox-group'],
-                    'label' => 'CASA.filter.marketingType',
                 ],
             );
         }

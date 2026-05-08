@@ -57,9 +57,13 @@
 
     <div class="wrapper-content">
         {% block price %}
-            <span class="price">{{ object.baseRent }} EUR
-            <span class="small">Kaltmiete zzgl. NK</span>
-        </span>
+            {% if object.marketing_type == 'RENT' %}
+                <span class="price">{{ object.baseRent }} €</span>
+                <span class="small">Kaltmiete zzgl. NK</span>
+            {% elseif object.marketing_type == 'BUY' %}
+                <span class="price">{{ object.price }} €</span>
+                <span class="small">Kaufpreis</span>
+            {% endif %}
         {% endblock %}
 
         {% block button %}
