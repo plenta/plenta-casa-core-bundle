@@ -1,0 +1,9 @@
+{% if object.description|default %}
+    {% embed '@Contao/casa/reader/parts/_base.html.twig' %}
+
+        {% block content %}
+            {{ object.other|raw }}
+        {% endblock %}
+
+    {% endembed %}
+{% endif %}

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/*
- * @package       Plenta Casa Core Bundle
+/**
+ * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -37,9 +37,13 @@ class TlContent
         $options = [
             'title',
             'address',
-            'gallery',
             'titleImage',
+            'gallery',
+            'floorplan',
             'description',
+            'location',
+            'equipment',
+            'other',
             'facilities',
             'area',
             'price',

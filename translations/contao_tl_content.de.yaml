@@ -36,8 +36,12 @@ tl_content:
         title: Titel
         address: Adresse
         gallery: Galerie
+        floorplan: Grundriss
         titleImage: Titelbild
         description: Beschreibung
+        location: Beschreibung der Lage
+        equipment: Beschreibung der Ausstattung
+        other: Sonstige Beschreibung
         facilities: Ausstattung
         area: Fläche
         price: Preis

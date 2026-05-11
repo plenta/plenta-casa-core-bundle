@@ -1,5 +1,6 @@
 {% use '@Contao/component/_headline.html.twig' %}
 
+{% block part %}
 <div class="part part-{{ part.plenta_casa_readerPartType|u.kebab }}">
     {% set part_headline = part.headline|deserialize %}
 
@@ -15,3 +16,4 @@
     {% block content %}
     {% endblock %}
 </div>
+{% endblock %}

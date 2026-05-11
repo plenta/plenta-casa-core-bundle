@@ -1,0 +1,16 @@
+{% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+
+{% block part %}
+    {% if object.row().floorPlansSRC %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {{ content_element('gallery', {
+        multiSRC: object.row().floorPlansSRC,
+        size: data.size,
+        fullsize: data.fullsize,
+        sortBy: '',
+    }) }}
+{% endblock %}
