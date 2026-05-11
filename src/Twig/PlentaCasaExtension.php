@@ -12,10 +12,16 @@ declare(strict_types=1);
 namespace Plenta\CasaCoreBundle\Twig;
 
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Attribute\AsTwigFilter;
 
 class PlentaCasaExtension
 {
+    public function __construct(
+        private readonly RequestStack $requestStack,
+    ) {
+    }
+
     #[AsTwigFilter('casaObjectTypeName')]
     public function casaObjectTypeName(int $value): string
     {
@@ -43,5 +49,16 @@ class PlentaCasaExtension
         }
 
         return $return.$type->title;
+    }
+
+    #[AsTwigFilter('casaFormatNumber')]
+    public function casaFormatNumber(int|float|string $value, int $decimals = 2): string
+    {
+        $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de_DE';
+
+        $formatter = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
+        $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $decimals);
+
+        return $formatter->format((float) $value);
     }
 }

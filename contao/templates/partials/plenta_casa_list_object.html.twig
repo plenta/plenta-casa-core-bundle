@@ -33,7 +33,7 @@
             {% if meta|trim is not empty %}
                 <div class="meta">
                     {% if object.livingArea|default %}
-                        <span class="area">{{ object.livingArea }} {{ 'CASA.area_unit'|trans }}</span>
+                        <span class="area">{{ object.livingArea|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</span>
                     {% endif %}
                     {% if object.rooms|default %}
                         <span class="rooms">{{ object.rooms }} {{ 'CASA.room_unit'|trans }}</span>
@@ -58,10 +58,10 @@
     <div class="wrapper-content">
         {% block price %}
             {% if object.marketing_type == 'RENT' %}
-                <span class="price">{{ object.baseRent }} €</span>
+                <span class="price">{{ object.baseRent|casaFormatNumber }} €</span>
                 <span class="small">Kaltmiete zzgl. NK</span>
             {% elseif object.marketing_type == 'BUY' %}
-                <span class="price">{{ object.price }} €</span>
+                <span class="price">{{ object.price|casaFormatNumber }} €</span>
                 <span class="small">Kaufpreis</span>
             {% endif %}
         {% endblock %}
