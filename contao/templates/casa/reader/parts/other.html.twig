@@ -1,6 +1,12 @@
 {% if object.description|default %}
     {% embed '@Contao/casa/reader/parts/_base.html.twig' %}
 
+        {% block part %}
+            {% if object.other|default %}
+                {{ parent() }}
+            {% endif %}
+        {% endblock %}
+
         {% block content %}
             {{ object.other|raw }}
         {% endblock %}
