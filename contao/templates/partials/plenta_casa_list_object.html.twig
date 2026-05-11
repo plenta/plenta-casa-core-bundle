@@ -61,8 +61,14 @@
                 <span class="price">{{ object.baseRent|casaFormatNumber }} €</span>
                 <span class="small">Kaltmiete zzgl. NK</span>
             {% elseif object.marketing_type == 'BUY' %}
-                <span class="price">{{ object.price|casaFormatNumber }} €</span>
-                <span class="small">Kaufpreis</span>
+                {% if object.priceOnRequest %}
+                    <span class="price">{{ 'tl_pcasa_object.priceOnRequest.0'|trans({}, 'contao_tl_pcasa_object') }}</span>
+                {% elseif object.priceNegotiable %}
+                    <span class="price">{{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_tl_pcasa_object') }}</span>
+                {% else %}
+                    <span class="price">{{ object.price|casaFormatNumber }} €</span>
+                    <span class="small">Kaufpreis</span>
+                {% endif %}
             {% endif %}
         {% endblock %}
 
