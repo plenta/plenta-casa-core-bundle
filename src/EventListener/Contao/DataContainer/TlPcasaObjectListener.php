@@ -205,4 +205,23 @@ class TlPcasaObjectListener
 
         return $this->translator->trans('PLENTA.CASA.lead_count', ['%count%' => $leads], 'plenta_casa_backend');
     }
+
+    #[AsCallback(table: 'tl_pcasa_object', target: 'fields.facilities.options')]
+    #[AsCallback(table: 'tl_pcasa_object', target: 'fields.bathroomFacilities.options')]
+    #[AsCallback(table: 'tl_pcasa_object', target: 'fields.flooring.options')]
+    public function sortOptionsCallback(DataContainer $dc): array
+    {
+        $field = $dc->field;
+        $options = $GLOBALS['TL_DCA']['tl_pcasa_object']['fields'][$field]['options'] ?? [];
+        $labels = $GLOBALS['TL_LANG']['tl_pcasa_object'][$field.'-options'] ?? [];
+
+        usort($options, static function (string $a, string $b) use ($labels): int {
+            return strnatcasecmp($labels[$a] ?? $a, $labels[$b] ?? $b);
+        });
+
+        return array_combine($options, array_map(
+            static fn (string $key): string => $labels[$key] ?? $key,
+            $options
+        ));
+    }
 }
