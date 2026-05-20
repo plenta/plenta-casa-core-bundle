@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/*
- * @package       Plenta Casa Core Bundle
+/**
+ * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\Twig;
 
+use Contao\FilesModel;
+use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Attribute\AsTwigFilter;
@@ -40,17 +42,6 @@ class PlentaCasaExtension
         return ObjectTypeModel::findById($value);
     }
 
-    protected function getTitle(ObjectTypeModel $type): string
-    {
-        $return = '';
-
-        if ($type->pid) {
-            $return .= $this->getTitle(ObjectTypeModel::findById($type->pid)).' > ';
-        }
-
-        return $return.$type->title;
-    }
-
     #[AsTwigFilter('casaFormatNumber')]
     public function casaFormatNumber(int|float|string $value, int $decimals = 2): string
     {
@@ -60,5 +51,39 @@ class PlentaCasaExtension
         $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $decimals);
 
         return $formatter->format((float) $value);
+    }
+
+    #[AsTwigFilter('casaFileMeta')]
+    public function casaFileMeta(string $uuid): array
+    {
+        $file = FilesModel::findByUuid(StringUtil::binToUuid($uuid));
+
+        if (null === $file) {
+            return ['alt' => '', 'title' => '', 'caption' => ''];
+        }
+
+        $meta = StringUtil::deserialize($file->meta, true);
+        $language = $GLOBALS['TL_LANGUAGE'] ?? 'de';
+
+        dump($meta);
+
+        $data = $meta[$language] ?? $meta['en'] ?? reset($meta) ?: [];
+
+        return [
+            'alt' => $data['alt'] ?? '',
+            'title' => $data['title'] ?? '',
+            'caption' => $data['caption'] ?? '',
+        ];
+    }
+
+    protected function getTitle(ObjectTypeModel $type): string
+    {
+        $return = '';
+
+        if ($type->pid) {
+            $return .= $this->getTitle(ObjectTypeModel::findById($type->pid)).' > ';
+        }
+
+        return $return.$type->title;
     }
 }

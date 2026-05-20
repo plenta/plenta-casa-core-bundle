@@ -5,14 +5,21 @@
 <div class="object{% if object.featured %} object-featured{% endif %}">
     {% block titleImage %}
         {% if object.singleSRC|default and data.size %}
-            <a href="{{ url }}" title="{{ 'CASA.show_object'|trans({':name': object.name}) }}" class="image-content">
-                {{ content_element('image', {
-                    singleSRC: object.singleSRC,
-                    size: data.size,
-                    sortBy: '',
-                    fullsize: false,
-                }) }}
-            </a>
+            {% set fileMeta = object.singleSRC|casaFileMeta %}
+            {% set image = figure(object.singleSRC, data.size, {
+                linkHref: url,
+                metadata: {
+                    alt: fileMeta.alt ?: object.title,
+                    title: fileMeta.title ?: object.title,
+                },
+                options: {
+                    attr: { class: 'content-image' }
+                }
+            }) %}
+            {% if image %}
+                {% use '@Contao/component/_figure.html.twig' %}
+                {% with {figure: image} %}{{ block('figure_component') }}{% endwith %}
+            {% endif %}
         {% endif %}
     {% endblock %}
 

@@ -4,6 +4,6 @@
     {% for part in data.plenta_casa_readerParts|deserialize %}
         {% if part.plenta_casa_readerPartType %}
         {{ include('@Contao/' ~ part.plenta_casa_readerPartTpl|default('casa/reader/parts/' ~ part.plenta_casa_readerPartType) ~ '.html.twig') }}
-        {% elseif %}
+        {% endif %}
     {% endfor %}
 {% endblock %}
