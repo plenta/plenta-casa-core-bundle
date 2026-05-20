@@ -103,8 +103,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     ],
 
     'casa_subpalettes' => [
-        'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice',
-        'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,heatingCostsInSc,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,monthlyRentalIncome',
+        'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice,priceCableSatTv',
+        'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,heatingCostsInSc,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,priceCableSatTv,monthlyRentalIncome',
     ],
 
     'fields' => [
@@ -359,6 +359,11 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'sql' => 'int(10) NOT NULL default 0',
         ],
         'parkingSpacePrice' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
+            'sql' => 'int(10) NOT NULL default 0',
+        ],
+        'priceCableSatTv' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
             'sql' => 'int(10) NOT NULL default 0',

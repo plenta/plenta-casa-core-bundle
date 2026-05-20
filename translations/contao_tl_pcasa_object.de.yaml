@@ -86,6 +86,9 @@ tl_pcasa_object:
     parkingSpacePrice:
         0: Stellplatzpreis
         1: Bitte geben Sie den Stellplatzpreis ein.
+    priceCableSatTv:
+        0: Kabelanschluss
+        1: Bitte geben Sie den Preis für den Kabelanschluss ein.
     lastRefurbishment:
         0: Letzte Modernisierung
         1: Bitte geben Sie das Datum der letzten Modernisierung ein.
