@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     ],
 
     'casa_subpalettes' => [
-        'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,monthlyRentalIncome',
+        'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice',
         'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,heatingCostsInSc,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,monthlyRentalIncome',
     ],
 
