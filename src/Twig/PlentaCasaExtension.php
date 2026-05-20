@@ -65,8 +65,6 @@ class PlentaCasaExtension
         $meta = StringUtil::deserialize($file->meta, true);
         $language = $GLOBALS['TL_LANGUAGE'] ?? 'de';
 
-        dump($meta);
-
         $data = $meta[$language] ?? $meta['en'] ?? reset($meta) ?: [];
 
         return [

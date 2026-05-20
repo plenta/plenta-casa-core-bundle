@@ -1,19 +1,21 @@
 {% use '@Contao/component/_headline.html.twig' %}
 
 {% block part %}
-<div class="part part-{{ part.plenta_casa_readerPartType|u.kebab }}">
-    {% set part_headline = part.headline|deserialize %}
+    <div class="part part-{{ part.plenta_casa_readerPartType|u.kebab }}">
+        {% set part_headline = part.headline|deserialize %}
 
-    {% if part_headline.value|default %}
-        {% with {headline: {
-            text: part_headline.value,
-            tag_name: part_headline.unit,
-        }} %}
-            {{ block('headline_component') }}
-        {% endwith %}
-    {% endif %}
+        {% if part_headline.value|default %}
+            {% block headline %}
+                {% with {headline: {
+                    text: part_headline.value,
+                    tag_name: part_headline.unit,
+                }} %}
+                    {{ block('headline_component') }}
+                {% endwith %}
+            {% endblock %}
+        {% endif %}
 
-    {% block content %}
-    {% endblock %}
-</div>
+        {% block content %}
+        {% endblock %}
+    </div>
 {% endblock %}

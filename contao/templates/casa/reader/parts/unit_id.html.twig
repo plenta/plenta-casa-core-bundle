@@ -1,0 +1,15 @@
+{% if object.unit_id|default %}
+    {% embed '@Contao/casa/reader/parts/_base.html.twig' %}
+
+        {% block headline %}{% endblock %}
+
+        {% block content %}
+            {% set part_headline = part.headline|deserialize %}
+            {% if part_headline.value|default %}
+                <span>{{ part_headline.value }}</span>:
+            {% endif %}
+            {{ object.unit_id }}
+        {% endblock %}
+
+    {% endembed %}
+{% endif %}
