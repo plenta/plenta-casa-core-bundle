@@ -1,0 +1,18 @@
+{% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+{% trans_default_domain 'plenta_casa' %}
+
+{% block part %}
+    {% if object.row().enclosure %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {{ content_element('downloads', {
+        multiSRC: object.enclosure|deserialize,
+        sortBy: 'name_asc',
+        inline: false,
+        fullsize: false,
+        showPreview: false,
+    }) }}
+{% endblock %}

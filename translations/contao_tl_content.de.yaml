@@ -48,6 +48,7 @@ tl_content:
         price: Preis
         condition: Zustand
         marketing: Vermarktung
+        enclosure: Anlagen
     plenta_casa_featured:
         0: Nur hervorgehobene Objekte anzeigen
         1: Bitte wählen Sie, ob nur hervorgehobene Objekte angezeigt werden sollen.
