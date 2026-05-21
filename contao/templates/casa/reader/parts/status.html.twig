@@ -1,0 +1,8 @@
+{% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+
+{% block content %}
+    {% if object.featured %}
+        <span class="featured"></span>
+    {% endif %}
+    <span class="type">{{ ('PLENTA.CASA.marketing_types.' ~ object.marketing_type)|trans({}, 'contao_default') }}</span>
+{% endblock %}

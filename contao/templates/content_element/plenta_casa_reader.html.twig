@@ -1,5 +1,12 @@
 {% extends '@Contao/content_element/_base.html.twig' %}
 
+{% if object.featured %}
+    {% set attributes = attrs()
+        .addClass('object-featured')
+        .addClass(cssClasses|default([]))
+    %}
+{% endif %}
+
 {% block content %}
     {% for part in data.plenta_casa_readerParts|deserialize %}
         {% if part.plenta_casa_readerPartType %}
