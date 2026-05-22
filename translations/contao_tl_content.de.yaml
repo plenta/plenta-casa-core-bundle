@@ -62,3 +62,9 @@ tl_content:
         order_headline_asc: Überschrift aufsteigend
         order_headline_desc: Überschrift absteigend
         order_random: Zufällige Reihenfolge
+    plenta_casa_listKeywordSplit:
+        0: Keyword aufteilen
+        1: Keywords bei Leerzeichen aufteilen und einzeln suchen.
+    plenta_casa_listKeywordConnector:
+        0: Keyword-Verknüpfung
+        1: Verknüpfung der aufgeteilten Keywords (AND/OR).
