@@ -317,7 +317,7 @@ tl_pcasa_object:
     area_legend: Flächen
     facilities_legend: Ausstattungsmerkmale
     description_legend: Beschreibungen
-    condition_legend: Zusatzinformationen
+    condition_legend: Zustand
     media_legend: Medien
     marketing_legend: Vermarktung
     author_legend: Autor
