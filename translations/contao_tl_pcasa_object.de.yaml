@@ -300,7 +300,7 @@ tl_pcasa_object:
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten
-    price_legend: Preise
+    price_legend: Kosten
     brokerage_legend: Provision
     area_legend: Flächen
     facilities_legend: Ausstattungsmerkmale
