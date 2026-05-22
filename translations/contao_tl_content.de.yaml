@@ -46,7 +46,7 @@ tl_content:
         facilities: Ausstattung
         area: Fläche
         price: Preis
-        condition: Zustand
+        condition: Zusatzinformationen (zum Objekt)
         marketing: Vermarktung
         enclosure: Anlagen
         status: Hervorgehoben / Typ

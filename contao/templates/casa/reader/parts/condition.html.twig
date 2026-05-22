@@ -1,5 +1,35 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 
+{% block part %}
+    {% if object.propertyCondition|default or object.lastRefurbishment|default or object.qualityOfEquipment|default %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
-    Folgt
+    {% set fields = [
+        { field: 'propertyCondition',  label: 'tl_pcasa_object.propertyCondition.0',  type: 'reference', reference: 'propertyCondition_options' },
+        { field: 'lastRefurbishment',  label: 'tl_pcasa_object.lastRefurbishment.0',  type: 'date' },
+        { field: 'qualityOfEquipment', label: 'tl_pcasa_object.qualityOfEquipment.0', type: 'reference', reference: 'qualityOfEquipment_options' },
+    ] %}
+
+    <ul class="condition-list">
+        {% for item in fields %}
+            {% set value = attribute(object, item.field) %}
+            {% if value|default %}
+                <li>
+                    <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                    <span class="value">
+                        {% if item.type == 'reference' %}
+                            {{ ('tl_pcasa_object.' ~ item.reference ~ '.' ~ value)|trans({}, 'contao_default') }}
+                        {% elseif item.type == 'date' %}
+                            {{ value|date('d.m.Y') }}
+                        {% else %}
+                            {{ value }}
+                        {% endif %}
+                    </span>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 {% endblock %}

@@ -89,6 +89,18 @@ tl_pcasa_object:
     priceCableSatTv:
         0: Kabelanschluss
         1: Bitte geben Sie den Preis für den Kabelanschluss ein.
+    cooperativeShares:
+        0: Genossenschaftsanteile
+        1: Bitte geben Sie die Genossenschaftsanteile ein.
+    membershipFee:
+        0: Eintrittsgeld
+        1: Bitte geben Sie das Eintrittsgeld ein.
+    installmentPaymentPossible:
+        0: Ratenzahlung möglich
+        1: Bitte auswählen, wenn Ratenzahlung möglich ist.
+    housingEntitlementCertificate:
+        0: Wohnberechtigungsschein erforderlich
+        1: Bitte auswählen, wenn ein Wohnberechtigungsschein benötigt wird.
     lastRefurbishment:
         0: Letzte Modernisierung
         1: Bitte geben Sie das Datum der letzten Modernisierung ein.

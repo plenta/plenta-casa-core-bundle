@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     ],
 
     'casa_subpalettes' => [
-        'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice,priceCableSatTv',
+        'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice,priceCableSatTv,cooperativeShares,membershipFee,installmentPaymentPossible,housingEntitlementCertificate',
         'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,heatingCostsInSc,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,priceCableSatTv,monthlyRentalIncome',
     ],
 
@@ -368,6 +368,26 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
             'sql' => 'int(10) NOT NULL default 0',
         ],
+        'cooperativeShares' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NULL',
+        ],
+        'membershipFee' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NULL',
+        ],
+        'installmentPaymentPossible' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'w25'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'housingEntitlementCertificate' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'w25'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
         'monthlyRentalIncome' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
@@ -561,7 +581,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'lastRefurbishment' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
+            'eval' => ['rgxp' => 'date', 'datepicker' => true, 'tl_class' => 'w50'],
             'sql' => "varchar(10) NOT NULL default ''",
         ],
         'qualityOfEquipment' => [
