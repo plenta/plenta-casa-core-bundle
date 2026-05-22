@@ -25,12 +25,12 @@ class PlentaCasaExtension
     }
 
     #[AsTwigFilter('casaObjectTypeName')]
-    public function casaObjectTypeName(int $value): string
+    public function casaObjectTypeName(int $value, bool $withPath = false): string
     {
         $type = ObjectTypeModel::findById($value);
 
         if ($type) {
-            return $this->getTitle($type);
+            return $withPath ? $this->getTitle($type) : $type->title;
         }
 
         return '-';

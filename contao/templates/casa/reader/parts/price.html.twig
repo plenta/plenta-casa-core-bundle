@@ -3,35 +3,34 @@
 {% block content %}
     {% if object.marketing_type == 'RENT' %}
         {% set rentFields = [
-            { field: 'baseRent', label: 'tl_pcasa_object.baseRent.0' },
-            { field: 'heatingCosts', label: 'tl_pcasa_object.heatingCosts.0' },
             { field: 'totalRent', label: 'tl_pcasa_object.totalRent.0' },
+            { field: 'baseRent', label: 'tl_pcasa_object.baseRent.0' },
             { field: 'serviceCharge', label: 'tl_pcasa_object.serviceCharge.0' },
-            { field: 'deposit', label: 'tl_pcasa_object.deposit.0' },
-            { field: 'houseServiceCharge', label: 'tl_pcasa_object.houseServiceCharge.0' },
-            { field: 'nonRecoverableCosts', label: 'tl_pcasa_object.nonRecoverableCosts.0' },
-            { field: 'maintenanceReserve', label: 'tl_pcasa_object.maintenanceReserve.0' },
+            { field: 'heatingCosts', label: 'tl_pcasa_object.heatingCosts.0' },
+            { field: 'heatingCostsInSc', label: 'tl_pcasa_object.heatingCostsInSc.0', type: 'checkbox' },
             { field: 'parkingSpacePrice', label: 'tl_pcasa_object.parkingSpacePrice.0' },
             { field: 'priceCableSatTv', label: 'tl_pcasa_object.priceCableSatTv.0' },
-            { field: 'monthlyRentalIncome', label: 'tl_pcasa_object.monthlyRentalIncome.0' },
+            { field: 'deposit', label: 'tl_pcasa_object.deposit.0' },
         ] %}
 
         <ul class="price-list">
             {% for item in rentFields %}
                 {% set value = attribute(object, item.field) %}
-                {% if value is not same as(0) and value is not same as('0') and value %}
-                    <li>
-                        <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
-                        <span class="value">{{ value|casaFormatNumber }} €</span>
-                    </li>
+                {% if item.type|default == 'checkbox' %}
+                    {% if value %}
+                        <li>
+                            <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    {% if value is not same as(0) and value is not same as('0') and value %}
+                        <li>
+                            <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                            <span class="value">{{ value|casaFormatNumber }} €</span>
+                        </li>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
-
-            {% if object.heatingCostsInSc %}
-                <li>
-                    <span class="label">{{ 'tl_pcasa_object.heatingCostsInSc.0'|trans({}, 'contao_default') }}</span>
-                </li>
-            {% endif %}
         </ul>
 
     {% elseif object.marketing_type == 'BUY' %}
@@ -42,6 +41,7 @@
             { field: 'nonRecoverableCosts', label: 'tl_pcasa_object.nonRecoverableCosts.0' },
             { field: 'maintenanceReserve',  label: 'tl_pcasa_object.maintenanceReserve.0' },
             { field: 'parkingSpacePrice',   label: 'tl_pcasa_object.parkingSpacePrice.0' },
+            { field: 'priceCableSatTv', label: 'tl_pcasa_object.priceCableSatTv.0' },
             { field: 'monthlyRentalIncome', label: 'tl_pcasa_object.monthlyRentalIncome.0' },
         ] %}
 

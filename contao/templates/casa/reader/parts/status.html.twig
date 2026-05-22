@@ -5,4 +5,5 @@
         <span class="featured"></span>
     {% endif %}
     <span class="type">{{ ('PLENTA.CASA.marketing_types.' ~ object.marketing_type)|trans({}, 'contao_default') }}</span>
+    <span class="object-type">{{ object.object_type|casaObjectTypeName }}</span>
 {% endblock %}
