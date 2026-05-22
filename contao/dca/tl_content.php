@@ -16,6 +16,11 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_reader'] = '{type_lege
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerParts'] = [
     'inputType' => 'group',
     'palette' => ['plenta_casa_readerPartType', 'headline', 'plenta_casa_readerPartTpl'],
+    'fields' => [
+        '&headline' => [
+            'options' => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span'],
+        ],
+    ],
     'eval' => ['multiple' => true, 'tl_class' => 'clr'],
     'sql' => 'mediumtext NULL',
 ];
