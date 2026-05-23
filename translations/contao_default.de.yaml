@@ -1,8 +1,8 @@
 PLENTA:
     CASA:
         marketing_types:
-            RENT: Miete
-            BUY: Kauf
+            RENT: Zur Miete
+            BUY: Zum Kauf
         messages:
             addons: Alle Add-ons findest du <a href="https://plentacasa.com/addons" target="_blank" rel="noreferrer noopener">hier</a>.
         empty_list: Momentan sind leider keine Angebote verfügbar. Schauen Sie bald wieder vorbei.
