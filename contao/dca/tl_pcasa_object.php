@@ -604,7 +604,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'sql' => "varchar(32 NOT NULL default ''",
         ],
         'createdAt' => [
-            'sql' => ['type' => 'integer', 'default' => 0],
+            'sql' => ['type' => 'integer', 'unsigned' => true, 'default' => 0],
         ],
         'singleSRC' => [
             'inputType' => 'fileTree',

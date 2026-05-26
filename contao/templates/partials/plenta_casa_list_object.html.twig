@@ -3,6 +3,9 @@
 {% set url = content_url(jumpTo, {parameters: '/' ~ object.alias}) %}
 
 <div class="object{% if object.featured %} object-featured{% endif %}">
+    {% if object.createdAt|casaIsNew %}
+        <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
+    {% endif %}
     {% block titleImage %}
         {% if object.singleSRC|default and data.size %}
             {% set fileMeta = object.singleSRC|casaFileMeta %}

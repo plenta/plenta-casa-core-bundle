@@ -22,16 +22,19 @@ class PlentaCasaCoreBundle extends AbstractBundle
     {
         $definition->rootNode()
             ->children()
-            ->arrayNode('alias_generation')
-            ->children()
-            ->arrayNode('parts')
-            ->scalarPrototype()->end()
-            ->performNoDeepMerging()
+                ->arrayNode('alias_generation')
+                    ->children()
+                        ->arrayNode('parts')
+                        ->scalarPrototype()->end()
+                        ->performNoDeepMerging()
+                    ->end()
+                    ->scalarNode('locale')->end()
+                    ->scalarNode('validChars')->end()
+                ->end()
             ->end()
-            ->scalarNode('locale')->end()
-            ->scalarNode('validChars')->end()
-            ->end()
-            ->end()
+            ->integerNode('new_badge_days')
+                ->defaultValue(7)
+                ->end()
             ->end()
         ;
     }
@@ -43,5 +46,6 @@ class PlentaCasaCoreBundle extends AbstractBundle
     {
         $container->import('../config/services.yml');
         $container->parameters()->set('plenta_casa_core.alias_generation', $config['alias_generation']);
+        $container->parameters()->set('plenta_casa.new_badge_days', $config['new_badge_days']);
     }
 }

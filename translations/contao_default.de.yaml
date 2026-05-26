@@ -8,6 +8,8 @@ PLENTA:
         empty_list: Momentan sind leider keine Angebote verfügbar. Schauen Sie bald wieder vorbei.
         filter:
             marketingType: Immobilienart
+        badge:
+            new: Neu
 
 CTE:
     plentacasa: Plenta Casa

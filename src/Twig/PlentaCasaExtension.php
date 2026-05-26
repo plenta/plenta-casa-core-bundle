@@ -14,6 +14,7 @@ namespace Plenta\CasaCoreBundle\Twig;
 use Contao\FilesModel;
 use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Attribute\AsTwigFilter;
 
@@ -21,6 +22,8 @@ class PlentaCasaExtension
 {
     public function __construct(
         private readonly RequestStack $requestStack,
+        #[Autowire(param: 'plenta_casa.new_badge_days')]
+        private readonly int $newBadgeDays,
     ) {
     }
 
@@ -83,5 +86,14 @@ class PlentaCasaExtension
         }
 
         return $return.$type->title;
+    }
+
+    #[AsTwigFilter('casaIsNew')]
+    public function casaIsNew(int|string $createdAt): bool
+    {
+        $days = $this->newBadgeDays;
+        $threshold = new \DateTimeImmutable("-{$days} days");
+
+        return (new \DateTimeImmutable('@'.$createdAt)) >= $threshold;
     }
 }
