@@ -55,19 +55,26 @@ class ObjectTypes
         return $count;
     }
 
-    public function getTypes(int $pid = 0, int $depth = 0): array
+    public function getTypes(int $pid = 0, string $prefix = '', bool $showChildrenOnlyWhenChecked = false): array
     {
-        $return = [];
-        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'title ASC']);
+        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'sorting ASC']);
 
-        if (!$types) {
-            return $return;
-        }
+        if ($types) {
+            foreach ($types as $type) {
+                $return[$type->id] = $prefix.($prefix ? ' ' : '').$type->title;
 
-        foreach ($types as $type) {
-            $indent = $depth > 0 ? str_repeat('　', $depth - 1).'└ ' : '';
-            $return[$type->id] = $indent.$type->title;
-            $return += $this->getTypes($type->id, $depth + 1);
+                if ($showChildrenOnlyWhenChecked) {
+                    $request = $this->requestStack->getCurrentRequest();
+
+                    if ($request->query->has('filter')) {
+                        $filter = $request->query->all('filter');
+                        if (!\in_array($type->id, $filter['objectType'] ?? [], true)) {
+                            continue;
+                        }
+                    }
+                }
+                $return += $this->getTypes($type->id, $prefix.'-');
+            }
         }
 
         return $return;

@@ -104,7 +104,37 @@ class TlPcasaObjectListener
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.object_type.options')]
     public function typeOptionsCallback(DataContainer $dc): array
     {
-        return $this->objectTypes->getTypes();
+        $return = [];
+        $types = ObjectTypeModel::findBy('pid', 0, ['order' => 'title ASC']);
+
+        if (!$types) {
+            return $return;
+        }
+
+        foreach ($types as $type) {
+            $return[$type->id] = $type->title;
+            $return += $this->getObjectTypes($type->id, 1);
+        }
+
+        return $return;
+    }
+
+    private function getObjectTypes(int $pid, int $depth): array
+    {
+        $return = [];
+        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'title ASC']);
+
+        if (!$types) {
+            return $return;
+        }
+
+        foreach ($types as $type) {
+            $indent = str_repeat('　', $depth - 1).'└ ';
+            $return[$type->id] = $indent.$type->title;
+            $return += $this->getObjectTypes($type->id, $depth + 1);
+        }
+
+        return $return;
     }
 
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.alias.save')]
