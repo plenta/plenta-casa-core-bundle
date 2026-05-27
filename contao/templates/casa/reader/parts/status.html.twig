@@ -1,11 +1,11 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 
 {% block content %}
-    {% if object.createdAt|casaIsNew %}
-        <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
-    {% endif %}
     {% if object.featured %}
         <span class="featured"></span>
+    {% endif %}
+    {% if object.createdAt|casaIsNew %}
+        <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
     {% endif %}
     <span class="type">{{ ('PLENTA.CASA.marketing_types.' ~ object.marketing_type)|trans({}, 'contao_default') }}</span>
     <span class="object-type">{{ object.object_type|casaObjectTypeName }}</span>
