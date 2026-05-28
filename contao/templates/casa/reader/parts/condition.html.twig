@@ -8,8 +8,9 @@
 
 {% block content %}
     {% set fields = [
-        { field: 'propertyCondition',  label: 'tl_pcasa_object.propertyCondition.0',  type: 'reference', reference: 'propertyCondition_options' },
-        { field: 'lastRefurbishment',  label: 'tl_pcasa_object.lastRefurbishment.0',  type: 'date' },
+        { field: 'availableFrom', label: 'tl_pcasa_object.availableFrom.0',  type: 'date' },
+        { field: 'propertyCondition', label: 'tl_pcasa_object.propertyCondition.0',  type: 'reference', reference: 'propertyCondition_options' },
+        { field: 'lastRefurbishment', label: 'tl_pcasa_object.lastRefurbishment.0',  type: 'date' },
         { field: 'qualityOfEquipment', label: 'tl_pcasa_object.qualityOfEquipment.0', type: 'reference', reference: 'qualityOfEquipment_options' },
     ] %}
 
