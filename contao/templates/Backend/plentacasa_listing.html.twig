@@ -34,7 +34,9 @@
     </tr>
     <tr>
         <td>
-            <span class="leads">{{ leads }}</span>
+            {% if leads %}
+                <span class="leads">{{ leads }}</span>
+            {% endif %}
         </td>
     </tr>
     </tbody>
