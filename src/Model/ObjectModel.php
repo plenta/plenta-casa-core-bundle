@@ -23,7 +23,11 @@ class ObjectModel extends Model
 
     public function getAddress(): string
     {
-        return ($this->hideStreet ? '' : $this->street.($this->housenumber ? ' '.$this->housenumber : '').', ').$this->postal.' '.$this->city;
+        $street = $this->hideStreet ? '' : $this->street.($this->housenumber ? ' '.$this->housenumber : '').', ';
+        $city = $this->postal.' '.$this->city;
+        $district = $this->district ? ', '.$this->district : '';
+
+        return $street.$city.$district;
     }
 
     public function getName(): string
