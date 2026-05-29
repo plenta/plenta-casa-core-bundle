@@ -166,7 +166,6 @@ class FilterType extends AbstractType
             'translation_domain' => 'plenta_casa',
             'method' => 'GET',
             'csrf_protection' => false,
-            'attr' => ['data-action' => 'live#action:prevent', 'data-live-action-param' => 'save'],
         ]);
     }
 }
