@@ -112,6 +112,9 @@ tl_pcasa_object:
         upscale: gehoben
         normal: normal
         plain: einfach
+    availableFrom:
+        0: Verfügbar ab
+        1: Bitte geben Sie das Datum ein, ab dem das Objekt verfügbar ist.
     propertyCondition:
         0: Objektzustand
         1: Bitte wählen Sie den Zustand des Objekts aus.
@@ -131,7 +134,7 @@ tl_pcasa_object:
         customersOption: nach Vereinbarung
         dilapidated: abbruchreif
     numberOfParkingSpaces:
-        0: Anzahl Parkplätze
+        0: Parkplätze
         1: Bitte geben Sie die Anzahl der Parkplätze ein.
     parkingSpaceType:
         0: Stellplatztyp
@@ -242,12 +245,15 @@ tl_pcasa_object:
         1: Bitte geben Sie einen Provisionshinweis ein.
     facilities:
         0: Allgemein
+        1: Die Auflistung hat keinen Anspruch auf Vollständigkeit.
     bathroomFacilities:
         0: Badezimmer
+        1: Die Auflistung hat keinen Anspruch auf Vollständigkeit.
     flooring:
         0: Bodenmaterial
+        1: Die Auflistung hat keinen Anspruch auf Vollständigkeit.
     facilities-options:
-        lift: Aufzug
+        lift: Fahrstuhl (Aufzug)
         cellar: Keller
         fittedKitchen: Einbauküche
         loggia: Loggia
@@ -257,6 +263,7 @@ tl_pcasa_object:
         alarmSystem: Alarmanlage
         airConditioning: Klimaanlage
         accessible: Barrierefrei
+        wheelchairAccessible: Rollstuhlgerecht
         guestWc: Gäste-WC
         balcony: Balkon
         garden: Garten
@@ -264,8 +271,14 @@ tl_pcasa_object:
         fireplace: Kamin
         sauna: Sauna
         conservatory: Wintergarten
-        flatShare: Wohngemeinschaft
+        flatShare: WG-geeignet
         nonSmokersOnly: Nur für Nichtraucher
+        cableSatTv: Kabel-/Sat-TV
+        partlyFurnished: Teilmöbliert
+        fullyFurnished: Vollmöbliert
+        kitchenette: Teeküche
+        cafeteria: Kantine/Caféteria
+        laundryRoom: Wasch-/Trockenraum
     bathroomFacilities-options:
         shower: Dusche
         tub: Badewanne
@@ -317,7 +330,7 @@ tl_pcasa_object:
     area_legend: Flächen
     facilities_legend: Ausstattungsmerkmale
     description_legend: Beschreibungen
-    condition_legend: Zustand
+    condition_legend: Zustand & Status
     media_legend: Medien
     marketing_legend: Vermarktung
     author_legend: Autor

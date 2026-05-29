@@ -18,11 +18,13 @@ use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\FilesModel;
 use Contao\StringUtil;
+use Plenta\CasaCoreBundle\Events\ObjectLabelEvent;
 use Plenta\CasaCoreBundle\Helper\AliasGenerator;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment as TwigEnvironment;
 
@@ -35,6 +37,7 @@ class TlPcasaObjectListener
         protected readonly TwigEnvironment $twig,
         private readonly ContentUrlGenerator $contentUrlGenerator,
         private readonly RequestStack $requestStack,
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
@@ -49,12 +52,17 @@ class TlPcasaObjectListener
 
         $this->getImage($property);
 
-        return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', [
+        $labelData = [
             'property' => $property,
             'image' => $this->getImage($property),
             'price' => $this->getObjectPrice($property),
             'size' => $this->getObjectSize($property),
-        ]);
+        ];
+
+        $labelEvent = new ObjectLabelEvent((int) $property['id'], $labelData);
+        $this->eventDispatcher->dispatch($labelEvent, ObjectLabelEvent::NAME);
+
+        return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', $labelEvent->getLabelData());
     }
 
     /**

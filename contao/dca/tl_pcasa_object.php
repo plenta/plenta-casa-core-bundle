@@ -78,7 +78,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
-            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
+            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment,availableFrom;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
@@ -93,7 +93,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
-            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment;
+            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment,availableFrom;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
@@ -104,7 +104,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
 
     'casa_subpalettes' => [
         'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice,priceCableSatTv,cooperativeShares,membershipFee,installmentPaymentPossible,housingEntitlementCertificate',
-        'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,heatingCostsInSc,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,priceCableSatTv,monthlyRentalIncome',
+        'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,priceCableSatTv,monthlyRentalIncome',
     ],
 
     'fields' => [
@@ -456,8 +456,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'availableFrom' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
         ],
         'availableTo' => [
             'inputType' => 'text',
@@ -512,6 +512,13 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'conservatory',
                 'flatShare',
                 'nonSmokersOnly',
+                'wheelchairAccessible',
+                'cableSatTv',
+                'partlyFurnished',
+                'fullyFurnished',
+                'kitchenette',
+                'cafeteria',
+                'laundryRoom',
             ],
             'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['facilities-options'],
             'eval' => ['multiple' => true, 'tl_class' => 'clr'],

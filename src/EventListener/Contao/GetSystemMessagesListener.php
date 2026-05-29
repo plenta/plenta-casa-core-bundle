@@ -15,9 +15,11 @@ use Composer\InstalledVersions;
 use Contao\BackendUser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Doctrine\DBAL\Connection;
+use Plenta\CasaCoreBundle\Events\DashboardStatsEvent;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment as TwigEnvironment;
 
@@ -31,6 +33,7 @@ class GetSystemMessagesListener
         protected readonly AuthorizationCheckerInterface $auth,
         protected Packages $packages,
         protected readonly Connection $connection,
+        protected readonly EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
@@ -53,6 +56,10 @@ class GetSystemMessagesListener
                     'plenta_casa_dashboard',
                 ),
             ];
+
+            $dashboardEvent = new DashboardStatsEvent($data);
+            $this->eventDispatcher->dispatch($dashboardEvent, DashboardStatsEvent::NAME);
+            $data = $dashboardEvent->getData();
 
             return
                 $this->twig->render(

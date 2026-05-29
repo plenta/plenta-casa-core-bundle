@@ -16,6 +16,9 @@
                 <span class="description">{{ 'PLENTA.CASA.objects'|trans({}, 'plenta_casa_dashboard') }}</span>
             </div>
 
+            {% block custom %}
+            {% endblock %}
+
             <div class="tile future">
                 <span class="numbers">{{ 'PLENTA.CASA.future'|trans({}, 'plenta_casa_dashboard') }}</span>
                 <span class="description"><a href="https://github.com/plenta/plenta-casa-core-bundle/issues" title="{{ 'PLENTA.CASA.future_link'|trans({}, 'plenta_casa_dashboard') }}" target="_blank" rel="noreferrer noopener">{{ 'PLENTA.CASA.future_link'|trans({}, 'plenta_casa_dashboard') }}</a></span>
