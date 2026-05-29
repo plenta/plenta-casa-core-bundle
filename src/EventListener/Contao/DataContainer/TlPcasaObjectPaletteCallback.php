@@ -42,6 +42,8 @@ class TlPcasaObjectPaletteCallback
             $palette = PaletteManipulator::create()
                 ->addLegend('price_legend', 'address_legend')
                 ->addField($fields, 'price_legend', PaletteManipulator::POSITION_APPEND)
+                ->removeField('heatingCosts')
+                ->removeField('serviceCharge')
                 ->applyToString($palette)
             ;
         }

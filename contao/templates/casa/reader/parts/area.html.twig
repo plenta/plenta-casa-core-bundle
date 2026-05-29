@@ -3,10 +3,15 @@
 
 {% block content %}
     {% for area in casa_variables.area(object) %}
-        {% if attribute(object, area)|default %}
+        {% set value = attribute(object, area) %}
+        {% if value|default %}
             <div class="area area-{{ area }}">
-                <div class="content">{{ attribute(object, area) }}{% if 'area' in area|lower %} {{ 'CASA.area_unit'|trans }}{% endif %}</div>
-                <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
+                {% if area == 'parkingSpaceType' %}
+                    <div class="content">{{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([], 'contao_tl_pcasa_object') }}</div>
+                {% else %}
+                    <div class="content">{{ value }}{% if 'area' in area|lower %} {{ 'CASA.area_unit'|trans }}{% endif %}</div>
+                    <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
+                {% endif %}
             </div>
         {% endif %}
     {% endfor %}
