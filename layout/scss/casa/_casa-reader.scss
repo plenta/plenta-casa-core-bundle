@@ -37,7 +37,7 @@
             gap: variables.$base-spacing-xx-s;
 
             $icons: (
-                livingarea: casa-icons.$icon-casa-area,
+                livingArea: casa-icons.$icon-casa-area,
                 rooms: casa-icons.$icon-casa-rooms,
                 bedrooms: casa-icons.$icon-casa-bed,
                 bathrooms: casa-icons.$icon-casa-bath,
@@ -63,13 +63,19 @@
         flex-wrap: wrap;
         gap: variables.$base-spacing-x-s;
 
+        span {
+            &:first-of-type {
+                font-weight: variables.$font-weight-bold;
+            }
+        }
+
         h2 {
             width: 100%;
             display: block;
         }
 
         .title {
-            @extend %invisible;
+            //@extend %invisible;
         }
 
         ul {

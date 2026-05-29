@@ -167,6 +167,14 @@
             //grid-template-columns: repeat(auto-fill, minmax(var(--pcasa-list-item-width), 1fr));
             grid-template-columns: repeat(3, 1fr);
             gap: variables.$base-spacing-s;
+
+            @media screen and (width <= 960px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media screen and (width <= 680px) {
+                grid-template-columns: 1fr;
+            }
         }
 
         .object {
@@ -201,6 +209,11 @@
             .wrapper-content {
                 flex-flow: row wrap;
                 margin-top: auto;
+
+                @media screen and (width <= 680px) {
+                    flex-direction: column;
+                    align-items: baseline;
+                }
             }
         }
     }
