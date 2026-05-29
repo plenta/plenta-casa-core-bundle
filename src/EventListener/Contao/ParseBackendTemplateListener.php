@@ -22,7 +22,7 @@ class ParseBackendTemplateListener
             $buffer = str_replace(
                 '<span class="app-title">Contao</span>',
                 '<span class="app-title">Plenta Casa ♥ Contao</span>',
-                $buffer
+                $buffer,
             );
         }
 

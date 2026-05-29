@@ -1,0 +1,69 @@
+{% extends '@Contao/component/_pagination.html.twig' %}
+{% trans_default_domain 'contao_default' %}
+
+{% block pagination_link %}
+    <li>
+        {% if pagination.current|default == page %}
+            {% set active_attributes = attrs()
+                .set('aria-current', 'page')
+                .addClass('active')
+                .mergeWith(active_attributes|default)
+            %}
+            <strong{{ active_attributes }}>{% block pagination_active_label %}{{ page }}{% endblock %}</strong>
+        {% else %}
+            {% set link_attributes = attrs()
+                .set('aria-label', 'MSC.goToPage'|trans([page]))
+                .mergeWith(link_attributes|default)
+            %}
+            <button{{ link_attributes }} {{ live_action('setPage', {page}) }}>{{ block('pagination_link_label') }}</button>
+        {% endif %}
+    </li>
+{% endblock %}
+
+{% block pagination_next %}
+    {% if pagination.next %}
+        <li class="next">
+            {% set next_attributes = attrs()
+                .addClass('next')
+                .mergeWith(next_attributes|default)
+            %}
+            <button{{ next_attributes }} {{ live_action('setPage', {page: pagination.next}) }}>{{ block('pagination_next_label') }}</button>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block pagination_last %}
+    {% if pagination.last %}
+        <li class="last">
+            {% set last_attributes = attrs()
+                .addClass('last')
+                .mergeWith(last_attributes|default)
+            %}
+            <button{{ last_attributes }} {{ live_action('setPage', {page: pagination.last}) }}>{{ block('pagination_last_label') }}</button>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block pagination_first %}
+    {% if pagination.first %}
+        <li class="first">
+            {% set first_attributes = attrs()
+                .addClass('first')
+                .mergeWith(first_attributes|default)
+            %}
+            <button{{ first_attributes }} {{ live_action('setPage', {page: pagination.first}) }}>{{ block('pagination_first_label') }}</button>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block pagination_previous %}
+    {% if pagination.previous %}
+        <li class="previous">
+            {% set previous_attributes = attrs()
+                .addClass('previous')
+                .mergeWith(previous_attributes|default)
+            %}
+            <button{{ previous_attributes }} {{ live_action('setPage', {page: pagination.previous}) }}>{{ block('pagination_previous_label') }}</button>
+        </li>
+    {% endif %}
+{% endblock %}

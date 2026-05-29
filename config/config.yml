@@ -19,3 +19,9 @@ plenta_casa_core:
             - city
         locale: 'de'
         validChars: '0-9a-z'
+
+
+twig_component:
+    anonymous_template_directory: '@Contao/components/'
+    defaults:
+        Plenta\CasaCoreBundle\Twig\Components\: '@Contao/components/'

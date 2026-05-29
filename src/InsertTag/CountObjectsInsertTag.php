@@ -33,9 +33,17 @@ class CountObjectsInsertTag implements InsertTagResolverNestedResolvedInterface
     {
         $request = $this->requestStack->getCurrentRequest();
 
-        $model = ContentModel::findById($request->attributes->get('contentModel'));
+        if ('ux_live_component' === $request->attributes->get('_route')) {
+            $data = json_decode($request->request->get('data'), true);
+            $filter = $data['args']['data'] ?? $data['props']['filterData'];
+            $model = ContentModel::findById($data['props']['modelId']);
 
-        $parameters = $this->parameterGenerator->generateFromRequest($request, $model);
+            $parameters = $this->parameterGenerator->generateFromArray($filter, $model);
+        } else {
+            $model = ContentModel::findById($request->attributes->get('contentModel'));
+
+            $parameters = $this->parameterGenerator->generateFromRequest($request, $model);
+        }
 
         $columns = [];
         $values = [];

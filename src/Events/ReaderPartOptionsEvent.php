@@ -20,9 +20,8 @@ class ReaderPartOptionsEvent extends Event
     /**
      * @param array<string> $options
      */
-    public function __construct(
-        protected array $options,
-    ) {
+    public function __construct(protected array $options)
+    {
     }
 
     /**

@@ -2,20 +2,9 @@
 
 {% set attributes = attrs().setIfExists('data-id', data.id).mergeWith(attributes|default) %}
 
-{% set headline = headline|merge({
-    attributes: attrs(headline.attributes|default).addClass('headline'),
-}) %}
+{% block headline_component %}
+{% endblock %}
 
 {% block content %}
-    <div class="objects">
-        {% for object in objects %}
-            {{ include('@Contao/' ~ ((object.object_type|casaObjectType).template|default
-                ('partials/plenta_casa_list_object')) ~ '.html.twig') }}
-        {% else %}
-            {{ 'PLENTA.CASA.empty_list.'|trans({}, 'contao_default') }}
-        {% endfor %}
-    </div>
-
-    {{ pagination|default|raw }}
-
+    {{ component('casa_list_component', {modelId: data.id}) }}
 {% endblock %}

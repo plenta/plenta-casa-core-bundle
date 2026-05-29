@@ -20,11 +20,13 @@ class FilterParameterEvent extends Event
     public const NAME = 'plenta_casa.filter.parameter';
 
     /**
-     * @param array<Parameter> $parameters
+     * @param array<Parameter>     $parameters
+     * @param array<string, mixed> $filter
      */
     public function __construct(
-        protected ContentModel $contentModel,
+        protected ContentModel|null $contentModel,
         protected array $parameters,
+        protected array $filter,
     ) {
     }
 
@@ -54,6 +56,24 @@ class FilterParameterEvent extends Event
     public function setParameters(array $parameters): self
     {
         $this->parameters = $parameters;
+
+        return $this;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getFilter(): array
+    {
+        return $this->filter;
+    }
+
+    /**
+     * @param array<string, mixed> $filter
+     */
+    public function setFilter(array $filter): self
+    {
+        $this->filter = $filter;
 
         return $this;
     }

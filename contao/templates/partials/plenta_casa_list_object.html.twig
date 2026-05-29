@@ -7,17 +7,17 @@
         <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
     {% endif %}
     {% block titleImage %}
-        {% if object.singleSRC|default and data.size %}
-            {% set fileMeta = object.singleSRC|casaFileMeta %}
-            {% set image = figure(object.singleSRC, data.size, {
+        {% if object.singleSRC|default and model.size %}
+            {% set file_meta = object.singleSRC|casaFileMeta %}
+            {% set image = figure(object.singleSRC, model.size, {
                 linkHref: url,
                 metadata: {
-                    alt: fileMeta.alt ?: object.title,
-                    title: fileMeta.title ?: object.title,
+                    alt: file_meta.alt ?: object.title,
+                    title: file_meta.title ?: object.title,
                 },
                 options: {
-                    attr: { class: 'content-image' }
-                }
+                    attr: {class: 'content-image'},
+                },
             }) %}
             {% if image %}
                 {% use '@Contao/component/_figure.html.twig' %}

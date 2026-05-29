@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/**
- * @package       Customer
+/*
+ * @package       Plenta Casa Core Bundle
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -15,12 +15,9 @@ use Contao\BackendTemplate;
 use Contao\ContentModel;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
-use Contao\PageModel;
-use Contao\Pagination;
 use Contao\System;
 use Contao\Template;
 use Plenta\CasaCoreBundle\Filter\ParameterGenerator;
-use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -47,61 +44,6 @@ class Listing extends AbstractContentElementController
             return $objTemplate->getResponse();
         }
 
-        $parameters = $this->parameterGenerator->generateFromRequest($request, $model);
-
-        $columns = [];
-        $values = [];
-
-        foreach ($parameters as $parameter) {
-            $columns = array_merge($columns, $parameter->getColumns());
-            $values = array_merge($values, $parameter->getValues());
-        }
-
-        if (true === (bool) $model->plenta_casa_featured) {
-            $columns[] = 'tl_pcasa_object.featured = ?';
-            $values[] = true;
-        }
-
-        if ($model->perPage) {
-            $count = ObjectModel::countPublishedBy($columns, $values);
-
-            $pageParam = 'page_'.$model->id;
-            $page = $request->get($pageParam, 1);
-            $offset = ($page - 1) * $model->perPage;
-            $perPage = $model->perPage;
-            $pagination = new Pagination($count, $perPage, 7, $pageParam);
-            $template->pagination = $pagination->generate();
-        } else {
-            $perPage = $model->numberOfItems ?: null;
-            $offset = null;
-        }
-
-        $order = $this->getListSorting($model->plenta_casa_sorting);
-
-        $objects = ObjectModel::findPublishedBy(
-            $columns,
-            $values,
-            [
-                'limit' => $perPage,
-                'offset' => $offset,
-                'order' => $order,
-            ],
-        );
-
-        $template->objects = $objects;
-        $template->jumpTo = PageModel::findByIdOrAlias($model->jumpTo);
-
         return $template->getResponse();
-    }
-
-    public function getListSorting(?string $sorting): string
-    {
-        return match ($sorting) {
-            'order_headline_asc' => 'tl_pcasa_object.title',
-            'order_headline_desc' => 'tl_pcasa_object.title DESC',
-            'order_random' => 'RAND()',
-            'order_date_asc' => 'tl_pcasa_object.tstamp',
-            default => 'tl_pcasa_object.tstamp DESC',
-        };
     }
 }

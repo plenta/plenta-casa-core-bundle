@@ -15,13 +15,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @phpstan-ignore missingType.generics
+ */
 class ResetLinkType extends AbstractType
 {
-    public function getBlockPrefix(): string
-    {
-        return 'reset_link';
-    }
-
+    #[\Override]
     public function getParent(): string
     {
         return ButtonType::class;

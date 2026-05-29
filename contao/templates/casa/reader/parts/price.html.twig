@@ -2,23 +2,23 @@
 
 {% block content %}
     {% if object.marketing_type == 'RENT' %}
-        {% set rentFields = [
-            { field: 'totalRent', label: 'tl_pcasa_object.totalRent.0' },
-            { field: 'baseRent', label: 'tl_pcasa_object.baseRent.0' },
-            { field: 'serviceCharge', label: 'tl_pcasa_object.serviceCharge.0' },
-            { field: 'heatingCosts', label: 'tl_pcasa_object.heatingCosts.0' },
-            { field: 'heatingCostsInSc', label: 'tl_pcasa_object.heatingCostsInSc.0', type: 'checkbox' },
-            { field: 'parkingSpacePrice', label: 'tl_pcasa_object.parkingSpacePrice.0' },
-            { field: 'priceCableSatTv', label: 'tl_pcasa_object.priceCableSatTv.0' },
-            { field: 'deposit', label: 'tl_pcasa_object.deposit.0' },
-            { field: 'cooperativeShares', label: 'tl_pcasa_object.cooperativeShares.0' },
-            { field: 'membershipFee', label: 'tl_pcasa_object.membershipFee.0' },
-            { field: 'installmentPaymentPossible', label: 'tl_pcasa_object.installmentPaymentPossible.0', type: 'checkbox' },
-            { field: 'housingEntitlementCertificate', label: 'tl_pcasa_object.housingEntitlementCertificate.0', type: 'checkbox' },
+        {% set rent_fields = [
+            {field: 'totalRent', label: 'tl_pcasa_object.totalRent.0'},
+            {field: 'baseRent', label: 'tl_pcasa_object.baseRent.0'},
+            {field: 'serviceCharge', label: 'tl_pcasa_object.serviceCharge.0'},
+            {field: 'heatingCosts', label: 'tl_pcasa_object.heatingCosts.0'},
+            {field: 'heatingCostsInSc', label: 'tl_pcasa_object.heatingCostsInSc.0', type: 'checkbox'},
+            {field: 'parkingSpacePrice', label: 'tl_pcasa_object.parkingSpacePrice.0'},
+            {field: 'priceCableSatTv', label: 'tl_pcasa_object.priceCableSatTv.0'},
+            {field: 'deposit', label: 'tl_pcasa_object.deposit.0'},
+            {field: 'cooperativeShares', label: 'tl_pcasa_object.cooperativeShares.0'},
+            {field: 'membershipFee', label: 'tl_pcasa_object.membershipFee.0'},
+            {field: 'installmentPaymentPossible', label: 'tl_pcasa_object.installmentPaymentPossible.0', type: 'checkbox'},
+            {field: 'housingEntitlementCertificate', label: 'tl_pcasa_object.housingEntitlementCertificate.0', type: 'checkbox'},
         ] %}
 
         <ul class="price-list">
-            {% for item in rentFields %}
+            {% for item in rent_fields %}
                 {% set value = attribute(object, item.field) %}
                 {% if item.type|default == 'checkbox' %}
                     {% if value %}
@@ -38,13 +38,13 @@
         </ul>
 
     {% elseif object.marketing_type == 'BUY' %}
-        {% set buyFields = [
-            { field: 'houseServiceCharge',  label: 'tl_pcasa_object.houseServiceCharge.0' },
-            { field: 'nonRecoverableCosts', label: 'tl_pcasa_object.nonRecoverableCosts.0' },
-            { field: 'maintenanceReserve',  label: 'tl_pcasa_object.maintenanceReserve.0' },
-            { field: 'parkingSpacePrice',   label: 'tl_pcasa_object.parkingSpacePrice.0' },
-            { field: 'priceCableSatTv', label: 'tl_pcasa_object.priceCableSatTv.0' },
-            { field: 'monthlyRentalIncome', label: 'tl_pcasa_object.monthlyRentalIncome.0' },
+        {% set buy_fields = [
+            {field: 'houseServiceCharge', label: 'tl_pcasa_object.houseServiceCharge.0'},
+            {field: 'nonRecoverableCosts', label: 'tl_pcasa_object.nonRecoverableCosts.0'},
+            {field: 'maintenanceReserve', label: 'tl_pcasa_object.maintenanceReserve.0'},
+            {field: 'parkingSpacePrice', label: 'tl_pcasa_object.parkingSpacePrice.0'},
+            {field: 'priceCableSatTv', label: 'tl_pcasa_object.priceCableSatTv.0'},
+            {field: 'monthlyRentalIncome', label: 'tl_pcasa_object.monthlyRentalIncome.0'},
         ] %}
 
         <ul class="price-list">
@@ -61,7 +61,7 @@
                 </span>
             </li>
 
-            {% for item in buyFields %}
+            {% for item in buy_fields %}
                 {% set value = attribute(object, item.field) %}
                 {% if value is not same as(0) and value is not same as('0') and value %}
                     <li>

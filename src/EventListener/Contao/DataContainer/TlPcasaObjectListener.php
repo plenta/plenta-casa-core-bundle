@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -19,9 +18,8 @@ use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\FilesModel;
 use Contao\StringUtil;
-use Plenta\CasaCoreBundle\Events\ObjectLabelLeadsEvent;
+use Plenta\CasaCoreBundle\Events\ObjectLabelEvent;
 use Plenta\CasaCoreBundle\Helper\AliasGenerator;
-use Plenta\CasaCoreBundle\Helper\ObjectTypes;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Symfony\Component\Asset\Packages;
@@ -37,7 +35,6 @@ class TlPcasaObjectListener
         protected Packages $packages,
         protected readonly TranslatorInterface $translator,
         protected readonly TwigEnvironment $twig,
-        private readonly ObjectTypes $objectTypes,
         private readonly ContentUrlGenerator $contentUrlGenerator,
         private readonly RequestStack $requestStack,
         private readonly EventDispatcherInterface $eventDispatcher,
@@ -55,18 +52,22 @@ class TlPcasaObjectListener
 
         $this->getImage($property);
 
-        $leadsEvent = new ObjectLabelLeadsEvent((int) $property['id']);
-        $this->eventDispatcher->dispatch($leadsEvent, ObjectLabelLeadsEvent::NAME);
-
-        return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', [
+        $labelData = [
             'property' => $property,
             'image' => $this->getImage($property),
-            'leads' => $leadsEvent->getLeads(),
             'price' => $this->getObjectPrice($property),
             'size' => $this->getObjectSize($property),
-        ]);
+        ];
+
+        $labelEvent = new ObjectLabelEvent((int) $property['id'], $labelData);
+        $this->eventDispatcher->dispatch($labelEvent, ObjectLabelEvent::NAME);
+
+        return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', $labelEvent->getLabelData());
     }
 
+    /**
+     * @param array<string, mixed> $property
+     */
     public function getObjectPrice(array $property): string
     {
         $value = match ($property['marketing_type']) {
@@ -78,6 +79,9 @@ class TlPcasaObjectListener
         return $value ? $this->formatNumber($value) : '-';
     }
 
+    /**
+     * @param array<string, mixed> $property
+     */
     public function getObjectSize(array $property): string
     {
         $fields = ['floorArea', 'plotArea', 'livingArea'];
@@ -93,7 +97,7 @@ class TlPcasaObjectListener
         return '-';
     }
 
-    public function formatNumber(int|float|string $value): string
+    public function formatNumber(float|int|string $value): string
     {
         $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
 
@@ -161,7 +165,7 @@ class TlPcasaObjectListener
                 try {
                     $url = $this->contentUrlGenerator->generate(
                         $list->getRelated('jumpTo'),
-                        ['parameters' => '/'.$slug]
+                        ['parameters' => '/'.$slug],
                     );
                 } catch (\Throwable) {
                     $url = null;
@@ -197,7 +201,7 @@ class TlPcasaObjectListener
     /**
      * @param array<string, mixed> $property
      */
-    public function getImage(array $property): ?string
+    public function getImage(array $property): string|null
     {
         if (null !== $property['singleSRC']) {
             $objFile = FilesModel::findByUuid(StringUtil::binToUuid($property['singleSRC']));
@@ -216,6 +220,9 @@ class TlPcasaObjectListener
         return null;
     }
 
+    /**
+     * @return array<string>
+     */
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.facilities.options')]
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.bathroomFacilities.options')]
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.flooring.options')]
@@ -229,10 +236,13 @@ class TlPcasaObjectListener
 
         return array_combine($options, array_map(
             static fn (string $key): string => $labels[$key] ?? $key,
-            $options
+            $options,
         ));
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getObjectTypes(int $pid, int $depth): array
     {
         $return = [];

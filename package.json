@@ -1,6 +1,9 @@
 {
     "devDependencies": {
         "@babel/plugin-transform-runtime": "^7.22.9",
+        "@babel/runtime": "^7.22.9",
+        "@hotwired/stimulus": "^3.2.2",
+        "@symfony/stimulus-bridge": "^3.2.3",
         "@symfony/webpack-encore": "^4.4.0",
         "autocompleter": "^9.0.1",
         "core-js": "^3.32.0",
@@ -8,10 +11,7 @@
         "regenerator-runtime": "^0.13.11",
         "sass": "^1.64",
         "sass-loader": "^13.3.2",
-        "webpack-notifier": "^1.15.0",
-        "@babel/runtime": "^7.22.9",
-        "@hotwired/stimulus": "^3.2.2",
-        "@symfony/stimulus-bridge": "^3.2.3"
+        "webpack-notifier": "^1.15.0"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -22,6 +22,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@symfony/ux-live-component": "^2.35.0",
         "save-dev": "0.0.1-security"
     }
 }

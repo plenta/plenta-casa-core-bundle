@@ -12,33 +12,32 @@ declare(strict_types=1);
 namespace Plenta\CasaCoreBundle\Events;
 
 use Plenta\CasaCoreBundle\Form\FilterType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Contracts\EventDispatcher\Event;
+use Symfonycasts\DynamicForms\DynamicFormBuilder;
 
 class FilterFormEvent extends Event
 {
     public const NAME = 'plenta_casa.filter.form';
 
     /**
-     * @param FormBuilderInterface<FilterType> $formBuilder
+     * @param DynamicFormBuilder<FilterType> $formBuilder
      */
-    public function __construct(
-        protected FormBuilderInterface $formBuilder,
-    ) {
+    public function __construct(protected DynamicFormBuilder $formBuilder)
+    {
     }
 
     /**
-     * @return FormBuilderInterface<FilterType>
+     * @return DynamicFormBuilder<FilterType>
      */
-    public function getFormBuilder(): FormBuilderInterface
+    public function getFormBuilder(): DynamicFormBuilder
     {
         return $this->formBuilder;
     }
 
     /**
-     * @param FormBuilderInterface<FilterType> $formBuilder
+     * @param DynamicFormBuilder<FilterType> $formBuilder
      */
-    public function setFormBuilder(FormBuilderInterface $formBuilder): void
+    public function setFormBuilder(DynamicFormBuilder $formBuilder): void
     {
         $this->formBuilder = $formBuilder;
     }

@@ -26,7 +26,6 @@ use Twig\Environment as TwigEnvironment;
 #[AsHook('getSystemMessages')]
 class GetSystemMessagesListener
 {
-
     public function __construct(
         protected readonly TwigEnvironment $twig,
         protected readonly TokenStorageInterface $tokenStorage,

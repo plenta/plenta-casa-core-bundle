@@ -1,9 +1,5 @@
 {% extends '@Contao/content_element/_base.html.twig' %}
 
-{% if data.plenta_casa_filterAddObjectType and data.plenta_casa_filterAddType %}
-    {% set element_css_classes = element_css_classes ~ ' has-types' %}
-{% endif %}
-
 {% set attributes =
     attrs()
     .setIfExists('data-id', data.id)
@@ -16,7 +12,5 @@
         <script src="{{ asset('plentacasacore/app.js', 'plentacasacore') }}" defer></script>
     {% endadd %}
 
-    {{ form_start(form, {attr: stimulus_action('casa-filter', 'filter', 'change')|stimulus_action('casa-filter', 'keyUp', 'keyup').toArray()}) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    {{ component('casa_filter_component', {modelId: data.id}) }}
 {% endblock %}

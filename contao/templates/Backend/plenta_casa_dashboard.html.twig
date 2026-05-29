@@ -16,12 +16,8 @@
                 <span class="description">{{ 'PLENTA.CASA.objects'|trans({}, 'plenta_casa_dashboard') }}</span>
             </div>
 
-            {% if leads is defined %}
-            <div class="tile requests">
-                <span class="numbers">{{ leads }}</span>
-                <span class="description">{{ 'PLENTA.CASA.requests'|trans({}, 'plenta_casa_dashboard') }}</span>
-            </div>
-            {% endif %}
+            {% block custom %}
+            {% endblock %}
 
             <div class="tile future">
                 <span class="numbers">{{ 'PLENTA.CASA.future'|trans({}, 'plenta_casa_dashboard') }}</span>

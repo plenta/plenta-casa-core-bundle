@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/**
- * @package       Customer
+/*
+ * @package       Plenta Casa Core Bundle
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -18,6 +18,10 @@ use Plenta\CasaCoreBundle\Model\ObjectModel;
 #[AsHook('generateBreadcrumb')]
 class GenerateBreadcrumbListener
 {
+    /**
+     * @param  array<int, array<string, mixed>> $items
+     * @return array<int, array<string, mixed>>
+     */
     public function __invoke(array $items, Module $module): array
     {
         $lastKey = array_key_last($items);
@@ -26,7 +30,7 @@ class GenerateBreadcrumbListener
             return $items;
         }
 
-        $alias = basename($items[$lastKey]['href']);
+        $alias = basename((string) $items[$lastKey]['href']);
 
         $object = ObjectModel::findOneBy(['alias = ?'], [$alias]);
 

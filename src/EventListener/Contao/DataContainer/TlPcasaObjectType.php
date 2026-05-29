@@ -17,9 +17,8 @@ use Contao\DC_Table;
 
 class TlPcasaObjectType
 {
-    public function __construct(
-        protected FinderFactory $finderFactory,
-    ) {
+    public function __construct(protected FinderFactory $finderFactory)
+    {
     }
 
     /**

@@ -32,12 +32,7 @@
             <span class="badge">{{ price }} €</span>
         </td>
     </tr>
-    <tr>
-        <td>
-            {% if leads %}
-                <span class="leads">{{ leads }}</span>
-            {% endif %}
-        </td>
-    </tr>
+    {% block custom %}
+    {% endblock %}
     </tbody>
 </table>
