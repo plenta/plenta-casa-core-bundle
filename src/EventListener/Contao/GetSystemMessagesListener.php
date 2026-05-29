@@ -15,16 +15,18 @@ use Composer\InstalledVersions;
 use Contao\BackendUser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Doctrine\DBAL\Connection;
-use Plenta\CasaCoreBundle\Model\LeadModel;
+use Plenta\CasaCoreBundle\Events\DashboardStatsEvent;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment as TwigEnvironment;
 
 #[AsHook('getSystemMessages')]
 class GetSystemMessagesListener
 {
+
     public function __construct(
         protected readonly TwigEnvironment $twig,
         protected readonly TokenStorageInterface $tokenStorage,
@@ -32,6 +34,7 @@ class GetSystemMessagesListener
         protected readonly AuthorizationCheckerInterface $auth,
         protected Packages $packages,
         protected readonly Connection $connection,
+        protected readonly EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
@@ -46,7 +49,6 @@ class GetSystemMessagesListener
                 'salutation' => $this->getRandomSalutation(),
                 'username' => $user->name,
                 'objectStats' => $this->getObjectStats(),
-                'leads' => $this->getAllLeads(),
                 'changelog' => 'https://plentacasa.com/changelog',
                 'manufacturer' => $this->translator->trans('PLENTA.CASA.manufacturer', [], 'plenta_casa_dashboard'),
                 'version' => $this->translator->trans(
@@ -55,6 +57,10 @@ class GetSystemMessagesListener
                     'plenta_casa_dashboard',
                 ),
             ];
+
+            $dashboardEvent = new DashboardStatsEvent($data);
+            $this->eventDispatcher->dispatch($dashboardEvent, DashboardStatsEvent::NAME);
+            $data = $dashboardEvent->getData();
 
             return
                 $this->twig->render(
@@ -93,12 +99,5 @@ class GetSystemMessagesListener
         $choices = array_values(array_filter(array_map(trim(...), explode('|', $raw))));
 
         return $choices[random_int(0, \count($choices) - 1)];
-    }
-
-    private function getAllLeads(): int
-    {
-        $leads = LeadModel::countAll() ?? 0;
-
-        return $leads;
     }
 }

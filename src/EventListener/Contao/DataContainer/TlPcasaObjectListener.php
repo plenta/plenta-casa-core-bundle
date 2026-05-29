@@ -19,13 +19,14 @@ use Contao\DataContainer;
 use Contao\DC_Table;
 use Contao\FilesModel;
 use Contao\StringUtil;
+use Plenta\CasaCoreBundle\Events\ObjectLabelLeadsEvent;
 use Plenta\CasaCoreBundle\Helper\AliasGenerator;
 use Plenta\CasaCoreBundle\Helper\ObjectTypes;
-use Plenta\CasaCoreBundle\Model\LeadModel;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment as TwigEnvironment;
 
@@ -39,6 +40,7 @@ class TlPcasaObjectListener
         private readonly ObjectTypes $objectTypes,
         private readonly ContentUrlGenerator $contentUrlGenerator,
         private readonly RequestStack $requestStack,
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
@@ -53,10 +55,13 @@ class TlPcasaObjectListener
 
         $this->getImage($property);
 
+        $leadsEvent = new ObjectLabelLeadsEvent((int) $property['id']);
+        $this->eventDispatcher->dispatch($leadsEvent, ObjectLabelLeadsEvent::NAME);
+
         return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', [
             'property' => $property,
             'image' => $this->getImage($property),
-            'leads' => $this->getLeads($property['id']),
+            'leads' => $leadsEvent->getLeads(),
             'price' => $this->getObjectPrice($property),
             'size' => $this->getObjectSize($property),
         ]);
@@ -114,24 +119,6 @@ class TlPcasaObjectListener
         foreach ($types as $type) {
             $return[$type->id] = $type->title;
             $return += $this->getObjectTypes($type->id, 1);
-        }
-
-        return $return;
-    }
-
-    private function getObjectTypes(int $pid, int $depth): array
-    {
-        $return = [];
-        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'title ASC']);
-
-        if (!$types) {
-            return $return;
-        }
-
-        foreach ($types as $type) {
-            $indent = str_repeat('　', $depth - 1).'└ ';
-            $return[$type->id] = $indent.$type->title;
-            $return += $this->getObjectTypes($type->id, $depth + 1);
         }
 
         return $return;
@@ -229,13 +216,6 @@ class TlPcasaObjectListener
         return null;
     }
 
-    public function getLeads(int $object): string
-    {
-        $leads = LeadModel::countBy('object', $object) ?? 0;
-
-        return $this->translator->trans('PLENTA.CASA.lead_count', ['%count%' => $leads], 'plenta_casa_backend');
-    }
-
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.facilities.options')]
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.bathroomFacilities.options')]
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.flooring.options')]
@@ -245,13 +225,29 @@ class TlPcasaObjectListener
         $options = $GLOBALS['TL_DCA']['tl_pcasa_object']['fields'][$field]['options'] ?? [];
         $labels = $GLOBALS['TL_LANG']['tl_pcasa_object'][$field.'-options'] ?? [];
 
-        usort($options, static function (string $a, string $b) use ($labels): int {
-            return strnatcasecmp($labels[$a] ?? $a, $labels[$b] ?? $b);
-        });
+        usort($options, static fn (string $a, string $b): int => strnatcasecmp($labels[$a] ?? $a, $labels[$b] ?? $b));
 
         return array_combine($options, array_map(
             static fn (string $key): string => $labels[$key] ?? $key,
             $options
         ));
+    }
+
+    private function getObjectTypes(int $pid, int $depth): array
+    {
+        $return = [];
+        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'title ASC']);
+
+        if (!$types) {
+            return $return;
+        }
+
+        foreach ($types as $type) {
+            $indent = str_repeat('　', $depth - 1).'└ ';
+            $return[$type->id] = $indent.$type->title;
+            $return += $this->getObjectTypes($type->id, $depth + 1);
+        }
+
+        return $return;
     }
 }
