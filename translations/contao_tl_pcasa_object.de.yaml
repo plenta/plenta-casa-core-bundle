@@ -134,8 +134,8 @@ tl_pcasa_object:
         customersOption: nach Vereinbarung
         dilapidated: abbruchreif
     numberOfParkingSpaces:
-        0: Parkplätze
-        1: Bitte geben Sie die Anzahl der Parkplätze ein.
+        0: Stellplätze
+        1: Bitte geben Sie die Anzahl der Stellplätze ein.
     parkingSpaceType:
         0: Stellplatztyp
         1: Bitte wählen Sie einen Stellplatztyp aus.
