@@ -113,7 +113,7 @@ tl_pcasa_object:
         normal: normal
         plain: einfach
     availableFrom:
-        0: Frei ab
+        0: Verfügbar ab
         1: Bitte geben Sie das Datum ein, ab dem das Objekt verfügbar ist.
     propertyCondition:
         0: Objektzustand
@@ -134,7 +134,7 @@ tl_pcasa_object:
         customersOption: nach Vereinbarung
         dilapidated: abbruchreif
     numberOfParkingSpaces:
-        0: Anzahl Parkplätze
+        0: Parkplätze
         1: Bitte geben Sie die Anzahl der Parkplätze ein.
     parkingSpaceType:
         0: Stellplatztyp

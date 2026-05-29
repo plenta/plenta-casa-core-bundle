@@ -456,8 +456,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'availableFrom' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'date', 'datepicker' => true, 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
         ],
         'availableTo' => [
             'inputType' => 'text',
