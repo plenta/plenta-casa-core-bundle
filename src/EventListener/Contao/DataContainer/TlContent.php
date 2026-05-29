@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -24,7 +23,7 @@ class TlContent
     public function __construct(
         protected EventDispatcherInterface $eventDispatcher,
         protected FinderFactory $finderFactory,
-        protected readonly RequestStack $requestStack
+        protected readonly RequestStack $requestStack,
     ) {
     }
 
@@ -82,6 +81,9 @@ class TlContent
         ;
     }
 
+    /**
+     * @return array<string>
+     */
     #[AsCallback(table: 'tl_content', target: 'fields.plenta_casa_sorting.options')]
     public function onListSortingOptions(): array
     {
@@ -89,7 +91,7 @@ class TlContent
     }
 
     #[AsCallback('tl_content', 'config.onload')]
-    public function onLoadCallback(?DataContainer $dc = null): void
+    public function onLoadCallback(DataContainer|null $dc = null): void
     {
         if (null === $dc || !$dc->id || 'edit' !== $this->requestStack->getCurrentRequest()->query->get('act')) {
             return;

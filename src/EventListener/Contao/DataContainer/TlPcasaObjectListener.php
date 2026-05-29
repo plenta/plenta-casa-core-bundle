@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -20,8 +19,6 @@ use Contao\DC_Table;
 use Contao\FilesModel;
 use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Helper\AliasGenerator;
-use Plenta\CasaCoreBundle\Helper\ObjectTypes;
-use Plenta\CasaCoreBundle\Model\LeadModel;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Symfony\Component\Asset\Packages;
@@ -36,7 +33,6 @@ class TlPcasaObjectListener
         protected Packages $packages,
         protected readonly TranslatorInterface $translator,
         protected readonly TwigEnvironment $twig,
-        private readonly ObjectTypes $objectTypes,
         private readonly ContentUrlGenerator $contentUrlGenerator,
         private readonly RequestStack $requestStack,
     ) {
@@ -56,12 +52,14 @@ class TlPcasaObjectListener
         return $this->twig->render('@Contao/Backend/plentacasa_listing.html.twig', [
             'property' => $property,
             'image' => $this->getImage($property),
-            'leads' => $this->getLeads($property['id']),
             'price' => $this->getObjectPrice($property),
             'size' => $this->getObjectSize($property),
         ]);
     }
 
+    /**
+     * @param array<string, mixed> $property
+     */
     public function getObjectPrice(array $property): string
     {
         $value = match ($property['marketing_type']) {
@@ -73,6 +71,9 @@ class TlPcasaObjectListener
         return $value ? $this->formatNumber($value) : '-';
     }
 
+    /**
+     * @param array<string, mixed> $property
+     */
     public function getObjectSize(array $property): string
     {
         $fields = ['floorArea', 'plotArea', 'livingArea'];
@@ -88,7 +89,7 @@ class TlPcasaObjectListener
         return '-';
     }
 
-    public function formatNumber(int|float|string $value): string
+    public function formatNumber(float|int|string $value): string
     {
         $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
 
@@ -114,24 +115,6 @@ class TlPcasaObjectListener
         foreach ($types as $type) {
             $return[$type->id] = $type->title;
             $return += $this->getObjectTypes($type->id, 1);
-        }
-
-        return $return;
-    }
-
-    private function getObjectTypes(int $pid, int $depth): array
-    {
-        $return = [];
-        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'title ASC']);
-
-        if (!$types) {
-            return $return;
-        }
-
-        foreach ($types as $type) {
-            $indent = str_repeat('　', $depth - 1).'└ ';
-            $return[$type->id] = $indent.$type->title;
-            $return += $this->getObjectTypes($type->id, $depth + 1);
         }
 
         return $return;
@@ -174,7 +157,7 @@ class TlPcasaObjectListener
                 try {
                     $url = $this->contentUrlGenerator->generate(
                         $list->getRelated('jumpTo'),
-                        ['parameters' => '/'.$slug]
+                        ['parameters' => '/'.$slug],
                     );
                 } catch (\Throwable) {
                     $url = null;
@@ -210,7 +193,7 @@ class TlPcasaObjectListener
     /**
      * @param array<string, mixed> $property
      */
-    public function getImage(array $property): ?string
+    public function getImage(array $property): string|null
     {
         if (null !== $property['singleSRC']) {
             $objFile = FilesModel::findByUuid(StringUtil::binToUuid($property['singleSRC']));
@@ -229,13 +212,9 @@ class TlPcasaObjectListener
         return null;
     }
 
-    public function getLeads(int $object): string
-    {
-        $leads = LeadModel::countBy('object', $object) ?? 0;
-
-        return $this->translator->trans('PLENTA.CASA.lead_count', ['%count%' => $leads], 'plenta_casa_backend');
-    }
-
+    /**
+     * @return array<string>
+     */
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.facilities.options')]
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.bathroomFacilities.options')]
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.flooring.options')]
@@ -245,13 +224,32 @@ class TlPcasaObjectListener
         $options = $GLOBALS['TL_DCA']['tl_pcasa_object']['fields'][$field]['options'] ?? [];
         $labels = $GLOBALS['TL_LANG']['tl_pcasa_object'][$field.'-options'] ?? [];
 
-        usort($options, static function (string $a, string $b) use ($labels): int {
-            return strnatcasecmp($labels[$a] ?? $a, $labels[$b] ?? $b);
-        });
+        usort($options, static fn (string $a, string $b): int => strnatcasecmp($labels[$a] ?? $a, $labels[$b] ?? $b));
 
         return array_combine($options, array_map(
             static fn (string $key): string => $labels[$key] ?? $key,
-            $options
+            $options,
         ));
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    private function getObjectTypes(int $pid, int $depth): array
+    {
+        $return = [];
+        $types = ObjectTypeModel::findBy('pid', $pid, ['order' => 'title ASC']);
+
+        if (!$types) {
+            return $return;
+        }
+
+        foreach ($types as $type) {
+            $indent = str_repeat('　', $depth - 1).'└ ';
+            $return[$type->id] = $indent.$type->title;
+            $return += $this->getObjectTypes($type->id, $depth + 1);
+        }
+
+        return $return;
     }
 }

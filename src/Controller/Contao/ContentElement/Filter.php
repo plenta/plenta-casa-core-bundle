@@ -17,7 +17,6 @@ use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController
 use Contao\CoreBundle\DependencyInjection\Attribute\AsContentElement;
 use Contao\System;
 use Contao\Template;
-use Plenta\CasaCoreBundle\Form\FilterType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -39,18 +38,6 @@ class Filter extends AbstractContentElementController
 
             return $objTemplate->getResponse();
         }
-
-        $filter = $this->createForm(
-            FilterType::class,
-            null,
-            [
-                'model' => $model,
-            ],
-        );
-
-        $filter->handleRequest($request);
-
-        $template->form = $filter->createView();
 
         return $template->getResponse();
     }

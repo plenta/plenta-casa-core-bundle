@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -46,7 +45,7 @@ class PlentaCasaExtension
     }
 
     #[AsTwigFilter('casaFormatNumber')]
-    public function casaFormatNumber(int|float|string $value, int $decimals = 2): string
+    public function casaFormatNumber(float|int|string $value, int $decimals = 2): string
     {
         $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de_DE';
 
@@ -56,6 +55,9 @@ class PlentaCasaExtension
         return $formatter->format((float) $value);
     }
 
+    /**
+     * @return array<string>
+     */
     #[AsTwigFilter('casaFileMeta')]
     public function casaFileMeta(string $uuid): array
     {
@@ -77,6 +79,15 @@ class PlentaCasaExtension
         ];
     }
 
+    #[AsTwigFilter('casaIsNew')]
+    public function casaIsNew(int|string $createdAt): bool
+    {
+        $days = $this->newBadgeDays;
+        $threshold = new \DateTimeImmutable("-{$days} days");
+
+        return (new \DateTimeImmutable('@'.$createdAt)) >= $threshold;
+    }
+
     protected function getTitle(ObjectTypeModel $type): string
     {
         $return = '';
@@ -86,14 +97,5 @@ class PlentaCasaExtension
         }
 
         return $return.$type->title;
-    }
-
-    #[AsTwigFilter('casaIsNew')]
-    public function casaIsNew(int|string $createdAt): bool
-    {
-        $days = $this->newBadgeDays;
-        $threshold = new \DateTimeImmutable("-{$days} days");
-
-        return (new \DateTimeImmutable('@'.$createdAt)) >= $threshold;
     }
 }

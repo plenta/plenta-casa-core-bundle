@@ -21,7 +21,10 @@ use Plenta\CasaCoreBundle\PlentaCasaCoreBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Routing\RouteCollection;
+use Symfony\UX\LiveComponent\LiveComponentBundle;
 use Symfony\UX\StimulusBundle\StimulusBundle;
+use Symfony\UX\TwigComponent\TwigComponentBundle;
 
 class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPluginInterface
 {
@@ -29,8 +32,10 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPlu
     {
         return [
             BundleConfig::create(StimulusBundle::class),
+            BundleConfig::create(TwigComponentBundle::class),
+            BundleConfig::create(LiveComponentBundle::class)->setLoadAfter([TwigComponentBundle::class]),
             BundleConfig::create(PlentaCasaCoreBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class, StimulusBundle::class]),
+                ->setLoadAfter([ContaoCoreBundle::class, StimulusBundle::class, LiveComponentBundle::class]),
         ];
     }
 
@@ -44,9 +49,16 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface, ConfigPlu
 
     public function getRouteCollection(LoaderResolverInterface $resolver, KernelInterface $kernel)
     {
-        return $resolver
+        $collection = new RouteCollection();
+
+        $collection->addCollection($resolver
             ->resolve(__DIR__.'/../Controller', 'attribute')
-            ->load(__DIR__.'/../Controller')
-        ;
+            ->load(__DIR__.'/../Controller'));
+
+        $collection->addCollection($resolver
+            ->resolve(__DIR__.'/../../config/routes.yaml')
+            ->load(__DIR__.'/../../config/routes.yaml'));
+
+        return $collection;
     }
 }

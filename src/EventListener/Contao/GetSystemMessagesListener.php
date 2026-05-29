@@ -15,7 +15,6 @@ use Composer\InstalledVersions;
 use Contao\BackendUser;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Doctrine\DBAL\Connection;
-use Plenta\CasaCoreBundle\Model\LeadModel;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -46,7 +45,6 @@ class GetSystemMessagesListener
                 'salutation' => $this->getRandomSalutation(),
                 'username' => $user->name,
                 'objectStats' => $this->getObjectStats(),
-                'leads' => $this->getAllLeads(),
                 'changelog' => 'https://plentacasa.com/changelog',
                 'manufacturer' => $this->translator->trans('PLENTA.CASA.manufacturer', [], 'plenta_casa_dashboard'),
                 'version' => $this->translator->trans(
@@ -93,12 +91,5 @@ class GetSystemMessagesListener
         $choices = array_values(array_filter(array_map(trim(...), explode('|', $raw))));
 
         return $choices[random_int(0, \count($choices) - 1)];
-    }
-
-    private function getAllLeads(): int
-    {
-        $leads = LeadModel::countAll() ?? 0;
-
-        return $leads;
     }
 }

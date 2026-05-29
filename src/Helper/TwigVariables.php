@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -17,15 +16,14 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class TwigVariables
 {
-    public function __construct(
-        protected EventDispatcherInterface $eventDispatcher,
-    ) {
+    public function __construct(protected EventDispatcherInterface $eventDispatcher)
+    {
     }
 
     /**
      * @return array<string>
      */
-    public function getArea(?ObjectModel $objectModel = null): array
+    public function getArea(ObjectModel|null $objectModel = null): array
     {
         $options = [
             'livingArea',

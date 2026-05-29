@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -30,7 +29,7 @@ class KeywordsEvent extends Event
             'tl_pcasa_object.location',
             'tl_pcasa_object.other',
         ],
-        protected ?ContentModel $contentModel = null,
+        protected ContentModel|null $contentModel = null,
         protected string $connector = 'AND',
         protected bool $splitKeywords = true,
     ) {
@@ -74,12 +73,12 @@ class KeywordsEvent extends Event
         return $this;
     }
 
-    public function getContentModel(): ?ContentModel
+    public function getContentModel(): ContentModel|null
     {
         return $this->contentModel;
     }
 
-    public function setContentModel(?ContentModel $contentModel): self
+    public function setContentModel(ContentModel|null $contentModel): self
     {
         $this->contentModel = $contentModel;
 

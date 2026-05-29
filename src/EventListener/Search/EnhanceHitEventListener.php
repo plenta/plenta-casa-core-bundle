@@ -20,9 +20,8 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 #[AsEventListener]
 class EnhanceHitEventListener
 {
-    public function __construct(
-        private readonly Studio $studio,
-    ) {
+    public function __construct(private readonly Studio $studio)
+    {
     }
 
     public function __invoke(EnhanceHitEvent $event): void

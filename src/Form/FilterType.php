@@ -19,12 +19,12 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfonycasts\DynamicForms\DynamicFormBuilder;
 
 /**
  * @phpstan-ignore missingType.generics
@@ -41,6 +41,8 @@ class FilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $model = $options['model'];
+
+        $builder = new DynamicFormBuilder($builder);
 
         if ($model->plenta_casa_filterAddMarketingType) {
             $builder->add(
@@ -140,12 +142,16 @@ class FilterType extends AbstractType
         ;
 
         if ($model->plenta_casa_filterAddResetButton) {
-            $builder->add('reset', ResetLinkType::class, [
-                'priority' => 0,
-                'label' => 'CASA.filter.reset',
-                'translation_domain' => 'plenta_casa',
-                'row_attr' => ['class' => 'widget-reset-button'],
-            ]);
+            $builder->add(
+                'reset',
+                ResetLinkType::class,
+                [
+                    'priority' => 0,
+                    'label' => 'CASA.filter.reset',
+                    'translation_domain' => 'plenta_casa',
+                    'row_attr' => ['class' => 'widget-reset-button'],
+                ],
+            );
         }
 
         $event = new FilterFormEvent($builder);
@@ -160,6 +166,7 @@ class FilterType extends AbstractType
             'translation_domain' => 'plenta_casa',
             'method' => 'GET',
             'csrf_protection' => false,
+            'attr' => ['data-action' => 'live#action:prevent', 'data-live-action-param' => 'save'],
         ]);
     }
 }
