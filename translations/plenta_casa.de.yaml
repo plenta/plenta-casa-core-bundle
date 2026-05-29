@@ -16,7 +16,7 @@ CASA:
         keywordPlaceholder: Suche nach Orten, Wohnungen, etc.
         location: Ort
         perimeter: Umkreis
-        submit: '{{casa_objects_count}} Suchen'
+        submit: Suchen
         area: Wohnfläche ab
         rooms: Zimmer ab
         price: Preis bis (€)
