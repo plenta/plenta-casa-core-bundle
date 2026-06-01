@@ -1,15 +1,28 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 {% trans_default_domain 'plenta_casa' %}
 
+{% set area_fields = ['livingArea', 'plotArea', 'floorArea', 'balconyArea', 'gardenArea'] %}
+{% set inline_fields = ['floor', 'numberOfFloors', 'floorPosition', 'numberOfParkingSpaces', 'parkingSpaceType'] %}
+
 {% block content %}
     {% for area in casa_variables.area(object) %}
         {% set value = attribute(object, area) %}
         {% if value|default %}
             <div class="area area-{{ area }}">
-                {% if area == 'parkingSpaceType' %}
-                    <div class="content">{{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([], 'contao_tl_pcasa_object') }}</div>
+                {% if area in area_fields %}
+                    <div class="content">{{ value|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</div>
+                    <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
+                {% elseif area in inline_fields %}
+                    <div class="content">
+                        <span class="label">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}:</span>
+                        {% if area == 'parkingSpaceType' %}
+                            {{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([], 'contao_tl_pcasa_object') }}
+                        {% else %}
+                            {{ value }}
+                        {% endif %}
+                    </div>
                 {% else %}
-                    <div class="content">{{ value }}{% if 'area' in area|lower %} {{ 'CASA.area_unit'|trans }}{% endif %}</div>
+                    <div class="content">{{ value }}</div>
                     <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
                 {% endif %}
             </div>
