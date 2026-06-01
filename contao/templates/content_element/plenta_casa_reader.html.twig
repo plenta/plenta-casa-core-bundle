@@ -14,10 +14,7 @@
         {% endif %}
     {% endfor %}
 
-    {% block schema_org %}
-        {% if schemaOrg is defined %}
-            {{ schemaOrg|raw }}
-        {% endif %}
-    {% endblock %}
+    {% if realEstateSchema is defined and realEstateSchema %}
+        {% do add_schema_org(realEstateSchema) %}
+    {% endif %}
 {% endblock %}
-

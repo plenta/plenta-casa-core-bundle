@@ -90,7 +90,7 @@ class Reader extends AbstractContentElementController
             }
         }
 
-        $template->schemaOrg = $this->realEstateSchema->generateStructuredData($object);
+        $template->realEstateSchema = $this->realEstateSchema->getStructuredData($object);
 
         return $template->getResponse();
     }

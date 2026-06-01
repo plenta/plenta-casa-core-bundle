@@ -29,10 +29,10 @@ class RealEstateSchema
     ) {
     }
 
-    public function generateStructuredData(?ObjectModel $object): ?string
+    public function getStructuredData(?ObjectModel $object): array
     {
         if (null === $object) {
-            return null;
+            return [];
         }
 
         $data = [];
@@ -65,15 +65,8 @@ class RealEstateSchema
 
         $event = new SchemaOrgEvent($object, $data);
         $this->eventDispatcher->dispatch($event, SchemaOrgEvent::NAME);
-        $data = $event->getData();
 
-        $json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-        if (false === $json) {
-            return null;
-        }
-
-        return '<script type="application/ld+json">'.$json.'</script>';
+        return $event->getData();
     }
 
     private function generateAddress(ObjectModel $object): array
