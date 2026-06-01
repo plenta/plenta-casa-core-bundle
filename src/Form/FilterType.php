@@ -70,7 +70,7 @@ class FilterType extends AbstractType
                 [
                     'choices' => array_flip($this->objectTypes->getTypes()),
                     'placeholder' => '-',
-                    'choice_filter' => fn ($value) => !$value || $this->objectTypes->hasObjects($value),
+                    'choice_filter' => fn ($value) => !$value || $this->objectTypes->hasObjects((int) $value),
                     'priority' => 75,
                     'required' => false,
                     'row_attr' => ['class' => 'widget-select'],

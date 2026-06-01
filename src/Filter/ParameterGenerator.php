@@ -114,8 +114,8 @@ class ParameterGenerator
         if ($price = (int) ($filter['price'] ?? null)) {
             $parameters[] = new Parameter(
                 'priceMax',
-                ['((price != ? and price <= ?) OR (baseRent != ? and baseRent <= ?))'],
-                [0, $price, 0, $price],
+                ['((price != ? and price <= ?) OR (baseRent != ? and baseRent <= ?) OR priceOnRequest = ? OR priceNegotiable = ?)'],
+                [0, $price, 0, $price, 1, 1],
             );
         }
 
