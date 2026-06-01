@@ -30,6 +30,7 @@ use Contao\StringUtil;
 use Contao\System;
 use Contao\Template;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
+use Plenta\CasaCoreBundle\Schema\RealEstateSchema;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -40,6 +41,7 @@ class Reader extends AbstractContentElementController
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly ResponseContextAccessor $responseContextAccessor,
+        private readonly RealEstateSchema $realEstateSchema,
     ) {
     }
 
@@ -87,6 +89,8 @@ class Reader extends AbstractContentElementController
                 $htmlHeadBag->setMetaRobots($object->robots);
             }
         }
+
+        $template->schemaOrg = $this->realEstateSchema->generateStructuredData($object);
 
         return $template->getResponse();
     }
