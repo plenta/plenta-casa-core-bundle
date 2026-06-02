@@ -13,4 +13,63 @@
             $buttonSecondaryBorderColor: var(--pcasa-search-button-bg-color-active)
         );
     }
+
+    @media (max-width: 960px) {
+        .filter-toggle {
+            display: inline-flex;
+        }
+
+        .filter-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: min(320px, 85vw);
+            z-index: 1000;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            background: #fff; // ggf. anpassen
+
+            &.is-open {
+                transform: translateX(0);
+            }
+        }
+
+        .filter-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgb(0 0 0 / 40%);
+            z-index: 999;
+
+            &.is-open {
+                display: block;
+            }
+        }
+    }
+
+    @media (min-width: 961px) {
+        .filter-toggle {
+            display: none;
+        }
+
+        .filter-panel {
+            display: block !important;
+            position: static;
+            transform: none;
+        }
+    }
+
+    .filter-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgb(0 0 0 / 40%);
+        z-index: 999;
+
+        &.is-open {
+            display: block;
+        }
+    }
 }
