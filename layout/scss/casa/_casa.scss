@@ -2,15 +2,6 @@
 @use '../abstracts/mixins';
 
 .content-plenta-casa-filter {
-    form {
-        > * {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: variables.$base-spacing-s;
-        }
-    }
-
     button {
         @include mixins.button;
         @include mixins.button-color(
