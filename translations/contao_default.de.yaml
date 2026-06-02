@@ -10,6 +10,7 @@ PLENTA:
             marketingType: Immobilienart
         badge:
             new: Neu
+            featured: Empfohlen
 
 CTE:
     plentacasa: Plenta Casa

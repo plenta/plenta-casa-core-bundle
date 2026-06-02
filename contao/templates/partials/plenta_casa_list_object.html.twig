@@ -3,8 +3,15 @@
 {% set url = content_url(jumpTo, {parameters: '/' ~ object.alias}) %}
 
 <div class="object{% if object.featured %} object-featured{% endif %}">
-    {% if object.createdAt|casaIsNew %}
-        <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
+    {% if object.featured or object.createdAt|casaIsNew %}
+        <div class="badges">
+            {% if object.featured %}
+                <span class="badge-featured">{{ 'PLENTA.CASA.badge.featured'|trans({}, 'contao_default') }}</span>
+            {% endif %}
+            {% if object.createdAt|casaIsNew %}
+                <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
+            {% endif %}
+        </div>
     {% endif %}
     {% block titleImage %}
         {% if object.singleSRC|default and model.size %}
