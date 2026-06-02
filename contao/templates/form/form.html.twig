@@ -18,7 +18,3 @@
         {{ form_widget(form) }}
     </fieldset>
 {% endblock %}
-
-{% block reset_link_widget %}
-    <a href="{{ app.request.pathInfo }}">{{ label|trans({}, translation_domain) }}</a>
-{% endblock %}
