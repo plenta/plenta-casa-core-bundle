@@ -78,7 +78,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
-            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment,availableFrom,rented,sold,reserved;
+            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment,availableFrom,reserved;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
