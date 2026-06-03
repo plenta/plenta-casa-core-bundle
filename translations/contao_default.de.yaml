@@ -8,6 +8,7 @@ PLENTA:
         empty_list: Momentan sind leider keine Angebote verfügbar. Schauen Sie bald wieder vorbei.
         filter:
             marketingType: Immobilienart
+            roomsRange: Zimmeranzahl
         badge:
             new: Neu
             featured: Empfohlen
