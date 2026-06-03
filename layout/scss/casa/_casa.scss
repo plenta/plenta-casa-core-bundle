@@ -61,3 +61,25 @@
         }
     }
 }
+
+%badges-style {
+    > * {
+        background-color: var(--pcasa-badge-bg-color);
+        color: var(--pcasa-badge-color);
+        padding-inline: variables.$base-spacing-xx-s;
+        border-radius: var(--pcasa-base-border-radius);
+        font-weight: variables.$font-weight-semi-bold;
+        font-size: var(--pcasa-badge-font-size);
+        height: fit-content;
+    }
+}
+
+.content-plenta-casa-reader .part-status {
+    @extend %badges-style;
+}
+
+.content-plenta-casa-listing {
+    .badges {
+        @extend %badges-style;
+    }
+}

@@ -32,4 +32,7 @@
     --pcasa-form-mandatory-color: #{variables.$color-black};
     --pcasa-padding-card: 0;
     --pcasa-padding-card-inside: #{variables.$base-spacing-s};
+    --pcasa-badge-bg-color: #{variables.$color-white};
+    --pcasa-badge-color: #{variables.$color-default};
+    --pcasa-badge-font-size: 14px;
 }
