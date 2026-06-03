@@ -7,9 +7,6 @@
     {% if object.createdAt|casaIsNew %}
         <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
     {% endif %}
-    {% if object.rented %}
-        <span class="badge-rented">{{ 'PLENTA.CASA.badge.rented'|trans({}, 'contao_default') }}</span>
-    {% endif %}
     {% if object.sold %}
         <span class="badge-sold">{{ 'PLENTA.CASA.badge.sold'|trans({}, 'contao_default') }}</span>
     {% endif %}
