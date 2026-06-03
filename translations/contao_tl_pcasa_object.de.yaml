@@ -322,6 +322,15 @@ tl_pcasa_object:
     priceNegotiable:
         0: Preis gegen Gebot
         1: Bitte auswählen, wenn Preis gegen Gebot ist.
+    rented:
+        0: Vermietet
+        1: Bitte auswählen, wenn das Objekt vermietet ist.
+    sold:
+        0: Verkauft
+        1: Bitte auswählen, wenn das Objekt verkauft ist.
+    reserved:
+        0: Reserviert
+        1: Bitte auswählen, wenn das Objekt reserviert ist.
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten

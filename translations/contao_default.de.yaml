@@ -10,8 +10,11 @@ PLENTA:
             marketingType: Immobilienart
             roomsRange: Zimmeranzahl
         badge:
-            new: Neu
+            new: NEU
             featured: Empfohlen
+            rented: Vermietet
+            sold: Verkauft
+            reserved: Reserviert
 
 CTE:
     plentacasa: Plenta Casa

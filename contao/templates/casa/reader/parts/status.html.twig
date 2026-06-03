@@ -7,6 +7,15 @@
     {% if object.createdAt|casaIsNew %}
         <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
     {% endif %}
+    {% if object.rented %}
+        <span class="badge-rented">{{ 'PLENTA.CASA.badge.rented'|trans({}, 'contao_default') }}</span>
+    {% endif %}
+    {% if object.sold %}
+        <span class="badge-sold">{{ 'PLENTA.CASA.badge.sold'|trans({}, 'contao_default') }}</span>
+    {% endif %}
+    {% if object.reserved %}
+        <span class="badge-reserved">{{ 'PLENTA.CASA.badge.reserved'|trans({}, 'contao_default') }}</span>
+    {% endif %}
     <span class="type">{{ ('PLENTA.CASA.marketing_types.' ~ object.marketing_type)|trans({}, 'contao_default') }}</span>
     <span class="object-type">{{ object.object_type|casaObjectTypeName }}</span>
 {% endblock %}
