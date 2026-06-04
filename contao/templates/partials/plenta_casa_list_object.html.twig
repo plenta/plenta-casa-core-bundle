@@ -3,22 +3,17 @@
 {% set url = content_url(jumpTo, {parameters: '/' ~ object.alias}) %}
 
 <div class="object{% if object.featured %} object-featured{% endif %}">
-    {% if object.featured or object.createdAt|casaIsNew or object.rented|default or object.sold|default or object.reserved|default %}
-        <div class="badges">
+    {% if object.featured or object.createdAt|casaIsNew %}
+        <div class="badges badges-first">
             {% if object.featured %}
                 <span class="badge-featured">{{ 'PLENTA.CASA.badge.featured'|trans({}, 'contao_default') }}</span>
             {% endif %}
             {% if object.createdAt|casaIsNew %}
                 <span class="badge-new">{{ 'PLENTA.CASA.badge.new'|trans({}, 'contao_default') }}</span>
             {% endif %}
-            {% if object.sold|default %}
-                <span class="badge-sold">{{ 'PLENTA.CASA.badge.sold'|trans({}, 'contao_default') }}</span>
-            {% endif %}
-            {% if object.reserved|default %}
-                <span class="badge-reserved">{{ 'PLENTA.CASA.badge.reserved'|trans({}, 'contao_default') }}</span>
-            {% endif %}
         </div>
     {% endif %}
+
     {% block titleImage %}
         {% if object.singleSRC|default and model.size %}
             {% set file_meta = object.singleSRC|casaFileMeta %}
@@ -40,6 +35,19 @@
     {% endblock %}
 
     <div class="main-content">
+        {% block badges %}
+            {% if object.sold|default or object.reserved|default %}
+                <div class="badges badges-second">
+                    {% if object.sold|default %}
+                        <span class="badge-sold">{{ 'PLENTA.CASA.badge.sold'|trans({}, 'contao_default') }}</span>
+                    {% endif %}
+                    {% if object.reserved|default %}
+                        <span class="badge-reserved">{{ 'PLENTA.CASA.badge.reserved'|trans({}, 'contao_default') }}</span>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
         {% block title %}
             <div class="title">
                 <a href="{{ url }}">{{ object.name }}</a>
@@ -80,21 +88,22 @@
 
     <div class="wrapper-content">
         {% block price %}
-            {% if object.marketing_type == 'RENT' %}
-                <span class="price">{{ object.baseRent|casaFormatNumber }} €</span>
-                <span class="small">Kaltmiete zzgl. NK</span>
-            {% elseif object.marketing_type == 'BUY' %}
-                {% if object.priceOnRequest %}
-                    <span class="price price-text">{{ 'tl_pcasa_object.priceOnRequest.0'|trans({},
-                            'contao_tl_pcasa_object') }}</span>
-                {% elseif object.priceNegotiable %}
-                    <span class="price price-text">{{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_tl_pcasa_object')
-                        }}</span>
-                {% else %}
-                    <span class="price">{{ object.price|casaFormatNumber }} €</span>
-                    <span class="small">Kaufpreis</span>
+            <div class="price-wrapper">
+                {% if object.marketing_type == 'RENT' %}
+                    <span class="price">{{ object.baseRent|casaFormatNumber }} €</span>
+                    <span class="small">Kaltmiete zzgl. NK</span>
+                {% elseif object.marketing_type == 'BUY' %}
+                    {% if object.priceOnRequest %}
+                        <span class="price price-text">{{ 'tl_pcasa_object.priceOnRequest.0'|trans({},
+                                'contao_tl_pcasa_object') }}</span>
+                    {% elseif object.priceNegotiable %}
+                        <span class="price price-text">{{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_tl_pcasa_object') }}</span>
+                    {% else %}
+                        <span class="price">{{ object.price|casaFormatNumber }} €</span>
+                        <span class="small">Kaufpreis</span>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
+            </div>
         {% endblock %}
 
         {% block button %}

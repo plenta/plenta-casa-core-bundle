@@ -13,9 +13,10 @@
     --pcasa-list-image-width: 300px;
     --pcasa-list-image-width-tablet: 200px;
     --pcasa-title-color: #{variables.$color-black};
-    --pcasa-price-font-weight: #{variables.$font-weight-bold};
+    --pcasa-price-font-weight: #{variables.$font-weight-semi-bold};
     --pcasa-title-font-size: 18px;
     --pcasa-price-font-size: #{math.round(variables.$base-font-size * 1.3)};
+    --pcasa-price-text-font-size: #{math.round((variables.$base-font-size * 1.3) - 5px)};
     --pcasa-price-small-font-size: 14px;
     --pcasa-search-button-bg-color: #{variables.$color-default};
     --pcasa-search-button-color: #{variables.$color-white};
@@ -35,4 +36,5 @@
     --pcasa-badge-bg-color: #{variables.$color-white};
     --pcasa-badge-color: #{variables.$color-default};
     --pcasa-badge-font-size: 14px;
+    --pcasa-card-repeat: 3;
 }
