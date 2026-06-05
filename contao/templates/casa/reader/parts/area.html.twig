@@ -5,27 +5,28 @@
 {% set inline_fields = ['floor', 'numberOfFloors', 'floorPosition', 'numberOfParkingSpaces', 'parkingSpaceType'] %}
 
 {% block content %}
+    <dl>
     {% for area in casa_variables.area(object) %}
         {% set value = attribute(object, area) %}
         {% if value|default %}
             <div class="area area-{{ area }}">
                 {% if area in area_fields %}
-                    <div class="content">{{ value|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</div>
-                    <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
+                    <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
+                    <dd class="content">{{ value|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</dd>
                 {% elseif area in inline_fields %}
-                    <div class="content">
-                        <span class="label">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}:</span>
+                        <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object')
+                            }}</dt>
                         {% if area == 'parkingSpaceType' %}
-                            {{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([], 'contao_tl_pcasa_object') }}
+                            <dd class="content">{{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([],'contao_tl_pcasa_object') }}</dd>
                         {% else %}
-                            {{ value }}
+                            <dd class="content">{{ value }}</dd>
                         {% endif %}
-                    </div>
                 {% else %}
-                    <div class="content">{{ value }}</div>
-                    <div class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</div>
+                    <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
+                    <dd class="content">{{ value }}</dd>
                 {% endif %}
             </div>
         {% endif %}
     {% endfor %}
+    </dl>
 {% endblock %}

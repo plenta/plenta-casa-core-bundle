@@ -3,26 +3,59 @@
 @use '../abstracts/placeholder';
 @use '../base/type';
 @use 'casa-abstract-icons' as casa-icons;
+@use 'sass:math';
 
 .content-plenta-casa-reader {
     .part {
         margin-bottom: var(--content-spacing);
     }
 
-    .part-price {
-        .price {
-            font-weight: var(--pcasa-price-font-weight);
-            font-size: var(--pcasa-price-font-size);
+    .part-main-info {
+        display: flex;
+        gap: variables.$base-spacing-s;
 
-            .small {
-                display: block;
-                font-size: var(--pcasa-price-small-font-size);
-                font-weight: variables.$font-weight-regular;
+        > * {
+            display: flex;
+            gap: variables.$base-spacing-xx-s;
+
+            $icons: (
+                    area: casa-icons.$icon-casa-area,
+                    rooms: casa-icons.$icon-casa-rooms,
+                    floor: casa-icons.$icon-casa-floor,
+            );
+
+            @each $name, $icon in $icons {
+                &.#{$name} {
+                    @include mixins.fa-inline-icon(#{$icon}, 0);
+                }
             }
         }
     }
 
-    .part-area,
+    .part-condition,
+    .part-price {
+        > span {
+            font-weight: variables.$font-weight-bold;
+        }
+
+        li {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            font-size: var(--pcasa-feature-font-size);
+            padding-right: variables.$base-spacing-x-s;
+            margin-top: variables.$base-spacing-xx-s;
+
+            &:nth-last-child(n+2) {
+                border-bottom: variables.$base-border;
+                border-color: var(--pcasa-reader-border-color);
+            }
+        }
+
+        .value {
+            font-weight: variables.$font-weight-semi-bold;
+        }
+    }
+
     .part-address {
         display: flex;
         flex-wrap: wrap;
@@ -30,24 +63,24 @@
     }
 
     .part-area {
-        flex-direction: column;
+        > span {
+            font-weight: variables.$font-weight-bold;
+        }
 
-        .area {
-            display: flex;
-            gap: variables.$base-spacing-xx-s;
+        > dl div {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            font-size: var(--pcasa-feature-font-size);
+            padding-right: variables.$base-spacing-x-s;
+            margin-top: variables.$base-spacing-xx-s;
 
-            $icons: (
-                livingArea: casa-icons.$icon-casa-area,
-                rooms: casa-icons.$icon-casa-rooms,
-                bedrooms: casa-icons.$icon-casa-bed,
-                bathrooms: casa-icons.$icon-casa-bath,
-                floor: casa-icons.$icon-casa-floor,
-            );
+            &:nth-last-child(n+2) {
+                border-bottom: variables.$base-border;
+                border-color: var(--pcasa-reader-border-color);
+            }
 
-            @each $name, $icon in $icons {
-                &.area-#{$name} {
-                    @include mixins.fa-inline-icon(#{$icon}, 0);
-                }
+            dd {
+                font-weight: variables.$font-weight-semi-bold;
             }
         }
     }

@@ -1,0 +1,22 @@
+{% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+{% trans_default_domain 'plenta_casa' %}
+
+{% block content %}
+    {% set meta %}
+        {{ object.livingArea }}
+        {{ object.rooms }}
+        {{ object.floorPosition }}
+    {% endset %}
+
+    {% if meta|trim is not empty %}
+            {% if object.livingArea|default %}
+                <span class="meta area">{{ object.livingArea|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</span>
+            {% endif %}
+            {% if object.rooms|default %}
+                <span class="meta rooms">{{ object.rooms }} {{ 'CASA.room_unit'|trans }}</span>
+            {% endif %}
+            {% if object.floorPosition|default %}
+                <span class="meta floor">{{ object.floorPosition }}</span>
+            {% endif %}
+    {% endif %}
+{% endblock %}
