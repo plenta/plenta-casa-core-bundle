@@ -51,11 +51,16 @@ class PlentaCasaExtension
     public function casaFormatNumber(float|int|string $value, int $decimals = 2): string
     {
         $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de_DE';
+        $float = (float) $value;
 
         $formatter = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
         $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $decimals);
+        $formatter->setAttribute(
+            \NumberFormatter::MIN_FRACTION_DIGITS,
+            $float == (int) $float ? 0 : $decimals
+        );
 
-        return $formatter->format((float) $value);
+        return $formatter->format($float);
     }
 
     /**
