@@ -15,15 +15,21 @@
     ] %}
 
     <ul class="condition-list">
+        {% if object.rented %}
+            <li>
+                <span class="label">{{ 'tl_pcasa_object.rented.0'|trans({}, 'contao_default') }}</span>
+                <span class="value">{{ 'PLENTA.CASA.badge.rented'|trans({}, 'contao_default') }}</span>
+            </li>
+        {% endif %}
         {% for item in fields %}
             {% set value = attribute(object, item.field) %}
             {% if value|default %}
                 <li>
                     <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
                     <span class="value">
-                        {% if item.type == 'reference' %}
+                        {% if item.type|default == 'reference' %}
                             {{ ('tl_pcasa_object.' ~ item.reference ~ '.' ~ value)|trans({}, 'contao_default') }}
-                        {% elseif item.type == 'date' %}
+                        {% elseif item.type|default == 'date' %}
                             {{ value|date('d.m.Y') }}
                         {% else %}
                             {{ value }}
