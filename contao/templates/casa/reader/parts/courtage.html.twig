@@ -1,0 +1,23 @@
+{% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+
+{% block part %}
+    {% if object.courtage|default or object.courtage_note|default %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <ul>
+        {% if object.courtage|default %}
+            <li>
+                <span class="label">{{ 'PLENTA.CASA.courtage'|trans({}, 'contao_default') }}</span>
+                <span class="value">{{ object.courtage }}</span>
+            </li>
+        {% endif %}
+        {% if object.courtage_note|default %}
+            <li>
+                <span class="label">{{ object.courtage_note }}</span>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}

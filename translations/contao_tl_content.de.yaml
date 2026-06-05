@@ -46,6 +46,7 @@ tl_content:
         facilities: Ausstattung
         area: Fläche
         price: Preis
+        courtage: Provision
         condition: Zustand
         marketing: Vermarktung
         enclosure: Anlagen

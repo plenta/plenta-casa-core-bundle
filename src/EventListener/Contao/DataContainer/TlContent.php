@@ -47,6 +47,7 @@ class TlContent
             'facilities',
             'area',
             'price',
+            'courtage',
             'condition',
             'marketing',
             'enclosure',

@@ -17,6 +17,7 @@ PLENTA:
             reserved: Reserviert
         yes: ja
         no: nein
+        courtage: Provision
 
 CTE:
     plentacasa: Plenta Casa
