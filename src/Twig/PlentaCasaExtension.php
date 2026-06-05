@@ -12,6 +12,8 @@ namespace Plenta\CasaCoreBundle\Twig;
 
 use Contao\FilesModel;
 use Contao\StringUtil;
+use Plenta\CasaCoreBundle\Helper\ObjectImageHelper;
+use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -23,6 +25,7 @@ class PlentaCasaExtension
         private readonly RequestStack $requestStack,
         #[Autowire(param: 'plenta_casa.new_badge_days')]
         private readonly int $newBadgeDays,
+        private readonly ObjectImageHelper $objectImageHelper,
     ) {
     }
 
@@ -97,5 +100,11 @@ class PlentaCasaExtension
         }
 
         return $return.$type->title;
+    }
+
+    #[AsTwigFilter('casaObjectImage')]
+    public function casaObjectImage(ObjectModel $object): ?string
+    {
+        return $this->objectImageHelper->getImage($object);
     }
 }
