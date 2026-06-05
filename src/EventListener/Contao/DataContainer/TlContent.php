@@ -51,6 +51,7 @@ class TlContent
             'marketing',
             'enclosure',
             'status',
+            'mainInfo',
         ];
 
         $event = new ReaderPartOptionsEvent($options);
