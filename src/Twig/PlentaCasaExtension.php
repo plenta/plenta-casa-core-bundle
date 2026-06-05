@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 /**
+ * @package       Plenta Casa Core Bundle
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -96,6 +97,24 @@ class PlentaCasaExtension
         return (new \DateTimeImmutable('@'.$createdAt)) >= $threshold;
     }
 
+    #[AsTwigFilter('casaObjectImage')]
+    public function casaObjectImage(ObjectModel $object): ?string
+    {
+        return $this->objectImageHelper->getImage($object);
+    }
+
+    #[AsTwigFilter('casaMergeImages')]
+    public function casaMergeImages(string $multiSRC, ?string $singleSRC = null): string
+    {
+        $images = StringUtil::deserialize($multiSRC, true);
+
+        if ($singleSRC) {
+            array_unshift($images, $singleSRC);
+        }
+
+        return serialize($images);
+    }
+
     protected function getTitle(ObjectTypeModel $type): string
     {
         $return = '';
@@ -105,11 +124,5 @@ class PlentaCasaExtension
         }
 
         return $return.$type->title;
-    }
-
-    #[AsTwigFilter('casaObjectImage')]
-    public function casaObjectImage(ObjectModel $object): ?string
-    {
-        return $this->objectImageHelper->getImage($object);
     }
 }
