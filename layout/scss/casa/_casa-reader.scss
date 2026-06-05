@@ -33,7 +33,8 @@
     }
 
     .part-condition,
-    .part-price {
+    .part-price,
+    .part-courtage {
         > span {
             font-weight: variables.$font-weight-bold;
         }
