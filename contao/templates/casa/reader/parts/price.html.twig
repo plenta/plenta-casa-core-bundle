@@ -27,7 +27,7 @@
                         </li>
                     {% endif %}
                 {% else %}
-                    {% if value is not same as(0) and value is not same as('0') and value %}
+                    {% if value and value != '0.00' %}
                         <li>
                             <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
                             <span class="value">{{ value|casaFormatNumber }} €</span>
@@ -48,22 +48,24 @@
         ] %}
 
         <ul class="price-list">
-            <li>
-                <span class="label">{{ 'tl_pcasa_object.price.0'|trans({}, 'contao_default') }}</span>
-                <span class="value">
-                    {% if object.priceOnRequest %}
-                        {{ 'tl_pcasa_object.priceOnRequest.0'|trans({}, 'contao_default') }}
-                    {% elseif object.priceNegotiable %}
-                        {{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_default') }}
-                    {% else %}
-                        {{ object.price|casaFormatNumber }} €
-                    {% endif %}
-                </span>
-            </li>
+            {% if object.priceOnRequest or object.priceNegotiable or (object.price and object.price != '0.00') %}
+                <li>
+                    <span class="label">{{ 'tl_pcasa_object.price.0'|trans({}, 'contao_default') }}</span>
+                    <span class="value">
+                        {% if object.priceOnRequest %}
+                            {{ 'tl_pcasa_object.priceOnRequest.0'|trans({}, 'contao_default') }}
+                        {% elseif object.priceNegotiable %}
+                            {{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_default') }}
+                        {% else %}
+                            {{ object.price|casaFormatNumber }} €
+                        {% endif %}
+                    </span>
+                </li>
+            {% endif %}
 
             {% for item in buy_fields %}
                 {% set value = attribute(object, item.field) %}
-                {% if value is not same as(0) and value is not same as('0') and value %}
+                {% if value and value != '0.00' %}
                     <li>
                         <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
                         <span class="value">{{ value|casaFormatNumber }} €</span>

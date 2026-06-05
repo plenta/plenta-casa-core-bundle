@@ -316,22 +316,22 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'baseRent' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'clr w25'],
-            'sql' => 'int(10) NOT NULL default 0',
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'totalRent' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'int(10) NOT NULL default 0',
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'heatingCosts' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'int(10) NOT NULL default 0',
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'serviceCharge' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'int(10) NOT NULL default 0',
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'heatingCostsInSc' => [
             'inputType' => 'checkbox',
@@ -345,8 +345,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'deposit' => [
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w25'],
-            'sql' => "varchar(64) NOT NULL default ''",
+            'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'nonRecoverableCosts' => [
             'inputType' => 'text',
@@ -361,12 +361,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'parkingSpacePrice' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
-            'sql' => 'int(10) NOT NULL default 0',
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'priceCableSatTv' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
-            'sql' => 'int(10) NOT NULL default 0',
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'cooperativeShares' => [
             'inputType' => 'text',
@@ -391,7 +391,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'monthlyRentalIncome' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
-            'sql' => 'mediumint NOT NULL default 0',
+            'sql' => 'decimal(10,2) NULL',
         ],
         'livingArea' => [
             'inputType' => 'text',
@@ -623,7 +623,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'options' => ['garage', 'outside', 'carport', 'duplex', 'carPark', 'undergroundCarPark', 'doubleGarage'],
             'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['parkingSpaceType_options'],
             'eval' => ['tl_class' => 'w33', 'includeBlankOption' => true],
-            'sql' => "varchar(32 NOT NULL default ''",
+            'sql' => "varchar(32) NOT NULL default ''",
         ],
         'createdAt' => [
             'sql' => ['type' => 'integer', 'unsigned' => true, 'default' => 0],
@@ -711,7 +711,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'price' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'int(10) NOT NULL default 0',
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'priceOnRequest' => [
             'inputType' => 'checkbox',
