@@ -6,7 +6,7 @@ export default class extends Controller {
     component = null;
 
     async initialize() {
-        this.component = await getComponent(this.element.querySelector('div'));
+        this.component = await getComponent(this.element.querySelector('div[data-controller="live"]'));
     }
 
     connect() {

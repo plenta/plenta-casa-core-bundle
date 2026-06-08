@@ -15,7 +15,7 @@
     ] %}
 
     <ul class="condition-list">
-        {% if object.rented %}
+        {% if object.rented|default %}
             <li>
                 <span class="label">{{ 'tl_pcasa_object.rented.0'|trans({}, 'contao_default') }}</span>
                 <span class="value">{{ 'PLENTA.CASA.yes'|trans({}, 'contao_default') }}</span>

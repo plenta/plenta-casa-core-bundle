@@ -19,9 +19,9 @@
             gap: variables.$base-spacing-xx-s;
 
             $icons: (
-                    area: casa-icons.$icon-casa-area,
-                    rooms: casa-icons.$icon-casa-rooms,
-                    floor: casa-icons.$icon-casa-floor,
+                area: casa-icons.$icon-casa-area,
+                rooms: casa-icons.$icon-casa-rooms,
+                floor: casa-icons.$icon-casa-floor,
             );
 
             @each $name, $icon in $icons {
@@ -46,7 +46,7 @@
             padding-right: variables.$base-spacing-x-s;
             margin-top: variables.$base-spacing-xx-s;
 
-            &:nth-last-child(n+2) {
+            &:nth-last-child(n + 2) {
                 border-bottom: variables.$base-border;
                 border-color: var(--pcasa-reader-border-color);
             }
@@ -75,7 +75,7 @@
             padding-right: variables.$base-spacing-x-s;
             margin-top: variables.$base-spacing-xx-s;
 
-            &:nth-last-child(n+2) {
+            &:nth-last-child(n + 2) {
                 border-bottom: variables.$base-border;
                 border-color: var(--pcasa-reader-border-color);
             }
@@ -109,7 +109,7 @@
         }
 
         .title {
-            //@extend %invisible;
+            // @extend %invisible;
         }
 
         ul {

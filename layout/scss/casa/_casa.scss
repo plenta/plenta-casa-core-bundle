@@ -14,7 +14,7 @@
         );
     }
 
-    @media (max-width: 960px) {
+    @media (width <= 960px) {
         .filter-toggle {
             display: inline-flex;
         }
@@ -48,7 +48,7 @@
         }
     }
 
-    @media (min-width: 961px) {
+    @media (width >= 961px) {
         .filter-close,
         .filter-toggle {
             display: none;

@@ -16,7 +16,7 @@ use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 
 class ObjectImageHelper
 {
-    public function getImage(ObjectModel $object): ?string
+    public function getImage(ObjectModel $object): string|null
     {
         if ($object->singleSRC) {
             return $object->singleSRC;
@@ -27,7 +27,7 @@ class ObjectImageHelper
         return $this->getTypeImage($type);
     }
 
-    private function getTypeImage(?ObjectTypeModel $type): ?string
+    private function getTypeImage(ObjectTypeModel|null $type): string|null
     {
         if (null === $type) {
             return null;

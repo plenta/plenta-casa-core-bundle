@@ -8,10 +8,10 @@
 
 {% block content %}
     {% if object.multiSRC|default %}
-        {% set galleryImages = object.multiSRC|casaMergeImages(object.singleSRC) %}
+        {% set gallery_images = object.multiSRC|casaMergeImages(object.singleSRC) %}
 
         {{ content_element('gallery', {
-            multiSRC: galleryImages,
+            multiSRC: gallery_images,
             size: data.size,
             fullsize: data.fullsize,
             sortBy: '',

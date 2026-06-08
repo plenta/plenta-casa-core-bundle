@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Plenta Casa Core Bundle
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -58,7 +57,7 @@ class PlentaCasaExtension
         $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $decimals);
         $formatter->setAttribute(
             \NumberFormatter::MIN_FRACTION_DIGITS,
-            $float == (int) $float ? 0 : $decimals
+            $float === (float) (int) $float ? 0 : $decimals,
         );
 
         return $formatter->format($float);
@@ -98,13 +97,13 @@ class PlentaCasaExtension
     }
 
     #[AsTwigFilter('casaObjectImage')]
-    public function casaObjectImage(ObjectModel $object): ?string
+    public function casaObjectImage(ObjectModel $object): string|null
     {
         return $this->objectImageHelper->getImage($object);
     }
 
     #[AsTwigFilter('casaMergeImages')]
-    public function casaMergeImages(string $multiSRC, ?string $singleSRC = null): string
+    public function casaMergeImages(string $multiSRC, string|null $singleSRC = null): string
     {
         $images = StringUtil::deserialize($multiSRC, true);
 

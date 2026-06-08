@@ -1,7 +1,7 @@
 {% trans_default_domain 'plenta_casa' %}
 
 {% set url = content_url(jumpTo, {parameters: '/' ~ object.alias}) %}
-{% set imageSrc = object|casaObjectImage %}
+{% set image_src = object|casaObjectImage %}
 
 <div class="object{% if object.featured %} object-featured{% endif %}">
     {% if object.featured or object.createdAt|casaIsNew %}
@@ -16,9 +16,9 @@
     {% endif %}
 
     {% block titleImage %}
-        {% if imageSrc and model.size %}
-            {% set file_meta = imageSrc|casaFileMeta %}
-            {% set image = figure(imageSrc, model.size, {
+        {% if image_src and model.size %}
+            {% set file_meta = image_src|casaFileMeta %}
+            {% set image = figure(image_src, model.size, {
                 linkHref: url,
                 metadata: {
                     alt: file_meta.alt ?: object.title,

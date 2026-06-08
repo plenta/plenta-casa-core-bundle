@@ -14,7 +14,7 @@ function initFilterToggle() {
         toggleBtn.textContent = 'Filter ausblenden';
 
         const firstFocusable = filterPanel.querySelector(
-            'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])',
         );
         firstFocusable?.focus();
     }
@@ -30,7 +30,11 @@ function initFilterToggle() {
 
     toggleBtn.addEventListener('click', () => {
         const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
-        isOpen ? closePanel() : openPanel();
+        if (isOpen) {
+            closePanel();
+        } else {
+            openPanel();
+        }
     });
 
     closeBtn?.addEventListener('click', closePanel);

@@ -29,7 +29,10 @@ class RealEstateSchema
     ) {
     }
 
-    public function getStructuredData(?ObjectModel $object): array
+    /**
+     * @return array<string, mixed>
+     */
+    public function getStructuredData(ObjectModel|null $object): array
     {
         if (null === $object) {
             return [];
@@ -69,6 +72,9 @@ class RealEstateSchema
         return $event->getData();
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function generateAddress(ObjectModel $object): array
     {
         $address = [
@@ -95,6 +101,10 @@ class RealEstateSchema
         return $address;
     }
 
+    /**
+     * @param  array<string, mixed> $data
+     * @return array<string, mixed>
+     */
     private function generateOffers(ObjectModel $object, array $data): array
     {
         return match ($object->marketing_type) {
@@ -104,6 +114,10 @@ class RealEstateSchema
         };
     }
 
+    /**
+     * @param  array<string, mixed> $data
+     * @return array<string, mixed>
+     */
     private function generateBuyOffer(ObjectModel $object, array $data): array
     {
         if ($object->priceOnRequest || $object->priceNegotiable) {
@@ -122,6 +136,10 @@ class RealEstateSchema
         return $data;
     }
 
+    /**
+     * @param  array<string, mixed> $data
+     * @return array<string, mixed>
+     */
     private function generateRentOffer(ObjectModel $object, array $data): array
     {
         $price = $object->totalRent ?: $object->baseRent;
@@ -143,6 +161,10 @@ class RealEstateSchema
         return $data;
     }
 
+    /**
+     * @param  array<string, mixed> $data
+     * @return array<string, mixed>
+     */
     private function generateImage(ObjectModel $object, array $data): array
     {
         if (!$object->singleSRC) {
@@ -165,7 +187,7 @@ class RealEstateSchema
         return $data;
     }
 
-    private function sanitizeDescription(?string $description): ?string
+    private function sanitizeDescription(string|null $description): string|null
     {
         if (null === $description) {
             return null;
