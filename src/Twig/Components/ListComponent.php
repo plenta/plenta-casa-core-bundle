@@ -10,9 +10,11 @@ use Contao\CoreBundle\Pagination\PaginationFactoryInterface;
 use Contao\CoreBundle\Pagination\PaginationInterface;
 use Contao\Model\Collection;
 use Contao\PageModel;
+use Plenta\CasaCoreBundle\Events\ListOrderEvent;
 use Plenta\CasaCoreBundle\Filter\ParameterGenerator;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
@@ -38,6 +40,9 @@ class ListComponent
     #[LiveProp(url: true)]
     public int $page = 1;
 
+    #[LiveProp(writable: true, url: true)]
+    public string $sort = '';
+
     public int $pages = 0;
 
     /**
@@ -55,6 +60,7 @@ class ListComponent
         private readonly RequestStack $requestStack,
         private readonly ParameterGenerator $parameterGenerator,
         private readonly PaginationFactoryInterface $paginationFactory,
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
@@ -63,6 +69,7 @@ class ListComponent
         $this->modelId = $modelId;
         $this->filterData = $this->requestStack->getCurrentRequest()->query->all('filter');
         $this->page = (int) $this->requestStack->getCurrentRequest()->query->get('page', 1);
+        $this->sort = $this->requestStack->getCurrentRequest()->query->get('sort', (string) ContentModel::findById($this->modelId)->plenta_casa_sorting);
 
         $this->build();
     }
@@ -96,7 +103,7 @@ class ListComponent
             $offset = null;
         }
 
-        $order = $this->getListSorting($this->model->plenta_casa_sorting);
+        $order = $this->getListSorting($this->sort);
 
         $this->objects = ObjectModel::findPublishedBy(
             $columns,
@@ -104,7 +111,7 @@ class ListComponent
             [
                 'limit' => $perPage,
                 'offset' => $offset,
-                'order' => $order,
+                'order' => $order ?: null,
             ],
         );
 
@@ -123,13 +130,19 @@ class ListComponent
 
     public function getListSorting(string|null $sorting): string
     {
-        return match ($sorting) {
+        $order = match ($sorting) {
             'order_headline_asc' => 'tl_pcasa_object.title',
             'order_headline_desc' => 'tl_pcasa_object.title DESC',
             'order_random' => 'RAND()',
             'order_date_asc' => 'tl_pcasa_object.tstamp',
-            default => 'tl_pcasa_object.tstamp DESC',
+            'order_date_desc' => 'tl_pcasa_object.tstamp DESC',
+            default => '',
         };
+
+        $event = new ListOrderEvent($sorting, $order);
+        $this->eventDispatcher->dispatch($event, $event::NAME);
+
+        return $event->getOrder();
     }
 
     #[LiveAction]

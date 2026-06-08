@@ -19,7 +19,7 @@
 
         <ul class="price-list">
             {% for item in rent_fields %}
-                {% set value = attribute(object, item.field) %}
+                {% set value = attribute(object, item.field)|default %}
                 {% if item.type|default == 'checkbox' %}
                     {% if value %}
                         <li>
