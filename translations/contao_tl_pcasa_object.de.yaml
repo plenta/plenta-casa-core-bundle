@@ -196,11 +196,11 @@ tl_pcasa_object:
         0: Etage
         1: Bitte geben Sie die Etage ein.
     numberOfFloors:
-        0: Gesamtetagenzahl
-        1: Bitte geben Sie die Gesamtetagenzahl ein.
+        0: Gesamtetagen
+        1: Bitte geben Sie die Gesamtetagen ein.
     floorPosition:
-        0: Lage innerhalb der Etage
-        1: bitte geben Sie die Lage innerhalb der Etage ein ("links", "rechts", "mittig", ...).
+        0: Lage in der Etage
+        1: Bitte geben Sie die Lage innerhalb der Etage ein ("links", "rechts", "mittig", ...).
     description:
         0: Beschreibung
         1: Bitte geben Sie eine Beschreibung ein.
