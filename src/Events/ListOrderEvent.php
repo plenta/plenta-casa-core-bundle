@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\Events;
 
+use Contao\ContentModel;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class ListOrderEvent extends Event
@@ -20,6 +21,7 @@ class ListOrderEvent extends Event
     public function __construct(
         protected string $sorting,
         protected string $order,
+        protected ContentModel|null $contentModel,
     ) {
     }
 
@@ -43,6 +45,18 @@ class ListOrderEvent extends Event
     public function setOrder(string $order): self
     {
         $this->order = $order;
+
+        return $this;
+    }
+
+    public function getContentModel(): ContentModel|null
+    {
+        return $this->contentModel;
+    }
+
+    public function setContentModel(ContentModel|null $contentModel): self
+    {
+        $this->contentModel = $contentModel;
 
         return $this;
     }

@@ -139,7 +139,7 @@ class ListComponent
             default => '',
         };
 
-        $event = new ListOrderEvent($sorting, $order);
+        $event = new ListOrderEvent($sorting, $order, $this->model);
         $this->eventDispatcher->dispatch($event, $event::NAME);
 
         return $event->getOrder();
