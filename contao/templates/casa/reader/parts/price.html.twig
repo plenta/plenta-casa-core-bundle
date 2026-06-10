@@ -1,4 +1,5 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+{% trans_default_domain 'contao_tl_pcasa_object' %}
 
 {% block content %}
     {% if object.marketing_type == 'RENT' %}
@@ -23,13 +24,13 @@
                 {% if item.type|default == 'checkbox' %}
                     {% if value %}
                         <li>
-                            <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                            <span class="label">{{ item.label|trans }}</span>
                         </li>
                     {% endif %}
                 {% else %}
                     {% if value and value != '0.00' %}
                         <li>
-                            <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                            <span class="label">{{ item.label|trans }}</span>
                             <span class="value">{{ value|casaFormatNumber }} €</span>
                         </li>
                     {% endif %}
@@ -50,12 +51,12 @@
         <ul class="price-list">
             {% if object.priceOnRequest or object.priceNegotiable or (object.price and object.price != '0.00') %}
                 <li>
-                    <span class="label">{{ 'tl_pcasa_object.price.0'|trans({}, 'contao_default') }}</span>
+                    <span class="label">{{ 'tl_pcasa_object.price.0'|trans }}</span>
                     <span class="value">
                         {% if object.priceOnRequest %}
-                            {{ 'tl_pcasa_object.priceOnRequest.0'|trans({}, 'contao_default') }}
+                            {{ 'tl_pcasa_object.priceOnRequest.0'|trans }}
                         {% elseif object.priceNegotiable %}
-                            {{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_default') }}
+                            {{ 'tl_pcasa_object.priceNegotiable.0'|trans }}
                         {% else %}
                             {{ object.price|casaFormatNumber }} €
                         {% endif %}
@@ -67,7 +68,7 @@
                 {% set value = attribute(object, item.field) %}
                 {% if value and value != '0.00' %}
                     <li>
-                        <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                        <span class="label">{{ item.label|trans }}</span>
                         <span class="value">{{ value|casaFormatNumber }} €</span>
                     </li>
                 {% endif %}
