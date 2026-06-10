@@ -46,7 +46,7 @@ class AliasGenerator
                 'locale' => $this->aliasGeneration['locale'],
                 'validChars' => $this->aliasGeneration['validChars'],
             ],
-            static fn ($alias) => null !== ObjectModel::findBy(['tl_pcasa_object.id != ?', 'alias = ?'], [$alias, $object['id']]),
+            static fn ($alias) => ObjectModel::findBy(['tl_pcasa_object.id != ?', 'alias = ?'], [$object['id'], $alias]),
         );
     }
 }
