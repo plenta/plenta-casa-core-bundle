@@ -13,15 +13,6 @@
         <script src="{{ asset('plentacasacore/app.js', 'plentacasacore') }}" defer></script>
     {% endadd %}
 
-    <button type="button" class="filter-toggle" aria-expanded="false" aria-controls="filter-panel">
-        Filter einblenden
-    </button>
-
-    <div id="filter-panel" class="filter-panel" aria-hidden="true">
-        <button type="button" class="filter-close" aria-label="Filter schließen">
-            <span aria-hidden="true">&times;</span>
-        </button>
-
         {{ component('casa_filter_component', {modelId: data.id}) }}
 
         {% block reset_link %}
@@ -29,7 +20,4 @@
                 <a href="{{ app.request.pathInfo }}">{{ 'CASA.filter.reset'|trans }}</a>
             {% endif %}
         {% endblock %}
-    </div>
-
-    <div class="filter-backdrop" aria-hidden="true"></div>
 {% endblock %}
