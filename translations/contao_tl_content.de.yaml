@@ -61,8 +61,8 @@ tl_content:
     plenta_casa_sorting_options:
         order_date_asc: Datum aufsteigend
         order_date_desc: Datum absteigend
-        order_headline_asc: Überschrift aufsteigend
-        order_headline_desc: Überschrift absteigend
+        order_headline_asc: Titel aufsteigend
+        order_headline_desc: Titel absteigend
         order_random: Zufällige Reihenfolge
     plenta_casa_listKeywordSplit:
         0: Keyword aufteilen
