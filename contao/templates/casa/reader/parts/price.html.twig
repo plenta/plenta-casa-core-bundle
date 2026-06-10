@@ -1,6 +1,40 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 {% trans_default_domain 'contao_tl_pcasa_object' %}
 
+{% block part %}
+    {% set has_value = false %}
+
+    {% if object.marketing_type == 'RENT' %}
+        {% set check_fields = ['totalRent', 'baseRent', 'serviceCharge', 'heatingCosts',
+            'heatingCostsInSc', 'parkingSpacePrice', 'priceCableSatTv', 'deposit',
+            'cooperativeShares', 'membershipFee', 'installmentPaymentPossible',
+            'housingEntitlementCertificate'] %}
+        {% for field in check_fields %}
+            {% set value = attribute(object, field)|default %}
+            {% if value and value != '0.00' %}
+                {% set has_value = true %}
+            {% endif %}
+        {% endfor %}
+
+    {% elseif object.marketing_type == 'BUY' %}
+        {% if object.priceOnRequest or object.priceNegotiable or (object.price and object.price != '0.00') %}
+            {% set has_value = true %}
+        {% endif %}
+        {% set check_fields = ['houseServiceCharge', 'nonRecoverableCosts', 'maintenanceReserve',
+            'parkingSpacePrice', 'priceCableSatTv', 'monthlyRentalIncome'] %}
+        {% for field in check_fields %}
+            {% set value = attribute(object, field)|default %}
+            {% if value and value != '0.00' %}
+                {% set has_value = true %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if has_value %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     {% if object.marketing_type == 'RENT' %}
         {% set rent_fields = [
