@@ -88,11 +88,6 @@ class ListComponent
             $values = array_merge($values, $parameter->getValues());
         }
 
-        if (true === (bool) $this->model->plenta_casa_featured) {
-            $columns[] = 'tl_pcasa_object.featured = ?';
-            $values[] = true;
-        }
-
         if ($this->model->perPage) {
             $count = ObjectModel::countPublishedBy($columns, $values);
             $offset = ($this->page - 1) * $this->model->perPage;
