@@ -1,4 +1,39 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+{% trans_default_domain 'contao_tl_pcasa_object' %}
+
+{% block part %}
+    {% set has_value = false %}
+
+    {% if object.marketing_type == 'RENT' %}
+        {% set check_fields = ['totalRent', 'baseRent', 'serviceCharge', 'heatingCosts',
+            'heatingCostsInSc', 'parkingSpacePrice', 'priceCableSatTv', 'deposit',
+            'cooperativeShares', 'membershipFee', 'installmentPaymentPossible',
+            'housingEntitlementCertificate'] %}
+        {% for field in check_fields %}
+            {% set value = attribute(object, field)|default %}
+            {% if value and value != '0.00' %}
+                {% set has_value = true %}
+            {% endif %}
+        {% endfor %}
+
+    {% elseif object.marketing_type == 'BUY' %}
+        {% if object.priceOnRequest or object.priceNegotiable or (object.price and object.price != '0.00') %}
+            {% set has_value = true %}
+        {% endif %}
+        {% set check_fields = ['houseServiceCharge', 'nonRecoverableCosts', 'maintenanceReserve',
+            'parkingSpacePrice', 'priceCableSatTv', 'monthlyRentalIncome'] %}
+        {% for field in check_fields %}
+            {% set value = attribute(object, field)|default %}
+            {% if value and value != '0.00' %}
+                {% set has_value = true %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if has_value %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     {% if object.marketing_type == 'RENT' %}
@@ -23,13 +58,13 @@
                 {% if item.type|default == 'checkbox' %}
                     {% if value %}
                         <li>
-                            <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                            <span class="label">{{ item.label|trans }}</span>
                         </li>
                     {% endif %}
                 {% else %}
                     {% if value and value != '0.00' %}
                         <li>
-                            <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                            <span class="label">{{ item.label|trans }}</span>
                             <span class="value">{{ value|casaFormatNumber }} €</span>
                         </li>
                     {% endif %}
@@ -50,12 +85,12 @@
         <ul class="price-list">
             {% if object.priceOnRequest or object.priceNegotiable or (object.price and object.price != '0.00') %}
                 <li>
-                    <span class="label">{{ 'tl_pcasa_object.price.0'|trans({}, 'contao_default') }}</span>
+                    <span class="label">{{ 'tl_pcasa_object.price.0'|trans }}</span>
                     <span class="value">
                         {% if object.priceOnRequest %}
-                            {{ 'tl_pcasa_object.priceOnRequest.0'|trans({}, 'contao_default') }}
+                            {{ 'tl_pcasa_object.priceOnRequest.0'|trans }}
                         {% elseif object.priceNegotiable %}
-                            {{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_default') }}
+                            {{ 'tl_pcasa_object.priceNegotiable.0'|trans }}
                         {% else %}
                             {{ object.price|casaFormatNumber }} €
                         {% endif %}
@@ -67,7 +102,7 @@
                 {% set value = attribute(object, item.field) %}
                 {% if value and value != '0.00' %}
                     <li>
-                        <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
+                        <span class="label">{{ item.label|trans }}</span>
                         <span class="value">{{ value|casaFormatNumber }} €</span>
                     </li>
                 {% endif %}

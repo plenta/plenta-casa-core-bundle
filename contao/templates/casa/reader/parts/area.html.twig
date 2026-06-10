@@ -4,29 +4,42 @@
 {% set area_fields = ['livingArea', 'plotArea', 'floorArea', 'balconyArea', 'gardenArea'] %}
 {% set inline_fields = ['floor', 'numberOfFloors', 'floorPosition', 'numberOfParkingSpaces', 'parkingSpaceType'] %}
 
-{% block content %}
-    <dl>
+{% block part %}
+    {% set has_value = false %}
     {% for area in casa_variables.area(object) %}
         {% set value = attribute(object, area) %}
-        {% if value|default %}
-            <div class="area area-{{ area }}">
-                {% if area in area_fields %}
-                    <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
-                    <dd class="content">{{ value|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</dd>
-                {% elseif area in inline_fields %}
-                        <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object')
-                            }}</dt>
+        {% if value|default and (area in area_fields or area in inline_fields) %}
+            {% set has_value = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% if has_value %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <dl>
+        {% for area in casa_variables.area(object) %}
+            {% set value = attribute(object, area) %}
+            {% if value|default %}
+                <div class="area area-{{ area }}">
+                    {% if area in area_fields %}
+                        <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
+                        <dd class="content">{{ value|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</dd>
+                    {% elseif area in inline_fields %}
+                        <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
                         {% if area == 'parkingSpaceType' %}
                             <dd class="content">{{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([], 'contao_tl_pcasa_object') }}</dd>
                         {% else %}
                             <dd class="content">{{ value }}</dd>
                         {% endif %}
-                {% else %}
-                    <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
-                    <dd class="content">{{ value }}</dd>
-                {% endif %}
-            </div>
-        {% endif %}
-    {% endfor %}
+                    {% else %}
+                        <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
+                        <dd class="content">{{ value }}</dd>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
     </dl>
 {% endblock %}
