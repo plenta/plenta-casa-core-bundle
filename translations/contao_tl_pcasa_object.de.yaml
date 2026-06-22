@@ -57,7 +57,7 @@ tl_pcasa_object:
         0: xxx
         1: sss
     baseRent:
-        0: Kaltmiete/m²
+        0: Kaltmiete
         1: Bitte geben Sie die Kaltmiete ein.
     totalRent:
         0: Warmmiete
