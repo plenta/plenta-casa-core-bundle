@@ -1,7 +1,7 @@
 tl_pcasa_object_type:
     title:
-        0: Titel
-        1: Bitte geben Sie einen Titel ein.
+        0: Kategorie
+        1: Bitte geben Sie eine Kategorie ein.
     shortTerm:
         0: Wohnen auf Zeit
         1: Bitte auswählen, wenn es sich um Wohnen auf Zeit handelt.
@@ -11,6 +11,6 @@ tl_pcasa_object_type:
     customTpl:
         0: Listentemplate
         1: Bitte wählen Sie ein Template aus der Liste aus. Das Template wird an Untertypen vererbt.
-    title_legend: Titel
+    title_legend: Kategorie
     image_legend: Platzhalter-Bildeinstellungen
     template_legend: Template-Einstellungen
