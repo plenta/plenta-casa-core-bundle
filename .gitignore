@@ -8,12 +8,6 @@ Thumbs.db
 .settings/
 .build/
 .idea/*
-!.idea/inspectionProfiles
-!.idea/stylesheetLinters
-!.idea/symfony2.xml
-!.idea/jsLinters
-.idea/jsLinters/*
-!.idea/jsLinters/jshint.xml
 nbproject/
 
 # App config

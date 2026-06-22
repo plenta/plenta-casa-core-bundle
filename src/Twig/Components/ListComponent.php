@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Plenta\CasaCoreBundle\Twig\Components;
 
 use Contao\ContentModel;
-use Contao\CoreBundle\Pagination\PaginationConfig;
-use Contao\CoreBundle\Pagination\PaginationFactoryInterface;
 use Contao\CoreBundle\Pagination\PaginationInterface;
 use Contao\Model\Collection;
 use Contao\PageModel;
 use Plenta\CasaCoreBundle\Events\ListOrderEvent;
-use Plenta\CasaCoreBundle\Filter\ParameterGenerator;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
+use Plenta\CasaCoreBundle\ObjectList\ObjectListFactory;
+use Plenta\CasaCoreBundle\ObjectList\ObjectListQueryFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
@@ -58,9 +57,9 @@ class ListComponent
 
     public function __construct(
         private readonly RequestStack $requestStack,
-        private readonly ParameterGenerator $parameterGenerator,
-        private readonly PaginationFactoryInterface $paginationFactory,
         private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly ObjectListFactory $objectListFactory,
+        private readonly ObjectListQueryFactory $objectListQueryFactory,
     ) {
     }
 
@@ -78,37 +77,20 @@ class ListComponent
     public function build(): void
     {
         $this->model = ContentModel::findById($this->modelId);
-        $parameters = $this->parameterGenerator->generateFromArray($this->filterData, $this->model);
 
-        $columns = [];
-        $values = [];
-
-        foreach ($parameters as $parameter) {
-            $columns = array_merge($columns, $parameter->getColumns());
-            $values = array_merge($values, $parameter->getValues());
-        }
-
-        if ($this->model->perPage) {
-            $count = ObjectModel::countPublishedBy($columns, $values);
-            $offset = ($this->page - 1) * $this->model->perPage;
-            $perPage = $this->model->perPage;
-            $this->pagination = $this->paginationFactory->create(new PaginationConfig('page', $count, $perPage)->withCurrentPage($this->page));
-        } else {
-            $perPage = $this->model->numberOfItems ?: null;
-            $offset = null;
-        }
-
-        $order = $this->getListSorting($this->sort);
-
-        $this->objects = ObjectModel::findPublishedBy(
-            $columns,
-            $values,
-            [
-                'limit' => $perPage,
-                'offset' => $offset,
-                'order' => $order ?: null,
-            ],
+        $query = $this->objectListQueryFactory->create(
+            $this->modelId,
+            $this->filterData,
+            $this->page,
+            $this->model->numberOfItems,
+            null,
+            $this->getListSorting($this->sort),
         );
+
+        $objectList = $this->objectListFactory->create($query);
+
+        $this->pagination = $objectList->getPagination();
+        $this->objects = $objectList->getObjects();
 
         $this->jumpTo = PageModel::findByIdOrAlias($this->model->jumpTo);
     }
