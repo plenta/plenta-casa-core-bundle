@@ -13,6 +13,8 @@ use Contao\PageModel;
 use Plenta\CasaCoreBundle\Events\ListOrderEvent;
 use Plenta\CasaCoreBundle\Filter\ParameterGenerator;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
+use Plenta\CasaCoreBundle\ObjectList\ObjectListFactory;
+use Plenta\CasaCoreBundle\ObjectList\ObjectListQueryFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
@@ -61,6 +63,8 @@ class ListComponent
         private readonly ParameterGenerator $parameterGenerator,
         private readonly PaginationFactoryInterface $paginationFactory,
         private readonly EventDispatcherInterface $eventDispatcher,
+        private ObjectListFactory $objectListFactory,
+        private ObjectListQueryFactory $objectListQueryFactory,
     ) {
     }
 
@@ -77,7 +81,27 @@ class ListComponent
     #[PreReRender]
     public function build(): void
     {
+
         $this->model = ContentModel::findById($this->modelId);
+
+        $query = $this->objectListQueryFactory->create(
+            $this->modelId,
+            $this->filterData,
+            $this->page,
+            $this->model->numberOfItems,
+            null,
+            $this->getListSorting($this->sort)
+        );
+
+        $objectList = $this->objectListFactory->create($query);
+
+        $this->pagination = $objectList->getPagination();
+        $this->objects = $objectList->getObjects();
+
+        $this->jumpTo = PageModel::findByIdOrAlias($this->model->jumpTo);
+
+
+        /*$this->model = ContentModel::findById($this->modelId);
         $parameters = $this->parameterGenerator->generateFromArray($this->filterData, $this->model);
 
         $columns = [];
@@ -110,7 +134,7 @@ class ListComponent
             ],
         );
 
-        $this->jumpTo = PageModel::findByIdOrAlias($this->model->jumpTo);
+        $this->jumpTo = PageModel::findByIdOrAlias($this->model->jumpTo);*/
     }
 
     /**
