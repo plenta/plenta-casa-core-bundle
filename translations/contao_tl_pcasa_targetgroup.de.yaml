@@ -1,0 +1,7 @@
+tl_pcasa_targetgroup:
+    title:
+        0: Zielgruppe
+        1: Bitte geben Sie eine Zielgruppe ein.
+    alias:
+        0: Alias
+        1: Der Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.

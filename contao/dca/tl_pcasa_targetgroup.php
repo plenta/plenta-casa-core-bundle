@@ -67,7 +67,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_targetgroup'] = [
         'alias' => [
             'inputType' => 'text',
             'search' => true,
-            'eval' => ['rgxp' => 'alias', 'doNotCopy' => true, 'maxlength' => 255, 'tl_class' => 'w50 clr'],
+            'eval' => ['rgxp' => 'alias', 'doNotCopy' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
             'sql' => "varchar(255) BINARY NOT NULL default ''",
         ],
     ],
