@@ -11,9 +11,9 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\EventListener\Contao\DataContainer;
 
-use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 
 #[AsCallback(table: 'tl_pcasa_quarter', target: 'config.onload')]
 #[AsCallback(table: 'tl_pcasa_targetgroup', target: 'config.onload')]
