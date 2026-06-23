@@ -279,6 +279,7 @@ tl_pcasa_object:
         kitchenette: Teeküche
         cafeteria: Kantine/Caféteria
         laundryRoom: Wasch-/Trockenraum
+        shutters: Rollläden
     bathroomFacilities-options:
         shower: Dusche
         tub: Badewanne

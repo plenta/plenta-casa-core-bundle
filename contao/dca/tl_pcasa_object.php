@@ -534,6 +534,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'kitchenette',
                 'cafeteria',
                 'laundryRoom',
+                'shutters',
             ],
             'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['facilities-options'],
             'eval' => ['multiple' => true, 'tl_class' => 'clr'],
