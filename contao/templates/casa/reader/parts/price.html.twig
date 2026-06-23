@@ -62,6 +62,13 @@
                             <span class="label">{{ item.label|trans }}</span>
                         </li>
                     {% endif %}
+                {% elseif item.field == 'deposit' %}
+                    {% if value %}
+                        <li>
+                            <span class="label">{{ item.label|trans }}</span>
+                            <span class="value">{{ value }}</span>
+                        </li>
+                    {% endif %}
                 {% else %}
                     {% if value and value != '0.00' %}
                         <li>

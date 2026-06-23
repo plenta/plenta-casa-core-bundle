@@ -350,8 +350,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'deposit' => [
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w25'],
+            'sql' => "varchar(255) NOT NULL default ''",
         ],
         'nonRecoverableCosts' => [
             'inputType' => 'text',
