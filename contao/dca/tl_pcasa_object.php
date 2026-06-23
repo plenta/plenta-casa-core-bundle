@@ -440,8 +440,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'floor' => [
             'inputType' => 'text',
-            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => "varchar(8) NOT NULL default ''",
+            'eval' => ['tl_class' => 'w33'],
+            'sql' => "varchar(255) NOT NULL default ''",
         ],
         'numberOfFloors' => [
             'inputType' => 'text',
