@@ -1,0 +1,7 @@
+tl_pcasa_quarter:
+    title:
+        0: Quartier
+        1: Bitte geben Sie eine Quartier ein.
+    alias:
+        0: Alias
+        1: Der Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.

@@ -22,6 +22,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
             ],
         ],
     ],
+
     'list' => [
         'sorting' => [
             'mode' => DataContainer::MODE_TREE,
@@ -34,9 +35,11 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
             'format' => '%s',
         ],
     ],
+
     'palettes' => [
         'default' => '{title_legend},title,shortTerm;{image_legend:hide},singleSRC;{template_legend:hide},customTpl',
     ],
+
     'fields' => [
         'id' => [
             'sql' => 'int(10) unsigned NOT NULL auto_increment',
