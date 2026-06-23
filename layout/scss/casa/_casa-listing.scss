@@ -56,14 +56,18 @@
                 align-items: center;
 
                 $icons: (
-                    area: casa-icons.$icon-casa-area,
-                    rooms: casa-icons.$icon-casa-rooms,
-                    floor: casa-icons.$icon-casa-floor,
+                        area: casa-icons.$icon-casa-area,
+                        rooms: casa-icons.$icon-casa-rooms,
+                        floor: casa-icons.$icon-casa-floor,
                 );
 
+                > span {
+                    @include mixins.fa-inline-icon('');
+                }
+
                 @each $name, $icon in $icons {
-                    .#{$name} {
-                        @include mixins.fa-inline-icon(#{$icon});
+                    .#{$name}:before {
+                        content: '#{$icon}';
                     }
                 }
             }
