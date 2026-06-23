@@ -1,0 +1,12 @@
+{% block object_badges_component %}
+    {% if object.sold|default or object.reserved|default %}
+        <div class="badges badges-second">
+            {% if object.sold|default %}
+                <span class="badge badge-sold">{{ 'PLENTA.CASA.badge.sold'|trans({}, 'contao_default') }}</span>
+            {% endif %}
+            {% if object.reserved|default %}
+                <span class="badge badge-reserved">{{ 'PLENTA.CASA.badge.reserved'|trans({}, 'contao_default') }}</span>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

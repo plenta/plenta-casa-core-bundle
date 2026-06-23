@@ -37,16 +37,8 @@
 
     <div class="main-content">
         {% block badges %}
-            {% if object.sold|default or object.reserved|default %}
-                <div class="badges badges-second">
-                    {% if object.sold|default %}
-                        <span class="badge-sold">{{ 'PLENTA.CASA.badge.sold'|trans({}, 'contao_default') }}</span>
-                    {% endif %}
-                    {% if object.reserved|default %}
-                        <span class="badge-reserved">{{ 'PLENTA.CASA.badge.reserved'|trans({}, 'contao_default') }}</span>
-                    {% endif %}
-                </div>
-            {% endif %}
+            {% use '@Contao/components/_casa_object_badges.html.twig' %}
+            {{ block('object_badges_component') }}
         {% endblock %}
 
         {% block title %}
@@ -56,25 +48,16 @@
         {% endblock %}
 
         {% block meta %}
-            {% set meta %}
-                {{ object.livingArea }}
-                {{ object.rooms }}
-                {{ object.floorPosition }}
-            {% endset %}
+            {% use '@Contao/components/_casa_object_meta.html.twig' %}
+            {% set meta_data =
+                {
+                    livingArea: object.livingArea,
+                    rooms: object.rooms,
+                    floorPosition: object.floorPosition,
+                }
+            %}
 
-            {% if meta|trim is not empty %}
-                <div class="meta">
-                    {% if object.livingArea|default %}
-                        <span class="area">{{ object.livingArea|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</span>
-                    {% endif %}
-                    {% if object.rooms|default %}
-                        <span class="rooms">{{ object.rooms }} {{ 'CASA.room_unit'|trans }}</span>
-                    {% endif %}
-                    {% if object.floorPosition|default %}
-                        <span class="floor">{{ object.floorPosition }}</span>
-                    {% endif %}
-                </div>
-            {% endif %}
+            {% with {meta_data: meta_data} %}{{ block('meta_component') }}{% endwith %}
         {% endblock %}
 
         {% block address %}
@@ -89,22 +72,8 @@
 
     <div class="wrapper-content">
         {% block price %}
-            <div class="price-wrapper">
-                {% if object.marketing_type == 'RENT' %}
-                    <span class="price">{{ object.baseRent|casaFormatNumber }} €</span>
-                    <span class="small">Kaltmiete zzgl. NK</span>
-                {% elseif object.marketing_type == 'BUY' %}
-                    {% if object.priceOnRequest %}
-                        <span class="price price-text">{{ 'tl_pcasa_object.priceOnRequest.0'|trans({},
-                                'contao_tl_pcasa_object') }}</span>
-                    {% elseif object.priceNegotiable %}
-                        <span class="price price-text">{{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_tl_pcasa_object') }}</span>
-                    {% else %}
-                        <span class="price">{{ object.price|casaFormatNumber }} €</span>
-                        <span class="small">Kaufpreis</span>
-                    {% endif %}
-                {% endif %}
-            </div>
+            {% use '@Contao/components/_casa_price_simple.html.twig' %}
+            {{ block('price_simple_component') }}
         {% endblock %}
 
         {% block button %}

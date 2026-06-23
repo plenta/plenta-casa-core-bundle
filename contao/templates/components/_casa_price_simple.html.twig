@@ -1,0 +1,20 @@
+{% trans_default_domain 'plenta_casa' %}
+
+{% block price_simple_component %}
+    <div class="price-wrapper price-simple">
+        {% if object.marketing_type == 'RENT' %}
+            <span class="price">{{ object.baseRent|casaFormatNumber }} €</span>
+            <span class="small">Kaltmiete zzgl. NK</span>
+        {% elseif object.marketing_type == 'BUY' %}
+            {% if object.priceOnRequest %}
+                <span class="price price-text">{{ 'tl_pcasa_object.priceOnRequest.0'|trans({},
+                        'contao_tl_pcasa_object') }}</span>
+            {% elseif object.priceNegotiable %}
+                <span class="price price-text">{{ 'tl_pcasa_object.priceNegotiable.0'|trans({}, 'contao_tl_pcasa_object') }}</span>
+            {% else %}
+                <span class="price">{{ object.price|casaFormatNumber }} €</span>
+                <span class="small">Kaufpreis</span>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

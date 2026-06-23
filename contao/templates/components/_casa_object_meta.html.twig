@@ -1,0 +1,17 @@
+{% trans_default_domain 'plenta_casa' %}
+
+{% block meta_component %}
+    {% if meta_data is not empty %}
+        <div class="meta">
+            {% if meta_data.livingArea|default %}
+                <span class="area">{{ meta_data.livingArea|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}</span>
+            {% endif %}
+            {% if meta_data.rooms|default %}
+                <span class="rooms">{{ meta_data.rooms }} {{ 'CASA.room_unit'|trans }}</span>
+            {% endif %}
+            {% if meta_data.floorPosition|default %}
+                <span class="floor">{{ meta_data.floorPosition }}</span>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
