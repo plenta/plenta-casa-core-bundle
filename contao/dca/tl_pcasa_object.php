@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     ],
 
     'casa_subpalettes' => [
-        'marketing_type_RENT' => 'baseRent,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice,priceCableSatTv,cooperativeShares,membershipFee,installmentPaymentPossible,housingEntitlementCertificate',
+        'marketing_type_RENT' => 'baseRent,baseRentPerSqm,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice,priceCableSatTv,cooperativeShares,membershipFee,installmentPaymentPossible,housingEntitlementCertificate',
         'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,priceCableSatTv,monthlyRentalIncome',
     ],
 
@@ -319,6 +319,11 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
         'totalRent' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'baseRentPerSqm' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
             'sql' => 'decimal(10,2) NOT NULL default 0',

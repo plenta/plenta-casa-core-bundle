@@ -5,7 +5,7 @@
     {% set has_value = false %}
 
     {% if object.marketing_type == 'RENT' %}
-        {% set check_fields = ['totalRent', 'baseRent', 'serviceCharge', 'heatingCosts',
+        {% set check_fields = ['totalRent', 'baseRentPerSqm', 'baseRent', 'serviceCharge', 'heatingCosts',
             'heatingCostsInSc', 'parkingSpacePrice', 'priceCableSatTv', 'deposit',
             'cooperativeShares', 'membershipFee', 'installmentPaymentPossible',
             'housingEntitlementCertificate'] %}
@@ -40,6 +40,7 @@
         {% set rent_fields = [
             {field: 'totalRent', label: 'tl_pcasa_object.totalRent.0'},
             {field: 'baseRent', label: 'tl_pcasa_object.baseRent.0'},
+            {field: 'baseRentPerSqm', label: 'tl_pcasa_object.baseRentPerSqm.0'},
             {field: 'serviceCharge', label: 'tl_pcasa_object.serviceCharge.0'},
             {field: 'heatingCosts', label: 'tl_pcasa_object.heatingCosts.0'},
             {field: 'heatingCostsInSc', label: 'tl_pcasa_object.heatingCostsInSc.0', type: 'checkbox'},

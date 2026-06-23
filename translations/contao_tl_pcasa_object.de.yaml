@@ -62,6 +62,9 @@ tl_pcasa_object:
     totalRent:
         0: Warmmiete
         1: Bitte geben Sie die Warmmiete ein.
+    baseRentPerSqm:
+        0: Kaltmiete/m²
+        1: Bitte geben Sie die Kaltmiete/m² ein.
     heatingCosts:
         0: Heizkosten
         1: Bitte geben Sie die Heizkosten ein.
