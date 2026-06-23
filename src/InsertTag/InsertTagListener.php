@@ -9,16 +9,14 @@ declare(strict_types=1);
  * @license       commercial
  */
 
-namespace Plenta\CasaCoreBundle\EventListener\Contao;
+namespace Plenta\CasaCoreBundle\InsertTag;
 
-use Contao\CoreBundle\DependencyInjection\Attribute\AsInsertTag;
-use Contao\CoreBundle\InsertTag\InsertTagResult;
-use Contao\CoreBundle\InsertTag\OutputType;
-use Contao\CoreBundle\InsertTag\ResolvedInsertTag;
 use Contao\Input;
+use Contao\CoreBundle\InsertTag\OutputType;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
-
-use Contao\CoreBundle\InsertTag\Exception\InvalidInsertTagException;
+use Contao\CoreBundle\InsertTag\InsertTagResult;
+use Contao\CoreBundle\InsertTag\ResolvedInsertTag;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsInsertTag;
 use Contao\CoreBundle\InsertTag\Resolver\InsertTagResolverNestedResolvedInterface;
 
 #[AsInsertTag('plentacasa')]
