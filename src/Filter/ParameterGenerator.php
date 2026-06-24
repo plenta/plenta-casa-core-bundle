@@ -24,7 +24,7 @@ class ParameterGenerator
      * @param  array<string, mixed> $filter
      * @return array<Parameter>
      */
-    public function generateFromArray(array $filter, ContentModel|null $model): array
+    public function generateFromArray(array $filter, ContentModel|null $model, bool $multipleObjectTypes = false): array
     {
         $parameters = [];
 
@@ -40,16 +40,23 @@ class ParameterGenerator
         }
 
         if ($filter['objectType'] ?? null) {
-            $type = \is_array($filter['objectType']) ? $filter['objectType'][0] : $filter['objectType'];
+            if ($multipleObjectTypes) {
+                $types = \is_array($filter['objectType']) ? $filter['objectType'] : [$filter['objectType']];
+            } else {
+                $types = \is_array($filter['objectType']) ? [$filter['objectType'][0]] : $filter['objectType'];
+            }
 
-            $children = array_keys($this->objectTypes->getTypes((int) $type));
-            $children[] = $type;
             $criteria = [];
             $values = [];
 
-            foreach ($children as $child) {
-                $criteria[] = 'object_type = ?';
-                $values[] = $child;
+            foreach ($types as $type) {
+                $children = array_keys($this->objectTypes->getTypes((int) $type));
+                $children[] = $type;
+
+                foreach ($children as $child) {
+                    $criteria[] = 'object_type = ?';
+                    $values[] = $child;
+                }
             }
 
             $parameters[] = new Parameter(
@@ -119,6 +126,64 @@ class ParameterGenerator
             );
         }
 
+        if ($filter['city'] ?? null) {
+            $criteria = [];
+
+            foreach ($filter['city'] as $ignored) {
+                $criteria[] = 'city = ?';
+            }
+
+            $parameters[] = new Parameter(
+                'city',
+                ['('.implode(' OR ', $criteria).')'],
+                $filter['city'],
+            );
+        }
+
+        if ($filter['district'] ?? null) {
+            $criteria = [];
+
+            foreach ($filter['district'] as $ignored) {
+                $criteria[] = 'district = ?';
+            }
+
+            $parameters[] = new Parameter(
+                'district',
+                ['('.implode(' OR ', $criteria).')'],
+                $filter['district'],
+            );
+        }
+
+        if ($filter['quarter'] ?? null) {
+            $criteria = [];
+
+            foreach ($filter['quarter'] as $ignored) {
+                $criteria[] = 'quarter = ?';
+            }
+
+            $parameters[] = new Parameter(
+                'quarter',
+                ['('.implode(' OR ', $criteria).')'],
+                $filter['quarter'],
+            );
+        }
+
+        if ($filter['targetgroup'] ?? null) {
+            $criteria = [];
+            $values = [];
+
+            foreach ($filter['targetgroup'] as $targetgroup) {
+                $criteria[] = 'targetgroups LIKE ?';
+                $values[] = '%"'.$targetgroup.'"%';
+            }
+
+            $parameters[] = new Parameter(
+                'targetgroup',
+                ['('.implode(' OR ', $criteria).')'],
+                $values,
+            );
+        }
+
         $event = new FilterParameterEvent($model, $parameters, $filter);
         $this->eventDispatcher->dispatch($event, $event::NAME);
 
@@ -131,5 +196,43 @@ class ParameterGenerator
     public function generateFromRequest(Request $request, ContentModel|null $model): array
     {
         return $this->generateFromArray($request->query->all('filter'), $model);
+    }
+
+    /**
+     * @return array<Parameter>
+     */
+    public function generateFromModel(ContentModel $contentModel): array
+    {
+        $data = [];
+
+        if ($contentModel->plenta_casa_preFilter) {
+            if ($contentModel->plenta_casa_preFilterType) {
+                $data['objectType'] = StringUtil::deserialize($contentModel->plenta_casa_preFilterType);
+            }
+
+            if ($contentModel->plenta_casa_preFilterLocation) {
+                $data['city'] = StringUtil::deserialize($contentModel->plenta_casa_preFilterLocation);
+            }
+
+            if ($contentModel->plenta_casa_preFilterDistrict) {
+                $data['district'] = StringUtil::deserialize($contentModel->plenta_casa_preFilterDistrict);
+            }
+
+            if ($contentModel->plenta_casa_preFilterQuarter) {
+                $data['quarter'] = StringUtil::deserialize($contentModel->plenta_casa_preFilterQuarter);
+            }
+
+            if ($contentModel->plenta_casa_preFilterTargetGroup) {
+                $data['targetgroup'] = StringUtil::deserialize($contentModel->plenta_casa_preFilterTargetGroup);
+            }
+        }
+
+        $parameters = [];
+
+        if (!empty($data)) {
+            $parameters = $this->generateFromArray($data, $contentModel, true);
+        }
+
+        return $parameters;
     }
 }

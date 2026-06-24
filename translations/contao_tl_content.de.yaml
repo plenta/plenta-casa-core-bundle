@@ -67,3 +67,21 @@ tl_content:
     plenta_casa_listKeywordConnector:
         0: Keyword-Verknüpfung
         1: Verknüpfung der aufgeteilten Keywords (AND/OR).
+    plenta_casa_preFilter:
+        0: Liste/Filter vorfiltern
+        1: Die Liste bzw. der Filter wird vor der Ausgabe bereits gefiltert. Wenn Liste und Filter zusammen verwendet werden, sollten die Angaben in beiden Inhaltselementen identisch sein.
+    plenta_casa_preFilterType:
+        0: Objektarten
+        1: Bitte wählen Sie aus, welche Objektarten angezeigt werden sollen.
+    plenta_casa_preFilterLocation:
+        0: Orte
+        1: Bitte wählen Sie aus, welche Orte angezeigt werden sollen.
+    plenta_casa_preFilterDistrict:
+        0: Stadtteile
+        1: Bitte wählen Sie aus, welche Stadtteile angezeigt werden sollen.
+    plenta_casa_preFilterQuarter:
+        0: Quartiere
+        1: Bitte wählen Sie aus, welche Quartiere angezeigt werden sollen.
+    plenta_casa_preFilterTargetGroup:
+        0: Zielgruppen
+        1: Bitte wählen Sie aus, welche Zielgruppen angezeigt werden sollen.

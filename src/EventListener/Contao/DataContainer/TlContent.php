@@ -14,6 +14,7 @@ use Contao\ContentModel;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Twig\Finder\FinderFactory;
 use Contao\DataContainer;
+use Doctrine\DBAL\Connection;
 use Plenta\CasaCoreBundle\Events\ReaderPartOptionsEvent;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
@@ -24,6 +25,7 @@ class TlContent
         protected EventDispatcherInterface $eventDispatcher,
         protected FinderFactory $finderFactory,
         protected readonly RequestStack $requestStack,
+        private readonly Connection $connection,
     ) {
     }
 
@@ -106,5 +108,33 @@ class TlContent
         }
 
         $GLOBALS['TL_DCA']['tl_content']['fields']['jumpTo']['eval']['mandatory'] = true;
+    }
+
+    /**
+     * @return array<string>
+     */
+    #[AsCallback(table: 'tl_content', target: 'fields.plenta_casa_preFilterLocation.options')]
+    public function onLocationOptions(DataContainer $dc): array
+    {
+        return $this->connection->createQueryBuilder()
+            ->select('city')
+            ->from('tl_pcasa_object')
+            ->distinct()
+            ->fetchFirstColumn()
+        ;
+    }
+
+    /**
+     * @return array<string>
+     */
+    #[AsCallback(table: 'tl_content', target: 'fields.plenta_casa_preFilterDistrict.options')]
+    public function onDistrictOptions(DataContainer $dc): array
+    {
+        return $this->connection->createQueryBuilder()
+            ->select('district')
+            ->from('tl_pcasa_object')
+            ->distinct()
+            ->fetchFirstColumn()
+        ;
     }
 }

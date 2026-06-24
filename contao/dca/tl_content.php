@@ -9,9 +9,12 @@ declare(strict_types=1);
  * @license       commercial
  */
 
-$GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_listing'] = '{type_legend},title,headline,type;{config_legend},perPage,numberOfItems,plenta_casa_sorting,size;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
-$GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_filter'] = '{type_legend},title,headline,type;{config_legend},plenta_casa_filterAddMarketingType,plenta_casa_filterAddObjectType,plenta_casa_filterAddType,plenta_casa_filterAddKeyword,plenta_casa_filterAddArea,plenta_casa_filterAddRooms,plenta_casa_filterAddPrice,plenta_casa_filterAddResetButton;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_listing'] = '{type_legend},title,headline,type;{config_legend},perPage,numberOfItems,plenta_casa_preFilter,plenta_casa_sorting,size;{redirect_legend},jumpTo;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_filter'] = '{type_legend},title,headline,type;{config_legend},plenta_casa_preFilter,plenta_casa_filterAddMarketingType,plenta_casa_filterAddObjectType,plenta_casa_filterAddType,plenta_casa_filterAddKeyword,plenta_casa_filterAddArea,plenta_casa_filterAddRooms,plenta_casa_filterAddPrice,plenta_casa_filterAddResetButton;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_reader'] = '{type_legend},title,headline,type;{config_legend},plenta_casa_readerParts,size,fullsize;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'plenta_casa_preFilter';
+
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['plenta_casa_preFilter'] = 'plenta_casa_preFilterType,plenta_casa_preFilterLocation,plenta_casa_preFilterDistrict,plenta_casa_preFilterQuarter,plenta_casa_preFilterTargetGroup';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerParts'] = [
     'inputType' => 'group',
@@ -81,4 +84,43 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_sorting'] = [
     'reference' => &$GLOBALS['TL_LANG']['tl_content']['plenta_casa_sorting_options'],
     'eval' => ['tl_class' => 'w50'],
     'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default 'order_date_desc'",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilter'] = [
+    'inputType' => 'checkbox',
+    'eval' => ['submitOnChange' => true],
+    'sql' => ['type' => 'boolean', 'default' => false],
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterType'] = [
+    'inputType' => 'select',
+    'foreignKey' => 'tl_pcasa_object_type.title',
+    'eval' => ['tl_class' => 'w50', 'multiple' => true, 'chosen' => true],
+    'sql' => 'mediumtext NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterLocation'] = [
+    'inputType' => 'select',
+    'eval' => ['tl_class' => 'w50', 'multiple' => true, 'chosen' => true],
+    'sql' => 'mediumtext NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterDistrict'] = [
+    'inputType' => 'select',
+    'eval' => ['tl_class' => 'w50', 'multiple' => true, 'chosen' => true],
+    'sql' => 'mediumtext NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterQuarter'] = [
+    'inputType' => 'select',
+    'foreignKey' => 'tl_pcasa_quarter.title',
+    'eval' => ['tl_class' => 'w50', 'multiple' => true, 'chosen' => true],
+    'sql' => 'mediumtext NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterTargetGroup'] = [
+    'inputType' => 'select',
+    'foreignKey' => 'tl_pcasa_targetgroup.title',
+    'eval' => ['tl_class' => 'w50', 'multiple' => true, 'chosen' => true],
+    'sql' => 'mediumtext NULL',
 ];

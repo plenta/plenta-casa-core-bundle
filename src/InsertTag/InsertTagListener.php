@@ -11,13 +11,13 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\InsertTag;
 
-use Contao\Input;
-use Contao\CoreBundle\InsertTag\OutputType;
-use Plenta\CasaCoreBundle\Model\ObjectModel;
-use Contao\CoreBundle\InsertTag\InsertTagResult;
-use Contao\CoreBundle\InsertTag\ResolvedInsertTag;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsInsertTag;
+use Contao\CoreBundle\InsertTag\InsertTagResult;
+use Contao\CoreBundle\InsertTag\OutputType;
+use Contao\CoreBundle\InsertTag\ResolvedInsertTag;
 use Contao\CoreBundle\InsertTag\Resolver\InsertTagResolverNestedResolvedInterface;
+use Contao\Input;
+use Plenta\CasaCoreBundle\Model\ObjectModel;
 
 #[AsInsertTag('plentacasa')]
 class InsertTagListener implements InsertTagResolverNestedResolvedInterface

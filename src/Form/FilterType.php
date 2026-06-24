@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Plenta\CasaCoreBundle\Form;
 
 use Plenta\CasaCoreBundle\Events\FilterFormEvent;
+use Plenta\CasaCoreBundle\Filter\ParameterGenerator;
 use Plenta\CasaCoreBundle\Helper\ObjectTypes;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -34,6 +35,7 @@ class FilterType extends AbstractType
         protected EventDispatcherInterface $eventDispatcher,
         protected RequestStack $requestStack,
         private readonly ObjectTypes $objectTypes,
+        private readonly ParameterGenerator $parameterGenerator,
     ) {
     }
 
@@ -43,6 +45,15 @@ class FilterType extends AbstractType
 
         $builder = new DynamicFormBuilder($builder);
 
+        $modelParameters = $this->parameterGenerator->generateFromModel($model);
+        $columns = [];
+        $values = [];
+
+        foreach ($modelParameters as $parameter) {
+            $columns = array_merge($columns, $parameter->getColumns());
+            $values = array_merge($values, $parameter->getValues());
+        }
+
         if ($model->plenta_casa_filterAddMarketingType) {
             $builder->add(
                 'marketingType',
@@ -51,7 +62,7 @@ class FilterType extends AbstractType
                     'choices' => ['RENT', 'BUY'],
                     'label' => 'PLENTA.CASA.filter.marketingType',
                     'translation_domain' => 'contao_default',
-                    'choice_filter' => static fn ($value) => ObjectModel::countPublishedBy(['marketing_type = ?'], [$value]),
+                    'choice_filter' => static fn ($value) => ObjectModel::countPublishedBy(array_merge($columns, ['marketing_type = ?']), array_merge($values, [$value])),
                     'choice_label' => static fn ($value, $key, $index) => 'PLENTA.CASA.marketing_types.'.$value,
                     'choice_translation_domain' => 'contao_default',
                     'placeholder' => '-',
@@ -70,7 +81,7 @@ class FilterType extends AbstractType
                 [
                     'choices' => array_flip($this->objectTypes->getTypes()),
                     'placeholder' => '-',
-                    'choice_filter' => fn ($value) => !$value || $this->objectTypes->hasObjects((int) $value),
+                    'choice_filter' => fn ($value) => !$value || $this->objectTypes->hasObjects((int) $value, $columns, $values),
                     'priority' => 75,
                     'required' => false,
                     'row_attr' => ['class' => 'widget-select'],

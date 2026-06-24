@@ -57,7 +57,7 @@
                 }
             %}
 
-            {% with {meta_data: meta_data} %}{{ block('meta_component') }}{% endwith %}
+            {% with {meta_data} %}{{ block('meta_component') }}{% endwith %}
         {% endblock %}
 
         {% block address %}

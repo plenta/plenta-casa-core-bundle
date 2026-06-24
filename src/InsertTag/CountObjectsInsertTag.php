@@ -45,6 +45,8 @@ class CountObjectsInsertTag implements InsertTagResolverNestedResolvedInterface
             $parameters = $this->parameterGenerator->generateFromRequest($request, $model);
         }
 
+        $parameters = array_merge($this->parameterGenerator->generateFromModel($model), $parameters);
+
         $columns = [];
         $values = [];
 

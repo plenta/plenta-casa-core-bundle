@@ -16,9 +16,13 @@ use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 
 class ObjectTypes
 {
-    public function hasObjects(int $id): bool
+    /**
+     * @param array<string> $columns
+     * @param array<mixed>  $values
+     */
+    public function hasObjects(int $id, array $columns = [], array $values = []): bool
     {
-        if (ObjectModel::findPublishedBy(['object_type = ?'], [$id])) {
+        if (ObjectModel::findPublishedBy(array_merge($columns, ['object_type = ?']), array_merge($values, [$id]))) {
             return true;
         }
 
@@ -26,7 +30,7 @@ class ObjectTypes
 
         if ($children) {
             foreach ($children as $child) {
-                if ($this->hasObjects($child->id)) {
+                if ($this->hasObjects($child->id, $columns, $values)) {
                     return true;
                 }
             }
@@ -35,15 +39,19 @@ class ObjectTypes
         return false;
     }
 
-    public function countObjects(int $id): int
+    /**
+     * @param array<string> $columns
+     * @param array<mixed>  $values
+     */
+    public function countObjects(int $id, array $columns = [], array $values = []): int
     {
-        $count = ObjectModel::countPublishedBy(['object_type = ?'], [$id]);
+        $count = ObjectModel::countPublishedBy(array_merge($columns, ['object_type = ?']), array_merge($values, [$id]));
 
         $children = ObjectTypeModel::findBy('pid', $id);
 
         if ($children) {
             foreach ($children as $child) {
-                $count += $this->countObjects($child->id);
+                $count += $this->countObjects($child->id, $columns, $values);
             }
         }
 

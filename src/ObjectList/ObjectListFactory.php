@@ -30,7 +30,8 @@ class ObjectListFactory
     public function create(ObjectListQueryInterface $objectListQuery): ObjectList
     {
         $contentModel = $this->framework->getAdapter(ContentModel::class)->findById($objectListQuery->getContentModelId());
-        $parameters = $this->parameterGenerator->generateFromArray($objectListQuery->getFilterData(), $contentModel);
+
+        $parameters = array_merge($this->parameterGenerator->generateFromModel($contentModel), $this->parameterGenerator->generateFromArray($objectListQuery->getFilterData(), $contentModel));
 
         $columns = [];
         $values = [];
