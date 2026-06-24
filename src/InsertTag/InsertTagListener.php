@@ -19,7 +19,7 @@ use Contao\CoreBundle\InsertTag\Resolver\InsertTagResolverNestedResolvedInterfac
 use Contao\Input;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 
-#[AsInsertTag('plentacasa')]
+#[AsInsertTag('casa')]
 class InsertTagListener implements InsertTagResolverNestedResolvedInterface
 {
     public function __invoke(ResolvedInsertTag $insertTag): InsertTagResult
