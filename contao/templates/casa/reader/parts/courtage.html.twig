@@ -7,17 +7,17 @@
 {% endblock %}
 
 {% block content %}
-    <ul>
+    <dl>
         {% if object.courtage|default %}
-            <li>
-                <span class="label">{{ 'PLENTA.CASA.courtage'|trans({}, 'contao_default') }}</span>
-                <span class="value">{{ object.courtage }}</span>
-            </li>
+            <div>
+                <dt class="label">{{ 'PLENTA.CASA.courtage'|trans({}, 'contao_default') }}</dt>
+                <dd class="value">{{ object.courtage }}</dd>
+            </div>
         {% endif %}
         {% if object.courtage_note|default %}
-            <li>
-                <span class="label">{{ object.courtage_note }}</span>
-            </li>
+            <div>
+                <dt class="label">{{ object.courtage_note }}</dt>
+            </div>
         {% endif %}
-    </ul>
+    </dl>
 {% endblock %}

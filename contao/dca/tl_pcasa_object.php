@@ -78,7 +78,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
-            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment,availableFrom,reserved;
+            {condition_legend},propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,reserved;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
@@ -93,7 +93,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
-            {condition_legend},propertyCondition,lastRefurbishment,qualityOfEquipment,availableFrom,rented,sold,reserved;
+            {condition_legend},propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,rented,sold,reserved;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
@@ -244,7 +244,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             ],
             'sql' => null,
         ],
-
         'author' => [
             'default' => static fn () => BackendUser::getInstance()->id,
             'exclude' => true,
@@ -277,7 +276,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => ['multiple' => false, 'includeBlankOption' => true, 'tl_class' => 'w50'],
             'sql' => "varchar(10) NOT NULL default ''",
         ],
-
         'published' => [
             'toggle' => true,
             'filter' => true,
@@ -302,7 +300,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50 wizard'],
             'sql' => "varchar(10) NOT NULL default ''",
         ],
-
         'price' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
@@ -602,15 +599,45 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'propertyCondition' => [
             'inputType' => 'select',
-            'options' => ['firstTimeUse', 'firstTimeUseAfterRefurbishment', 'mintCondition', 'refurbished', 'partlyRefurbished', 'inNeedOfRefurbishment', 'decrepit', 'modernized', 'completelyRenovated', 'partlyRenovated', 'neat', 'inNeedOfRenovation', 'customersOption', 'dilapidated'],
+            'options' => [
+                'firstTimeUse',
+                'firstTimeUseAfterRefurbishment',
+                'mintCondition',
+                'refurbished',
+                'partlyRefurbished',
+                'inNeedOfRefurbishment',
+                'decrepit',
+                'modernized',
+                'completelyRenovated',
+                'partlyRenovated',
+                'neat',
+                'inNeedOfRenovation',
+                'customersOption',
+                'dilapidated',
+            ],
             'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['propertyCondition_options'],
             'eval' => ['includeBlankOption' => true, 'tl_class' => 'w50'],
             'sql' => "varchar(48) NOT NULL default ''",
         ],
         'lastRefurbishment' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'date', 'datepicker' => true, 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'yearOfConstruction' => [
+            'inputType' => 'text',
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'yearOfConstructionEngineering' => [
+            'inputType' => 'text',
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'yearOfConstructionUnknown' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
         ],
         'qualityOfEquipment' => [
             'inputType' => 'select',

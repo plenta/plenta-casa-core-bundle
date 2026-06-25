@@ -18,6 +18,7 @@ PLENTA:
         yes: ja
         no: nein
         courtage: Provision
+        unknown: Unbekannt
 
 CTE:
     plentacasa: Plenta Casa

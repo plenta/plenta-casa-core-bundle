@@ -1,7 +1,7 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 
 {% block part %}
-    {% if object.propertyCondition|default or object.lastRefurbishment|default or object.qualityOfEquipment|default %}
+    {% if object.propertyCondition|default or object.lastRefurbishment|default or object.qualityOfEquipment|default or object.yearOfConstruction|default or object.yearOfConstructionUnknown|default %}
         {{ parent() }}
     {% endif %}
 {% endblock %}
@@ -10,23 +10,37 @@
     {% set fields = [
         {field: 'availableFrom', label: 'tl_pcasa_object.availableFrom.0'},
         {field: 'propertyCondition', label: 'tl_pcasa_object.propertyCondition.0', type: 'reference', reference: 'propertyCondition_options'},
-        {field: 'lastRefurbishment', label: 'tl_pcasa_object.lastRefurbishment.0', type: 'date'},
+        {field: 'lastRefurbishment', label: 'tl_pcasa_object.lastRefurbishment.0'},
         {field: 'qualityOfEquipment', label: 'tl_pcasa_object.qualityOfEquipment.0', type: 'reference', reference: 'qualityOfEquipment_options'},
+        {field: 'yearOfConstructionEngineering', label: 'tl_pcasa_object.yearOfConstructionEngineering.0'},
     ] %}
 
-    <ul class="condition-list">
+    <dl class="condition-list">
         {% if object.rented|default %}
+            <div>
+                <dt class="label">{{ 'tl_pcasa_object.rented.0'|trans({}, 'contao_default') }}</dt>
+                <dd class="value">{{ 'PLENTA.CASA.yes'|trans({}, 'contao_default') }}</dd>
+            </div>
+        {% endif %}
+
+        {% if object.yearOfConstructionUnknown|default %}
             <li>
-                <span class="label">{{ 'tl_pcasa_object.rented.0'|trans({}, 'contao_default') }}</span>
-                <span class="value">{{ 'PLENTA.CASA.yes'|trans({}, 'contao_default') }}</span>
+                <span class="label">{{ 'tl_pcasa_object.yearOfConstruction.0'|trans({}, 'contao_default') }}</span>
+                <span class="value">{{ 'PLENTA.CASA.unknown'|trans({}, 'contao_default') }}</span>
+            </li>
+        {% elseif object.yearOfConstruction|default %}
+            <li>
+                <span class="label">{{ 'tl_pcasa_object.yearOfConstruction.0'|trans({}, 'contao_default') }}</span>
+                <span class="value">{{ object.yearOfConstruction }}</span>
             </li>
         {% endif %}
+
         {% for item in fields %}
             {% set value = attribute(object, item.field) %}
             {% if value|default %}
-                <li>
-                    <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
-                    <span class="value">
+                <div>
+                    <dt class="label">{{ item.label|trans({}, 'contao_default') }}</dt>
+                    <dd class="value">
                         {% if item.type|default == 'reference' %}
                             {{ ('tl_pcasa_object.' ~ item.reference ~ '.' ~ value)|trans({}, 'contao_default') }}
                         {% elseif item.type|default == 'date' %}
@@ -34,9 +48,9 @@
                         {% else %}
                             {{ value }}
                         {% endif %}
-                    </span>
-                </li>
+                    </dd>
+                </div>
             {% endif %}
         {% endfor %}
-    </ul>
+    </dl>
 {% endblock %}
