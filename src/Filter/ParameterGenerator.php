@@ -43,7 +43,7 @@ class ParameterGenerator
             if ($multipleObjectTypes) {
                 $types = \is_array($filter['objectType']) ? $filter['objectType'] : [$filter['objectType']];
             } else {
-                $types = \is_array($filter['objectType']) ? [$filter['objectType'][0]] : $filter['objectType'];
+                $types = \is_array($filter['objectType']) ? [$filter['objectType'][0]] : [$filter['objectType']];
             }
 
             $criteria = [];
