@@ -34,5 +34,14 @@
 .content-plenta-casa-listing {
     .badges {
         @extend %badges-style;
+
+        &.badges-first {
+            position: absolute;
+            top: variables.$base-spacing-s;
+            left: variables.$base-spacing-s;
+            display: flex;
+            gap: variables.$base-spacing-xx-s;
+            padding: 0;
+        }
     }
 }

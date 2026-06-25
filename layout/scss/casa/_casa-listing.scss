@@ -1,7 +1,6 @@
 @use '../abstracts/variables';
 @use '../abstracts/mixins';
 @use '../base/type';
-@use 'casa-abstract-icons' as casa-icons;
 @use 'sass:math';
 
 .content-plenta-casa-listing {
@@ -15,6 +14,7 @@
             border-color: var(--pcasa-border-color);
             border-radius: var(--pcasa-list-border-radius);
             background-color: var(--pcasa-list-bg-color);
+            position: relative;
 
             .main-content {
                 grid-area: main;
@@ -56,18 +56,29 @@
                 align-items: center;
 
                 $icons: (
-                    area: casa-icons.$icon-casa-area,
-                    rooms: casa-icons.$icon-casa-rooms,
-                    floor: casa-icons.$icon-casa-floor,
+                        area: 'area.svg',
+                        rooms: 'rooms.svg',
+                        floor: 'floor.svg',
                 );
 
                 > span {
-                    @include mixins.fa-inline-icon('');
+                    display: flex;
+                    gap: variables.$base-spacing-xx-s;
+                    align-items: center;
+
+                    &:before {
+                        content: '';
+                        width: var(--pcasa-icon-size);
+                        height: var(--pcasa-icon-size);;
+                        background-color: var(--pcasa-icon-color);
+                    }
                 }
 
                 @each $name, $icon in $icons {
                     .#{$name}:before {
-                        content: '#{$icon}';
+                        mask: url(variables.$icon-path + '#{$icon}');
+                        mask-repeat: no-repeat;
+                        mask-size: contain;
                     }
                 }
             }
@@ -81,6 +92,7 @@
                     font-weight: var(--pcasa-price-font-weight);
                     text-align: right;
                     font-size: var(--pcasa-price-font-size);
+                    color: var(--pcasa-price-color-list);
                 }
 
                 .price-text {
@@ -111,8 +123,7 @@
             gap: variables.$base-spacing-s;
             grid-template-columns: var(--pcasa-list-image-width) 1fr auto;
             grid-template-areas: 'img main side';
-            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s
-                variables.$base-spacing-x-s;
+            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s variables.$base-spacing-x-s;
 
             @media screen and (width <= 960px) {
                 grid-template-columns: var(--pcasa-list-image-width-tablet) 1fr;
@@ -147,8 +158,7 @@
                 display: block;
 
                 img {
-                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom)
-                        var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius);
+                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius);
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
@@ -210,8 +220,7 @@
 
                 img {
                     height: auto;
-                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius)
-                        var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom);
+                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom);
                 }
             }
 

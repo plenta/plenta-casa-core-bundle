@@ -2,7 +2,6 @@
 @use '../abstracts/mixins';
 @use '../abstracts/placeholder';
 @use '../base/type';
-@use 'casa-abstract-icons' as casa-icons;
 @use 'sass:math';
 
 .content-plenta-casa-reader {
@@ -17,16 +16,26 @@
         > * {
             display: flex;
             gap: variables.$base-spacing-xx-s;
+            align-items: center;
+
+            &:before {
+                content: '';
+                width: var(--pcasa-icon-size);
+                height: var(--pcasa-icon-size);;
+                background-color: var(--pcasa-icon-color);
+            }
 
             $icons: (
-                area: casa-icons.$icon-casa-area,
-                rooms: casa-icons.$icon-casa-rooms,
-                floor: casa-icons.$icon-casa-floor,
+                    area: 'area.svg',
+                    rooms: 'rooms.svg',
+                    floor: 'floor.svg',
             );
 
             @each $name, $icon in $icons {
-                &.#{$name} {
-                    @include mixins.fa-inline-icon(#{$icon}, 0);
+                &.#{$name}:before {
+                    mask: url(variables.$icon-path + '#{$icon}');
+                    mask-repeat: no-repeat;
+                    mask-size: contain;
                 }
             }
         }
