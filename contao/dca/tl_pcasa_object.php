@@ -626,13 +626,13 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'yearOfConstruction' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
         ],
         'yearOfConstructionEngineering' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
         ],
         'yearOfConstructionUnknown' => [
             'inputType' => 'checkbox',

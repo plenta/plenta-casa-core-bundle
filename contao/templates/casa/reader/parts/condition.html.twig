@@ -1,7 +1,7 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 
 {% block part %}
-    {% if object.propertyCondition|default or object.lastRefurbishment|default or object.qualityOfEquipment|default %}
+    {% if object.propertyCondition|default or object.lastRefurbishment|default or object.qualityOfEquipment|default or object.yearOfConstruction|default or object.yearOfConstructionUnknown|default %}
         {{ parent() }}
     {% endif %}
 {% endblock %}
@@ -10,8 +10,9 @@
     {% set fields = [
         {field: 'availableFrom', label: 'tl_pcasa_object.availableFrom.0'},
         {field: 'propertyCondition', label: 'tl_pcasa_object.propertyCondition.0', type: 'reference', reference: 'propertyCondition_options'},
-        {field: 'lastRefurbishment', label: 'tl_pcasa_object.lastRefurbishment.0', type: 'date'},
+        {field: 'lastRefurbishment', label: 'tl_pcasa_object.lastRefurbishment.0'},
         {field: 'qualityOfEquipment', label: 'tl_pcasa_object.qualityOfEquipment.0', type: 'reference', reference: 'qualityOfEquipment_options'},
+        {field: 'yearOfConstructionEngineering', label: 'tl_pcasa_object.yearOfConstructionEngineering.0'},
     ] %}
 
     <ul class="condition-list">
@@ -21,6 +22,19 @@
                 <span class="value">{{ 'PLENTA.CASA.yes'|trans({}, 'contao_default') }}</span>
             </li>
         {% endif %}
+
+        {% if object.yearOfConstructionUnknown|default %}
+            <li>
+                <span class="label">{{ 'tl_pcasa_object.yearOfConstruction.0'|trans({}, 'contao_default') }}</span>
+                <span class="value">{{ 'PLENTA.CASA.unknown'|trans({}, 'contao_default') }}</span>
+            </li>
+        {% elseif object.yearOfConstruction|default %}
+            <li>
+                <span class="label">{{ 'tl_pcasa_object.yearOfConstruction.0'|trans({}, 'contao_default') }}</span>
+                <span class="value">{{ object.yearOfConstruction }}</span>
+            </li>
+        {% endif %}
+
         {% for item in fields %}
             {% set value = attribute(object, item.field) %}
             {% if value|default %}
