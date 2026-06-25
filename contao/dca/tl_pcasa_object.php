@@ -609,8 +609,8 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'lastRefurbishment' => [
             'inputType' => 'text',
-            'eval' => ['rgxp' => 'date', 'datepicker' => true, 'tl_class' => 'w50'],
-            'sql' => "varchar(10) NOT NULL default ''",
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
         ],
         'qualityOfEquipment' => [
             'inputType' => 'select',
