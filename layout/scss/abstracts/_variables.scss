@@ -12,8 +12,6 @@ $color-alert: #f61b1b;
 // Base Font Settings
 $base-font-size: 16px;
 $base-line-height: 1.6;
-$fa: 'Font Awesome 6 Free';
-$font-awesome-active: true;
 
 // Font weight
 $font-weight-regular: 400;
@@ -41,3 +39,6 @@ $base-border-style: solid;
 $base-border-width: 1px;
 $base-border: $base-border-width $base-border-style var(--pcasa-border-color);
 $base-border-radius: 8px;
+
+// Icons
+$icon-path: '/layout/img/lucide/';
