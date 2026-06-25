@@ -335,6 +335,15 @@ tl_pcasa_object:
     reserved:
         0: Reserviert
         1: Bitte auswählen, wenn das Objekt reserviert ist.
+    yearOfConstruction:
+        0: Baujahr
+        1: Bitte geben Sie das Baujahr ein.
+    yearOfConstructionEngineering:
+        0: Baujahr Anlagentechnik
+        1: Bitte geben Sie das Baujahr der Anlagentechnik ein.
+    yearOfConstructionUnknown:
+        0: Baujahr unbekannt
+        1: Bitte auswählen, wenn das Baujahr unbekannt ist.
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten
