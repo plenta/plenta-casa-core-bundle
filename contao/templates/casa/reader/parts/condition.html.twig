@@ -15,12 +15,12 @@
         {field: 'yearOfConstructionEngineering', label: 'tl_pcasa_object.yearOfConstructionEngineering.0'},
     ] %}
 
-    <ul class="condition-list">
+    <dl class="condition-list">
         {% if object.rented|default %}
-            <li>
-                <span class="label">{{ 'tl_pcasa_object.rented.0'|trans({}, 'contao_default') }}</span>
-                <span class="value">{{ 'PLENTA.CASA.yes'|trans({}, 'contao_default') }}</span>
-            </li>
+            <div>
+                <dt class="label">{{ 'tl_pcasa_object.rented.0'|trans({}, 'contao_default') }}</dt>
+                <dd class="value">{{ 'PLENTA.CASA.yes'|trans({}, 'contao_default') }}</dd>
+            </div>
         {% endif %}
 
         {% if object.yearOfConstructionUnknown|default %}
@@ -38,9 +38,9 @@
         {% for item in fields %}
             {% set value = attribute(object, item.field) %}
             {% if value|default %}
-                <li>
-                    <span class="label">{{ item.label|trans({}, 'contao_default') }}</span>
-                    <span class="value">
+                <div>
+                    <dt class="label">{{ item.label|trans({}, 'contao_default') }}</dt>
+                    <dd class="value">
                         {% if item.type|default == 'reference' %}
                             {{ ('tl_pcasa_object.' ~ item.reference ~ '.' ~ value)|trans({}, 'contao_default') }}
                         {% elseif item.type|default == 'date' %}
@@ -48,9 +48,9 @@
                         {% else %}
                             {{ value }}
                         {% endif %}
-                    </span>
-                </li>
+                    </dd>
+                </div>
             {% endif %}
         {% endfor %}
-    </ul>
+    </dl>
 {% endblock %}

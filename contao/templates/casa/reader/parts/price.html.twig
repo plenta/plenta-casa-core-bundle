@@ -53,32 +53,32 @@
             {field: 'housingEntitlementCertificate', label: 'tl_pcasa_object.housingEntitlementCertificate.0', type: 'checkbox'},
         ] %}
 
-        <ul class="price-list">
+        <dl class="price-list">
             {% for item in rent_fields %}
                 {% set value = attribute(object, item.field)|default %}
                 {% if item.type|default == 'checkbox' %}
                     {% if value %}
-                        <li>
-                            <span class="label">{{ item.label|trans }}</span>
-                        </li>
+                        <div>
+                            <dt class="label">{{ item.label|trans }}</dt>
+                        </div>
                     {% endif %}
                 {% elseif item.field == 'deposit' %}
                     {% if value %}
-                        <li>
-                            <span class="label">{{ item.label|trans }}</span>
-                            <span class="value">{{ value }}</span>
-                        </li>
+                        <div>
+                            <dt class="label">{{ item.label|trans }}</dt>
+                            <dd class="value">{{ value }}</dd>
+                        </div>
                     {% endif %}
                 {% else %}
                     {% if value and value != '0.00' %}
-                        <li>
-                            <span class="label">{{ item.label|trans }}</span>
-                            <span class="value">{{ value|casaFormatNumber }} €</span>
-                        </li>
+                        <div>
+                            <dt class="label">{{ item.label|trans }}</dt>
+                            <dd class="value">{{ value|casaFormatNumber }} €</dd>
+                        </div>
                     {% endif %}
                 {% endif %}
             {% endfor %}
-        </ul>
+        </dl>
 
     {% elseif object.marketing_type == 'BUY' %}
         {% set buy_fields = [
@@ -90,11 +90,11 @@
             {field: 'monthlyRentalIncome', label: 'tl_pcasa_object.monthlyRentalIncome.0'},
         ] %}
 
-        <ul class="price-list">
+        <dl class="price-list">
             {% if object.priceOnRequest or object.priceNegotiable or (object.price and object.price != '0.00') %}
-                <li>
-                    <span class="label">{{ 'tl_pcasa_object.price.0'|trans }}</span>
-                    <span class="value">
+                <div>
+                    <dt class="label">{{ 'tl_pcasa_object.price.0'|trans }}</dt>
+                    <dd class="value">
                         {% if object.priceOnRequest %}
                             {{ 'tl_pcasa_object.priceOnRequest.0'|trans }}
                         {% elseif object.priceNegotiable %}
@@ -102,20 +102,20 @@
                         {% else %}
                             {{ object.price|casaFormatNumber }} €
                         {% endif %}
-                    </span>
-                </li>
+                    </dd>
+                </div>
             {% endif %}
 
             {% for item in buy_fields %}
                 {% set value = attribute(object, item.field) %}
                 {% if value and value != '0.00' %}
-                    <li>
-                        <span class="label">{{ item.label|trans }}</span>
-                        <span class="value">{{ value|casaFormatNumber }} €</span>
-                    </li>
+                    <div>
+                        <dt class="label">{{ item.label|trans }}</dt>
+                        <dd class="value">{{ value|casaFormatNumber }} €</dd>
+                    </div>
                 {% endif %}
             {% endfor %}
-        </ul>
+        </dl>
 
     {% endif %}
 {% endblock %}

@@ -7,6 +7,12 @@
 .content-plenta-casa-reader {
     .part {
         margin-bottom: var(--content-spacing);
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
     }
 
     .part-main-info {
@@ -41,30 +47,8 @@
         }
     }
 
-    .part-condition,
-    .part-price,
-    .part-courtage {
-        > span {
-            font-weight: variables.$font-weight-bold;
-        }
 
-        li {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            font-size: var(--pcasa-feature-font-size);
-            padding-right: variables.$base-spacing-x-s;
-            margin-top: variables.$base-spacing-xx-s;
 
-            &:nth-last-child(n + 2) {
-                border-bottom: variables.$base-border;
-                border-color: var(--pcasa-reader-border-color);
-            }
-        }
-
-        .value {
-            font-weight: variables.$font-weight-semi-bold;
-        }
-    }
 
     .part-address {
         display: flex;
@@ -72,6 +56,9 @@
         gap: variables.$base-spacing-s;
     }
 
+    .part-price,
+    .part-courtage,
+    .part-condition,
     .part-area {
         > span {
             font-weight: variables.$font-weight-bold;
