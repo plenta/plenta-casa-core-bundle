@@ -45,3 +45,7 @@
         }
     }
 }
+
+.badge-featured {
+    @include mixins.svg-icon-button('featured.svg', var(--pcasa-feature-color));
+}

@@ -126,19 +126,7 @@
             flex-wrap: wrap;
         }
         .ext-pdf a {
-            display: inline-flex;
-            gap: variables.$base-spacing-xx-s;
-            align-items: center;
-
-            &:before {
-                content: '';
-                width: var(--pcasa-icon-size);
-                height: var(--pcasa-icon-size);
-                background-color: var(--pcasa-icon-color);
-                mask: url(variables.$icon-path + 'pdf-download.svg');
-                mask-repeat: no-repeat;
-                mask-size: contain;
-            }
+            @include mixins.svg-icon('pdf-download.svg');
         }
     }
 }

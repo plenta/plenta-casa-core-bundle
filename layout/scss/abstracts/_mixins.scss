@@ -95,3 +95,41 @@
         }
     }
 }
+
+@mixin svg-icon($svg-icon) {
+    display: inline-flex;
+    gap: variables.$base-spacing-xx-s;
+    align-items: center;
+
+    &:before {
+        content: '';
+        width: var(--pcasa-icon-size);
+        height: var(--pcasa-icon-size);
+        background-color: var(--pcasa-icon-color);
+        mask: url(variables.$icon-path + '#{$svg-icon}');
+        mask-repeat: no-repeat;
+        mask-size: contain;
+    }
+}
+
+@mixin svg-icon-button($svg-icon, $color: var(--pcasa-icon-color)) {
+    position: relative;
+    text-indent: -9999px;
+    display: block;
+    width: var(--pcasa-icon-size);
+    height: var(--pcasa-icon-size);
+
+    &:before {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        content: '';
+        width: var(--pcasa-icon-size);
+        height: var(--pcasa-icon-size);
+        background-color: $color;
+        mask: url(variables.$icon-path + '#{$svg-icon}');
+        mask-repeat: no-repeat;
+        mask-size: contain;
+    }
+}
