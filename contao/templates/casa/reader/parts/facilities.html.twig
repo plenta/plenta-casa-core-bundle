@@ -11,6 +11,7 @@
 
         {% block content %}
             {% for name, array in data %}
+                <div>
                 <span class="title">{{ ('tl_pcasa_object.' ~ name ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</span>
                 <ul>
                     {% for element in array %}
@@ -19,6 +20,7 @@
                                 'contao_tl_pcasa_object') }}</li>
                     {% endfor %}
                 </ul>
+                </div>
             {% endfor %}
         {% endblock %}
 

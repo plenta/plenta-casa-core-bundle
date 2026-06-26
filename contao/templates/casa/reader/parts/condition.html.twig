@@ -24,15 +24,15 @@
         {% endif %}
 
         {% if object.yearOfConstructionUnknown|default %}
-            <li>
-                <span class="label">{{ 'tl_pcasa_object.yearOfConstruction.0'|trans({}, 'contao_default') }}</span>
-                <span class="value">{{ 'PLENTA.CASA.unknown'|trans({}, 'contao_default') }}</span>
-            </li>
+            <div>
+                <dt class="label">{{ 'tl_pcasa_object.yearOfConstruction.0'|trans({}, 'contao_default') }}</dt>
+                <dd class="value">{{ 'PLENTA.CASA.unknown'|trans({}, 'contao_default') }}</dd>
+            </div>
         {% elseif object.yearOfConstruction|default %}
-            <li>
-                <span class="label">{{ 'tl_pcasa_object.yearOfConstruction.0'|trans({}, 'contao_default') }}</span>
-                <span class="value">{{ object.yearOfConstruction }}</span>
-            </li>
+            <div>
+                <dt class="label">{{ 'tl_pcasa_object.yearOfConstruction.0'|trans({}, 'contao_default') }}</dt>
+                <dd class="value">{{ object.yearOfConstruction }}</dd>
+            </div>
         {% endif %}
 
         {% for item in fields %}
