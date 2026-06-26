@@ -77,7 +77,10 @@
         {% endblock %}
 
         {% block button %}
-            <a class="button" href="{{ url }}">Zum Angebot</a>
+            {% set link_text = model.linkTitle|default(('PLENTA.CASA.show_offer')|trans({}, 'contao_default')) %}
+            {% set link_title = model.titleText|default(link_text) %}
+
+            <a class="button" href="{{ url }}" title="{{ link_title }}">{{ link_text }}</a>
         {% endblock %}
     </div>
 </div>
