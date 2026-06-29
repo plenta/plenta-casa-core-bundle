@@ -13,9 +13,12 @@ namespace Plenta\CasaCoreBundle\Twig\Components;
 
 use Contao\ContentModel;
 use Contao\CoreBundle\Controller\AbstractController;
+use Plenta\CasaCoreBundle\Events\FilterFormBeforeRenderEvent;
 use Plenta\CasaCoreBundle\Form\FilterType;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\Attribute\PreReRender;
@@ -27,7 +30,9 @@ use Symfony\UX\LiveComponent\DefaultActionTrait;
 class FilterComponent extends AbstractController
 {
     use ComponentToolsTrait;
-    use ComponentWithFormTrait;
+    use ComponentWithFormTrait {
+        getFormView as traitGetFormView;
+    }
     use DefaultActionTrait;
 
     #[LiveProp]
@@ -45,12 +50,15 @@ class FilterComponent extends AbstractController
     #[LiveProp]
     public array $initialValues = [];
 
-    public function __construct(private readonly RequestStack $requestStack)
-    {
+    public function __construct(
+        private readonly RequestStack $requestStack,
+        private readonly EventDispatcherInterface $eventDispatcher,
+    ) {
     }
 
-    public function mount(): void
+    public function mount(int $modelId): void
     {
+        $this->modelId = $modelId;
         $request = $this->requestStack->getCurrentRequest();
 
         if ($request->query->has('filter')) {
@@ -63,6 +71,16 @@ class FilterComponent extends AbstractController
     {
         $this->formValues = array_filter($this->formValues, static fn ($key) => '__dynamic_error' !== $key, ARRAY_FILTER_USE_KEY);
         $this->emit('casa:filter-changed', ['data' => $this->formValues]);
+    }
+
+    public function getFormView(): FormView
+    {
+        $view = $this->traitGetFormView();
+
+        $event = new FilterFormBeforeRenderEvent($view, $this->formValues, ContentModel::findByIdOrAlias($this->modelId));
+        $this->eventDispatcher->dispatch($event, FilterFormBeforeRenderEvent::NAME);
+
+        return $view;
     }
 
     /**
