@@ -19,6 +19,7 @@ PLENTA:
         no: nein
         courtage: Provision
         unknown: Unbekannt
+        show_offer: Zum Angebot
 
 CTE:
     plentacasa: Plenta Casa

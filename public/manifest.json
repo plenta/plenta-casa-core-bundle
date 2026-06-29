@@ -1,7 +1,7 @@
 {
   "plentacasacore/app.js": "/bundles/plentacasacore/app.430af9d8.js",
   "plentacasacore/backend.css": "/bundles/plentacasacore/backend.d53db992.css",
-  "plentacasacore/theme.css": "/bundles/plentacasacore/theme.b9c40536.css",
+  "plentacasacore/theme.css": "/bundles/plentacasacore/theme.6f1b9da5.css",
   "plentacasacore/822.1c8caae3.js": "/bundles/plentacasacore/822.1c8caae3.js",
   "plentacasacore/images/gears-solid-full.svg": "/bundles/plentacasacore/images/gears-solid-full.e37ecb4a.svg",
   "plentacasacore/images/plenta-casa--dark.svg": "/bundles/plentacasacore/images/plenta-casa--dark.a78815c3.svg",
@@ -11,11 +11,13 @@
   "plentacasacore/images/layer-group-solid-full.svg": "/bundles/plentacasacore/images/layer-group-solid-full.06f75b73.svg",
   "plentacasacore/images/bullseye-solid-full.svg": "/bundles/plentacasacore/images/bullseye-solid-full.d7f3506a.svg",
   "plentacasacore/images/envelope-solid-full.svg": "/bundles/plentacasacore/images/envelope-solid-full.b65af555.svg",
+  "plentacasacore/images/featured.svg": "/bundles/plentacasacore/images/featured.5860d1f0.svg",
   "plentacasacore/images/rooms.svg": "/bundles/plentacasacore/images/rooms.df5ecdb6.svg",
   "plentacasacore/images/cup-soda.svg": "/bundles/plentacasacore/images/cup-soda.0fa7fd7a.svg",
-  "plentacasacore/images/area.svg": "/bundles/plentacasacore/images/area.0c65c49a.svg",
   "plentacasacore/images/floor.svg": "/bundles/plentacasacore/images/floor.85f6552e.svg",
   "plentacasacore/images/house.svg": "/bundles/plentacasacore/images/house.fd6fd755.svg",
   "plentacasacore/images/mail-check.svg": "/bundles/plentacasacore/images/mail-check.8f011a0c.svg",
-  "plentacasacore/images/link.svg": "/bundles/plentacasacore/images/link.9e683dda.svg"
+  "plentacasacore/images/link.svg": "/bundles/plentacasacore/images/link.9e683dda.svg",
+  "plentacasacore/images/pdf-download.svg": "/bundles/plentacasacore/images/pdf-download.3182b39f.svg",
+  "plentacasacore/images/area.svg": "/bundles/plentacasacore/images/area.0c5b99c2.svg"
 }

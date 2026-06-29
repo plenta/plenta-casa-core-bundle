@@ -86,23 +86,22 @@
     }
 
     .part-facilities {
-        display: flex;
-        flex-wrap: wrap;
-        gap: variables.$base-spacing-x-s;
+        & > span:first-child {
+            font-weight: variables.$font-weight-bold;
+            margin-bottom: variables.$base-spacing-x-s;
+        }
 
-        span {
-            &:first-of-type {
-                font-weight: variables.$font-weight-bold;
+        > div {
+            font-size: var(--pcasa-feature-font-size);
+
+            &:nth-last-child(n + 2) {
+                margin-bottom: variables.$base-spacing-x-s;
             }
         }
 
         h2 {
             width: 100%;
             display: block;
-        }
-
-        .title {
-            // @extend %invisible;
         }
 
         ul {
@@ -113,10 +112,22 @@
 
             li {
                 border: variables.$base-border;
-                padding-inline: variables.$base-spacing-s;
+                padding-inline: variables.$base-spacing-xx-s;
                 border-radius: var(--pcasa-base-border-radius);
                 border-color: var(--pcasa-reader-border-color);
             }
+        }
+    }
+
+    .part-enclosure {
+        ul {
+            display: flex;
+            gap: variables.$base-spacing;
+            flex-wrap: wrap;
+        }
+
+        .ext-pdf a {
+            @include mixins.svg-icon('pdf-download.svg');
         }
     }
 }

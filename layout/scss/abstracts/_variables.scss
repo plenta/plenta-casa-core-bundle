@@ -41,4 +41,4 @@ $base-border: $base-border-width $base-border-style var(--pcasa-border-color);
 $base-border-radius: 8px;
 
 // Icons
-$icon-path: '/layout/img/lucide/';
+$icon-path: '/layout/img/lucide/' !default;

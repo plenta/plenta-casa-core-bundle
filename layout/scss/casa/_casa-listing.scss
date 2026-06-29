@@ -15,6 +15,7 @@
             border-radius: var(--pcasa-list-border-radius);
             background-color: var(--pcasa-list-bg-color);
             position: relative;
+            overflow: hidden;
 
             .main-content {
                 grid-area: main;
@@ -26,7 +27,6 @@
             .wrapper-content {
                 display: flex;
                 flex-direction: column;
-                align-items: flex-end;
                 justify-content: space-between;
 
                 @media screen and (width <= 960px) {
@@ -90,9 +90,12 @@
                     margin-bottom: 0;
                     display: block;
                     font-weight: var(--pcasa-price-font-weight);
-                    text-align: right;
                     font-size: var(--pcasa-price-font-size);
                     color: var(--pcasa-price-color-list);
+
+                    @media screen and (width <= 960px) {
+                        text-align: left;
+                    }
                 }
 
                 .price-text {
@@ -126,7 +129,7 @@
             padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s
                 variables.$base-spacing-x-s;
 
-            @media screen and (width <= 960px) {
+            @media screen and (680px < width <= 960px) {
                 grid-template-columns: var(--pcasa-list-image-width-tablet) 1fr;
                 grid-template-areas:
                     'img main'
