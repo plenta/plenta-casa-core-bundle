@@ -27,14 +27,14 @@
             &:before {
                 content: '';
                 width: var(--pcasa-icon-size);
-                height: var(--pcasa-icon-size);;
+                height: var(--pcasa-icon-size);
                 background-color: var(--pcasa-icon-color);
             }
 
             $icons: (
-                    area: 'area.svg',
-                    rooms: 'rooms.svg',
-                    floor: 'floor.svg',
+                area: 'area.svg',
+                rooms: 'rooms.svg',
+                floor: 'floor.svg',
             );
 
             @each $name, $icon in $icons {
@@ -125,6 +125,7 @@
             gap: variables.$base-spacing;
             flex-wrap: wrap;
         }
+
         .ext-pdf a {
             @include mixins.svg-icon('pdf-download.svg');
         }

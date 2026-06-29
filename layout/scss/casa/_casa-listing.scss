@@ -56,9 +56,9 @@
                 align-items: center;
 
                 $icons: (
-                        area: 'area.svg',
-                        rooms: 'rooms.svg',
-                        floor: 'floor.svg',
+                    area: 'area.svg',
+                    rooms: 'rooms.svg',
+                    floor: 'floor.svg',
                 );
 
                 > span {
@@ -69,7 +69,7 @@
                     &:before {
                         content: '';
                         width: var(--pcasa-icon-size);
-                        height: var(--pcasa-icon-size);;
+                        height: var(--pcasa-icon-size);
                         background-color: var(--pcasa-icon-color);
                     }
                 }
@@ -126,7 +126,8 @@
             gap: variables.$base-spacing-s;
             grid-template-columns: var(--pcasa-list-image-width) 1fr auto;
             grid-template-areas: 'img main side';
-            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s variables.$base-spacing-x-s;
+            padding: variables.$base-spacing-x-s variables.$base-spacing-s variables.$base-spacing-x-s
+                variables.$base-spacing-x-s;
 
             @media screen and (680px < width <= 960px) {
                 grid-template-columns: var(--pcasa-list-image-width-tablet) 1fr;
@@ -161,7 +162,8 @@
                 display: block;
 
                 img {
-                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius);
+                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom)
+                        var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius);
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
@@ -223,7 +225,8 @@
 
                 img {
                     height: auto;
-                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom);
+                    border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius)
+                        var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom);
                 }
             }
 
