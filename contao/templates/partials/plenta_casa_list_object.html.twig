@@ -65,15 +65,15 @@
                 {{ object.address }}
             </div>
         {% endblock %}
+
+        {% block additional %}
+        {% endblock %}
     </div>
 
     <div class="wrapper-content">
         {% block price %}
             {% use '@Contao/components/_casa_price_simple.html.twig' %}
             {{ block('price_simple_component') }}
-        {% endblock %}
-
-        {% block additional %}
         {% endblock %}
 
         {% block button %}

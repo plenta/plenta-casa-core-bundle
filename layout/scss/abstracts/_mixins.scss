@@ -67,35 +67,6 @@
     }
 }
 
-// FontAwesome Mixins
-@mixin fa-inline-icon($faIcon, $padding: variables.$base-spacing-xx-s, $position: 'before') {
-    @if $position == 'after' {
-        &:after {
-            font-family: variables.$fa;
-            font-weight: 900;
-            left: 0;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            display: inline-block;
-            padding-left: $padding;
-            content: '#{$faIcon}';
-        }
-    } @else {
-        &:before {
-            font-family: variables.$fa;
-            font-weight: 900;
-            left: 0;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            display: inline-block;
-            padding-right: $padding;
-            content: '#{$faIcon}';
-        }
-    }
-}
-
 @mixin svg-icon($svg-icon) {
     display: inline-flex;
     gap: variables.$base-spacing-xx-s;
@@ -112,12 +83,12 @@
     }
 }
 
-@mixin svg-icon-button($svg-icon, $color: var(--pcasa-icon-color)) {
+@mixin svg-icon-button($svg-icon, $color: var(--pcasa-icon-color), $size: var(--pcasa-icon-size)) {
     position: relative;
     text-indent: -9999px;
     display: block;
-    width: var(--pcasa-icon-size);
-    height: var(--pcasa-icon-size);
+    width: $size;
+    height: $size;
 
     &:before {
         position: absolute;
@@ -125,10 +96,10 @@
         top: 50%;
         transform: translate(-50%, -50%);
         content: '';
-        width: var(--pcasa-icon-size);
-        height: var(--pcasa-icon-size);
+        width: $size;
+        height: $size;
         background-color: $color;
-        mask: url(variables.$icon-path + '#{$svg-icon}');
+        mask: url('~#{variables.$icon-path}' + '#{$svg-icon}');
         mask-repeat: no-repeat;
         mask-size: contain;
     }

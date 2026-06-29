@@ -27,7 +27,6 @@
             .wrapper-content {
                 display: flex;
                 flex-direction: column;
-                align-items: flex-end;
                 justify-content: space-between;
 
                 @media screen and (width <= 960px) {
@@ -91,7 +90,6 @@
                     margin-bottom: 0;
                     display: block;
                     font-weight: var(--pcasa-price-font-weight);
-                    text-align: right;
                     font-size: var(--pcasa-price-font-size);
                     color: var(--pcasa-price-color-list);
 
