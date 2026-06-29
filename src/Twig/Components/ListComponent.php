@@ -8,7 +8,7 @@ use Contao\ContentModel;
 use Contao\CoreBundle\Pagination\PaginationInterface;
 use Contao\Model\Collection;
 use Contao\PageModel;
-use Plenta\CasaCoreBundle\Events\ListOrderEvent;
+use Plenta\CasaCoreBundle\Helper\Sorting;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\ObjectList\ObjectListFactory;
 use Plenta\CasaCoreBundle\ObjectList\ObjectListQueryFactory;
@@ -60,6 +60,7 @@ class ListComponent
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly ObjectListFactory $objectListFactory,
         private readonly ObjectListQueryFactory $objectListQueryFactory,
+        private readonly Sorting $sorting,
     ) {
     }
 
@@ -107,24 +108,17 @@ class ListComponent
 
     public function getListSorting(string|null $sorting): string
     {
-        $order = match ($sorting) {
-            'order_headline_asc' => 'tl_pcasa_object.title',
-            'order_headline_desc' => 'tl_pcasa_object.title DESC',
-            'order_random' => 'RAND()',
-            'order_date_asc' => 'tl_pcasa_object.tstamp',
-            'order_date_desc' => 'tl_pcasa_object.tstamp DESC',
-            default => '',
-        };
-
-        $event = new ListOrderEvent($sorting, $order, $this->model);
-        $this->eventDispatcher->dispatch($event, $event::NAME);
-
-        return $event->getOrder();
+        return $this->sorting->getListSorting($sorting, $this->model);
     }
 
     #[LiveAction]
     public function setPage(#[LiveArg] int $page): void
     {
         $this->page = $page;
+    }
+
+    public function getEventDispatcher(): EventDispatcherInterface
+    {
+        return $this->eventDispatcher;
     }
 }
