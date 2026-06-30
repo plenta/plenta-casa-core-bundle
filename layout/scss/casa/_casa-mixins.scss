@@ -174,3 +174,12 @@
         border: var(--pcasa-badge-border);
     }
 }
+
+@mixin badges-style-first {
+    position: absolute;
+    top: variables.$base-spacing-s;
+    left: variables.$base-spacing-s;
+    display: flex;
+    gap: variables.$base-spacing-xx-s;
+    padding: 0;
+}
