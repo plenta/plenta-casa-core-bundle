@@ -45,7 +45,7 @@
     .meta {
         display: flex;
         flex-wrap: wrap;
-        gap: variables.$base-spacing;
+        gap: variables.$base-spacing-xx-s variables.$base-spacing;
         align-items: center;
 
         $icons: (
@@ -144,6 +144,7 @@
     .wrapper-content {
         flex-flow: row wrap;
         margin-top: auto;
+        gap: variables.$base-spacing-xx-s;
 
         @media screen and (width <= 960px) {
             flex-direction: column;
