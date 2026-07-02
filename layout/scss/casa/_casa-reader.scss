@@ -53,10 +53,7 @@
         gap: variables.$base-spacing-s;
     }
 
-    .part-price,
-    .part-courtage,
-    .part-condition,
-    .part-area {
+    #{variables.$part-table} {
         > span {
             font-weight: variables.$font-weight-bold;
         }

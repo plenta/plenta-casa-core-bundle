@@ -1,1 +1,55 @@
-Energie
+{% extends '@Contao/casa/reader/parts/_base.html.twig' %}
+
+{% block part %}
+    {% if object.energyCertificate|default and object.energyCertificate != 'no' %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% set fields = [
+        {field: 'energyCertificate',      label: 'tl_pcasa_object.energyCertificate.0',      type: 'reference', reference: 'PLENTA.CASA.energyCertificate'},
+        {field: 'creationDate',           label: 'tl_pcasa_object.creationDate.0',            type: 'reference', reference: 'PLENTA.CASA.creationDate'},
+        {field: 'issueDate',              label: 'tl_pcasa_object.issueDate.0',               type: 'date'},
+        {field: 'validThrough',           label: 'tl_pcasa_object.validThrough.0',            type: 'date'},
+        {field: 'energyCertificateType',  label: 'tl_pcasa_object.energyCertificateType.0',   type: 'reference', reference: 'PLENTA.CASA.energyCertificateType'},
+        {field: 'energyEfficiencyClass',  label: 'tl_pcasa_object.energyEfficiencyClass.0'},
+        {field: 'energyRating',           label: 'tl_pcasa_object.energyRating.0',            type: 'kwh'},
+        {field: 'energyRatingElectricity',label: 'tl_pcasa_object.energyRatingElectricity.0', type: 'kwh'},
+        {field: 'energyRatingHeating',    label: 'tl_pcasa_object.energyRatingHeating.0',     type: 'kwh'},
+        {field: 'co2Emission',            label: 'tl_pcasa_object.co2Emission.0',             type: 'co2'},
+        {field: 'heatingType',            label: 'tl_pcasa_object.heatingType.0',             type: 'reference', reference: 'PLENTA.CASA.heatingType'},
+        {field: 'primaryEnergySource',    label: 'tl_pcasa_object.primaryEnergySource.0',     type: 'reference', reference: 'PLENTA.CASA.primaryEnergySource'},
+    ] %}
+
+    <dl class="energy-certificate-list">
+        {% for item in fields %}
+            {% set value = attribute(object, item.field) %}
+            {% if value|default %}
+                <div>
+                    <dt class="label">{{ item.label|trans({}, 'contao_default') }}</dt>
+                    <dd class="value">
+                        {% if item.type|default == 'reference' %}
+                            {{ (item.reference ~ '.' ~ value)|trans({}, 'contao_default') }}
+                        {% elseif item.type|default == 'date' %}
+                            {{ value|date('d.m.Y') }}
+                        {% elseif item.type|default == 'kwh' %}
+                            {{ value }} kWh/(m²·a)
+                        {% elseif item.type|default == 'co2' %}
+                            {{ value }} kg CO₂/(m²·a)
+                        {% else %}
+                            {{ value }}
+                        {% endif %}
+                    </dd>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        {% if object.hotWaterIncluded|default %}
+            <div>
+                <dt class="label">{{ 'tl_pcasa_object.hotWaterIncluded.0'|trans({}, 'contao_default') }}</dt>
+                <dd class="value">{{ 'PLENTA.CASA.yes'|trans({}, 'contao_default') }}</dd>
+            </div>
+        {% endif %}
+    </dl>
+{% endblock %}
