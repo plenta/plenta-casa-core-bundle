@@ -52,6 +52,7 @@ tl_content:
         enclosure: Anlagen
         status: Hervorgehoben / Typ
         mainInfo: Hauptinformationen
+        energyCertificate: Energie-Ausweis
     plenta_casa_sorting:
         0: Sortierreihenfolge
         1: Hier können Sie die Sortierreihenfolge festlegen.

@@ -55,6 +55,7 @@ class TlContent
             'enclosure',
             'status',
             'mainInfo',
+            'energyCertificate'
         ];
 
         $event = new ReaderPartOptionsEvent($options);
