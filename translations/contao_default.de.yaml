@@ -20,6 +20,57 @@ PLENTA:
         courtage: Provision
         unknown: Unbekannt
         show_offer: Zum Angebot
+        energyCertificate:
+            yes: liegt vor
+            no: wird nicht benötigt
+            availableAtViewing: liegt zur Besichtigung vor
+        creationDate:
+            beforeMay2014: bis 30. April 2014
+            fromMay2014: ab 01. Mai 2014
+        energyCertificateType:
+            usageCertificate: Bedarfsausweis
+            demandCertificate: Verbrauchsausweis
+        heatingType:
+            selfContainedCentralHeating: Etagenheizung
+            stoveHeating: Ofenheizung
+            centralHeating: Zentralheizung
+            districtHeatingCentralPlant: Blockheizkraftwerk
+            electricHeating: Elektro-Heizung
+            districtHeating: Fernwärme
+            floorHeating: Fußbodenheizung
+            gasHeating: Gas-Heizung
+            woodPelletHeating: Holz-Pelletheizung
+            nightStorageHeating: Nachtspeicheröfen
+            oilHeating: Öl-Heizung
+            solarHeating: Solar-Heizung
+            heatPump: Wärmepumpe
+        primaryEnergySource:
+            geothermalEnergy: Erdwärme
+            solar: Solar
+            woodPellets: Holzpellets
+            gas: Gas
+            oil: Öl
+            longDistanceHeat: Fernwärme
+            electricity: Strom
+            coal: Kohle
+            heavyNaturalGas: Erdgas schwer
+            lightNaturalGas: Erdgas leicht
+            liquidGas: Flüssiggas
+            longDistanceHeatSteam: Fernwärme-Dampf
+            airHeatPump: Luftwärmepumpe
+            wood: Holz
+            woodChips: Holz-Hackschnitzel
+            coalCoke: Kohle/Koks
+            shortDistanceHeat: Nahwärme
+            heatDistribution: Wärmelieferung
+            bioEnergy: Bioenergie
+            windEnergy: Windenergie
+            hydroEnergy: Wasserenergie
+            ambientHeat: Umweltwärme
+            chpFossil: KWK fossil
+            chpRenewable: KWK erneuerbar
+            chpRegenerative: KWK regenerativ
+            chpOrganic: KWK bio
 
 CTE:
     plentacasa: Plenta Casa
