@@ -79,6 +79,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
             {condition_legend},propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,reserved;
+            {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energy_certificate_legend,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
@@ -94,6 +95,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
             {condition_legend},propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,rented,sold,reserved;
+            {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energy_certificate_legend,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
@@ -755,6 +757,124 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'checkbox',
             'eval' => ['tl_class' => 'w25'],
             'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'energyCertificate' => [
+            'inputType' => 'select',
+            'default' => 'no',
+            'options' => ['yes', 'no', 'availableAtViewing'],
+            'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['energyCertificate'],
+            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true, 'mandatory' => true],
+            'sql' => "varchar(32) NOT NULL default ''",
+        ],
+        'creationDate' => [
+            'inputType' => 'select',
+            'options' => ['beforeMay2014', 'fromMay2014'],
+            'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['creationDate'],
+            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
+            'sql' => "varchar(32) NOT NULL default ''",
+        ],
+        'issueDate' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'date', 'datepicker' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'validThrough' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'date', 'datepicker' => true, 'tl_class' => 'w50'],
+            'sql' => "varchar(10) NOT NULL default ''",
+        ],
+        'energyCertificateType' => [
+            'inputType' => 'select',
+            'options' => ['usageCertificate', 'demandCertificate'],
+            'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['energyCertificateType'],
+            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
+            'sql' => "varchar(32) NOT NULL default ''",
+        ],
+        'energyEfficiencyClass' => [
+            'inputType' => 'select',
+            'options' => ['A+', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+            'eval' => ['tl_class' => 'w50'],
+            'sql' => "varchar(4) NOT NULL default ''",
+        ],
+        'energyRating' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'energyRatingElectricity' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'energyRatingHeating' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'co2Emission' => [
+            'inputType' => 'text',
+            'eval' => ['rgxp' => 'digit', 'tl_class' => 'w50'],
+            'sql' => "varchar(16) NOT NULL default ''",
+        ],
+        'hotWaterIncluded' => [
+            'inputType' => 'checkbox',
+            'eval' => ['tl_class' => 'clr'],
+            'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'heatingType' => [
+            'inputType' => 'select',
+            'options' => [
+                'selfContainedCentralHeating',
+                'stoveHeating',
+                'centralHeating',
+                'districtHeatingCentralPlant',
+                'electricHeating',
+                'districtHeating',
+                'floorHeating',
+                'gasHeating',
+                'woodPelletHeating',
+                'nightStorageHeating',
+                'oilHeating',
+                'solarHeating',
+                'heatPump',
+            ],
+            'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['heatingType'],
+            'eval' => ['tl_class' => 'w50', 'chosen' => true, 'includeBlankOption' => true],
+            'sql' => "varchar(48) NOT NULL default ''",
+        ],
+        'primaryEnergySource' => [
+            'inputType' => 'select',
+            'options' => [
+                'geothermalEnergy',
+                'solar',
+                'woodPellets',
+                'gas',
+                'oil',
+                'longDistanceHeat',
+                'electricity',
+                'coal',
+                'heavyNaturalGas',
+                'lightNaturalGas',
+                'liquidGas',
+                'longDistanceHeatSteam',
+                'airHeatPump',
+                'wood',
+                'woodChips',
+                'coalCoke',
+                'shortDistanceHeat',
+                'heatDistribution',
+                'bioEnergy',
+                'windEnergy',
+                'hydroEnergy',
+                'ambientHeat',
+                'chpFossil',
+                'chpRenewable',
+                'chpRegenerative',
+                'chpOrganic',
+            ],
+            'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['primaryEnergySource'],
+            'eval' => ['tl_class' => 'w50', 'chosen' => true, 'includeBlankOption' => true],
+            'sql' => "varchar(255) NOT NULL default ''",
         ],
     ],
 ];

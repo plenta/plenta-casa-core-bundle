@@ -344,6 +344,45 @@ tl_pcasa_object:
     yearOfConstructionUnknown:
         0: Baujahr unbekannt
         1: Bitte auswählen, wenn das Baujahr unbekannt ist.
+    energyCertificate:
+        0: Energieausweis
+        1: Hier können Sie dem Objekt einen Energieausweis hinzufügen.
+    creationDate:
+        0: Erstellungsdatum
+        1: Bitte wählen Sie aus, ob für den Energieausweis EnEV 2009 oder EnEV 2014 gilt.
+    issueDate:
+        0: Ausstellungsdatum
+        1: Wann wurde der Energieausweis ausgestellt?
+    validThrough:
+        0: Gültig bis
+        1: Bis wann ist der Energieausweis gültig?
+    energyCertificateType:
+        0: Energieausweistyp
+        1: Bitte wählen Sie den Energieausweistyp aus.
+    energyEfficiencyClass:
+        0: Energieeffizienzklasse
+        1: Bitte wählen Sie die Energieeffizienzklasse aus.
+    energyRating:
+        0: Energiekennwert (in kWh/(m²*a))
+        1: Bitte geben Sie den Energiekennwert ein.
+    energyRatingElectricity:
+        0: Energiekennwert Strom (in kWh/(m²*a))
+        1: Bitte geben Sie den Energiekennwert Strom ein.
+    energyRatingHeating:
+        0: Energiekennwert Wärme (in kWh/(m²*a))
+        1: Bitte geben Sie den Energiekennwert Wärme ein.
+    co2Emission:
+        0: CO2-Emissionen
+        1: Bitte geben Sie die CO2-Emissionen ein.
+    hotWaterIncluded:
+        0: Energieverbrauch für Warmwasser enthalten
+        1: Ist der Energieverbrauch für Warmwasser in der Berechnung enthalten?
+    heatingType:
+        0: Heizungsart
+        1: Bitte wählen Sie die Heizungsart aus.
+    primaryEnergySource:
+        0: Wesentlicher Energieträger
+        1: Bitte wählen Sie den wesentlichen Energieträger aus.
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten
@@ -353,6 +392,7 @@ tl_pcasa_object:
     facilities_legend: Ausstattungsmerkmale
     description_legend: Beschreibungen
     condition_legend: Zustand & Status
+    energy_certificate_legend: Energieausweis
     media_legend: Medien
     marketing_legend: Vermarktung
     author_legend: Autor
