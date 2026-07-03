@@ -78,7 +78,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
-            {condition_legend},propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,reserved;
+            {condition_legend},buildingAge,propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,reserved;
             {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energy_certificate_legend,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
@@ -94,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {brokerage_legend},internal_commission_percentage,external_commission_percentage,total_commission,internal_brokerage,courtage,courtage_note;
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
-            {condition_legend},propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,rented,sold,reserved;
+            {condition_legend},buildingAge,propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,rented,sold,reserved;
             {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energy_certificate_legend,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
@@ -598,6 +598,13 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'checkbox',
             'eval' => ['tl_class' => 'clr'],
             'sql' => ['type' => 'boolean', 'default' => false],
+        ],
+        'buildingAge' => [
+            'inputType' => 'select',
+            'options' => ['new_building', 'old_building'],
+            'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['buildingAge_options'],
+            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
+            'sql' => "varchar(16) NOT NULL default ''",
         ],
         'propertyCondition' => [
             'inputType' => 'select',

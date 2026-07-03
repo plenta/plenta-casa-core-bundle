@@ -118,6 +118,12 @@ tl_pcasa_object:
     availableFrom:
         0: Verfügbar ab
         1: Bitte geben Sie das Datum ein, ab dem das Objekt verfügbar ist.
+    buildingAge:
+        0: Alt- oder Neubau
+        1: Bitte wählen Sie das Alter des Objekts.
+    buildingAge_options:
+        new_building: Neubau
+        old_building: Altbau
     propertyCondition:
         0: Objektzustand
         1: Bitte wählen Sie den Zustand des Objekts aus.
