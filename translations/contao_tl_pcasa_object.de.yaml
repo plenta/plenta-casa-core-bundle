@@ -389,6 +389,12 @@ tl_pcasa_object:
     primaryEnergySource:
         0: Wesentlicher Energieträger
         1: Bitte wählen Sie den wesentlichen Energieträger aus.
+    energyRating_frontend:
+        0: Energiekennwert
+    energyRatingElectricity_frontend:
+        0: Energiekennwert Strom
+    energyRatingHeating_frontend:
+        0: Energiekennwert Wärme
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten
