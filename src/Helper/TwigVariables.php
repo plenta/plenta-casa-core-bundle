@@ -39,6 +39,15 @@ class TwigVariables
             'floorPosition',
             'numberOfParkingSpaces',
             'parkingSpaceType',
+            'commercialArea',
+            'storageArea',
+            'salesArea',
+            'freeArea',
+            'officeArea',
+            'officeShareArea',
+            'shopWindowFront',
+            'administrationArea',
+            'gastroArea',
         ];
 
         $event = new AreaOptionsEvent($options, $objectModel);
