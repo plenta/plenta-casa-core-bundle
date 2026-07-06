@@ -395,12 +395,40 @@ tl_pcasa_object:
         0: Energiekennwert Strom
     energyRatingHeating_frontend:
         0: Energiekennwert Wärme
+    commercialArea:
+        0: Ladenfläche
+        1: Bitte geben Sie die Ladenfläche ein.
+    storageArea:
+        0: Lagerfläche
+        1: Bitte geben Sie die Lagerfläche ein.
+    salesArea:
+        0: Verkaufsfläche
+        1: Bitte geben Sie die Verkaufsfläche ein.
+    freeArea:
+        0: Freifläche
+        1: Bitte geben Sie die Freifläche ein.
+    officeArea:
+        0: Bürofläche
+        1: Bitte geben Sie die Bürofläche ein.
+    officeShareArea:
+        0: Büroteilfläche
+        1: Bitte geben Sie die Büroteilfläche ein.
+    shopWindowFront:
+        0: Schaufensterfront (m)
+        1: Bitte geben Sie die Schaufensterfront in laufenden Metern ein.
+    administrationArea:
+        0: Verwaltungsfläche
+        1: Bitte geben Sie die Verwaltungsfläche ein.
+    gastroArea:
+        0: Gastrofläche
+        1: Bitte geben Sie die Gastrofläche ein.
     master_data_legend: Stammdaten
     meta_legend: Metadaten
     address_legend: Adressdaten
     price_legend: Kosten
     brokerage_legend: Provision
     area_legend: Flächen
+    commercial_area_legend: Gewerbeflächen
     facilities_legend: Ausstattungsmerkmale
     description_legend: Beschreibungen
     condition_legend: Zustand & Status

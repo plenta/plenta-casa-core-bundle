@@ -107,6 +107,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     'casa_subpalettes' => [
         'marketing_type_RENT' => 'baseRent,baseRentPerSqm,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice,priceCableSatTv,cooperativeShares,membershipFee,installmentPaymentPossible,housingEntitlementCertificate',
         'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,priceCableSatTv,monthlyRentalIncome',
+        'commercial_area' => 'commercialArea,storageArea,salesArea,freeArea,officeArea,officeShareArea,shopWindowFront,administrationArea,gastroArea',
     ],
 
     'fields' => [
@@ -138,6 +139,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'select',
             'eval' => [
                 'mandatory' => true,
+                'submitOnChange' => true,
                 'includeBlankOption' => true,
                 'chosen' => true,
                 'tl_class' => 'w33',
@@ -882,6 +884,51 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['primaryEnergySource'],
             'eval' => ['tl_class' => 'w50', 'chosen' => true, 'includeBlankOption' => true],
             'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'commercialArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'storageArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'salesArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'freeArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'officeArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'officeShareArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'shopWindowFront' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'administrationArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
+        ],
+        'gastroArea' => [
+            'inputType' => 'text',
+            'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
+            'sql' => 'decimal(10,2) NOT NULL default 0',
         ],
     ],
 ];

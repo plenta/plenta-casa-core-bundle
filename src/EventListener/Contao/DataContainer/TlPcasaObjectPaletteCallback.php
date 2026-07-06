@@ -14,6 +14,7 @@ namespace Plenta\CasaCoreBundle\EventListener\Contao\DataContainer;
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\DataContainer;
+use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 
 #[AsCallback(table: 'tl_pcasa_object', target: 'config.onpalette')]
 class TlPcasaObjectPaletteCallback
@@ -46,6 +47,20 @@ class TlPcasaObjectPaletteCallback
                 ->removeField('serviceCharge')
                 ->applyToString($palette)
             ;
+        }
+
+        if ($currentRecord['object_type']) {
+            $objectType = ObjectTypeModel::findById((int) $currentRecord['object_type']);
+
+            if (null !== $objectType && 'commercial' === $objectType->usageType) {
+                $fields = $this->getSubpaletteFields('commercial_area');
+
+                $palette = PaletteManipulator::create()
+                    ->addLegend('commercial_area_legend', 'area_legend')
+                    ->addField($fields, 'commercial_area_legend', PaletteManipulator::POSITION_APPEND)
+                    ->applyToString($palette)
+                ;
+            }
         }
 
         return $palette;
