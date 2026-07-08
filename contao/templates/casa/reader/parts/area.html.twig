@@ -28,21 +28,24 @@
             {% set value = attribute(object, area) %}
             {% if value|default and value != '0.00' %}
                 <div class="area area-{{ area }}">
-                    <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
-                    <dd class="content">
-                        {% if area in area_fields %}
-                            {{ value|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}
-                        {% elseif area == 'shopWindowFront' %}
-                            {{ value|casaFormatNumber }} m
-                        {% elseif area == 'parkingSpaceType' %}
-                            {{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([], 'contao_tl_pcasa_object') }}
-                        {% elseif area == 'numberOfParkingSpaces' %}
-                            {% set parkingType = attribute(object, 'parkingSpaceType') %}
-                            {{ value }}{% if parkingType|default %} ({{ ('tl_pcasa_object.parkingSpaceType_options.' ~ parkingType)|trans([], 'contao_tl_pcasa_object') }}){% endif %}
-                        {% else %}
-                            {{ value }}
-                        {% endif %}
-                    </dd>
+                    {% if area == 'shopWindowFront' %}
+                        <dt class="title">{{ 'tl_pcasa_object.shopWindowFront_frontend.0'|trans([], 'contao_tl_pcasa_object') }}</dt>
+                        <dd class="content">{{ value|casaFormatNumber }} m</dd>
+                    {% else %}
+                        <dt class="title">{{ ('tl_pcasa_object.' ~ area ~ '.0')|trans([], 'contao_tl_pcasa_object') }}</dt>
+                        <dd class="content">
+                            {% if area in area_fields %}
+                                {{ value|casaFormatNumber }} {{ 'CASA.area_unit'|trans }}
+                            {% elseif area == 'parkingSpaceType' %}
+                                {{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([], 'contao_tl_pcasa_object') }}
+                            {% elseif area == 'numberOfParkingSpaces' %}
+                                {% set parkingType = attribute(object, 'parkingSpaceType') %}
+                                {{ value }}{% if parkingType|default %} ({{ ('tl_pcasa_object.parkingSpaceType_options.' ~ parkingType)|trans([], 'contao_tl_pcasa_object') }}){% endif %}
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </dd>
+                    {% endif %}
                 </div>
             {% endif %}
         {% endfor %}

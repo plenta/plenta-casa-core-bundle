@@ -416,6 +416,8 @@ tl_pcasa_object:
     shopWindowFront:
         0: Schaufensterfront (m)
         1: Bitte geben Sie die Schaufensterfront in laufenden Metern ein.
+    shopWindowFront_frontend:
+        0: Schaufensterfront
     administrationArea:
         0: Verwaltungsfläche
         1: Bitte geben Sie die Verwaltungsfläche ein.

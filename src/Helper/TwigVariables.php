@@ -45,9 +45,9 @@ class TwigVariables
             'freeArea',
             'officeArea',
             'officeShareArea',
-            'shopWindowFront',
             'administrationArea',
             'gastroArea',
+            'shopWindowFront',
         ];
 
         $event = new AreaOptionsEvent($options, $objectModel);

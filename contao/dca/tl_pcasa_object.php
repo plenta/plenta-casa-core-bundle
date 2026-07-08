@@ -107,7 +107,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     'casa_subpalettes' => [
         'marketing_type_RENT' => 'baseRent,baseRentPerSqm,totalRent,heatingCosts,serviceCharge,heatingCostsInSc,deposit,parkingSpacePrice,priceCableSatTv,cooperativeShares,membershipFee,installmentPaymentPossible,housingEntitlementCertificate',
         'marketing_type_BUY' => 'price,priceOnRequest,priceNegotiable,heatingCosts,serviceCharge,houseServiceCharge,nonRecoverableCosts,maintenanceReserve,parkingSpacePrice,priceCableSatTv,monthlyRentalIncome',
-        'commercial_area' => 'commercialArea,storageArea,salesArea,freeArea,officeArea,officeShareArea,shopWindowFront,administrationArea,gastroArea',
+        'commercial_area' => 'commercialArea,storageArea,salesArea,freeArea,officeArea,officeShareArea,administrationArea,gastroArea,shopWindowFront',
     ],
 
     'fields' => [
