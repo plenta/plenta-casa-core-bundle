@@ -439,3 +439,11 @@ tl_pcasa_object:
     marketing_legend: Vermarktung
     author_legend: Autor
     publish_legend: Veröffentlichung
+    usageType_options:
+        residential: Wohnen
+        commercial: Gewerbe
+        investment: Anlage
+        temporary_living: Wohnen auf Zeit
+    usageType:
+        0: Nutzungsart
+        1: Bitte wählen Sie die Nutzungsart aus.

@@ -8,19 +8,19 @@
 
 {% block content %}
     {% set fields = [
-        {field: 'energyCertificate',       label: 'tl_pcasa_object.energyCertificate.0',       type: 'reference', reference: 'PLENTA.CASA.energyCertificate'},
-        {field: 'creationDate',            label: 'tl_pcasa_object.creationDate.0',             type: 'reference', reference: 'PLENTA.CASA.creationDate'},
-        {field: 'issueDate',               label: 'tl_pcasa_object.issueDate.0',                type: 'date'},
-        {field: 'validThrough',            label: 'tl_pcasa_object.validThrough.0',             type: 'date'},
-        {field: 'energyCertificateType',   label: 'tl_pcasa_object.energyCertificateType.0',    type: 'reference', reference: 'PLENTA.CASA.energyCertificateType'},
-        {field: 'energyEfficiencyClass',   label: 'tl_pcasa_object.energyEfficiencyClass.0'},
-        {field: 'energyRating',            label: 'tl_pcasa_object.energyRating_frontend.0',             type: 'kwh'},
-        {field: 'energyRatingElectricity', label: 'tl_pcasa_object.energyRatingElectricity_frontend.0',  type: 'kwh'},
-        {field: 'energyRatingHeating',     label: 'tl_pcasa_object.energyRatingHeating_frontend.0',      type: 'kwh'},
-        {field: 'hotWaterIncluded',        label: 'tl_pcasa_object.hotWaterIncluded.0',          type: 'checkbox'},
-        {field: 'co2Emission',             label: 'tl_pcasa_object.co2Emission.0',              type: 'co2'},
-        {field: 'heatingType',             label: 'tl_pcasa_object.heatingType.0',              type: 'reference', reference: 'PLENTA.CASA.heatingType'},
-        {field: 'primaryEnergySource',     label: 'tl_pcasa_object.primaryEnergySource.0',      type: 'reference', reference: 'PLENTA.CASA.primaryEnergySource'},
+        {field: 'energyCertificate', label: 'tl_pcasa_object.energyCertificate.0', type: 'reference', reference: 'PLENTA.CASA.energyCertificate'},
+        {field: 'creationDate', label: 'tl_pcasa_object.creationDate.0', type: 'reference', reference: 'PLENTA.CASA.creationDate'},
+        {field: 'issueDate', label: 'tl_pcasa_object.issueDate.0', type: 'date'},
+        {field: 'validThrough', label: 'tl_pcasa_object.validThrough.0', type: 'date'},
+        {field: 'energyCertificateType', label: 'tl_pcasa_object.energyCertificateType.0', type: 'reference', reference: 'PLENTA.CASA.energyCertificateType'},
+        {field: 'energyEfficiencyClass', label: 'tl_pcasa_object.energyEfficiencyClass.0'},
+        {field: 'energyRating', label: 'tl_pcasa_object.energyRating_frontend.0', type: 'kwh'},
+        {field: 'energyRatingElectricity', label: 'tl_pcasa_object.energyRatingElectricity_frontend.0', type: 'kwh'},
+        {field: 'energyRatingHeating', label: 'tl_pcasa_object.energyRatingHeating_frontend.0', type: 'kwh'},
+        {field: 'hotWaterIncluded', label: 'tl_pcasa_object.hotWaterIncluded.0', type: 'checkbox'},
+        {field: 'co2Emission', label: 'tl_pcasa_object.co2Emission.0', type: 'co2'},
+        {field: 'heatingType', label: 'tl_pcasa_object.heatingType.0', type: 'reference', reference: 'PLENTA.CASA.heatingType'},
+        {field: 'primaryEnergySource', label: 'tl_pcasa_object.primaryEnergySource.0', type: 'reference', reference: 'PLENTA.CASA.primaryEnergySource'},
     ] %}
 
     <dl class="energy-certificate-list">

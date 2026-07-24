@@ -4,7 +4,7 @@
 {% set area_fields = [
     'livingArea', 'plotArea', 'floorArea', 'balconyArea', 'gardenArea',
     'commercialArea', 'storageArea', 'salesArea', 'freeArea',
-    'officeArea', 'officeShareArea', 'administrationArea', 'gastroArea'
+    'officeArea', 'officeShareArea', 'administrationArea', 'gastroArea',
 ] %}
 {% set inline_fields = ['floor', 'numberOfFloors', 'floorPosition', 'numberOfParkingSpaces', 'parkingSpaceType'] %}
 
@@ -39,8 +39,8 @@
                             {% elseif area == 'parkingSpaceType' %}
                                 {{ ('tl_pcasa_object.parkingSpaceType_options.' ~ value)|trans([], 'contao_tl_pcasa_object') }}
                             {% elseif area == 'numberOfParkingSpaces' %}
-                                {% set parkingType = attribute(object, 'parkingSpaceType') %}
-                                {{ value }}{% if parkingType|default %} ({{ ('tl_pcasa_object.parkingSpaceType_options.' ~ parkingType)|trans([], 'contao_tl_pcasa_object') }}){% endif %}
+                                {% set parking_type = attribute(object, 'parkingSpaceType') %}
+                                {{ value }}{% if parking_type|default %} ({{ ('tl_pcasa_object.parkingSpaceType_options.' ~ parking_type)|trans([], 'contao_tl_pcasa_object') }}){% endif %}
                             {% else %}
                                 {{ value }}
                             {% endif %}

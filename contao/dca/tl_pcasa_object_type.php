@@ -37,7 +37,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
     ],
 
     'palettes' => [
-        'default' => '{title_legend},title,usageType;{image_legend:hide},singleSRC;{template_legend:hide},customTpl',
+        'default' => '{title_legend},title;{image_legend:hide},singleSRC;{template_legend:hide},customTpl',
     ],
 
     'fields' => [
@@ -57,13 +57,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w50'],
             'sql' => "varchar(255) NOT NULL default ''",
-        ],
-        'usageType' => [
-            'inputType' => 'select',
-            'options' => ['residential', 'commercial', 'investment', 'temporary_living'],
-            'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object_type']['usageType_options'],
-            'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true],
-            'sql' => "varchar(32) NOT NULL default ''",
         ],
         'singleSRC' => [
             'inputType' => 'fileTree',

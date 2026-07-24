@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\InsertTag;
 
-use Plenta\CasaCoreBundle\Model\ObjectModel;
-use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsInsertTag;
 use Contao\CoreBundle\InsertTag\InsertTagResult;
 use Contao\CoreBundle\InsertTag\ResolvedInsertTag;
-use Contao\CoreBundle\DependencyInjection\Attribute\AsInsertTag;
 use Contao\CoreBundle\InsertTag\Resolver\InsertTagResolverNestedResolvedInterface;
+use Plenta\CasaCoreBundle\Model\ObjectModel;
+use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 
 #[AsInsertTag('casa_objects_count_by_type')]
 class CountObjectsByTypeInsertTag implements InsertTagResolverNestedResolvedInterface
@@ -39,12 +39,15 @@ class CountObjectsByTypeInsertTag implements InsertTagResolverNestedResolvedInte
 
         $count = ObjectModel::countPublishedBy(
             ["tl_pcasa_object.object_type IN ($placeholders)"],
-            $ids
+            $ids,
         );
 
         return new InsertTagResult((string) $count);
     }
 
+    /**
+     * @return array<int>
+     */
     private function collectTypeIds(int $pid): array
     {
         $ids = [$pid];

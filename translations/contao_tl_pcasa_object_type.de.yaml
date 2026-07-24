@@ -2,14 +2,6 @@ tl_pcasa_object_type:
     title:
         0: Kategorie
         1: Bitte geben Sie eine Kategorie ein.
-    usageType:
-        0: Nutzungsart
-        1: Bitte wählen Sie die Nutzungsart gemäß OpenImmo aus.
-    usageType_options:
-        residential: Wohnen
-        commercial: Gewerbe
-        investment: Anlage
-        temporary_living: Wohnen auf Zeit
     singleSRC:
         0: Platzhalterbild
         1: Bitte wählen Sie ein Bild aus der Dateiverwaltung. Das Platzhalterbild wird angezeigt, wenn für ein Objekt kein Bild vorhanden ist.

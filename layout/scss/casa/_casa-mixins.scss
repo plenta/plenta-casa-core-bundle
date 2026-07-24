@@ -49,9 +49,9 @@
         align-items: center;
 
         $icons: (
-                area: 'area.svg',
-                rooms: 'rooms.svg',
-                floor: 'floor.svg',
+            area: 'area.svg',
+            rooms: 'rooms.svg',
+            floor: 'floor.svg',
         );
 
         > span {
@@ -137,7 +137,8 @@
 
         img {
             height: auto;
-            border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom);
+            border-radius: var(--pcasa-list-image-border-radius) var(--pcasa-list-image-border-radius)
+                var(--pcasa-list-image-border-radius-bottom) var(--pcasa-list-image-border-radius-bottom);
         }
     }
 
