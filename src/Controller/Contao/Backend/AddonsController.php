@@ -32,7 +32,11 @@ class AddonsController extends AbstractBackendController
     {
         $GLOBALS['TL_CSS']['plentacasacore_config'] = 'bundles/plentacasacore/config.css';
 
-        $titleLabel = $this->translator->trans('MOD.plenta_casa.0', [], 'contao_modules').' '.$this->translator->trans('MOD.plentacasa_addons.1', [], 'contao_modules');
+        $titleLabel = $this->translator->trans(
+            'MOD.plenta_casa.0',
+            [],
+            'contao_modules').' '.$this->translator->trans('MOD.plentacasa_addons.1', [], 'contao_modules'
+        );
 
         return $this->render('@Contao/Backend/plentacasa_addons.html.twig', [
             'message' => $this->translator->trans('PLENTA.CASA.messages.addons', [], 'contao_default'),
