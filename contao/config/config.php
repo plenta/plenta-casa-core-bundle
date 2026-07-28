@@ -18,12 +18,6 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
         'plentacasa_objects' => [
             'tables' => ['tl_pcasa_object'],
         ],
-        'plentacasa_import' => [
-            'tables' => [],
-        ],
-        'plentacasa_export' => [
-            'tables' => [],
-        ],
         'plentacasa_config' => [
             'tables' => [
                 'tl_pcasa_object_type',
@@ -31,6 +25,9 @@ ArrayUtil::arrayInsert($GLOBALS['BE_MOD'], 0, [
                 'tl_pcasa_targetgroup',
                 'tl_pcasa_quarter',
             ],
+        ],
+        'plentacasa_addons' => [
+            'tables' => [],
         ],
         'plentacasa_support' => [
             'tables' => [],

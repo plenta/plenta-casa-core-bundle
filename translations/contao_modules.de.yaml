@@ -5,12 +5,9 @@ MOD:
     plentacasa_objects:
         0: Objekte
         1: Objekte
-    plentacasa_import:
-        0: Import
-        1: Import
-    plentacasa_export:
-        0: Export
-        1: Export
+    plentacasa_addons:
+        0: Add-Ons
+        1: Add-Ons
     plentacasa_config:
         0: Konfiguration
         1: Konfiguration
