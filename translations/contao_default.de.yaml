@@ -28,8 +28,8 @@ PLENTA:
             beforeMay2014: bis 30. April 2014
             fromMay2014: ab 01. Mai 2014
         energyCertificateType:
-            usageCertificate: Bedarfsausweis
-            demandCertificate: Verbrauchsausweis
+            usageCertificate: Verbrauchsausweis
+            demandCertificate: Bedarfsausweis
         heatingType:
             selfContainedCentralHeating: Etagenheizung
             stoveHeating: Ofenheizung
