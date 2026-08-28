@@ -465,7 +465,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
             'sql' => "varchar(255) NOT NULL default ''",
         ],
-        'availableTo' => [
+        'rentalStart' => [
+            'inputType' => 'text',
+            'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'rentalEnd' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50'],
             'sql' => "varchar(10) NOT NULL default ''",
