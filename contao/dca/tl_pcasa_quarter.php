@@ -19,6 +19,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_quarter'] = [
         'sql' => [
             'keys' => [
                 'id' => 'primary',
+                'tstamp' => 'index',
             ],
         ],
     ],

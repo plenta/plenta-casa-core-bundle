@@ -1,4 +1,5 @@
 tl_pcasa_object:
+    tableLabel: Objekte
     marketing_type:
         0: Vermarktungstyp
         1: Bitte wählen Sie den Vermarktungstyp aus.
