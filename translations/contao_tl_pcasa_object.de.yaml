@@ -77,6 +77,9 @@ tl_pcasa_object:
     deposit:
         0: Kaution
         1: Bitte geben Sie die Kaution ein.
+    depositText:
+        0: Kaution (Text)
+        1: Bitte geben Sie einen Kautionstext ein.
     houseServiceCharge:
         0: Hausgeld/Monat
         1: Bitte geben Sie das Hausgeld ein.
