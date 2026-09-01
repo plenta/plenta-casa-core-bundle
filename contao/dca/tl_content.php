@@ -14,7 +14,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_filter'] = '{type_lege
 $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_reader'] = '{type_legend},title,headline,type;{config_legend},plenta_casa_readerParts,size,fullsize;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'plenta_casa_preFilter';
 
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['plenta_casa_preFilter'] = 'plenta_casa_preFilterType,plenta_casa_preFilterLocation,plenta_casa_preFilterDistrict,plenta_casa_preFilterQuarter,plenta_casa_preFilterTargetGroup';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['plenta_casa_preFilter'] = 'plenta_casa_preFilterType,plenta_casa_preFilterLocation,plenta_casa_preFilterDistrict,plenta_casa_preFilterQuarter,plenta_casa_preFilterTargetGroup,plenta_casa_preFilterRooms';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerParts'] = [
     'inputType' => 'group',
@@ -123,4 +123,10 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterTargetGroup'] =
     'foreignKey' => 'tl_pcasa_targetgroup.title',
     'eval' => ['tl_class' => 'w50', 'multiple' => true, 'chosen' => true],
     'sql' => 'mediumtext NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterRooms'] = [
+    'inputType' => 'text',
+    'eval' => ['tl_class' => 'w50', 'rgxp' => 'digit'],
+    'sql' => "varchar(8) NOT NULL default ''",
 ];

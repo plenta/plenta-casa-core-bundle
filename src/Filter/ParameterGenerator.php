@@ -184,6 +184,14 @@ class ParameterGenerator
             );
         }
 
+        if ($filter['roomsExact'] ?? null) {
+            $parameters[] = new Parameter(
+                'roomsExact',
+                ['rooms = ?'],
+                [(string) $filter['roomsExact']],
+            );
+        }
+
         $event = new FilterParameterEvent($model, $parameters, $filter);
         $this->eventDispatcher->dispatch($event, $event::NAME);
 
@@ -224,6 +232,10 @@ class ParameterGenerator
 
             if ($contentModel->plenta_casa_preFilterTargetGroup) {
                 $data['targetgroup'] = StringUtil::deserialize($contentModel->plenta_casa_preFilterTargetGroup);
+            }
+
+            if ($contentModel->plenta_casa_preFilterRooms) {
+                $data['roomsExact'] = (int) $contentModel->plenta_casa_preFilterRooms;
             }
         }
 

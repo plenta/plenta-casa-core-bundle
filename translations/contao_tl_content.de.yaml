@@ -86,3 +86,6 @@ tl_content:
     plenta_casa_preFilterTargetGroup:
         0: Zielgruppen
         1: Bitte wählen Sie aus, welche Zielgruppen angezeigt werden sollen.
+    plenta_casa_preFilterRooms:
+        0: Zimmer
+        1: Nur Objekte mit exakt dieser Zimmerzahl werden angezeigt.
