@@ -86,7 +86,7 @@
 @mixin svg-icon-button($svg-icon, $color: var(--pcasa-icon-color), $size: var(--pcasa-icon-size)) {
     position: relative;
     text-indent: -9999px;
-    display: block;
+    display: inline-block;
     width: $size;
     height: $size;
 
