@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\Migration;
 
+use Contao\CoreBundle\Migration\AbstractMigration;
+use Contao\CoreBundle\Migration\MigrationResult;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Types\DecimalType;
-use Contao\CoreBundle\Migration\MigrationResult;
-use Contao\CoreBundle\Migration\AbstractMigration;
 
 class DepositMigration extends AbstractMigration
 {
@@ -41,14 +41,14 @@ class DepositMigration extends AbstractMigration
         }
 
         return 0 !== $this->connection->fetchOne(
-                "SELECT COUNT(*) FROM tl_pcasa_object WHERE deposit = '' OR deposit IS NULL OR deposit NOT REGEXP '^[0-9]+(\\.[0-9]+)?$'"
-            );
+            "SELECT COUNT(*) FROM tl_pcasa_object WHERE deposit = '' OR deposit IS NULL OR deposit NOT REGEXP '^[0-9]+(\\.[0-9]+)?$'",
+        );
     }
 
     public function run(): MigrationResult
     {
         $this->connection->executeStatement(
-            "UPDATE tl_pcasa_object SET deposit = '0' WHERE deposit = '' OR deposit IS NULL OR deposit NOT REGEXP '^[0-9]+(\\.[0-9]+)?$'"
+            "UPDATE tl_pcasa_object SET deposit = '0' WHERE deposit = '' OR deposit IS NULL OR deposit NOT REGEXP '^[0-9]+(\\.[0-9]+)?$'",
         );
 
         return $this->createResult(true);
