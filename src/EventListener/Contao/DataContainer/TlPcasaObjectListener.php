@@ -241,6 +241,29 @@ class TlPcasaObjectListener
         ));
     }
 
+    #[AsCallback(table: 'tl_pcasa_object', target: 'fields.heatingType.options')]
+    #[AsCallback(table: 'tl_pcasa_object', target: 'fields.primaryEnergySource.options')]
+    public function energyOptionsCallback(DataContainer $dc): array
+    {
+        $field = $dc->field;
+        $options = $GLOBALS['TL_DCA']['tl_pcasa_object']['fields'][$field]['options'] ?? [];
+        $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
+
+        $labels = [];
+        foreach ($options as $key) {
+            $labels[$key] = $this->translator->trans('PLENTA.CASA.'.$field.'.'.$key, [], 'contao_default');
+        }
+
+        $collator = new \Collator($locale);
+
+        usort($options, static fn (string $a, string $b): int => $collator->compare($labels[$a] ?? $a, $labels[$b] ?? $b));
+
+        return array_combine($options, array_map(
+            static fn (string $key): string => $labels[$key] ?? $key,
+            $options,
+        ));
+    }
+
     /**
      * @return array<int, string>
      */
