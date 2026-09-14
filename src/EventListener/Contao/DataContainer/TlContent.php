@@ -62,7 +62,17 @@ class TlContent
         $event = new ReaderPartOptionsEvent($options);
         $this->eventDispatcher->dispatch($event, $event::NAME);
 
-        return $event->getOptions();
+        $options = $event->getOptions();
+        $labels = $GLOBALS['TL_LANG']['tl_content']['plenta_casa_readerPartType_options'] ?? [];
+        $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
+        $collator = new \Collator($locale);
+
+        usort($options, static fn (string $a, string $b): int => $collator->compare($labels[$a] ?? $a, $labels[$b] ?? $b));
+
+        return array_combine($options, array_map(
+            static fn (string $key): string => $labels[$key] ?? $key,
+            $options,
+        ));
     }
 
     /**
