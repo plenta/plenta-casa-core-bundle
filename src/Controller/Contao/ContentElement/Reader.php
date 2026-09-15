@@ -52,7 +52,17 @@ class Reader extends AbstractContentElementController
         if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request)) {
             $objTemplate = new BackendTemplate('be_wildcard');
             $parts = StringUtil::deserialize($model->plenta_casa_readerParts);
-            $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_reader.0', [], 'contao_default').': '.implode(', ', array_column($parts, 'plenta_casa_readerPartType'));
+
+            $partLabels = array_map(
+                fn (array $part) => $this->translator->trans(
+                    'tl_content.plenta_casa_readerPartType_options.'.$part['plenta_casa_readerPartType'],
+                    [],
+                    'contao_default'
+                ),
+                $parts ?? []
+            );
+
+            $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_reader.0', [], 'contao_default').': '.implode(', ', $partLabels);
 
             return $objTemplate->getResponse();
         }
