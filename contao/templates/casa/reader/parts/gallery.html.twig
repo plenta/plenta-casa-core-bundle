@@ -7,10 +7,11 @@
 {% endblock %}
 
 {% block content %}
-    {% set gallery_images = object.multiSRC|default
-        ? object.multiSRC|casaMergeImages(object.singleSRC)
-        : serialize([object.singleSRC])
-    %}
+    {% if object.multiSRC|default %}
+        {% set gallery_images = object.multiSRC|casaMergeImages(object.singleSRC) %}
+    {% else %}
+        {% set gallery_images = null|casaMergeImages(object.singleSRC) %}
+    {% endif %}
 
     {% if gallery_images %}
         {{ content_element('gallery', {

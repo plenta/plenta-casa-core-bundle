@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/*
- * @package       Plenta Casa Core Bundle
+/**
+ * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -98,15 +98,15 @@ class PlentaCasaExtension
     }
 
     #[AsTwigFilter('casaObjectImage')]
-    public function casaObjectImage(ObjectModel $object): string|null
+    public function casaObjectImage(ObjectModel $object): ?string
     {
         return $this->objectImageHelper->getImage($object);
     }
 
     #[AsTwigFilter('casaMergeImages')]
-    public function casaMergeImages(string $multiSRC, string|null $singleSRC = null): string
+    public function casaMergeImages(?string $multiSRC = null, ?string $singleSRC = null): string
     {
-        $images = StringUtil::deserialize($multiSRC, true);
+        $images = $multiSRC ? StringUtil::deserialize($multiSRC, true) : [];
 
         if ($singleSRC) {
             array_unshift($images, $singleSRC);
