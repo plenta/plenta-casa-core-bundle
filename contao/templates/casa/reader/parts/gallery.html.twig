@@ -7,13 +7,16 @@
 {% endblock %}
 
 {% block content %}
-    {% if object.multiSRC|default %}
-        {% set gallery_images = object.multiSRC|casaMergeImages(object.singleSRC) %}
-    {% else %}
-        {% set gallery_images = null|casaMergeImages(object.singleSRC) %}
+    {% set single_src = object.row().singleSRC %}
+    {% set multi_src = object.row().multiSRC %}
+
+    {% if multi_src %}
+        {% set gallery_images = multi_src|casaMergeImages %}
+    {% elseif single_src %}
+        {% set gallery_images = null|casaMergeImages(single_src) %}
     {% endif %}
 
-    {% if gallery_images %}
+    {% if gallery_images|default %}
         {{ content_element('gallery', {
             multiSRC: gallery_images,
             size: data.size,
