@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/*
- * @package       Plenta Casa Core Bundle
+/**
+ * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -11,15 +11,23 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\Helper;
 
+use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Model\ObjectModel;
 use Plenta\CasaCoreBundle\Model\ObjectTypeModel;
 
 class ObjectImageHelper
 {
-    public function getImage(ObjectModel $object): string|null
+    public function getImage(ObjectModel $object): ?string
     {
         if ($object->singleSRC) {
             return $object->singleSRC;
+        }
+
+        if ($object->multiSRC) {
+            $images = StringUtil::deserialize($object->multiSRC, true);
+            if (!empty($images)) {
+                return $images[0];
+            }
         }
 
         $type = ObjectTypeModel::findById($object->object_type);
@@ -27,7 +35,7 @@ class ObjectImageHelper
         return $this->getTypeImage($type);
     }
 
-    private function getTypeImage(ObjectTypeModel|null $type): string|null
+    private function getTypeImage(?ObjectTypeModel $type): ?string
     {
         if (null === $type) {
             return null;

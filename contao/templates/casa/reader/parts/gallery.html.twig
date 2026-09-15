@@ -1,15 +1,18 @@
 {% extends '@Contao/casa/reader/parts/_base.html.twig' %}
 
 {% block part %}
-    {% if object.row().multiSRC %}
+    {% if object.row().multiSRC or object.row().singleSRC %}
         {{ parent() }}
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    {% if object.multiSRC|default %}
-        {% set gallery_images = object.multiSRC|casaMergeImages(object.singleSRC) %}
+    {% set gallery_images = object.multiSRC|default
+        ? object.multiSRC|casaMergeImages(object.singleSRC)
+        : serialize([object.singleSRC])
+    %}
 
+    {% if gallery_images %}
         {{ content_element('gallery', {
             multiSRC: gallery_images,
             size: data.size,
