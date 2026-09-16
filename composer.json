@@ -2,7 +2,7 @@
   "name": "plenta/plenta-casa-core-bundle",
   "type": "contao-bundle",
   "license": "proprietary",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "authors": [
     {
       "name": "Plenta.io",
