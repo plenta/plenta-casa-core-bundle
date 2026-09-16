@@ -116,12 +116,12 @@ class PlentaCasaExtension
     }
 
     #[AsTwigFilter('casaAppendImages')]
-    public function casaAppendImages(string $multiSRC, ?string $appendSRC = null): string
+    public function casaAppendImages(string $multiSRC, string|null $appendMultiSRC = null): string
     {
         $images = StringUtil::deserialize($multiSRC, true);
 
-        if ($appendSRC) {
-            $append = StringUtil::deserialize($appendSRC, true);
+        if ($appendMultiSRC) {
+            $append = StringUtil::deserialize($appendMultiSRC, true);
             $images = array_merge($images, $append);
         }
 
