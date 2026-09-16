@@ -115,6 +115,19 @@ class PlentaCasaExtension
         return serialize($images);
     }
 
+    #[AsTwigFilter('casaAppendImages')]
+    public function casaAppendImages(string $multiSRC, string|null $appendMultiSRC = null): string
+    {
+        $images = StringUtil::deserialize($multiSRC, true);
+
+        if ($appendMultiSRC) {
+            $append = StringUtil::deserialize($appendMultiSRC, true);
+            $images = array_merge($images, $append);
+        }
+
+        return serialize($images);
+    }
+
     protected function getTitle(ObjectTypeModel $type): string
     {
         $return = '';
