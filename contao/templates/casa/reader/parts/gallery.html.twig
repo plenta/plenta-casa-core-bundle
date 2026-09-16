@@ -9,11 +9,16 @@
 {% block content %}
     {% set single_src = object.row().singleSRC %}
     {% set multi_src = object.row().multiSRC %}
+    {% set floor_plans = object.row().floorPlansSRC %}
 
     {% if multi_src %}
         {% set gallery_images = multi_src|casaMergeImages %}
     {% elseif single_src %}
         {% set gallery_images = null|casaMergeImages(single_src) %}
+    {% endif %}
+
+    {% if gallery_images|default and floor_plans %}
+        {% set gallery_images = gallery_images|casaAppendImages(floor_plans) %}
     {% endif %}
 
     {% if gallery_images|default %}
