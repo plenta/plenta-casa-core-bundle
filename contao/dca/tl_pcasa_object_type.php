@@ -15,6 +15,7 @@ use Contao\DC_Table;
 $GLOBALS['TL_DCA']['tl_pcasa_object_type'] = [
     'config' => [
         'dataContainer' => DC_Table::class,
+        'enableVersioning' => true,
         'sql' => [
             'keys' => [
                 'id' => 'primary',

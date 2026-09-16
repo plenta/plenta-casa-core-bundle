@@ -19,6 +19,7 @@ use Plenta\CasaCoreBundle\EventListener\Contao\DataContainer\TlPcasaObjectListen
 $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
     'config' => [
         'dataContainer' => DC_Table::class,
+        'enableVersioning' => true,
         'sql' => [
             'keys' => [
                 'id' => 'primary',

@@ -16,6 +16,7 @@ use Plenta\CasaCoreBundle\Controller\Contao\Backend\ConfigController;
 $GLOBALS['TL_DCA']['tl_pcasa_quarter'] = [
     'config' => [
         'dataContainer' => DC_Table::class,
+        'enableVersioning' => true,
         'sql' => [
             'keys' => [
                 'id' => 'primary',
