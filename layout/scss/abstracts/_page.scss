@@ -1,5 +1,6 @@
 @use 'variables';
 @use 'sass:math';
+@use 'sass:color';
 
 :root {
     --pcasa-base-border-radius: #{variables.$base-border-radius};
@@ -34,8 +35,10 @@
     --pcasa-form-mandatory-color: #{variables.$color-black};
     --pcasa-padding-card: 0;
     --pcasa-padding-card-inside: #{variables.$base-spacing-s};
-    --pcasa-badge-bg-color: #{variables.$color-white};
     --pcasa-badge-color: #{variables.$color-default};
+    --pcasa-badge-color-text: #{variables.$color-black};
+    --pcasa-badge-bg-color: #{variables.$color-default};
+    --pcasa-badge-bg-color-light: #{color.scale(variables.$color-default, $lightness: 75%)};
     --pcasa-badge-font-size: 14px;
     --pcasa-badge-border: 1px solid var(--pcasa-badge-color);
     --pcasa-feature-font-size: 14px;
@@ -44,4 +47,6 @@
     --pcasa-icon-size: 18px;
     --pcasa-feature-color: #{variables.$color-default};
     --pcasa-content-spacing: #{variables.$base-spacing};
+    --pcasa-default-color: #{variables.$color-default};
+    --pcasa-default-color-light: #{color.scale(variables.$color-default, $lightness: 75%)};
 }
