@@ -138,4 +138,10 @@ class PlentaCasaExtension
 
         return $return.$type->title;
     }
+
+    #[AsTwigFilter('casaNormalizePhone')]
+    public function casaNormalizePhone(string $phone): string
+    {
+        return preg_replace('/[^\d\+]/', '', $phone);
+    }
 }
