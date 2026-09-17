@@ -300,27 +300,27 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'baseRent' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'clr w25'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'totalRent' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'baseRentPerSqm' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'heatingCosts' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'serviceCharge' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'heatingCostsInSc' => [
             'inputType' => 'checkbox',
@@ -335,7 +335,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'deposit' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'depositText' => [
             'inputType' => 'text',
@@ -355,12 +355,12 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'parkingSpacePrice' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'priceCableSatTv' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w25', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'cooperativeShares' => [
             'inputType' => 'text',
@@ -748,7 +748,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'price' => [
             'inputType' => 'text',
             'eval' => ['rgxp' => 'digit', 'tl_class' => 'w25'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'priceOnRequest' => [
             'inputType' => 'checkbox',
@@ -881,47 +881,47 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         'commercialArea' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'storageArea' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'salesArea' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'freeArea' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'officeArea' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'officeShareArea' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'shopWindowFront' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'administrationArea' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'gastroArea' => [
             'inputType' => 'text',
             'eval' => ['tl_class' => 'w33', 'rgxp' => 'digit'],
-            'sql' => 'decimal(10,2) NOT NULL default 0',
+            'sql' => ['type' => 'decimal', 'precision' => 10, 'scale' => 2, 'default' => '0.00', 'notnull' => true],
         ],
         'usageType' => [
             'inputType' => 'select',
