@@ -166,9 +166,6 @@ tl_pcasa_object:
     quarter:
         0: Quartier
         1: Weisen Sie das Objekt einem Quartier zu.
-    author:
-        0: Autor
-        1: Bitte wählen Sie den Autor aus.
     published:
         0: Objekt veröffentlichen
         1: Das Objekt auf der Webseite anzeigen.
@@ -441,7 +438,6 @@ tl_pcasa_object:
     energy_certificate_legend: Energieausweis
     media_legend: Medien
     marketing_legend: Vermarktung
-    author_legend: Autor
     publish_legend: Veröffentlichung
     usageType_options:
         residential: Wohnen

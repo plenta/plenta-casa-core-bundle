@@ -84,7 +84,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
-            {author_legend:hide},author;
             {publish_legend},published,featured,start,stop
         ',
         'BUY' => '
@@ -100,7 +99,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
-            {author_legend:hide},author;
             {publish_legend},published,featured,start,stop
         ',
     ],
@@ -249,22 +247,6 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             ],
             'sql' => null,
         ],
-        'author' => [
-            'default' => static fn () => BackendUser::getInstance()->id,
-            'exclude' => true,
-            'filter' => true,
-            'inputType' => 'select',
-            'foreignKey' => 'tl_user.name',
-            'eval' => [
-                'doNotCopy' => true,
-                'chosen' => true,
-                'includeBlankOption' => true,
-                'tl_class' => 'w50',
-            ],
-            'sql' => "int(10) unsigned NOT NULL default '0'",
-            'relation' => ['type' => 'hasOne', 'load' => 'eager'],
-        ],
-
         'targetgroups' => [
             'exclude' => true,
             'filter' => true,
