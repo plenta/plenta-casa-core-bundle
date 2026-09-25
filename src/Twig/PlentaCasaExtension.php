@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -98,13 +97,13 @@ class PlentaCasaExtension
     }
 
     #[AsTwigFilter('casaObjectImage')]
-    public function casaObjectImage(ObjectModel $object): ?string
+    public function casaObjectImage(ObjectModel $object): string|null
     {
         return $this->objectImageHelper->getImage($object);
     }
 
     #[AsTwigFilter('casaMergeImages')]
-    public function casaMergeImages(?string $multiSRC = null, ?string $singleSRC = null): string
+    public function casaMergeImages(string|null $multiSRC = null, string|null $singleSRC = null): string
     {
         $images = $multiSRC ? StringUtil::deserialize($multiSRC, true) : [];
 
@@ -128,6 +127,12 @@ class PlentaCasaExtension
         return serialize($images);
     }
 
+    #[AsTwigFilter('casaNormalizePhone')]
+    public function casaNormalizePhone(string $phone): string
+    {
+        return preg_replace('/[^\d\+]/', '', $phone);
+    }
+
     protected function getTitle(ObjectTypeModel $type): string
     {
         $return = '';
@@ -137,11 +142,5 @@ class PlentaCasaExtension
         }
 
         return $return.$type->title;
-    }
-
-    #[AsTwigFilter('casaNormalizePhone')]
-    public function casaNormalizePhone(string $phone): string
-    {
-        return preg_replace('/[^\d\+]/', '', $phone);
     }
 }

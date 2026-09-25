@@ -134,7 +134,7 @@ class ParameterGenerator
         }
 
         if ($city = ($filter['city'] ?? null)) {
-            if (!is_array($city)) {
+            if (!\is_array($city)) {
                 $city = [$city];
             }
 

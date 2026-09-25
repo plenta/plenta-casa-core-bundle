@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 /**
- * @package       Plenta Casa Core Bundle
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -241,6 +240,9 @@ class TlPcasaObjectListener
         ));
     }
 
+    /**
+     * @return array<string, string>
+     */
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.heatingType.options')]
     #[AsCallback(table: 'tl_pcasa_object', target: 'fields.primaryEnergySource.options')]
     public function energyOptionsCallback(DataContainer $dc): array
@@ -250,6 +252,7 @@ class TlPcasaObjectListener
         $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
 
         $labels = [];
+
         foreach ($options as $key) {
             $labels[$key] = $this->translator->trans('PLENTA.CASA.'.$field.'.'.$key, [], 'contao_default');
         }

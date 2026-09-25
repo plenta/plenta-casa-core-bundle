@@ -9,7 +9,6 @@ declare(strict_types=1);
  * @license       commercial
  */
 
-use Contao\BackendUser;
 use Contao\Config;
 use Contao\DataContainer;
 use Contao\DC_Table;

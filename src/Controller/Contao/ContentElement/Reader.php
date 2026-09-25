@@ -57,9 +57,9 @@ class Reader extends AbstractContentElementController
                 fn (array $part) => $this->translator->trans(
                     'tl_content.plenta_casa_readerPartType_options.'.$part['plenta_casa_readerPartType'],
                     [],
-                    'contao_default'
+                    'contao_default',
                 ),
-                $parts ?? []
+                $parts ?? [],
             );
 
             $objTemplate->wildcard = $this->translator->trans('CTE.plenta_casa_reader.0', [], 'contao_default').' ['.implode(', ', $partLabels).']';
