@@ -133,17 +133,21 @@ class ParameterGenerator
             );
         }
 
-        if ($filter['city'] ?? null) {
+        if ($city = ($filter['city'] ?? null)) {
+            if (!is_array($city)) {
+                $city = [$city];
+            }
+
             $criteria = [];
 
-            foreach ($filter['city'] as $ignored) {
+            foreach ($city as $ignored) {
                 $criteria[] = 'city = ?';
             }
 
             $parameters[] = new Parameter(
                 'city',
                 ['('.implode(' OR ', $criteria).')'],
-                $filter['city'],
+                $city,
             );
         }
 
