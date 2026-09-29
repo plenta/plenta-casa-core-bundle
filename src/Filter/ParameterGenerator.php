@@ -46,10 +46,7 @@ class ParameterGenerator
                 [$filter['marketingType']],
             );
         }
-
-        dump($parameters);
-        dump($filter);
-
+        
         if ($filter['objectType'] ?? null) {
             if ($multipleObjectTypes) {
                 $types = \is_array($filter['objectType']) ? $filter['objectType'] : [$filter['objectType']];
