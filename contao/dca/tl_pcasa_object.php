@@ -71,7 +71,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         '__selector__' => ['marketing_type'],
         'default' => '{title_legend},marketing_type',
         'RENT' => '
-            {master_data_legend},marketing_type,usageType,object_type,unit_id,title,alias;
+            {master_data_legend},marketing_type,usageType,object_type,objectNo,unit_id,title,alias;
             {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
             {address_legend},street,housenumber,postal,city,district,country,hideStreet;
             {price_legend};
@@ -79,7 +79,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {area_legend},livingArea,plotArea,floorArea,balconyArea,gardenArea,rooms,bedrooms,bathrooms,floor,numberOfFloors,floorPosition,numberOfParkingSpaces,parkingSpaceType;
             {facilities_legend},facilities,bathroomFacilities,flooring;
             {condition_legend},buildingAge,propertyCondition,lastRefurbishment,yearOfConstruction,yearOfConstructionEngineering,yearOfConstructionUnknown,qualityOfEquipment,availableFrom,reserved;
-            {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energy_certificate_legend,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource;
+            {energy_certificate_legend},energyCertificate,creationDate,issueDate,validThrough,energyCertificateType,energyEfficiencyClass,energyRating,energyRatingElectricity,energy_certificate_legend,energyRatingHeating,co2Emission,hotWaterIncluded,heatingType,primaryEnergySource,energyCertificateBuildingType;
             {description_legend},description,location,equipment,other;
             {media_legend},singleSRC,multiSRC,floorPlansSRC,enclosure;
             {marketing_legend:hide},targetgroups,quarter;
@@ -872,6 +872,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'chpRenewable',
                 'chpRegenerative',
                 'chpOrganic',
+                'combinedHeatAndPower',
             ],
             'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['primaryEnergySource'],
             'eval' => ['tl_class' => 'w50', 'chosen' => true, 'includeBlankOption' => true],
@@ -928,6 +929,17 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['usageType_options'],
             'eval' => ['tl_class' => 'w50', 'includeBlankOption' => true, 'submitOnChange' => true],
             'sql' => "varchar(32) NOT NULL default ''",
+        ],
+        'objectNo' => [
+            'inputType' => 'text',
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'energyCertificateBuildingType' => [
+            'inputType' => 'select',
+            'options' => ['living', 'notLiving', 'mixed', 'none'],
+            'reference' => &$GLOBALS['TL_LANG']['tl_pcasa_object']['energyCertificateBuildingTypeRef'],
+            'eval' => ['includeBlankOption' => true],
+            'sql' => "varchar(16) NOT NULL default ''",
         ],
     ],
 ];

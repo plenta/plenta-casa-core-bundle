@@ -71,6 +71,7 @@ PLENTA:
             chpRenewable: KWK erneuerbar
             chpRegenerative: KWK regenerativ
             chpOrganic: KWK bio
+            combinedHeatAndPower: Kraft-Wärme-Kopplung
 
 CTE:
     plentacasa: Plenta Casa
