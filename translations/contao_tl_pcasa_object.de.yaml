@@ -13,8 +13,8 @@ tl_pcasa_object:
         0: Titel
         1: Bitte geben Sie einen Titel für das Objekt ein.
     unit_id:
-        0: Objektnummer
-        1: Bitte geben Sie die Objektnummer ein.
+        0: Wohnungsnummer
+        1: Bitte geben Sie die Wohnungsnummer ein.
     alias:
         0: Alias
         1: Der Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.
@@ -447,3 +447,14 @@ tl_pcasa_object:
     usageType:
         0: Nutzungsart
         1: Bitte wählen Sie die Nutzungsart aus.
+    objectNo:
+        0: Objektnummer
+        1: Bitte geben Sie die Objektnummer ein.
+    energyCertificateBuildingType:
+        0: Gebäudeart
+        1: Bitte wählen Sie die Gebäudeart aus.
+    energyCertificateBuildingTypeRef:
+        living: Wohngebäude
+        notLiving: Nicht-Wohngebäude
+        mixed: Mischform aus Wohngebäude und Nicht-Wohngebäude
+        none: Ohne
