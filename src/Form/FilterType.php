@@ -45,7 +45,7 @@ class FilterType extends AbstractType
         $model = $options['model'];
 
         $builder = new DynamicFormBuilder($builder);
-        $elements = StringUtil::deserialize($model->plenta_casa_filterElements);
+        $elements = StringUtil::deserialize($model->plenta_casa_filterElements, true);
 
         $modelParameters = $this->parameterGenerator->generateFromModel($model);
         $columns = [];
