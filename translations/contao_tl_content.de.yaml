@@ -92,3 +92,13 @@ tl_content:
     plenta_casa_preFilterRooms:
         0: Zimmer
         1: Nur Objekte mit exakt dieser Zimmerzahl werden angezeigt.
+    plenta_casa_filterElements:
+        0: Filter-Elemente
+        1: Bitte wählen Sie die Filter-Elemente, die angezeigt werden sollen, aus der Liste aus.
+    plenta_casa_filterElementsRef:
+        area: Fläche
+        marketingType: Marketingtyp
+        objectType: Objekttyp
+        keyword: Volltextsuche
+        rooms: Zimmer
+        price: Preis
