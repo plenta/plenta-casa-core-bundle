@@ -116,15 +116,23 @@
         }
     }
 
-    .part-enclosure {
+    .content-downloads {
         ul {
             display: flex;
-            gap: variables.$base-spacing;
+            gap: variables.$base-spacing-x-s variables.$base-spacing;
             flex-wrap: wrap;
         }
 
-        .ext-pdf a {
+        .download-element a {
             @include mixins.svg-icon('pdf-download.svg');
+
+            align-items: flex-start;
+
+            &:before {
+                flex: 0 0 auto;
+                display: block;
+                margin-top: calc((1lh - var(--pcasa-icon-size)) / 2);
+            }
         }
     }
 }
