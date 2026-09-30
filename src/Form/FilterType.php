@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Plenta\CasaCoreBundle\Form;
 
+use Contao\StringUtil;
 use Plenta\CasaCoreBundle\Events\FilterFormEvent;
 use Plenta\CasaCoreBundle\Filter\ParameterGenerator;
 use Plenta\CasaCoreBundle\Helper\ObjectTypes;
@@ -44,6 +45,7 @@ class FilterType extends AbstractType
         $model = $options['model'];
 
         $builder = new DynamicFormBuilder($builder);
+        $elements = StringUtil::deserialize($model->plenta_casa_filterElements);
 
         $modelParameters = $this->parameterGenerator->generateFromModel($model);
         $columns = [];
@@ -54,7 +56,7 @@ class FilterType extends AbstractType
             $values = array_merge($values, $parameter->getValues());
         }
 
-        if ($model->plenta_casa_filterAddMarketingType) {
+        if (\in_array('marketingType', $elements, true)) {
             $builder->add(
                 'marketingType',
                 ChoiceType::class,
@@ -66,7 +68,7 @@ class FilterType extends AbstractType
                     'choice_label' => static fn ($value, $key, $index) => 'PLENTA.CASA.marketing_types.'.$value,
                     'choice_translation_domain' => 'contao_default',
                     'placeholder' => '-',
-                    'priority' => 100,
+                    'priority' => $this->getPriority($elements, 'marketingType'),
                     'required' => false,
                     'row_attr' => ['class' => 'widget-checkbox'],
                     'attr' => ['class' => 'checkbox-group'],
@@ -74,7 +76,7 @@ class FilterType extends AbstractType
             );
         }
 
-        if ($model->plenta_casa_filterAddObjectType) {
+        if (\in_array('objectType', $elements, true)) {
             $builder->add(
                 'objectType',
                 ChoiceType::class,
@@ -82,19 +84,19 @@ class FilterType extends AbstractType
                     'choices' => array_flip($this->objectTypes->getTypes()),
                     'placeholder' => '-',
                     'choice_filter' => fn ($value) => !$value || $this->objectTypes->hasObjects((int) $value, $columns, $values),
-                    'priority' => 75,
+                    'priority' => $this->getPriority($elements, 'objectType'),
                     'required' => false,
                     'row_attr' => ['class' => 'widget-select'],
                 ],
             );
         }
 
-        if ($model->plenta_casa_filterAddKeyword) {
+        if (\in_array('keyword', $elements, true)) {
             $builder->add(
                 'keyword',
                 TextType::class,
                 [
-                    'priority' => 125,
+                    'priority' => $this->getPriority($elements, 'keyword'),
                     'required' => false,
                     'row_attr' => ['class' => 'widget-text keyword'],
                     'attr' => ['placeholder' => 'CASA.filter.keywordPlaceholder'],
@@ -102,19 +104,19 @@ class FilterType extends AbstractType
             );
         }
 
-        if ($model->plenta_casa_filterAddArea) {
+        if (\in_array('area', $elements, true)) {
             $builder->add(
                 'area',
                 NumberType::class,
                 [
                     'required' => false,
-                    'priority' => 10,
+                    'priority' => $this->getPriority($elements, 'area'),
                     'row_attr' => ['class' => 'widget-text'],
                 ],
             );
         }
 
-        if ($model->plenta_casa_filterAddRooms) {
+        if (\in_array('rooms', $elements, true)) {
             $builder->add(
                 'rooms',
                 ChoiceType::class,
@@ -122,19 +124,19 @@ class FilterType extends AbstractType
                     'choices' => range(1, 10),
                     'choice_label' => static fn ($value) => $value,
                     'required' => false,
-                    'priority' => 5,
+                    'priority' => $this->getPriority($elements, 'rooms'),
                     'row_attr' => ['class' => 'widget-select'],
                 ],
             );
         }
 
-        if ($model->plenta_casa_filterAddPrice) {
+        if (\in_array('price', $elements, true)) {
             $builder->add(
                 'price',
                 NumberType::class,
                 [
                     'required' => false,
-                    'priority' => 1,
+                    'priority' => $this->getPriority($elements, 'price'),
                     'row_attr' => ['class' => 'widget-text'],
                 ],
             );
@@ -164,5 +166,15 @@ class FilterType extends AbstractType
             'method' => 'GET',
             'csrf_protection' => false,
         ]);
+    }
+
+    /**
+     * @param array<string> $elements
+     */
+    public function getPriority(array $elements, string $key, int $step = 5): int
+    {
+        $max = \count($elements) + 1;
+
+        return ($max - array_search($key, $elements, true)) * $step;
     }
 }
