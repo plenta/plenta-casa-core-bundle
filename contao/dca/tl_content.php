@@ -14,7 +14,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_filter'] = '{type_lege
 $GLOBALS['TL_DCA']['tl_content']['palettes']['plenta_casa_reader'] = '{type_legend},title,headline,type;{config_legend},plenta_casa_readerParts,size,fullsize;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'plenta_casa_preFilter';
 
-$GLOBALS['TL_DCA']['tl_content']['subpalettes']['plenta_casa_preFilter'] = 'plenta_casa_preFilterType,plenta_casa_preFilterLocation,plenta_casa_preFilterDistrict,plenta_casa_preFilterQuarter,plenta_casa_preFilterTargetGroup,plenta_casa_preFilterRooms';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['plenta_casa_preFilter'] = 'plenta_casa_preFilterMarketingType,plenta_casa_preFilterType,plenta_casa_preFilterLocation,plenta_casa_preFilterDistrict,plenta_casa_preFilterQuarter,plenta_casa_preFilterTargetGroup,plenta_casa_preFilterRooms';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_readerParts'] = [
     'inputType' => 'group',
@@ -90,6 +90,14 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilter'] = [
     'inputType' => 'checkbox',
     'eval' => ['submitOnChange' => true],
     'sql' => ['type' => 'boolean', 'default' => false],
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterMarketingType'] = [
+    'inputType' => 'select',
+    'options' => $GLOBALS['PLENTA']['CASA']['marketing_type'],
+    'reference' => &$GLOBALS['TL_LANG']['PLENTA']['CASA']['marketing_types'],
+    'eval' => ['tl_class' => 'w50', 'multiple' => true, 'chosen' => true],
+    'sql' => 'mediumtext NULL',
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['plenta_casa_preFilterType'] = [

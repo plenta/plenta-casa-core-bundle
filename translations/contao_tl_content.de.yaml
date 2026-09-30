@@ -71,6 +71,9 @@ tl_content:
     plenta_casa_preFilter:
         0: Liste/Filter vorfiltern
         1: Die Liste bzw. der Filter wird vor der Ausgabe bereits gefiltert. Wenn Liste und Filter zusammen verwendet werden, sollten die Angaben in beiden Inhaltselementen identisch sein.
+    plenta_casa_preFilterMarketingType:
+        - Vermarktungstyp
+        - Bitte wählen Sie einen Vermarktungstyp aus.
     plenta_casa_preFilterType:
         0: Objektarten
         1: Bitte wählen Sie aus, welche Objektarten angezeigt werden sollen.

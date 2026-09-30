@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-/*
- * @package       Plenta Casa Core Bundle
+/**
+ * @package       Customer
  * @copyright     Copyright (c) 2026, Plenta.io
  * @author        Plenta.io <https://plenta.io>
  * @license       commercial
@@ -28,10 +28,11 @@ class ParameterGenerator
     }
 
     /**
-     * @param  array<string, mixed> $filter
+     * @param array<string, mixed> $filter
+     *
      * @return array<Parameter>
      */
-    public function generateFromArray(array $filter, ContentModel|null $model, bool $multipleObjectTypes = false): array
+    public function generateFromArray(array $filter, ?ContentModel $model, bool $multipleObjectTypes = false): array
     {
         $parameters = [];
 
@@ -45,7 +46,7 @@ class ParameterGenerator
                 [$filter['marketingType']],
             );
         }
-
+        
         if ($filter['objectType'] ?? null) {
             if ($multipleObjectTypes) {
                 $types = \is_array($filter['objectType']) ? $filter['objectType'] : [$filter['objectType']];
@@ -212,7 +213,7 @@ class ParameterGenerator
     /**
      * @return array<Parameter>
      */
-    public function generateFromRequest(Request $request, ContentModel|null $model): array
+    public function generateFromRequest(Request $request, ?ContentModel $model): array
     {
         return $this->generateFromArray($request->query->all('filter'), $model);
     }
@@ -225,6 +226,10 @@ class ParameterGenerator
         $data = [];
 
         if ($contentModel->plenta_casa_preFilter) {
+            if ($contentModel->plenta_casa_preFilterMarketingType) {
+                $data['marketingType'] = StringUtil::deserialize($contentModel->plenta_casa_preFilterMarketingType);
+            }
+
             if ($contentModel->plenta_casa_preFilterType) {
                 $data['objectType'] = StringUtil::deserialize($contentModel->plenta_casa_preFilterType);
             }
