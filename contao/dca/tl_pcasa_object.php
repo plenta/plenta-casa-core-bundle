@@ -71,7 +71,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         '__selector__' => ['marketing_type'],
         'default' => '{title_legend},marketing_type',
         'RENT' => '
-            {master_data_legend},marketing_type,usageType,object_type,objectNo,unit_id,title,alias;
+            {master_data_legend},marketing_type,usageType,object_type,title,alias,objectNo,unit_id;
             {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
             {address_legend},street,housenumber,postal,city,district,country,hideStreet;
             {price_legend};
@@ -86,7 +86,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             {publish_legend},published,featured,start,stop
         ',
         'BUY' => '
-            {master_data_legend},marketing_type,usageType,object_type,unit_id,title,alias;
+            {master_data_legend},marketing_type,usageType,title,alias,object_type,unit_id;
             {meta_legend:hide},metaTitle,robots,metaDescription,serpPreview;
             {address_legend},street,housenumber,postal,city,district,country,hideStreet;
             {price_legend};
@@ -148,7 +148,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'inputType' => 'text',
             'search' => true,
             'exclude' => true,
-            'eval' => ['maxlength' => 255, 'tl_class' => 'w50', 'doNotCopy' => true],
+            'eval' => ['maxlength' => 255, 'tl_class' => 'clr w50', 'doNotCopy' => true],
             'sql' => "varchar(255) NOT NULL default ''",
         ],
         'unit_id' => [
@@ -158,7 +158,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
             'eval' => [
                 'maxlength' => 128,
                 'unique' => true,
-                'tl_class' => 'w33',
+                'tl_class' => 'w50',
             ],
             'sql' => "varchar(128) NOT NULL default ''",
         ],
@@ -932,6 +932,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
         ],
         'objectNo' => [
             'inputType' => 'text',
+            'eval' => ['tl_class' => 'w50'],
             'sql' => "varchar(255) NOT NULL default ''",
         ],
         'energyCertificateBuildingType' => [

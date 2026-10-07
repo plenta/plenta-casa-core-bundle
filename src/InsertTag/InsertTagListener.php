@@ -49,6 +49,8 @@ class InsertTagListener implements InsertTagResolverNestedResolvedInterface
             'address' => $object->getAddress(),
             'name' => $object->getName(),
             'title' => $object->getName(),
+            'object_number' => $object->objectNo ?? '',
+            'unit_number' => $object->unit_id ?? '',
             default => '',
         };
 
