@@ -59,11 +59,6 @@ class FilterComponent extends AbstractController
     public function mount(int $modelId): void
     {
         $this->modelId = $modelId;
-        $request = $this->requestStack->getCurrentRequest();
-
-        if ($request->query->has('filter')) {
-            $this->initialValues = $request->query->all('filter');
-        }
     }
 
     #[PreReRender(priority: -100)]
@@ -88,12 +83,18 @@ class FilterComponent extends AbstractController
      */
     protected function instantiateForm(): FormInterface
     {
-        return $this->createForm(
+        $form = $this->createForm(
             FilterType::class,
             $this->initialValues,
             [
                 'model' => ContentModel::findById($this->modelId),
             ],
         );
+
+        if (empty($this->initialValues) && ($request = $this->requestStack->getCurrentRequest())->query->has('filter')) {
+            $form->handleRequest($request);
+        }
+
+        return $form;
     }
 }
