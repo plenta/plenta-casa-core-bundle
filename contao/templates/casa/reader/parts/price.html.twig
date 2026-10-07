@@ -61,6 +61,9 @@
                     {% if value %}
                         <div>
                             <dt class="label">{{ item.label|trans }}</dt>
+                            {% if item.type|default == 'checkbox' %}
+                                <dd class="value">{{ 'PLENTA.CASA.yes'|trans({}, 'messages') }}</dd>
+                            {% endif %}
                         </div>
                     {% endif %}
                 {% else %}
