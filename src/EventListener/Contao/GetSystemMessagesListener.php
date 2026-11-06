@@ -52,7 +52,7 @@ class GetSystemMessagesListener
                 'manufacturer' => $this->translator->trans('PLENTA.CASA.manufacturer', [], 'plenta_casa_dashboard'),
                 'version' => $this->translator->trans(
                     'PLENTA.CASA.version',
-                    ['%s' => InstalledVersions::getVersion('plenta/plenta-casa-core-bundle')],
+                    ['%s' => InstalledVersions::getPrettyVersion('plenta/plenta-casa-core-bundle')],
                     'plenta_casa_dashboard',
                 ),
             ];
