@@ -1,0 +1,137 @@
+Plenta Casa Core Lizenz
+Version 1.0, Stand November 2026
+
+Copyright (c) 2025-2026 Plenta Software GbR (Plenta.io), https://plenta.io
+Alle Rechte vorbehalten, soweit sie in dieser Lizenz nicht ausdrücklich
+eingeräumt werden.
+
+
+1. Worum es geht
+
+Diese Lizenz gilt für das Plenta Casa Core Bundle (Composer-Paket
+plenta/plenta-casa-core-bundle) mit Quellcode, Templates, Stylesheets,
+Skripten, Übersetzungen und Dokumentation (zusammen "die Software").
+Rechteinhaberin ist die Plenta Software GbR ("Plenta").
+
+Die Software ist kostenlos und ihr Quellcode ist offen einsehbar. Sie ist
+aber keine Open-Source-Software im Sinne der Open Source Initiative. Was Du
+damit tun darfst und was nicht, regelt allein diese Lizenz.
+
+
+2. Was Du darfst
+
+Plenta räumt Dir kostenlos ein einfaches, nicht übertragbares, zeitlich und
+räumlich unbeschränktes Recht ein, die Software
+
+a) auf beliebig vielen eigenen Contao-Installationen einzusetzen,
+b) für Deine Kundinnen und Kunden in deren Projekten einzusetzen, auch wenn
+   Du für dieses Projekt Geld bekommst (z. B. für Einrichtung, Design,
+   Hosting, Wartung oder Support),
+c) zu ändern und anzupassen, soweit das für die Nutzung in einer konkreten
+   Installation nötig ist, zum Beispiel Templates, Styles, Konfiguration
+   oder Übersetzungen,
+d) zusammen mit einem Kundenprojekt an die jeweilige Kundin oder den
+   jeweiligen Kunden weiterzugeben, auch in angepasster Form, solange diese
+   Lizenz mitgeliefert wird und für die Software selbst kein gesondertes
+   Entgelt verlangt wird.
+
+
+3. Eigene Erweiterungen
+
+Du darfst eigene Erweiterungen entwickeln, die auf der Software aufbauen
+(z. B. eigene Contao-Bundles, die Schnittstellen, Events oder Services der
+Software nutzen), und diese auch verkaufen. Voraussetzung ist, dass Deine
+Erweiterung keinen Code, keine Templates und keine sonstigen Bestandteile
+der Software enthält, sondern die Software nur als Abhängigkeit voraussetzt.
+
+
+4. Was Du nicht darfst
+
+Ohne vorherige schriftliche Zustimmung von Plenta darfst Du nicht
+
+a) die Software oder Teile davon verkaufen, vermieten, verleasen oder gegen
+   Entgelt anbieten, weder allein noch als Bestandteil eines anderen
+   Produkts,
+b) veränderte Fassungen der Software veröffentlichen oder an andere als
+   Deine Projektkundinnen und -kunden weitergeben (z. B. als Fork auf
+   GitHub, als eigenes Composer-Paket oder als Download),
+c) die Software oder veränderte Fassungen davon unter einem anderen Namen,
+   einer anderen Marke oder als eigenes Produkt ausgeben,
+d) Copyright-Hinweise, Lizenzhinweise oder diese Lizenzdatei entfernen oder
+   verändern,
+e) Unterlizenzen erteilen, die über die Rechte aus dieser Lizenz
+   hinausgehen.
+
+Die unveränderte Software darfst Du unter Beachtung dieser Lizenz kostenlos
+weitergeben, zum Beispiel per Link auf das offizielle Repository.
+
+
+5. Beiträge
+
+Wenn Du Plenta Änderungen, Fehlerkorrekturen oder Erweiterungen für die
+Software zukommen lässt (z. B. als Pull Request, Patch oder per E-Mail),
+räumst Du Plenta daran ein einfaches, unentgeltliches, zeitlich und
+räumlich unbeschränktes, übertragbares und unterlizenzierbares
+Nutzungsrecht ein. Plenta darf Deinen Beitrag damit in der Software und in
+anderen Produkten verwenden, ändern und unter beliebigen Lizenzen
+veröffentlichen. Du bestätigst, dass Du die dafür nötigen Rechte an Deinem
+Beitrag hast.
+
+
+6. Bestandteile von Dritten
+
+Die Software kann Bestandteile von Dritten enthalten oder voraussetzen
+(z. B. Contao, Symfony oder Icons von Font Awesome Free). Für diese gelten
+ausschließlich deren eigene Lizenzen. Diese Lizenz schränkt Deine Rechte an
+solchen Bestandteilen nicht ein.
+
+
+7. Marken
+
+Diese Lizenz gibt Dir keine Rechte an den Namen und Kennzeichen "Plenta",
+"Plenta.io" und "Plenta Casa". Du darfst sie verwenden, um wahrheitsgemäß
+darauf hinzuweisen, dass ein Projekt oder eine Erweiterung auf Plenta Casa
+basiert oder damit kompatibel ist.
+
+
+8. Gewährleistung und Haftung
+
+Die Software wird kostenlos und so wie sie ist zur Verfügung gestellt.
+Plenta haftet nur für Vorsatz und grobe Fahrlässigkeit sowie für Mängel,
+die Plenta arglistig verschwiegen hat. Die Haftung nach dem
+Produkthaftungsgesetz und für Schäden aus der Verletzung des Lebens, des
+Körpers oder der Gesundheit bleibt unberührt. Im Übrigen ist die Haftung
+ausgeschlossen.
+
+Support, Updates und Anpassungen sind nicht Teil dieser Lizenz. Sie können
+gesondert mit Plenta vereinbart werden.
+
+
+9. Ende der Lizenz
+
+Verstößt Du gegen diese Lizenz, enden Deine Rechte daraus automatisch.
+Hast Du den Verstoß innerhalb von 30 Tagen nach einem Hinweis von Plenta
+vollständig behoben, leben Deine Rechte wieder auf, es sei denn, es ist
+nicht Dein erster Verstoß.
+
+Rechte, die Deine Kundinnen und Kunden vor dem Verstoß rechtmäßig erhalten
+haben, bleiben bestehen.
+
+
+10. Schlussbestimmungen
+
+Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des
+UN-Kaufrechts. Bist Du Kaufmann, juristische Person des öffentlichen Rechts
+oder öffentlich-rechtliches Sondervermögen, ist Gerichtsstand Brandenburg
+an der Havel.
+
+Sollte eine Bestimmung dieser Lizenz unwirksam sein, bleiben die übrigen
+Bestimmungen wirksam. An die Stelle der unwirksamen Bestimmung tritt die
+gesetzliche Regelung.
+
+Plenta kann für künftige Versionen der Software eine geänderte Lizenz
+festlegen. Für Versionen, die Du bereits erhalten hast, gilt die Lizenz,
+mit der sie ausgeliefert wurden.
+
+Fragen zur Lizenz oder zu Nutzungen, die hier nicht erlaubt sind:
+hallo@plenta.io

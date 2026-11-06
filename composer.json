@@ -1,8 +1,8 @@
 {
   "name": "plenta/plenta-casa-core-bundle",
   "type": "contao-bundle",
-  "license": "LGPL-3.0-or-later",
-  "version": "1.0.3",
+  "license": "proprietary",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Plenta.io",

@@ -1,0 +1,133 @@
+Plenta Casa Core License
+Version 1.0, November 2026
+
+Copyright (c) 2025-2026 Plenta Software GbR (Plenta.io), https://plenta.io
+All rights reserved, except as expressly granted in this license.
+
+This is an English translation of the German license in the file LICENSE.
+If the two versions differ, the German version prevails.
+
+
+1. Scope
+
+This license applies to the Plenta Casa Core Bundle (Composer package
+plenta/plenta-casa-core-bundle), including its source code, templates,
+stylesheets, scripts, translations and documentation (together "the
+Software"). The rights holder is Plenta Software GbR ("Plenta").
+
+The Software is free of charge and its source code is publicly available.
+It is, however, not open source software as defined by the Open Source
+Initiative. What you may and may not do with it is governed solely by this
+license.
+
+
+2. What you may do
+
+Plenta grants you, free of charge, a simple (non-exclusive),
+non-transferable right, unlimited in time and territory, to
+
+a) use the Software on any number of your own Contao installations,
+b) use the Software for your clients in their projects, even if you are
+   paid for that project (e.g. for setup, design, hosting, maintenance or
+   support),
+c) modify and adapt the Software as far as needed for its use in a
+   specific installation, for example templates, styles, configuration or
+   translations,
+d) hand over the Software to the respective client as part of a client
+   project, including in modified form, as long as this license is included
+   and no separate fee is charged for the Software itself.
+
+
+3. Your own extensions
+
+You may develop your own extensions that build on the Software (e.g. your
+own Contao bundles that use the Software's interfaces, events or services)
+and you may also sell them. The condition is that your extension contains
+no code, templates or other parts of the Software, but only requires the
+Software as a dependency.
+
+
+4. What you may not do
+
+Without Plenta's prior written consent, you may not
+
+a) sell, rent, lease or otherwise offer the Software or any part of it for
+   a fee, whether on its own or as part of another product,
+b) publish modified versions of the Software or pass them on to anyone
+   other than your project clients (e.g. as a fork on GitHub, as your own
+   Composer package or as a download),
+c) present the Software or modified versions of it under a different name
+   or brand, or as your own product,
+d) remove or alter copyright notices, license notices or this license file,
+e) grant sublicenses that go beyond the rights granted in this license.
+
+You may pass on the unmodified Software free of charge in compliance with
+this license, for example by linking to the official repository.
+
+
+5. Contributions
+
+If you provide Plenta with changes, bug fixes or extensions to the Software
+(e.g. as a pull request, patch or by email), you grant Plenta a simple
+(non-exclusive), free, transferable and sublicensable right to use your
+contribution, unlimited in time and territory. Plenta may use and modify
+your contribution in the Software and in other products and publish it
+under any license. You confirm that you hold the rights required to do so.
+
+
+6. Third-party components
+
+The Software may contain or require third-party components (e.g. Contao,
+Symfony or icons from Font Awesome Free). These are governed exclusively by
+their own licenses. This license does not restrict your rights to such
+components.
+
+
+7. Trademarks
+
+This license does not grant you any rights to the names and marks
+"Plenta", "Plenta.io" and "Plenta Casa". You may use them to state
+truthfully that a project or extension is based on or compatible with
+Plenta Casa.
+
+
+8. Warranty and liability
+
+The Software is provided free of charge and as is. Plenta is liable only
+for intent and gross negligence and for defects that Plenta has
+fraudulently concealed. Liability under the German Product Liability Act
+(Produkthaftungsgesetz) and for injury to life, body or health remains
+unaffected. Any further liability is excluded.
+
+Support, updates and customizations are not part of this license. They can
+be agreed separately with Plenta.
+
+
+9. Termination
+
+If you violate this license, your rights under it end automatically. If
+you fully remedy the violation within 30 days of being notified by Plenta,
+your rights are reinstated, unless it is not your first violation.
+
+Rights that your clients lawfully received before the violation remain in
+effect.
+
+
+10. Final provisions
+
+This license is governed by the laws of the Federal Republic of Germany,
+excluding the UN Convention on Contracts for the International Sale of
+Goods. If you are a merchant (Kaufmann), a legal entity under public law or
+a special fund under public law, the place of jurisdiction is Brandenburg
+an der Havel, Germany.
+
+Should any provision of this license be invalid, the remaining provisions
+remain in effect. The invalid provision is replaced by the applicable
+statutory provision.
+
+Plenta may set a different license for future versions of the Software.
+Versions you have already received remain under the license they were
+delivered with.
+
+Questions about this license or about uses not permitted here:
+hallo@plenta.io
