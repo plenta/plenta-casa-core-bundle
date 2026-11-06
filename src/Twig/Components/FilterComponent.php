@@ -12,12 +12,15 @@ declare(strict_types=1);
 namespace Plenta\CasaCoreBundle\Twig\Components;
 
 use Contao\ContentModel;
+use Contao\PageModel;
 use Contao\CoreBundle\Controller\AbstractController;
+use Contao\CoreBundle\Routing\ContentUrlGenerator;
 use Plenta\CasaCoreBundle\Events\FilterFormBeforeRenderEvent;
 use Plenta\CasaCoreBundle\Form\FilterType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\Exception\ExceptionInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
@@ -53,6 +56,7 @@ class FilterComponent extends AbstractController
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly ContentUrlGenerator $contentUrlGenerator,
     ) {
     }
 
@@ -65,7 +69,10 @@ class FilterComponent extends AbstractController
     public function preRender(): void
     {
         $this->formValues = array_filter($this->formValues, static fn ($key) => '__dynamic_error' !== $key, ARRAY_FILTER_USE_KEY);
-        $this->emit('casa:filter-changed', ['data' => $this->formValues]);
+
+        if (!ContentModel::findById($this->modelId)?->jumpTo) {
+            $this->emit('casa:filter-changed', ['data' => $this->formValues]);
+        }
     }
 
     public function getFormView(): FormView
@@ -83,18 +90,32 @@ class FilterComponent extends AbstractController
      */
     protected function instantiateForm(): FormInterface
     {
-        $form = $this->createForm(
-            FilterType::class,
-            $this->initialValues,
-            [
-                'model' => ContentModel::findById($this->modelId),
-            ],
-        );
+        $model = ContentModel::findById($this->modelId);
+        $options = ['model' => $model];
+
+        if ($action = $this->getJumpToUrl($model)) {
+            $options['action'] = $action;
+        }
+
+        $form = $this->createForm(FilterType::class, $this->initialValues, $options);
 
         if (empty($this->initialValues) && ($request = $this->requestStack->getCurrentRequest())->query->has('filter')) {
             $form->handleRequest($request);
         }
 
         return $form;
+    }
+
+    private function getJumpToUrl(ContentModel|null $model): string|null
+    {
+        if (!$model?->jumpTo || !$page = PageModel::findPublishedById((int) $model->jumpTo)) {
+            return null;
+        }
+
+        try {
+            return $this->contentUrlGenerator->generate($page);
+        } catch (ExceptionInterface) {
+            return null;
+        }
     }
 }
