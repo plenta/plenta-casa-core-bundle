@@ -12,7 +12,7 @@
   ],
   "require": {
     "php": "^8.4",
-    "contao/core-bundle": "^5.3 ||^5.7",
+    "contao/core-bundle": "^5.7",
     "symfony/form": "^7.3",
     "symfony/stimulus-bundle": "^2.31",
     "mvo/contao-group-widget": "^1.6",
