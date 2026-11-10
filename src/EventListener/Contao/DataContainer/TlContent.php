@@ -38,6 +38,7 @@ class TlContent
         $options = [
             'title',
             'address',
+            'objectNo',
             'unit_id',
             'titleImage',
             'gallery',

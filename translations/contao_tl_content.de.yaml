@@ -35,7 +35,8 @@ tl_content:
     plenta_casa_readerPartType_options:
         title: Titel
         address: Adresse
-        unit_id: Objektnummer
+        objectNo: Objektnummer
+        unit_id: Einheitennummer
         gallery: Galerie
         floorplan: Grundriss
         titleImage: Titelbild
