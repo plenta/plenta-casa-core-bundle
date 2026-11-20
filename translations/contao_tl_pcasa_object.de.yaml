@@ -288,6 +288,7 @@ tl_pcasa_object:
         fullyFurnished: Vollmöbliert
         kitchenette: Teeküche
         cafeteria: Kantine/Caféteria
+        dataCabling: DV-Verkabelung
         laundryRoom: Wasch-/Trockenraum
         shutters: Rollläden
     bathroomFacilities-options:

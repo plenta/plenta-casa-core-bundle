@@ -531,6 +531,7 @@ $GLOBALS['TL_DCA']['tl_pcasa_object'] = [
                 'fullyFurnished',
                 'kitchenette',
                 'cafeteria',
+                'dataCabling',
                 'laundryRoom',
                 'shutters',
             ],
